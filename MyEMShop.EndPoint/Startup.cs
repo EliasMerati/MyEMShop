@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MyEMShop.Data.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +26,7 @@ namespace MyEMShop.EndPoint
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            
+            services.AddDbContext<DatabaseContext>(option => option.UseSqlServer(Configuration.GetConnectionString("EMshopConnectionString")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
