@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MyEMShop.Application\MyEMShop.Application.csproj" />
+    <ProjectReference Include="..\MyEMShop.Common\MyEMShop.Common.csproj" />
     <ProjectReference Include="..\MyEMShop.Data\MyEMShop.Data.csproj" />
   </ItemGroup>
 

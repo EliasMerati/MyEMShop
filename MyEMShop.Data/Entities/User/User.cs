@@ -11,6 +11,7 @@ namespace MyEMShop.Data.Entities.User
 
         [Key]
         public int UserId { get; set; }
+        public int RoleId { get; set; }
 
         [Display(Name = "نام کاربری")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
@@ -35,10 +36,6 @@ namespace MyEMShop.Data.Entities.User
 
         [Display(Name = "فعال / غیر فعال")]
         public bool IsActive { get; set; }
-
-        [Display(Name = "عکس کاربر")]
-        [MaxLength(100)]
-        public string ImageName { get; set; }
 
         #region Navigation Property
 
