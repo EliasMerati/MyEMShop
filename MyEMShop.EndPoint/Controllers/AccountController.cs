@@ -18,6 +18,7 @@ namespace MyEMShop.EndPoint.Controllers
         #endregion
 
         #region Register
+        [HttpGet]
         [Route("Register")]
         public IActionResult Register()
         {
@@ -33,10 +34,12 @@ namespace MyEMShop.EndPoint.Controllers
             if (_AccountServices.IsExistEmail(FixedEmail.Fix(register.Email)))
             {
                 ModelState.AddModelError("Email", "ایمیل وارد شده تکراری است ");
+                return View(register);
             }
             if (_AccountServices.IsExistUserName(register.UserName))
             {
                 ModelState.AddModelError("UserName", "نام کاربری وارد شده تکراری است ");
+                return View(register);
             }
             var user = new User()
             {
@@ -44,12 +47,27 @@ namespace MyEMShop.EndPoint.Controllers
                 Email = register.Email,
                 Activecode = GenerateCode.GenerateUniqueCode(),
                 IsActive = false,
-                RoleId = 1,
+                RoleId = 2,
                 Password = PasswordHelper.EncodePasswordMd5(register.Password),
             };
             _AccountServices.Register(user);
-            return RedirectToAction("_Success",user);
+            return View("_Success",user);
         }
+        #endregion
+
+        #region Login
+        [Route("Login")]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        //[HttpPost]
+        //[Route("Login")]
+        //public IActionResult Login()
+        //{
+        //    return View();
+        //}
         #endregion
 
     }
