@@ -1,7 +1,40 @@
-﻿
+﻿@model MyEMShop.Data.Dtos.UserDto.LoginDto
 @{
     ViewData["Title"] = "ورود به سایت";
 }
 
-<h1>Login</h1>
+<ul class="breadcrumb">
+    <li><a href="/"><i class="fa fa-home"></i></a></li>
+    <li><a href="/Login">حساب کاربری</a></li>
+    <li><a href="/Login">ورود</a></li>
+</ul>
 
+<div id="content" class="col-sm-9">
+    <h1 class="title">حساب کاربری ورود</h1>
+    <div class="row">
+        <div class="col-sm-6">
+            <h2 class="subtitle">مشتری جدید</h2>
+            <p><strong>ثبت نام حساب کاربری</strong></p>
+            <p>با ایجاد حساب کاربری میتوانید سریعتر خرید کرده، از وضعیت خرید خود آگاه شده و تاریخچه ی سفارشات خود را مشاهده کنید.</p>
+            <a href="/Register" class="btn btn-primary">ادامه</a>
+        </div>
+        <div class="col-sm-6">
+            <h2 class="subtitle">مشتری قبلی</h2>
+            <p><strong>من از قبل مشتری شما هستم</strong></p>
+            <form class="form-horizontal" method="post">
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label">آدرس ایمیل</label>
+                    <input asp-for="Email" type="text" name="email" value="" placeholder="آدرس ایمیل" id="input-email" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label" for="input-password">رمز عبور</label>
+                    <input asp-for="Password" type="password" name="password" value="" placeholder="رمز عبور" id="input-password" class="form-control">
+                    <br>
+                    <a href="/ForgotPassword">فراموشی رمز عبور</a>
+                </div>
+                <input type="submit" value="ورود" class="btn btn-primary">
+            </form>
+
+        </div>
+    </div>
+</div>

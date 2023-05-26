@@ -7,5 +7,7 @@ namespace MyEMShop.Application.Interfaces
         bool IsExistEmail(string email);
         bool IsExistUserName(string userName);
         bool Register(User user);
+        bool CompareOldPassword(string password, string username);
+        void ChangeNewPassword(string username,string password);
     }
 }
