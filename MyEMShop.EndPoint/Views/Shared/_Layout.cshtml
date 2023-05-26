@@ -79,8 +79,15 @@
                         </div>
                         <div id="top-links" class="nav pull-right flip">
                             <ul>
-                                <li><a href="/Login">ورود</a></li>
-                                <li><a href="/Register">ثبت نام</a></li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <p> @User.Identity.Name  عزیز ، خوش آمدید</p>
+                                }
+                                else
+                                {
+                                    <li><a href="/Login">ورود</a></li>
+                                    <li><a href="/Register">ثبت نام</a></li>
+                                }
                             </ul>
                         </div>
                     </div>

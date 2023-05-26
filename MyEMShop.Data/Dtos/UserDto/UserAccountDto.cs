@@ -42,6 +42,8 @@ namespace MyEMShop.Data.Dtos.UserDto
         [MaxLength(200)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        public bool IsPersistence { get; set; }
     }
 
     public class ChangePasswordDto

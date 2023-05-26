@@ -29,8 +29,12 @@
                 <div class="form-group">
                     <label asp-for="Password" class="control-label" for="input-password">رمز عبور</label>
                     <input asp-for="Password" type="password" name="password" value="" placeholder="رمز عبور" id="input-password" class="form-control">
-                    <br>
+                    <br>           
                     <a href="/ForgotPassword">فراموشی رمز عبور</a>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IsPersistence" >مرا به خاطر بسپار</label>
+                    <input asp-for="IsPersistence"  type="checkbox" value="2"  name="agree">
                 </div>
                 <input type="submit" value="ورود" class="btn btn-primary">
             </form>

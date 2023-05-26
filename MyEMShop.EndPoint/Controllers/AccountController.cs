@@ -9,6 +9,8 @@ using MyEMShop.Common;
 using MyEMShop.Data.Dtos.UserDto;
 using MyEMShop.Data.Entities.User;
 using System;
+using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace MyEMShop.EndPoint.Controllers
 {
@@ -77,6 +79,15 @@ namespace MyEMShop.EndPoint.Controllers
             {
                 if (user.IsActive)
                 {
+                    var claims = new List<Claim>()
+                    {
+                        new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
+                        new Claim(ClaimTypes.Name, user.UserName)
+                    };
+                    var identity =  new ClaimsIdentity(claims,CookieAuthenticationDefaults.AuthenticationScheme);
+                    var Principal = new ClaimsPrincipal(identity);
+                    var property = new AuthenticationProperties { IsPersistent = login.IsPersistence };
+                    HttpContext.SignInAsync(Principal,property);
                     return Redirect("/");
                 }
                 else
