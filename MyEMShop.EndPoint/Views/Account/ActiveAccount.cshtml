@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "فعالسازی حساب کاربری";
+}
+
+<ul class="breadcrumb">
+    <li><a href="/"><i class="fa fa-home"></i></a></li>
+    <li><a href="/Login">حساب کاربری</a></li>
+    <li><a href="/Login">ورود</a></li>
+</ul>
+
+<div class="container">
+    @if (ViewBag.Isactive)
+    {
+        <div class="alert alert-success">
+            <p>حساب کاربری شما با موفقیت فعال شد</p>
+            <br/>
+            <p>
+                <a href="/Login"> ورود به سایت</a>
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger">
+            <p>کاربری با مشخصات فوق یافت نشد</p>
+        </div>
+    }
+</div>
+
+

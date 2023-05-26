@@ -2,11 +2,13 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Win32;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Common;
 using MyEMShop.Data.Dtos.UserDto;
 using MyEMShop.Data.Entities.User;
+using System;
 
 namespace MyEMShop.EndPoint.Controllers
 {
@@ -65,12 +67,35 @@ namespace MyEMShop.EndPoint.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //[Route("Login")]
-        //public IActionResult Login()
-        //{
-        //    return View();
-        //}
+        [HttpPost]
+        [Route("Login")]
+        public IActionResult Login(LoginDto login)
+        {
+            if (!ModelState.IsValid) { return View(login); }
+            var user = _AccountServices.LoginUser(login);
+            if (user != null)
+            {
+                if (user.IsActive)
+                {
+                    return Redirect("/");
+                }
+                else
+                {
+                    ModelState.AddModelError("Email", "حساب کاربری شما فعال نیست");
+                }
+                
+            }
+            ModelState.AddModelError("Email", "کاربری با مشخصات فوق یافت نشد");
+            return View(login);
+        }
+        #endregion
+
+        #region Active Account
+        public IActionResult ActiveAccount(string id)
+        {
+            ViewBag.Isactive = _AccountServices.ActiveAccount(id);
+            return View();
+        }
         #endregion
 
         #region ForgotPassword
