@@ -40,6 +40,11 @@ namespace MyEMShop.Application.Services
             return _db.Users.Any(u=> u.UserName == username && u.Password == HashPass);
         }
 
+        public User GetUserByEmail(string email)
+        {
+            return _db.Users.SingleOrDefault(u => u.Email == email);
+        }
+
         public string HashPassword(string password)
         {
             return PasswordHelper.EncodePasswordMd5(password);

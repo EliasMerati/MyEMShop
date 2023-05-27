@@ -47,6 +47,33 @@ namespace MyEMShop.Data.Dtos.UserDto
         public bool IsPersistence { get; set; }
     }
 
+    public class ForgotPasswordDto
+    {
+        [Display(Name = "ایمیل")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(150)]
+        [EmailAddress]
+        public string Email { get; set; }
+    }
+
+    public class ResetPasswordDto
+    {
+        public string Activecode { get; set; }
+
+        [Display(Name = "کلمه عبور جدید")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(200)]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+        [Display(Name = "  تکرار کلمه عبور جدید ")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(200)]
+        [DataType(DataType.Password)]
+        [Compare(nameof(Password), ErrorMessage = "کلمه های عبور مغایرت دارند")]
+        public string RePassword { get; set; }
+    }
+
     public class ChangePasswordDto
     {
         [Display(Name = "کلمه عبور فعلی")]

@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Application.Services;
+using MyEMShop.Common;
 using MyEMShop.Data.Context;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,7 @@ namespace MyEMShop.EndPoint
 
             #region Services
             services.AddScoped<IAccountServices, AccountServices>();
+            services.AddScoped<IViewRenderService, RenderViewToString>();
             #endregion
 
             #region Authentication

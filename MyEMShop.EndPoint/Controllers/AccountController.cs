@@ -2,13 +2,10 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.Win32;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Common;
 using MyEMShop.Data.Dtos.UserDto;
 using MyEMShop.Data.Entities.User;
-using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 
@@ -18,12 +15,16 @@ namespace MyEMShop.EndPoint.Controllers
     {
         #region Injection
         private readonly IAccountServices _AccountServices;
-        public AccountController(IAccountServices accountServices)
+        private readonly IViewRenderService _viewRender;
+        public AccountController(IAccountServices accountServices, IViewRenderService viewRender)
         {
             _AccountServices = accountServices;
+            _viewRender = viewRender;
         }
         #endregion
 
+        //-------------------------------------------------------------------------------
+       
         #region Register
         [HttpGet]
         [Route("Register")]
@@ -58,7 +59,11 @@ namespace MyEMShop.EndPoint.Controllers
                 Password = PasswordHelper.EncodePasswordMd5(register.Password),
             };
             _AccountServices.Register(user);
-            return View("_Success",user);
+            #region Send Email
+            var body = _viewRender.RenderToStringAsync("_ActiveEmail", user);
+            SendEmail.Send(user.Email, "فعالسازی حساب کاربری", body);
+            #endregion
+            return View("_Success", user);
         }
         #endregion
 
@@ -84,17 +89,17 @@ namespace MyEMShop.EndPoint.Controllers
                         new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
                         new Claim(ClaimTypes.Name, user.UserName)
                     };
-                    var identity =  new ClaimsIdentity(claims,CookieAuthenticationDefaults.AuthenticationScheme);
+                    var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     var Principal = new ClaimsPrincipal(identity);
                     var property = new AuthenticationProperties { IsPersistent = login.IsPersistence };
-                    HttpContext.SignInAsync(Principal,property);
+                    HttpContext.SignInAsync(Principal, property);
                     return Redirect("/");
                 }
                 else
                 {
                     ModelState.AddModelError("Email", "حساب کاربری شما فعال نیست");
                 }
-                
+
             }
             ModelState.AddModelError("Email", "کاربری با مشخصات فوق یافت نشد");
             return View(login);
@@ -110,8 +115,6 @@ namespace MyEMShop.EndPoint.Controllers
         #endregion
 
         #region ForgotPassword
-
-
         [Route("ForgotPassword")]
         public IActionResult ForgotPassword()
         {
@@ -120,18 +123,56 @@ namespace MyEMShop.EndPoint.Controllers
 
         [HttpPost]
         [Route("ForgotPassword")]
-        public IActionResult ForgotPassword(ChangePasswordDto change)
+        public IActionResult ForgotPassword(ForgotPasswordDto forgot)
         {
-            string CurrentUserName = User.Identity.Name;
-            if (!ModelState.IsValid) { return View(change); }
-            if (!_AccountServices.CompareOldPassword(change.OldPassword , CurrentUserName))
+            if (!ModelState.IsValid) { return View(forgot); }
+            
+            string FixEmail = FixedEmail.Fix(forgot.Email);
+            var user = _AccountServices.GetUserByEmail(FixEmail);
+            if (user is null)
             {
-                ModelState.AddModelError("OldPassword", "کلمه ی عبور فعلی صحیح نمیباشد ");
-                return View(change);
+                ModelState.AddModelError("Email", " کاربری با مشخصات فوق یافت نشد");
+                return View(forgot);
             }
-            _AccountServices.ChangeNewPassword(CurrentUserName, change.Password);
-            return Redirect(nameof(LogOut));
+
+            string body = _viewRender.RenderToStringAsync("_ForgotPassword",user);
+            SendEmail.Send(user.Email,"فعالسازی کلمه ی عبور" , body);
+            ViewBag.IsSuccess = true;
+            return View();
         }
+        #endregion
+
+        #region ResetPassword
+
+
+        [Route("ResetPassword")]
+        public IActionResult ResetPassword( string id)
+        {
+            return View( new ResetPasswordDto {Activecode = id });
+        }
+
+        [HttpPost]
+        [Route("ResetPassword")]
+        public IActionResult ResetPassword(ResetPasswordDto reset)
+        {
+            if (!ModelState.IsValid) { return View(reset); }
+
+            return View() ;
+        }
+        //[HttpPost]
+        //[Route("ResetPassword")]
+        //public IActionResult ResetPassword(ChangePasswordDto change)
+        //{
+        //    string CurrentUserName = User.Identity.Name;
+        //    if (!ModelState.IsValid) { return View(change); }
+        //    if (!_AccountServices.CompareOldPassword(change.OldPassword, CurrentUserName))
+        //    {
+        //        ModelState.AddModelError("OldPassword", "کلمه ی عبور فعلی صحیح نمیباشد ");
+        //        return View(change);
+        //    }
+        //    _AccountServices.ChangeNewPassword(CurrentUserName, change.Password);
+        //    return Redirect(nameof(LogOut));
+        //}
         #endregion
 
         #region LogOut
