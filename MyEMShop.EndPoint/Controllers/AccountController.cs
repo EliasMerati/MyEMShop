@@ -156,8 +156,12 @@ namespace MyEMShop.EndPoint.Controllers
         public IActionResult ResetPassword(ResetPasswordDto reset)
         {
             if (!ModelState.IsValid) { return View(reset); }
-
-            return View() ;
+            var user = _AccountServices.GetUserByActiveCode(reset.Activecode);
+            if (user is null) { return NotFound(); }
+            string HashPassword = _AccountServices.HashPassword(reset.Password);
+            user.Password = HashPassword;
+            _AccountServices.UpdateUser(user);
+            return Redirect("/Login") ;
         }
         //[HttpPost]
         //[Route("ResetPassword")]

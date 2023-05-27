@@ -40,6 +40,11 @@ namespace MyEMShop.Application.Services
             return _db.Users.Any(u=> u.UserName == username && u.Password == HashPass);
         }
 
+        public User GetUserByActiveCode(string activeCode)
+        {
+            return _db.Users.FirstOrDefault(u=> u.Activecode == activeCode);    
+        }
+
         public User GetUserByEmail(string email)
         {
             return _db.Users.SingleOrDefault(u => u.Email == email);
@@ -79,6 +84,12 @@ namespace MyEMShop.Application.Services
             {
                 return false;
             }
+        }
+
+        public void UpdateUser(User user)
+        {
+            _db.Users.Update(user);
+            _db.SaveChanges();
         }
     }
 }
