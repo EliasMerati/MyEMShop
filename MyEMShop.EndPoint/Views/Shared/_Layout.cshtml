@@ -81,7 +81,9 @@
                             <ul>
                                 @if (User.Identity.IsAuthenticated)
                                 {
-                                    <p> @User.Identity.Name  عزیز ، خوش آمدید</p>
+                                    <li><a href="/LogOut">خروج</a></li>
+                                    <li><a href="/UserPannel/Index"> "@User.Identity.Name" عزیز ، خوش آمدید</a></li>
+                                    
                                 }
                                 else
                                 {

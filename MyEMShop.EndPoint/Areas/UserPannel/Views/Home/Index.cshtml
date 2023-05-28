@@ -1,0 +1,68 @@
+﻿@model MyEMShop.Data.Dtos.UserDto.ShowUserInformationForPannelDto
+
+@{
+    ViewData["Title"] = "پنل کاربری";
+}
+
+<div id="container">
+    <div class="container">
+        <!-- Breadcrumb Start-->
+        <ul class="breadcrumb">
+            <li><a href="/"><i class="fa fa-home"></i></a></li>
+            <li><a href="/LogOut">خروج</a></li>
+        </ul>
+        <!-- Breadcrumb End-->
+        <div class="row">
+            <!--Middle Part Start-->
+            <aside id="column-right" class="col-sm-9 hidden-xs">
+                <h3 class="subtitle">حساب کاربری</h3>
+                <div class="list-group">
+                    <ul>
+                        <li>نام : <strong>@Model.Name</strong>  </li>
+                        <br />
+                        <li>نام خانوادگی : <strong>@Model.Family</strong>  </li>
+                        <br />
+                        <li>شماره تلفن : <strong>@Model.PhoneNumber</strong> </li>
+                        <br />
+                        <li>ایمیل : <strong>@Model.Email</strong> </li>
+                        <br />
+                        <li>استان : <strong>@Model.Ostan</strong> </li>
+                        <br />
+                        <li>شهر : <strong>@Model.City</strong> </li>
+                        <br />
+                        <li>کد پستی : <strong>@Model.PostalCode</strong> </li>
+                        <br />
+                        <li>آدرس : <strong>@Model.Address</strong> </li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!--Middle Part End -->
+            <!--Right Part Start -->
+            <partial name="_SideBar" />
+            <!--Right Part End -->
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@*<div id="container">
+    <div class="container">
+        <!-- Breadcrumb Start-->
+        <ul class="breadcrumb">
+            <li><a href="/"><i class="fa fa-home"></i></a></li>
+            <li><a href="/LogOut">خروج</a></li>
+        </ul>
+        <!-- Breadcrumb End-->
+        <div class="row">
+            <!--Middle Part Start-->
+            <!--Middle Part End -->
+            <!--Right Part Start -->
+            <partial name="_SideBar" />
+            <!--Right Part End -->
+        </div>
+    </div>
+</div>*@

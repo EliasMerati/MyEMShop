@@ -37,6 +37,32 @@ namespace MyEMShop.Data.Entities.User
         [Display(Name = "فعال / غیر فعال")]
         public bool IsActive { get; set; }
 
+        [Display(Name = "نام")]
+        [MaxLength(150)]
+        public string Name { get; set; }
+
+        [Display(Name = "نام خانوادگی")]
+        [MaxLength(150)]
+        public string Family { get; set; }
+
+        [Display(Name = "شماره تماس")]
+        [MaxLength(150)]
+        public string PhoneNumber { get; set; }
+
+        [Display(Name = "شهر")]
+        [MaxLength(100)]
+        public string City { get; set; }
+
+        [Display(Name = "استان")]
+        [MaxLength(100)]
+        public string Ostan { get; set; }
+
+        [Display(Name = "آدرس محل سکونت")]
+        public string Address { get; set; }
+
+        [Display(Name = "کد پستی")]
+        public string PostalCode { get; set; }
+
         #region Navigation Property
 
         public virtual Role Role { get; set; }

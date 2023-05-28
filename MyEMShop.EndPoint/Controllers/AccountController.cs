@@ -157,7 +157,7 @@ namespace MyEMShop.EndPoint.Controllers
         {
             if (!ModelState.IsValid) { return View(reset); }
             var user = _AccountServices.GetUserByActiveCode(reset.Activecode);
-            if (user is null) { return NotFound(); }
+            if (user is null) { return View("NotFound"); }
             string HashPassword = _AccountServices.HashPassword(reset.Password);
             user.Password = HashPassword;
             _AccountServices.UpdateUser(user);

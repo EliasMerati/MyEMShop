@@ -1,0 +1,116 @@
+﻿@{
+    ViewData["Title"] = "ویرایش پنل کاربری";
+}
+
+<div id="container">
+    <div class="container">
+        <!-- Breadcrumb Start-->
+        <ul class="breadcrumb">
+            <li><a href="/"><i class="fa fa-home"></i></a></li>
+            <li><a href="/LogOut">خروج</a></li>
+        </ul>
+        <!-- Breadcrumb End-->
+        <div class="row">
+            <!--Middle Part Start-->
+            <div class="col-sm-9" id="content">
+                <form class="form-horizontal">
+                    <fieldset id="account">
+                        <legend>اطلاعات شخصی شما</legend>
+                        <div style="display: none;" class="form-group required">
+                            <label class="col-sm-2 control-label">گروه مشتری</label>
+                            <div class="col-sm-9">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" checked="checked" value="1" name="customer_group_id">
+                                        پیشفرض
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="input-firstname" class="col-sm-2 control-label">نام</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="input-firstname" placeholder="نام" value="" name="firstname">
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="input-lastname" class="col-sm-2 control-label">نام خانوادگی</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="input-lastname" placeholder="نام خانوادگی" value="" name="lastname">
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="input-email" class="col-sm-2 control-label">آدرس ایمیل</label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control" id="input-email" placeholder="آدرس ایمیل" value="" name="email">
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="input-telephone" class="col-sm-2 control-label">شماره تلفن</label>
+                            <div class="col-sm-9">
+                                <input type="tel" class="form-control" id="input-telephone" placeholder="شماره تلفن" value="" name="telephone">
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset id="address">
+                        <legend>آدرس</legend>
+                        <div class="form-group ">
+                            <div class="form-group ">
+                                <label for="input-zone" class="col-sm-2 control-label">استان</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="" placeholder="استان" value="" name="">
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <label for="input-city" class="col-sm-2 control-label">شهر</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="input-city" placeholder="شهر" value="" name="city">
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <label for="input-postcode" class="col-sm-2 control-label">کد پستی</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="input-postcode" placeholder="کد پستی" value="" name="postcode">
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <label for="input-address-1" class="col-sm-2 control-label">آدرس</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="input-address-1" placeholder="آدرس" value="" name="address_1">
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>خبرنامه</legend>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">اشتراک</label>
+                            <div class="col-sm-10">
+                                <div class="col-sm-10">
+                                    <label class="radio-inline">
+                                        <input type="radio" value="1" name="newsletter">
+                                        بله
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" checked="checked" value="0" name="newsletter">
+                                        نه
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="buttons">
+                        <div class="pull-right">
+                            <input type="submit" class="btn btn-primary" value="ویرایش">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--Middle Part End -->
+            <!--Right Part Start -->
+            <partial name="_SideBar" />
+            <!--Right Part End -->
+        </div>
+    </div>
+</div>
+

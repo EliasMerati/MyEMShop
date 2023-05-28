@@ -36,6 +36,7 @@ namespace MyEMShop.EndPoint
 
             #region Services
             services.AddScoped<IAccountServices, AccountServices>();
+            services.AddScoped<IUserPannelService, UserPannelService>();
             services.AddScoped<IViewRenderService, RenderViewToString>();
             #endregion
 
@@ -49,8 +50,8 @@ namespace MyEMShop.EndPoint
             {
                 opt.LoginPath = "/Login";
                 opt.LogoutPath = "/LogOut";
-                opt.ExpireTimeSpan= TimeSpan.FromMinutes(43200);
-            });           
+                opt.ExpireTimeSpan = TimeSpan.FromMinutes(43200);
+            });
             #endregion
         }
 
@@ -76,6 +77,10 @@ namespace MyEMShop.EndPoint
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "areas",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+               //----------------------------------------------------------------------------
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
