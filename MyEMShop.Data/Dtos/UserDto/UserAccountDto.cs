@@ -43,7 +43,6 @@ namespace MyEMShop.Data.Dtos.UserDto
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Display(Name = "مرا به خاطر بسپار")]
         public bool IsPersistence { get; set; }
     }
 
