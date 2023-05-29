@@ -14,7 +14,7 @@
         <div class="row">
             <!--Middle Part Start-->
             <div class="col-sm-9" id="content">
-                <form class="form-horizontal">
+                <form class="form-horizontal" enctype="multipart/form-data" method="post" asp-action="Edit">
                     <fieldset id="account">
                         <legend>اطلاعات شخصی شما</legend>
                         <div style="display: none;" class="form-group required">
@@ -38,12 +38,6 @@
                             <label  asp-for="Family" class="col-sm-2 control-label">نام خانوادگی</label>
                             <div class="col-sm-9">
                                 <input type="text" asp-for="Family" class="form-control" id="input-lastname" placeholder="نام خانوادگی" value="" name="lastname">
-                            </div>
-                        </div>
-                        <div class="form-group ">
-                            <label  asp-for="Email" class="col-sm-2 control-label">آدرس ایمیل</label>
-                            <div class="col-sm-9">
-                                <input type="email" asp-for="Email" class="form-control" id="input-email" placeholder="آدرس ایمیل" value="" name="email">
                             </div>
                         </div>
                         <div class="form-group ">

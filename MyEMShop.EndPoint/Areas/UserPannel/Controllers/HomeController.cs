@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using MyEMShop.Application.Interfaces;
+using MyEMShop.Data.Dtos.UserDto;
 
 namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
 {
@@ -30,6 +31,14 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
         public IActionResult Edit()
         {
             return View(_userPannel.GetInfoForEdit(User.Identity.Name));
+        }
+
+        [Route("/UserPannel/Edit")]
+        [HttpPost]
+        public IActionResult Edit(ShowUserInfoForEditPannelDto edit)
+        {
+            _userPannel.EditUserPannel(User.Identity.Name, edit);
+            return Redirect("/UserPannel/Index");
         }
         #endregion
 

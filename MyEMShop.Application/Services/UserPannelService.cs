@@ -14,13 +14,29 @@ namespace MyEMShop.Application.Services
             _db = db;
         }
 
+        public void EditUserPannel(string userName, ShowUserInfoForEditPannelDto edit)
+        {
+            var user = _db.Users.FirstOrDefault(u=> u.UserName == userName);
+
+            user.Address = edit.Address;
+            user.PhoneNumber = edit.PhoneNumber;
+            user.Ostan = edit.Ostan;
+            user.City = edit.City;
+            user.PostalCode = edit.PostalCode;
+            user.Name= edit.Name;
+            user.Family= edit.Family;
+
+            _db.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _db.SaveChanges();
+
+        }
+
         public ShowUserInfoForEditPannelDto GetInfoForEdit(string userName)
         {
             return _db.Users.Where(u => u.UserName == userName).Select(u => new ShowUserInfoForEditPannelDto
             {
                 Address= u.Address,
                 City= u.City,
-                Email= u.Email,
                 Family= u.Family,
                 Name= u.Name,
                 Ostan = u.Ostan,

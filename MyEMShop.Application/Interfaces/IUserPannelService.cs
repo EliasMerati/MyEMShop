@@ -6,5 +6,6 @@ namespace MyEMShop.Application.Interfaces
     {
         ShowUserInformationForPannelDto GetUserInfo(string userName);
         ShowUserInfoForEditPannelDto GetInfoForEdit(string userName);
+        void EditUserPannel(string userName, ShowUserInfoForEditPannelDto edit);
     }
 }

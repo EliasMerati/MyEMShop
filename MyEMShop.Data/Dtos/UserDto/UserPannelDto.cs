@@ -61,12 +61,8 @@ namespace MyEMShop.Data.Dtos.UserDto
         [Display(Name = "آدرس محل سکونت")]
         public string Address { get; set; }
 
-        [Display(Name = "ایمیل")]
-        [MaxLength(150)]
-        [EmailAddress]
-        public string Email { get; set; }
-
         [Display(Name = "کد پستی")]
         public string PostalCode { get; set; }
+
     }
 }
