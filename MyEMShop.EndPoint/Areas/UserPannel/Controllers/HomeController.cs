@@ -9,22 +9,29 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
     [Authorize]
     public class HomeController : Controller
     {
+        #region Injection
         private readonly IUserPannelService _userPannel;
         public HomeController(IUserPannelService userPannel)
         {
             _userPannel = userPannel;
         }
+        #endregion
 
+        #region Index
         [Route("/UserPannel/Index")]
         public IActionResult Index()
         {
             return View(_userPannel.GetUserInfo(User.Identity.Name));
         }
+        #endregion
 
+        #region Edit
         [Route("/UserPannel/Edit")]
         public IActionResult Edit()
         {
-            return View();
+            return View(_userPannel.GetInfoForEdit(User.Identity.Name));
         }
+        #endregion
+
     }
 }

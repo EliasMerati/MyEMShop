@@ -14,6 +14,21 @@ namespace MyEMShop.Application.Services
             _db = db;
         }
 
+        public ShowUserInfoForEditPannelDto GetInfoForEdit(string userName)
+        {
+            return _db.Users.Where(u => u.UserName == userName).Select(u => new ShowUserInfoForEditPannelDto
+            {
+                Address= u.Address,
+                City= u.City,
+                Email= u.Email,
+                Family= u.Family,
+                Name= u.Name,
+                Ostan = u.Ostan,
+                PhoneNumber= u.PhoneNumber,
+                PostalCode= u.PostalCode, 
+            }).Single();
+        }
+
         public ShowUserInformationForPannelDto GetUserInfo(string userName)
         {
           var user = _db.Users.SingleOrDefault(u => u.UserName == userName);
