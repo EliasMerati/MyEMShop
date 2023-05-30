@@ -26,20 +26,6 @@ namespace MyEMShop.Application.Services
             return true;
         }
 
-        public void ChangeNewPassword(string username, string password)
-        {
-            var user = _db.Users.FirstOrDefault(u=> u.UserName == username);
-            user.Password = HashPassword(password);
-            _db.Users.Update(user);
-            _db.SaveChanges();
-        }
-
-        public bool CompareOldPassword(string password, string username)
-        {
-            var HashPass = HashPassword(password);
-            return _db.Users.Any(u=> u.UserName == username && u.Password == HashPass);
-        }
-
         public User GetUserByActiveCode(string activeCode)
         {
             return _db.Users.FirstOrDefault(u=> u.Activecode == activeCode);    

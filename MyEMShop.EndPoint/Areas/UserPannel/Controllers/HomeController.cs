@@ -27,10 +27,12 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
         #endregion
 
         #region Edit
+        [HttpGet]
         [Route("/UserPannel/Edit")]
         public IActionResult Edit()
         {
-            return View(_userPannel.GetInfoForEdit(User.Identity.Name));
+            var user = _userPannel.GetInfoForEdit(User.Identity.Name);
+            return View(user);
         }
 
         [Route("/UserPannel/Edit")]
@@ -39,6 +41,31 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
         {
             _userPannel.EditUserPannel(User.Identity.Name, edit);
             return Redirect("/UserPannel/Index");
+        }
+        #endregion
+
+        #region ChangePassword
+        [Route("UserPannel/ChangePassword")]
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Route("UserPannel/ChangePassword")]
+        public IActionResult ChangePassword(ChangePasswordDto change)
+        {
+            var username = User.Identity.Name;
+            if (!ModelState.IsValid)
+                return View(change);
+
+            if(!_userPannel.CompareOldPassword(change.OldPassword , username))
+            {
+                ModelState.AddModelError("OldPassword", "کلمه ی عبور فعلی صحیح نمیباشد");
+            }
+
+            _userPannel.ChangeNewPassword(username,change.Password);
+            return Redirect("/LogOut");
         }
         #endregion
 

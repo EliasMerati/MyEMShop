@@ -11,8 +11,6 @@ namespace MyEMShop.Application.Interfaces
         User GetUserByEmail(string email);  
         User GetUserByActiveCode(string activeCode);
         void UpdateUser(User user);
-        bool CompareOldPassword(string password, string username);
-        void ChangeNewPassword(string username,string password);
         User LoginUser(LoginDto login);
         string HashPassword(string password);
         bool ActiveAccount(string activeCode);

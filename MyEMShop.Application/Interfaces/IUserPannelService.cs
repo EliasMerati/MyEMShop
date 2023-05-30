@@ -7,5 +7,8 @@ namespace MyEMShop.Application.Interfaces
         ShowUserInformationForPannelDto GetUserInfo(string userName);
         ShowUserInfoForEditPannelDto GetInfoForEdit(string userName);
         void EditUserPannel(string userName, ShowUserInfoForEditPannelDto edit);
+        bool CompareOldPassword(string password, string username);
+        void ChangeNewPassword(string username, string password);
+        string HashPassword(string password);
     }
 }

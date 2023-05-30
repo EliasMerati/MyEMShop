@@ -1,4 +1,5 @@
 ﻿using MyEMShop.Application.Interfaces;
+using MyEMShop.Common;
 using MyEMShop.Data.Context;
 using MyEMShop.Data.Dtos.UserDto;
 using System;
@@ -16,7 +17,7 @@ namespace MyEMShop.Application.Services
 
         public void EditUserPannel(string userName, ShowUserInfoForEditPannelDto edit)
         {
-            var user = _db.Users.FirstOrDefault(u=> u.UserName == userName);
+            var user = _db.Users.FirstOrDefault(u => u.UserName == userName);
 
             user.Address = edit.Address;
             user.PhoneNumber = edit.PhoneNumber;
@@ -26,7 +27,7 @@ namespace MyEMShop.Application.Services
             user.Name= edit.Name;
             user.Family= edit.Family;
 
-            _db.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            //_db.Update(user);
             _db.SaveChanges();
 
         }
@@ -59,6 +60,25 @@ namespace MyEMShop.Application.Services
             info.PostalCode = user.PostalCode;
 
             return info;
+        }
+
+        public string HashPassword(string password)
+        {
+            return PasswordHelper.EncodePasswordMd5(password);
+        }
+
+        public void ChangeNewPassword(string username, string password)
+        {
+            var user = _db.Users.FirstOrDefault(u => u.UserName == username);
+            user.Password = HashPassword(password);
+            _db.Users.Update(user);
+            _db.SaveChanges();
+        }
+
+        public bool CompareOldPassword(string password, string username)
+        {
+            var HashPass = HashPassword(password);
+            return _db.Users.Any(u => u.UserName == username && u.Password == HashPass);
         }
     }
 }
