@@ -21,9 +21,7 @@ namespace MyEMShop.Data.Migrations
             modelBuilder.Entity("MyEMShop.Data.Entities.User.Role", b =>
                 {
                     b.Property<int>("RoleId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("RoleName")
                         .IsRequired()

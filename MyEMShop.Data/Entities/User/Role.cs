@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyEMShop.Data.Entities.User
 {
@@ -11,6 +12,7 @@ namespace MyEMShop.Data.Entities.User
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int RoleId { get; set; }
 
         [Display(Name = "نام نقش")]

@@ -31,7 +31,7 @@ namespace MyEMShop.EndPoint
         {
             services.AddControllersWithViews();
             #region Context
-            services.AddDbContext<DatabaseContext>(option => option.UseSqlServer(Configuration.GetConnectionString("EMshopConnectionString")));
+            services.AddDbContext<DatabaseContext>(option => option.UseSqlServer(Configuration.GetConnectionString("BehDukhtConnectionString")));
             #endregion
 
             #region Services
