@@ -9,11 +9,14 @@ namespace MyEMShop.Application.Services
 {
     public class UserPannelService : IUserPannelService
     {
+        #region Inject Database
         private readonly DatabaseContext _db;
         public UserPannelService(DatabaseContext db)
         {
             _db = db;
         }
+        #endregion
+
 
         public void EditUserPannel(string userName, ShowUserInfoForEditPannelDto edit)
         {
@@ -58,10 +61,26 @@ namespace MyEMShop.Application.Services
             info.Family = user.Family;
             info.Name = user.Name;
             info.PostalCode = user.PostalCode;
-
+            info.Wallet = BalanceWallet(userName);
             return info;
         }
 
+        public int GetUserIdByUserName(string userName)
+        {
+            return _db.Users.Single(u => u.UserName == userName).UserId;
+        }
+        public int BalanceWallet(string userName)
+        {
+            int userid = GetUserIdByUserName(userName);
+            var Deposit = _db.Wallets.Where(w => w.UserId == userid && w.TypeId == 1 && w.IsPay)
+                .Select(w => w.Amount)
+                .ToList();
+            var Whitdraw = _db.Wallets.Where(w => w.UserId == userid && w.TypeId == 2)
+                .Select(w => w.Amount)
+                .ToList();
+
+            return Deposit.Sum() - Whitdraw.Sum();
+        }
         public string HashPassword(string password)
         {
             return PasswordHelper.EncodePasswordMd5(password);

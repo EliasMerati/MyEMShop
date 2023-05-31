@@ -10,5 +10,7 @@ namespace MyEMShop.Application.Interfaces
         bool CompareOldPassword(string password, string username);
         void ChangeNewPassword(string username, string password);
         string HashPassword(string password);
+        int BalanceWallet(string userName);
+        int GetUserIdByUserName(string userName);
     }
 }

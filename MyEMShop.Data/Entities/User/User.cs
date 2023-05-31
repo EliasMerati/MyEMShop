@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace MyEMShop.Data.Entities.User
 {
@@ -63,10 +65,13 @@ namespace MyEMShop.Data.Entities.User
         [Display(Name = "کد پستی")]
         public string PostalCode { get; set; }
 
+
+
         #region Navigation Property
 
         public virtual Role Role { get; set; }
 
+        public virtual ICollection<Wallet.Wallet> Wallets { get; set; }
         #endregion
     }
 }

@@ -34,6 +34,9 @@ namespace MyEMShop.Data.Dtos.UserDto
 
         [Display(Name = "کد پستی")]
         public string PostalCode { get; set; }
+
+        [Display(Name = "کیف پول")]
+        public int Wallet { get; set; }
     }
 
     public class ShowUserInfoForEditPannelDto
@@ -63,6 +66,8 @@ namespace MyEMShop.Data.Dtos.UserDto
 
         [Display(Name = "کد پستی")]
         public string PostalCode { get; set; }
+
+        
 
     }
 }
