@@ -1,4 +1,4 @@
-﻿@model MyEMShop.Data.Entities.User.User 
+﻿@model MyEMShop.Data.Entities.User.User
 @{
     ViewData["Title"] = "موفقیت در ثبت نام";
 }
@@ -6,7 +6,7 @@
 <div class="alert alert-success">
     <h2>@Model.UserName عزیز !</h2>
     <br />
-    <p>ثبت نام شما با موفقیت در سایت انجام شد</p>
+    <i class="fa fa-check-circle"></i> ثبت نام شما با موفقیت انجام شد
     <br />
     <p>ایمیلی حامل لینک فعالسازی برای شما به آدرس <strong>@Model.Email</strong> ارسال شده است</p>
     <br />
@@ -14,4 +14,5 @@
     <br />
     <p> با تشکر از  شما</p>
 </div>
+
 
