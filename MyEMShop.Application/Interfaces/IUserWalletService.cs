@@ -7,7 +7,9 @@ namespace MyEMShop.Application.Interfaces
     public interface IUserWalletService
     {
         IList<ShowWalletDto> GetWallet(string userName);
-        void ChargeWallet(string userName , string description ,int amount, bool ispay = false);
-        void AddWallet(Wallet wallet);
+        int ChargeWallet(string userName , string description ,int amount, bool ispay = false);
+        int AddWallet(Wallet wallet);
+        Wallet GetWalletByWalletId(int walletId);
+        void UpdateWallet(Wallet wallet);
     }
 }

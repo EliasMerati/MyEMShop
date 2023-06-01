@@ -32,7 +32,7 @@ namespace MyEMShop.Application.Services
                 .ToList();
         }
 
-        public void ChargeWallet(string userName, string description, int amount, bool ispay = false)
+        public int ChargeWallet(string userName, string description, int amount, bool ispay = false)
         {
             var wallet = new Wallet()
             {
@@ -43,12 +43,24 @@ namespace MyEMShop.Application.Services
                 TypeId =1,
                 UserId = _db.Users.Single(u => u.UserName == userName).UserId,
             };
-            AddWallet(wallet);
+           return AddWallet(wallet);
         }
 
-        public void AddWallet(Wallet wallet)
+        public int AddWallet(Wallet wallet)
         {
             _db.Wallets.Add(wallet);
+            _db.SaveChanges();
+            return wallet.WalletId;
+        }
+
+        public Wallet GetWalletByWalletId(int walletId)
+        {
+            return _db.Wallets.Find(walletId);
+        }
+
+        public void UpdateWallet(Wallet wallet)
+        {
+            _db.Update(wallet);
             _db.SaveChanges();
         }
     }

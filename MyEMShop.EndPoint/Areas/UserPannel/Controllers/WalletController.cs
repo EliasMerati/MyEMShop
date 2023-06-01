@@ -34,8 +34,17 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
                 ViewBag.Wallets = _userWalletService.GetWallet(User.Identity.Name);
                 return View(charge);
             }
-            _userWalletService.ChargeWallet(User.Identity.Name,"واریز" , charge.Amount);
-            // ToDO Online payment
+           int walletid = _userWalletService.ChargeWallet(User.Identity.Name,"واریز" , charge.Amount);
+
+            #region Online Payment
+            var payment = new ZarinpalSandbox.Payment(charge.Amount);
+            var response = payment.PaymentRequest("واریز به حساب", "https://localhost:44392/OnlinePayment" + walletid);
+            if (response.Result.Status == 100)
+            {
+                return Redirect("https://sandbox.zarinpal.com/pg/StartPay" + response.Result.Authority);
+            }
+            #endregion
+
             return null;
             
             
