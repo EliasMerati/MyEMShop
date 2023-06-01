@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyEMShop.EndPoint", "MyEMSh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyEMShop.Data", "MyEMShop.Data\MyEMShop.Data.csproj", "{D8DFDFC6-3B1B-4B1E-BAE5-4BDD6356DAB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyEMShop.Application", "MyEMShop.Application\MyEMShop.Application.csproj", "{D91EEF76-2CC6-44A3-AFFA-DCA134681902}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyEMShop.Application", "MyEMShop.Application\MyEMShop.Application.csproj", "{D91EEF76-2CC6-44A3-AFFA-DCA134681902}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyEMShop.Common", "MyEMShop.Common\MyEMShop.Common.csproj", "{E4C25982-8CBC-4F10-8CF6-C4F1FC4ABC89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyEMShop.Common", "MyEMShop.Common\MyEMShop.Common.csproj", "{E4C25982-8CBC-4F10-8CF6-C4F1FC4ABC89}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{0955997D-ADAE-4144-8D92-0D7ED2ACA519}"
 EndProject
