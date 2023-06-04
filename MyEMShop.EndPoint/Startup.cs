@@ -40,7 +40,7 @@ namespace MyEMShop.EndPoint
             services.AddScoped<IUserPannelService, UserPannelService>();
             services.AddScoped<IViewRenderService, RenderViewToString>();
             services.AddScoped<IUserWalletService, UserWalletService>();
-            services.AddScoped<>(IManageUserService, ManageUserService);
+            services.AddScoped<IManageUserService, ManageUserService>();
             #endregion
 
             #region Authentication

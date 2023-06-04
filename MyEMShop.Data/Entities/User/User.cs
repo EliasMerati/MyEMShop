@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -64,6 +65,9 @@ namespace MyEMShop.Data.Entities.User
 
         [Display(Name = "کد پستی")]
         public string PostalCode { get; set; }
+
+        [Display(Name = "تاریخ ثبت نام")]
+        public DateTime  RegisterDate { get; set; }
 
 
 

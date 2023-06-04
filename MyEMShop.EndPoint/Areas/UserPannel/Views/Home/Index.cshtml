@@ -34,6 +34,8 @@
                         <br />
                         <li>آدرس : <strong>@Model.Address</strong> </li>
                         <br />
+                        <li>تاریخ ثبت نام : <strong>@Model.RegisterDate.ToShamsi()</strong> </li>
+                        <br />
                         <li>موجودی کیف پول : <strong class="text-success">@Model.Wallet.ToString("N0")  تومان</strong> </li>
                     </ul>
                 </div>

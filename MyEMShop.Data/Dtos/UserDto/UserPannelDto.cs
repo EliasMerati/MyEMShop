@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace MyEMShop.Data.Dtos.UserDto
 {
@@ -37,6 +38,9 @@ namespace MyEMShop.Data.Dtos.UserDto
 
         [Display(Name = "کیف پول")]
         public int Wallet { get; set; }
+
+        [Display(Name = "تاریخ ثبت نام")]
+        public DateTime RegisterDate { get; set; }
     }
 
     public class ShowUserInfoForEditPannelDto

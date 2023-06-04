@@ -6,6 +6,7 @@ using MyEMShop.Application.Interfaces;
 using MyEMShop.Common;
 using MyEMShop.Data.Dtos.UserDto;
 using MyEMShop.Data.Entities.User;
+using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 
@@ -57,6 +58,7 @@ namespace MyEMShop.EndPoint.Controllers
                 IsActive = false,
                 RoleId = 2,
                 Password = PasswordHelper.EncodePasswordMd5(register.Password),
+                RegisterDate = DateTime.Now,
             };
             _AccountServices.Register(user);
             #region Send Email
