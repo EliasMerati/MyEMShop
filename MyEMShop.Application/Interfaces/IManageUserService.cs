@@ -11,5 +11,6 @@ namespace MyEMShop.Application.Interfaces
     public interface IManageUserService
     {
         UserListForAdminDto GetUsers(int pageId=1 , string FilterEmail = "" , string FilterUserName = "", string filterName = "", string filterFamily = "");
+        int AddUserByAdmin(CreateUserWithadminDto create);
     }
 }

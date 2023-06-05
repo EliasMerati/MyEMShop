@@ -8,7 +8,7 @@ namespace MyEMShop.Common
         {
             using (MailMessage mail = new MailMessage())
             {
-                mail.From = new MailAddress("behdoozshop2022@gmail.com", "به دوخت");
+                mail.From = new MailAddress("behdoozshop2022@gmail.com", "به دخت");
                 mail.To.Add(to);
                 mail.Subject = subject;
                 mail.Body = body;

@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,9 +10,6 @@ using MyEMShop.Application.Services;
 using MyEMShop.Common;
 using MyEMShop.Data.Context;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MyEMShop.EndPoint
 {
@@ -32,7 +28,7 @@ namespace MyEMShop.EndPoint
             services.AddControllersWithViews();
             services.AddRazorPages();
             #region Context
-            services.AddDbContext<DatabaseContext>(option => option.UseSqlServer(Configuration.GetConnectionString("BehDukhtConnectionString")));
+            services.AddDbContext<DatabaseContext>(option => option.UseSqlServer(Configuration.GetConnectionString("BehDokhtConnectionString")));
             #endregion
 
             #region Services
@@ -41,6 +37,7 @@ namespace MyEMShop.EndPoint
             services.AddScoped<IViewRenderService, RenderViewToString>();
             services.AddScoped<IUserWalletService, UserWalletService>();
             services.AddScoped<IManageUserService, ManageUserService>();
+            services.AddScoped<IPermissionService, PermissionService>();
             #endregion
 
             #region Authentication
@@ -81,10 +78,11 @@ namespace MyEMShop.EndPoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                //----------------------------------------------------------------------------
                 endpoints.MapControllerRoute(
                     name: "areas",
                     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-               //----------------------------------------------------------------------------
+                //----------------------------------------------------------------------------
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

@@ -1,4 +1,5 @@
 ﻿using MyEMShop.Application.Interfaces;
+using MyEMShop.Common;
 using MyEMShop.Data.Context;
 using MyEMShop.Data.Entities.User;
 using System.Collections.Generic;
@@ -51,6 +52,23 @@ namespace MyEMShop.Application.Services
             userList.Users = Result.OrderBy(u=> u.RegisterDate).Skip(skip).Take(take).ToList();
             userList.PageCount = Result.Count() / take;
             return userList;
+        }
+
+
+        public int AddUserByAdmin(CreateUserWithadminDto create)
+        {
+            var user = new User();
+            user.Password = PasswordHelper.EncodePasswordMd5(create.Password);
+            user.Email = create.Email;
+            user.Activecode = GenerateCode.GenerateUniqueCode();
+            user.IsActive = true;
+            user.Name= create.Name;
+            user.Family= create.Family;
+            user.RegisterDate = System.DateTime.Now;
+
+            _db.Add(user);
+            _db.SaveChanges();
+            return user.UserId;
         }
     }
 }
