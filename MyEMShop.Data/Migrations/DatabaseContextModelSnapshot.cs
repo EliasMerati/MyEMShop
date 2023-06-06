@@ -26,13 +26,13 @@ namespace MyEMShop.Data.Migrations
 
                     b.Property<string>("RoleName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("RoleTitle")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("RoleId");
 
@@ -106,9 +106,6 @@ namespace MyEMShop.Data.Migrations
                     b.Property<DateTime>("RegisterDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasMaxLength(150)
@@ -116,14 +113,12 @@ namespace MyEMShop.Data.Migrations
 
                     b.HasKey("UserId");
 
-                    b.HasIndex("RoleId");
-
                     b.ToTable("Users");
                 });
 
             modelBuilder.Entity("MyEMShop.Data.Entities.User.UserRole", b =>
                 {
-                    b.Property<int>("UserroleId")
+                    b.Property<int>("U_RId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -134,7 +129,7 @@ namespace MyEMShop.Data.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("UserroleId");
+                    b.HasKey("U_RId");
 
                     b.HasIndex("RoleId");
 
@@ -208,29 +203,18 @@ namespace MyEMShop.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MyEMShop.Data.Entities.User.User", b =>
-                {
-                    b.HasOne("MyEMShop.Data.Entities.User.Role", "Role")
-                        .WithMany("Users")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Role");
-                });
-
             modelBuilder.Entity("MyEMShop.Data.Entities.User.UserRole", b =>
                 {
                     b.HasOne("MyEMShop.Data.Entities.User.Role", "Role")
                         .WithMany("UserRoles")
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MyEMShop.Data.Entities.User.User", "User")
                         .WithMany("UserRoles")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Role");
@@ -243,13 +227,12 @@ namespace MyEMShop.Data.Migrations
                     b.HasOne("MyEMShop.Data.Entities.User.User", "User")
                         .WithMany("Wallets")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MyEMShop.Data.Entities.Wallet.WalletType", "WalletType")
                         .WithMany("Wallets")
-                        .HasForeignKey("WalletTypeTypeId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("WalletTypeTypeId");
 
                     b.Navigation("User");
 
@@ -259,8 +242,6 @@ namespace MyEMShop.Data.Migrations
             modelBuilder.Entity("MyEMShop.Data.Entities.User.Role", b =>
                 {
                     b.Navigation("UserRoles");
-
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("MyEMShop.Data.Entities.User.User", b =>

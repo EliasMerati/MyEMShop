@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyEMShop.Data.Entities.User
 {
@@ -14,7 +15,6 @@ namespace MyEMShop.Data.Entities.User
 
         [Key]
         public int UserId { get; set; }
-        public int RoleId { get; set; }
 
         [Display(Name = "نام کاربری")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
@@ -72,9 +72,6 @@ namespace MyEMShop.Data.Entities.User
 
 
         #region Navigation Property
-
-        public virtual Role Role { get; set; }
-
         public virtual ICollection<Wallet.Wallet> Wallets { get; set; }
         public virtual ICollection<UserRole> UserRoles { get; set; }
         #endregion

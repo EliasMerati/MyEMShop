@@ -56,7 +56,6 @@ namespace MyEMShop.EndPoint.Controllers
                 Email = register.Email,
                 Activecode = GenerateCode.GenerateUniqueCode(),
                 IsActive = false,
-                RoleId = 2,
                 Password = PasswordHelper.EncodePasswordMd5(register.Password),
                 RegisterDate = DateTime.Now,
             };

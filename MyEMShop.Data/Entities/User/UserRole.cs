@@ -16,13 +16,13 @@ namespace MyEMShop.Data.Entities.User
         }
 
         [Key]
-        public int UserroleId { get; set; }
+        public int U_RId { get; set; }
         public int UserId { get; set; }
         public int RoleId { get; set; }
 
         #region Relations
-        public virtual User User { get; set; }
-        public virtual Role Role { get; set; }
+        public virtual User User { get; set; }=null!;
+        public virtual Role Role { get; set; }= null!;
         #endregion
     }
 }

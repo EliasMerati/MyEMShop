@@ -17,19 +17,17 @@ namespace MyEMShop.Data.Entities.User
 
         [Display(Name = "نام نقش")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        [MaxLength(50)]
+        [MaxLength(100)]
         public string RoleTitle { get; set; }
 
         [Display(Name = "نام سیستمی نقش")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        [MaxLength(50)]
+        [MaxLength(100)]
         public string RoleName { get; set; }
 
 
 
         #region Navigation Property
-
-        public virtual ICollection<User> Users { get; set; }
         public virtual ICollection<UserRole> UserRoles { get; set; }
         #endregion
     }
