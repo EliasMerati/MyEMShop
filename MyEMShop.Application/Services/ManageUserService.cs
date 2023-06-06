@@ -60,13 +60,14 @@ namespace MyEMShop.Application.Services
             var user = new User();
             user.Password = PasswordHelper.EncodePasswordMd5(create.Password);
             user.Email = create.Email;
+            user.UserName= create.UserName;
             user.Activecode = GenerateCode.GenerateUniqueCode();
             user.IsActive = true;
             user.Name= create.Name;
             user.Family= create.Family;
             user.RegisterDate = System.DateTime.Now;
 
-            _db.Add(user);
+            _db.Users.Add(user);
             _db.SaveChanges();
             return user.UserId;
         }

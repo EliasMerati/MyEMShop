@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyEMShop.Data.Entities.User;
 using MyEMShop.Data.Entities.Wallet;
+using System.Drawing;
+using System.Linq;
 
 namespace MyEMShop.Data.Context
 {
@@ -11,6 +13,7 @@ namespace MyEMShop.Data.Context
         #region User
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
         #endregion
 
         #region Wallet
@@ -21,6 +24,15 @@ namespace MyEMShop.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            #region Solve Cascading ForeignKeys
+
+            foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                relationship.DeleteBehavior = DeleteBehavior.Restrict;
+            }
+
+            #endregion
+
             #region Seed Data
             modelBuilder.Entity<Role>()
                 .HasData(new { RoleId = 1, RoleTitle = "Admin", RoleName = "مدیر کل سیستم" },
@@ -30,6 +42,7 @@ namespace MyEMShop.Data.Context
                 .HasData(new { TypeId = 1, TypeTitle = "واریز" },
                          new { TypeId = 2, TypeTitle = "برداشت" });
             #endregion
+
 
             base.OnModelCreating(modelBuilder);
         }

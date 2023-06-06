@@ -121,6 +121,28 @@ namespace MyEMShop.Data.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("MyEMShop.Data.Entities.User.UserRole", b =>
+                {
+                    b.Property<int>("UserroleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserroleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserRoles");
+                });
+
             modelBuilder.Entity("MyEMShop.Data.Entities.Wallet.Wallet", b =>
                 {
                     b.Property<int>("WalletId")
@@ -191,10 +213,29 @@ namespace MyEMShop.Data.Migrations
                     b.HasOne("MyEMShop.Data.Entities.User.Role", "Role")
                         .WithMany("Users")
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("MyEMShop.Data.Entities.User.UserRole", b =>
+                {
+                    b.HasOne("MyEMShop.Data.Entities.User.Role", "Role")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("MyEMShop.Data.Entities.User.User", "User")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("MyEMShop.Data.Entities.Wallet.Wallet", b =>
@@ -202,12 +243,13 @@ namespace MyEMShop.Data.Migrations
                     b.HasOne("MyEMShop.Data.Entities.User.User", "User")
                         .WithMany("Wallets")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("MyEMShop.Data.Entities.Wallet.WalletType", "WalletType")
                         .WithMany("Wallets")
-                        .HasForeignKey("WalletTypeTypeId");
+                        .HasForeignKey("WalletTypeTypeId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("User");
 
@@ -216,11 +258,15 @@ namespace MyEMShop.Data.Migrations
 
             modelBuilder.Entity("MyEMShop.Data.Entities.User.Role", b =>
                 {
+                    b.Navigation("UserRoles");
+
                     b.Navigation("Users");
                 });
 
             modelBuilder.Entity("MyEMShop.Data.Entities.User.User", b =>
                 {
+                    b.Navigation("UserRoles");
+
                     b.Navigation("Wallets");
                 });
 

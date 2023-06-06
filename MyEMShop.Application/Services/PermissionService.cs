@@ -21,5 +21,18 @@ namespace MyEMShop.Application.Services
         {
             return _db.Roles.ToList();
         }
+
+        public void SetRoles(IList<int> roleIds, int userId)
+        {
+            foreach (var roleId in roleIds)
+            {
+                _db.UserRoles.Add(new UserRole
+                {
+                    RoleId = roleId,
+                    UserId = userId,
+                });
+            }
+            _db.SaveChanges();
+        }
     }
 }

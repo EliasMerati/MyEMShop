@@ -10,9 +10,11 @@ namespace MyEMShop.EndPoint.Pages.Admin.Users
     {
         #region Inject services
         private readonly IPermissionService _permissionService;
-        public CreateUserModel(IPermissionService permissionService)
+        private readonly IManageUserService _userService;
+        public CreateUserModel(IPermissionService permissionService, IManageUserService userService)
         {
             _permissionService = permissionService;
+            _userService = userService;
         }
 
         #endregion
@@ -30,6 +32,11 @@ namespace MyEMShop.EndPoint.Pages.Admin.Users
             {
                 return Page();
             }
+            //Add User
+           int UserId = _userService.AddUserByAdmin(createUser);
+            //Add Roles
+            _permissionService.SetRoles(SelectedRoles,UserId);
+
             return Redirect("/Admin/Users");
 
         }

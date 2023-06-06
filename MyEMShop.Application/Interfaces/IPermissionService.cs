@@ -10,5 +10,6 @@ namespace MyEMShop.Application.Interfaces
     public interface IPermissionService
     {
         IList<Role> GetRoles();
+        void SetRoles(IList<int> roleIds , int userId);
     }
 }

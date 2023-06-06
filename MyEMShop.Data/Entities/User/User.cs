@@ -76,6 +76,7 @@ namespace MyEMShop.Data.Entities.User
         public virtual Role Role { get; set; }
 
         public virtual ICollection<Wallet.Wallet> Wallets { get; set; }
+        public virtual ICollection<UserRole> UserRoles { get; set; }
         #endregion
     }
 }
