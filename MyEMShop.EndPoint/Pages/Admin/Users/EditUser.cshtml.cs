@@ -27,7 +27,7 @@ namespace MyEMShop.EndPoint.Pages.Admin.Users
             ViewData["Roles"] = _permissionService.GetRoles();
         }
 
-        public IActionResult OnPut(IList<int> SelectedRoles)
+        public IActionResult OnPost(IList<int> SelectedRoles)
         {
             if (!ModelState.IsValid) { return Page(); }
 
@@ -37,5 +37,7 @@ namespace MyEMShop.EndPoint.Pages.Admin.Users
             _permissionService.UpdateRoles(editUser.UserId,SelectedRoles);
             return RedirectToAction("Index");
         }
+
+        
     }
 }
