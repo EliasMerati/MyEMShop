@@ -34,5 +34,16 @@ namespace MyEMShop.Application.Services
             }
             _db.SaveChanges();
         }
+
+        public void UpdateRoles( int userId, IList<int> roleIds)
+        {
+            //Delete All Roles
+            _db.UserRoles.Where(r => r.UserId == userId)
+                .ToList()
+                .ForEach(r => _db.UserRoles.Remove(r));
+
+            // Add New roles
+            SetRoles(roleIds,userId);
+        }
     }
 }

@@ -11,5 +11,6 @@ namespace MyEMShop.Application.Interfaces
     {
         IList<Role> GetRoles();
         void SetRoles(IList<int> roleIds , int userId);
+        void UpdateRoles(int userId, IList<int> roleIds);
     }
 }

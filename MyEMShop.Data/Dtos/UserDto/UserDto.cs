@@ -47,5 +47,33 @@ namespace MyEMShop.Data.Dtos.UserDto
 
             //public IList<int> SelectedRoles { get; set; }
         }
+
+        public class EditUserWithAdminDto
+        {
+            public int UserId { get; set; }
+            public string UserName { get; set; }
+
+            [Display(Name = "ایمیل")]
+            [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+            [MaxLength(150)]
+            [EmailAddress]
+            public string Email { get; set; }
+
+            [Display(Name = "کلمه عبور")]
+            [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+            [MaxLength(200)]
+            [DataType(DataType.Password)]
+            public string Password { get; set; }
+
+            [Display(Name = "نام")]
+            [MaxLength(150)]
+            public string Name { get; set; }
+
+            [Display(Name = "نام خانوادگی")]
+            [MaxLength(150)]
+            public string Family { get; set; }
+
+            public IList<int> CurrentRoles { get; set; }
+        }
     }
 }

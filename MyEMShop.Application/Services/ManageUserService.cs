@@ -49,7 +49,7 @@ namespace MyEMShop.Application.Services
 
             UserListForAdminDto userList = new UserListForAdminDto();
             userList.CurrentPage = pageId;
-            userList.Users = Result.OrderBy(u=> u.RegisterDate).Skip(skip).Take(take).ToList();
+            userList.Users = Result.OrderBy(u => u.RegisterDate).Skip(skip).Take(take).ToList();
             userList.PageCount = Result.Count() / take;
             return userList;
         }
@@ -60,16 +60,54 @@ namespace MyEMShop.Application.Services
             var user = new User();
             user.Password = PasswordHelper.EncodePasswordMd5(create.Password);
             user.Email = create.Email;
-            user.UserName= create.UserName;
+            user.UserName = create.UserName;
             user.Activecode = GenerateCode.GenerateUniqueCode();
             user.IsActive = true;
-            user.Name= create.Name;
-            user.Family= create.Family;
+            user.Name = create.Name;
+            user.Family = create.Family;
             user.RegisterDate = System.DateTime.Now;
 
             _db.Users.Add(user);
             _db.SaveChanges();
             return user.UserId;
+        }
+
+        public EditUserWithAdminDto ShowUserInfoForEditWithAdmin(int userId)
+        {
+            return _db.Users.Where(u => u.UserId == userId)
+                .Select(u => new EditUserWithAdminDto
+                {
+                    UserId =u.UserId,
+                    CurrentRoles = GetCurrentRoles(userId),
+                    Email = u.Email,
+                    UserName = u.UserName,
+                    Family = u.Family,
+                    Name = u.Name,
+                }).Single();
+
+        }
+
+        public IList<int> GetCurrentRoles(int userid)
+        {
+            return _db.UserRoles.Where(u => u.UserId == userid)
+                .Select(r => r.RoleId)
+                  .ToList();
+        }
+
+        public void EditUserByAdmin(EditUserWithAdminDto edit)
+        {
+            var user = FindUserByUserId(edit.UserId);
+            if (edit.Password is not null) { user.Password = PasswordHelper.EncodePasswordMd5(edit.Password); }
+            user.Email= edit.Email;
+            user.Name= edit.Name;
+            user.Family= edit.Family;
+            _db.Users.Update(user);
+            _db.SaveChanges();
+        }
+
+        public User FindUserByUserId(int userId)
+        {
+            return _db.Users.Find(userId);
         }
     }
 }

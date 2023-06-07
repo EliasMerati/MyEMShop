@@ -12,5 +12,9 @@ namespace MyEMShop.Application.Interfaces
     {
         UserListForAdminDto GetUsers(int pageId=1 , string FilterEmail = "" , string FilterUserName = "", string filterName = "", string filterFamily = "");
         int AddUserByAdmin(CreateUserWithadminDto create);
+        IList<int> GetCurrentRoles(int userid);
+        EditUserWithAdminDto ShowUserInfoForEditWithAdmin(int userId);
+        void EditUserByAdmin(EditUserWithAdminDto edit);
+        User FindUserByUserId(int userId);
     }
 }
