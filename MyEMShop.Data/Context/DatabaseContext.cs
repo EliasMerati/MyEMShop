@@ -43,6 +43,10 @@ namespace MyEMShop.Data.Context
                          new { TypeId = 2, TypeTitle = "برداشت" });
             #endregion
 
+            #region Query Filters
+            modelBuilder.Entity<User>()
+                .HasQueryFilter(u => !u.IsDelete);
+            #endregion
 
             base.OnModelCreating(modelBuilder);
         }

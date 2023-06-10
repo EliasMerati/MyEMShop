@@ -11,6 +11,7 @@ namespace MyEMShop.Application.Interfaces
     public interface IManageUserService
     {
         UserListForAdminDto GetUsers(int pageId=1 , string FilterEmail = "" , string FilterUserName = "", string filterName = "", string filterFamily = "");
+        UserListForAdminDto GetDeleteUsers(int pageId = 1, string FilterEmail = "", string FilterUserName = "", string filterName = "", string filterFamily = "");
         int AddUserByAdmin(CreateUserWithadminDto create);
         IList<int> GetCurrentRoles(int userid);
         EditUserWithAdminDto ShowUserInfoForEditWithAdmin(int userId);

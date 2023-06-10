@@ -69,6 +69,9 @@ namespace MyEMShop.Data.Entities.User
         [Display(Name = "تاریخ ثبت نام")]
         public DateTime  RegisterDate { get; set; }
 
+        [Display(Name = "حذف شده")]
+        public bool IsDelete { get; set; }
+
 
 
         #region Navigation Property
