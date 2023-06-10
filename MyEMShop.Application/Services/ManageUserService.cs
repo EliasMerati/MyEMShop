@@ -77,8 +77,8 @@ namespace MyEMShop.Application.Services
             return _db.Users.Where(u => u.UserId == userId)
                 .Select(u => new EditUserWithAdminDto
                 {
-                    UserId =u.UserId,
-                    CurrentRoles = GetCurrentRoles(userId),
+                    UserId = u.UserId,
+                    UserRoles = GetCurrentRoles(userId),
                     Email = u.Email,
                     UserName = u.UserName,
                     Family = u.Family,

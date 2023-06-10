@@ -34,8 +34,8 @@ namespace MyEMShop.EndPoint.Pages.Admin.Users
             _manageUser.EditUserByAdmin(editUser);
 
             //Add New Roles
-            _permissionService.UpdateRoles(editUser.UserId,SelectedRoles);
-            return RedirectToAction("Index");
+            _permissionService.UpdateRoles(editUser.UserId, SelectedRoles);
+            return RedirectToPage("Index");
         }
 
         

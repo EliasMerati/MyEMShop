@@ -26,15 +26,17 @@
                         <div class="form-group">
                             <label>نام خانوادگی</label>
                             <input type="text" asp-for="editUser.Family" class="form-control">
-                        </div>                    
+                        </div>
                         <div class="form-group">
                             <label>ایمیل</label>
                             <input type="text" asp-for="editUser.Email" class="form-control">
                         </div>
+                        <span asp-validation-for="editUser.Email" class="text-danger"></span>
                         <div class="form-group">
                             <label>کلمه ی عبور</label>
                             <input type="text" asp-for="editUser.Password" class="form-control">
                         </div>
+                        <span asp-validation-for="editUser.Password" class="text-danger"></span>
                         <button type="submit" class="btn btn-warning"><strong>ویرایش کاربر </strong></button>
 
                     </div>
@@ -53,7 +55,7 @@
                         {
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="SelectedRoles" value="@item.RoleId" @((Model.editUser.CurrentRoles.Any(r=> r== item.RoleId))?"Checked":"")>@item.RoleName
+                                    <input type="checkbox" name="SelectedRoles" value="@item.RoleId" @((Model.editUser.UserRoles.Any(r=> r== item.RoleId))?"Checked":"")>@item.RoleName
                                 </label>
                             </div>
                         }

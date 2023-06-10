@@ -73,7 +73,7 @@ namespace MyEMShop.Data.Dtos.UserDto
             [MaxLength(150)]
             public string Family { get; set; }
 
-            public IList<int> CurrentRoles { get; set; }
+            public IList<int> UserRoles { get; set; }
         }
     }
 }
