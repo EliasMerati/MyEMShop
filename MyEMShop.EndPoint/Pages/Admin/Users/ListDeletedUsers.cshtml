@@ -1,5 +1,5 @@
 ﻿@page
-@model MyEMShop.EndPoint.Pages.Admin.Users.DeletedUsersModel
+@model MyEMShop.EndPoint.Pages.Admin.Users.ListDeletedUsersModel
 @{
     ViewData["Title"] = "کاربران حذف شده";
 }
@@ -116,8 +116,7 @@
                                             <td class="center">@item.UserName</td>
                                             <td class="center">@item.Email</td>
                                             <td class="center">
-                                                <a href="/Admin/Users/EditUser/@item.UserId" class="btn btn-sm btn-warning">ویرایش</a>
-                                                <a href="" class="btn btn-sm btn-danger">حذف</a>
+                                                <a href="/Admin/Users/RefreshUser/@item.UserId" class="btn btn-sm btn-primary">بازگردانی شخص</a>              
                                             </td>
                                         </tr>
                                     }

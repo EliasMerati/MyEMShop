@@ -5,6 +5,8 @@ namespace MyEMShop.Application.Interfaces
     public interface IUserPannelService
     {
         ShowUserInformationForPannelDto GetUserInfo(string userName);
+        ShowUserInformationForPannelDto GetUserInfo(int userId);
+        ShowUserInformationForPannelDto GetUserRefreshInfo(int userId);
         ShowUserInfoForEditPannelDto GetInfoForEdit(string userName);
         void EditUserPannel(string userName, ShowUserInfoForEditPannelDto edit);
         bool CompareOldPassword(string password, string username);

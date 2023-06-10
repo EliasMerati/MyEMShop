@@ -23,7 +23,7 @@ namespace MyEMShop.Application.Services
 
         public UserListForAdminDto GetUsers(int pageId = 1, string FilterEmail = "", string FilterUserName = "", string filterName = "", string filterFamily = "")
         {
-            IQueryable<User> Result = _db.Users;
+            IQueryable<User> Result = _db.Users.Where(u=> !u.IsDelete);
 
             if (FilterEmail is not null)
             {
@@ -143,6 +143,22 @@ namespace MyEMShop.Application.Services
             userList.Users = Result.OrderBy(u => u.RegisterDate).Skip(skip).Take(take).ToList();
             userList.PageCount = Result.Count() / take;
             return userList;
+        }
+
+        public void DeleteUser(int userId)
+        {
+            var user = FindUserByUserId(userId);
+            user.IsDelete = true;
+            _db.Update(user);
+            _db.SaveChanges();
+        }
+
+        public void ReturnUser(int userId)
+        {
+            var user = FindUserByUserId(userId);
+            user.IsDelete = false;
+            _db.Update(user);
+            _db.SaveChanges();
         }
     }
 }

@@ -2,7 +2,6 @@
 using MyEMShop.Common;
 using MyEMShop.Data.Context;
 using MyEMShop.Data.Dtos.UserDto;
-using System;
 using System.Linq;
 
 namespace MyEMShop.Application.Services
@@ -27,8 +26,8 @@ namespace MyEMShop.Application.Services
             user.Ostan = edit.Ostan;
             user.City = edit.City;
             user.PostalCode = edit.PostalCode;
-            user.Name= edit.Name;
-            user.Family= edit.Family;
+            user.Name = edit.Name;
+            user.Family = edit.Family;
 
             //_db.Update(user);
             _db.SaveChanges();
@@ -39,19 +38,19 @@ namespace MyEMShop.Application.Services
         {
             return _db.Users.Where(u => u.UserName == userName).Select(u => new ShowUserInfoForEditPannelDto
             {
-                Address= u.Address,
-                City= u.City,
-                Family= u.Family,
-                Name= u.Name,
+                Address = u.Address,
+                City = u.City,
+                Family = u.Family,
+                Name = u.Name,
                 Ostan = u.Ostan,
-                PhoneNumber= u.PhoneNumber,
-                PostalCode= u.PostalCode, 
+                PhoneNumber = u.PhoneNumber,
+                PostalCode = u.PostalCode,
             }).Single();
         }
 
         public ShowUserInformationForPannelDto GetUserInfo(string userName)
         {
-          var user = _db.Users.SingleOrDefault(u => u.UserName == userName);
+            var user = _db.Users.SingleOrDefault(u => u.UserName == userName);
             ShowUserInformationForPannelDto info = new ShowUserInformationForPannelDto();
             info.Ostan = user.Ostan;
             info.Email = user.Email;
@@ -98,6 +97,37 @@ namespace MyEMShop.Application.Services
         {
             var HashPass = HashPassword(password);
             return _db.Users.Any(u => u.UserName == username && u.Password == HashPass);
+        }
+
+        public ShowUserInformationForPannelDto GetUserInfo(int userId)
+        {
+            var user = _db.Users.SingleOrDefault(u => u.UserId == userId && !u.IsDelete);
+            ShowUserInformationForPannelDto info = new ShowUserInformationForPannelDto();
+            info.Ostan = user.Ostan;
+            info.Email = user.Email;
+            info.City = user.City;
+            info.Address = user.Address;
+            info.PhoneNumber = user.PhoneNumber;
+            info.Family = user.Family;
+            info.Name = user.Name;
+            info.PostalCode = user.PostalCode;
+            info.Wallet = BalanceWallet(user.UserName);
+            return info;
+        }
+        public ShowUserInformationForPannelDto GetUserRefreshInfo(int userId)
+        {
+            var user = _db.Users.Single(u=> u.UserId == userId && u.IsDelete);
+            ShowUserInformationForPannelDto info = new ShowUserInformationForPannelDto();
+            info.Ostan = user.Ostan;
+            info.Email = user.Email;
+            info.City = user.City;
+            info.Address = user.Address;
+            info.PhoneNumber = user.PhoneNumber;
+            info.Family = user.Family;
+            info.Name = user.Name;
+            info.PostalCode = user.PostalCode;
+            info.Wallet = BalanceWallet(user.UserName);
+            return info;
         }
     }
 }

@@ -44,8 +44,8 @@ namespace MyEMShop.Data.Context
             #endregion
 
             #region Query Filters
-            modelBuilder.Entity<User>()
-                .HasQueryFilter(u => !u.IsDelete);
+            //modelBuilder.Entity<User>()
+            //    .HasQueryFilter(u => !u.IsDelete);
             #endregion
 
             base.OnModelCreating(modelBuilder);

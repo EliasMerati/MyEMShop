@@ -17,5 +17,7 @@ namespace MyEMShop.Application.Interfaces
         EditUserWithAdminDto ShowUserInfoForEditWithAdmin(int userId);
         void EditUserByAdmin(EditUserWithAdminDto edit);
         User FindUserByUserId(int userId);
+        void DeleteUser(int userId);
+        void ReturnUser(int userId);
     }
 }

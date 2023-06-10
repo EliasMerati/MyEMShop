@@ -5,11 +5,11 @@ using static MyEMShop.Data.Dtos.UserDto.UserDto;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Users
 {
-    public class DeletedUsersModel : PageModel
+    public class ListDeletedUsersModel : PageModel
     {
         #region Injection
         private readonly IManageUserService _manageUser;
-        public DeletedUsersModel(IManageUserService manageUser)
+        public ListDeletedUsersModel(IManageUserService manageUser)
         {
             _manageUser = manageUser;
         }
