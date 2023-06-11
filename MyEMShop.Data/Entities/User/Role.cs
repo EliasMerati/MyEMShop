@@ -25,6 +25,8 @@ namespace MyEMShop.Data.Entities.User
         [MaxLength(100)]
         public string RoleName { get; set; }
 
+        public bool IsDelete { get; set; }
+
 
 
         #region Navigation Property

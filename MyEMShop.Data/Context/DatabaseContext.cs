@@ -35,8 +35,8 @@ namespace MyEMShop.Data.Context
 
             #region Seed Data
             modelBuilder.Entity<Role>()
-                .HasData(new { RoleId = 1, RoleTitle = "Admin", RoleName = "مدیر کل سیستم" },
-                         new { RoleId = 2, RoleTitle = "User", RoleName = "کاربر عادی" });
+                .HasData(new { RoleId = 1, RoleTitle = "Admin", RoleName = "مدیر کل سیستم" , IsDelete = false },
+                         new { RoleId = 2, RoleTitle = "User", RoleName = "کاربر عادی", IsDelete = false });
 
             modelBuilder.Entity<WalletType>()
                 .HasData(new { TypeId = 1, TypeTitle = "واریز" },
@@ -46,6 +46,9 @@ namespace MyEMShop.Data.Context
             #region Query Filters
             //modelBuilder.Entity<User>()
             //    .HasQueryFilter(u => !u.IsDelete);
+
+            modelBuilder.Entity<Role>()
+                .HasQueryFilter(r => !r.IsDelete);
             #endregion
 
             base.OnModelCreating(modelBuilder);
