@@ -44,6 +44,13 @@ namespace MyEMShop.Data.Context
                 .HasData(new { RoleId = 1, RoleTitle = "مدیر کل سیستم", IsDelete = false },
                          new { RoleId = 2, RoleTitle = "کاربر عادی", IsDelete = false });
 
+            modelBuilder.Entity<Permission>()
+                .HasData(new { PermissionId = 1, PermissionTitle = "مدیریت "},
+                         new { PermissionId = 2, PermissionTitle = "مدیریت کاربران " , ParentId = 1 },
+                         new { PermissionId = 3, PermissionTitle = "افزودن کاربر ", ParentId = 2 },
+                         new { PermissionId = 4, PermissionTitle = "ویرایش کاربر ", ParentId = 2 },
+                         new { PermissionId = 5, PermissionTitle = "حذف کاربر ", ParentId = 2 });
+
             modelBuilder.Entity<WalletType>()
                 .HasData(new { TypeId = 1, TypeTitle = "واریز" },
                          new { TypeId = 2, TypeTitle = "برداشت" });
