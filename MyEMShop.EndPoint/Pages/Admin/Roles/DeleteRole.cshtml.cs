@@ -21,5 +21,11 @@ namespace MyEMShop.EndPoint.Pages.Admin.Roles
         {
             Role = _permissionService.GetRoleById(id);
         }
+
+        public IActionResult OnPost()
+        {
+            _permissionService.DeleteRole(Role);
+            return RedirectToPage("Index");
+        }
     }
 }

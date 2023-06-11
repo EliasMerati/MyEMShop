@@ -24,6 +24,12 @@ namespace MyEMShop.Application.Services
             return role.RoleId;
         }
 
+        public void DeleteRole(Role role)
+        {
+            role.IsDelete = true;
+            UpdateRole(role);
+        }
+
         public Role GetRoleById(int roleId)
         {
             return _db.Roles.Find(roleId);

@@ -1,4 +1,19 @@
 ﻿@page "{id}"
 @model MyEMShop.EndPoint.Pages.Admin.Roles.DeleteRoleModel
 @{
+    ViewData["Title"] = "حذف نقش";
 }
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="alert alert-danger">
+            <form method="post">
+                <input type="hidden" asp-for="Role.RoleId" />
+                <input type="hidden" asp-for="Role.RoleTitle" />
+                <h3>آیا از حذف نقش "@Model.Role.RoleTitle" مطمئن هستید؟</h3>
+                <input type="submit" value="حذف نقش" class="btn btn-danger" />
+                <a asp-page="Index" class="btn btn-info">انصراف</a>
+            </form>
+        </div>
+    </div>
+</div>
