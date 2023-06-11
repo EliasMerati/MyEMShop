@@ -25,6 +25,10 @@ namespace MyEMShop.Application.Interfaces
         void AddPermissionToRole(int roleId, IList<int> Permissions);
         IList<int> PermissionsRole(int roleId);
         void UpdatePermissionsRole(int roleId , IList<int> Permissions);
+        bool PermissionChecker(int permissionId,string userName);
+        int GetUserIdByUserName(string userName);
+        IList<int> GetUserRoles(string userName);
+        IList<int> GetUserRolesPermission(int permissionId);
         #endregion
     }
 }

@@ -11,7 +11,7 @@ namespace MyEMShop.Data.Entities.Permission
 
         }
 
-        [Key]
+        [Key,DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int PermissionId { get; set; }
 
         [Display(Name = "نام دسترسی")]

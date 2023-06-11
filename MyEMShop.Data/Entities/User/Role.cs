@@ -12,8 +12,7 @@ namespace MyEMShop.Data.Entities.User
 
         }
 
-        [Key]
-        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key]  
         public int RoleId { get; set; }
 
         [Display(Name = "نام نقش")]

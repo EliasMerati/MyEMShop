@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MyEMShop.Data.Migrations
 {
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,8 +11,7 @@ namespace MyEMShop.Data.Migrations
                 name: "Permission",
                 columns: table => new
                 {
-                    PermissionId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PermissionId = table.Column<int>(type: "int", nullable: false),
                     PermissionTitle = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     ParentId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -163,6 +162,11 @@ namespace MyEMShop.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Permission",
+                columns: new[] { "PermissionId", "ParentId", "PermissionTitle" },
+                values: new object[] { 1, null, "مدیریت " });
+
+            migrationBuilder.InsertData(
                 table: "Roles",
                 columns: new[] { "RoleId", "IsDelete", "RoleTitle" },
                 values: new object[,]
@@ -178,6 +182,56 @@ namespace MyEMShop.Data.Migrations
                 {
                     { 1, "واریز" },
                     { 2, "برداشت" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Permission",
+                columns: new[] { "PermissionId", "ParentId", "PermissionTitle" },
+                values: new object[] { 2, 1, "مدیریت کاربران " });
+
+            migrationBuilder.InsertData(
+                table: "Permission",
+                columns: new[] { "PermissionId", "ParentId", "PermissionTitle" },
+                values: new object[] { 3, 1, "مدیریت نقش ها " });
+
+            migrationBuilder.InsertData(
+                table: "RolePermission",
+                columns: new[] { "RP_Id", "PermissionId", "RoleId" },
+                values: new object[] { 1, 1, 1 });
+
+            migrationBuilder.InsertData(
+                table: "Permission",
+                columns: new[] { "PermissionId", "ParentId", "PermissionTitle" },
+                values: new object[,]
+                {
+                    { 4, 2, "افزودن کاربر " },
+                    { 5, 2, "ویرایش کاربر " },
+                    { 6, 2, "حذف کاربر " },
+                    { 7, 3, "افزودن نقش " },
+                    { 8, 3, "ویرایش نقش " },
+                    { 9, 3, "حذف نقش " }
+                });
+
+            migrationBuilder.InsertData(
+                table: "RolePermission",
+                columns: new[] { "RP_Id", "PermissionId", "RoleId" },
+                values: new object[,]
+                {
+                    { 2, 2, 1 },
+                    { 3, 3, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "RolePermission",
+                columns: new[] { "RP_Id", "PermissionId", "RoleId" },
+                values: new object[,]
+                {
+                    { 4, 4, 1 },
+                    { 5, 5, 1 },
+                    { 6, 6, 1 },
+                    { 7, 7, 1 },
+                    { 8, 8, 1 },
+                    { 9, 9, 1 }
                 });
 
             migrationBuilder.CreateIndex(

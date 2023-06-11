@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Entities.User;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Roles
 {
+    [PermissionChecker(9)]
     public class DeleteRoleModel : PageModel
     {
         #region Inject Service

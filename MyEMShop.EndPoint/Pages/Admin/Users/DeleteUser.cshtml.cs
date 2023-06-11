@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Dtos.UserDto;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Users
 {
+    [PermissionChecker(6)]
     public class DeleteUserModel : PageModel
     {
         #region Inject Service

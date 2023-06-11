@@ -105,5 +105,39 @@ namespace MyEMShop.Application.Services
 
             AddPermissionToRole(roleId, Permissions);
         }
+
+        public bool PermissionChecker(int permissionId, string userName)
+        {
+            IList<int> roles = GetUserRoles(userName);
+            if (!roles.Any())
+            {
+                return false;
+            }
+            IList<int> rolespermission = GetUserRolesPermission(permissionId);
+
+            return rolespermission.Any(r => roles.Contains(r));
+        }
+
+        public int GetUserIdByUserName(string userName)
+        {
+           return _db.Users.Single(u=> u.UserName== userName).UserId;
+        }
+
+        public IList<int> GetUserRoles(string userName)
+        {
+            int userId = GetUserIdByUserName(userName);
+            return _db.UserRoles
+                .Where(u => u.UserId == userId)
+                .Select(r=> r.RoleId)
+                .ToList();
+        }
+
+        public IList<int> GetUserRolesPermission(int permissionId)
+        {
+           return _db.RolePermission
+                .Where(r=> r.PermissionId== permissionId)
+                .Select(r=> r.RoleId)
+                .ToList();
+        }
     }
 }

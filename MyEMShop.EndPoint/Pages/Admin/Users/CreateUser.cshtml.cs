@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
 using System.Collections.Generic;
 using static MyEMShop.Data.Dtos.UserDto.UserDto;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Users
 {
+    [PermissionChecker(4)]
     public class CreateUserModel : PageModel
     {
         #region Inject services

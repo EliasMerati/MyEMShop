@@ -10,8 +10,8 @@ using MyEMShop.Data.Context;
 namespace MyEMShop.Data.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230611113651_init")]
-    partial class init
+    [Migration("20230611190235_Init2")]
+    partial class Init2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,9 +24,7 @@ namespace MyEMShop.Data.Migrations
             modelBuilder.Entity("MyEMShop.Data.Entities.Permission.Permission", b =>
                 {
                     b.Property<int>("PermissionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int?>("ParentId")
                         .HasColumnType("int");
@@ -41,6 +39,73 @@ namespace MyEMShop.Data.Migrations
                     b.HasIndex("ParentId");
 
                     b.ToTable("Permission");
+
+                    b.HasData(
+                        new
+                        {
+                            PermissionId = 1,
+                            PermissionTitle = "مدیریت "
+                        },
+                        new
+                        {
+                            PermissionId = 2,
+                            ParentId = 1,
+                            PermissionTitle = "مدیریت کاربران "
+                        },
+                        new
+                        {
+                            PermissionId = 3,
+                            ParentId = 1,
+                            PermissionTitle = "مدیریت نقش ها "
+                        },
+                        new
+                        {
+                            PermissionId = 4,
+                            ParentId = 2,
+                            PermissionTitle = "افزودن کاربر "
+                        },
+                        new
+                        {
+                            PermissionId = 5,
+                            ParentId = 2,
+                            PermissionTitle = "ویرایش کاربر "
+                        },
+                        new
+                        {
+                            PermissionId = 6,
+                            ParentId = 2,
+                            PermissionTitle = "حذف کاربر "
+                        },
+                        new
+                        {
+                            PermissionId = 7,
+                            ParentId = 3,
+                            PermissionTitle = "افزودن نقش "
+                        },
+                        new
+                        {
+                            PermissionId = 8,
+                            ParentId = 3,
+                            PermissionTitle = "ویرایش نقش "
+                        },
+                        new
+                        {
+                            PermissionId = 9,
+                            ParentId = 3,
+                            PermissionTitle = "حذف نقش "
+                        },
+                        new
+                        {
+                            PermissionId = 10,
+                            ParentId = 1,
+                            PermissionTitle = "لیست کاربران حذف شده "
+                        },
+                        new
+                        {
+                            PermissionId = 11,
+                            ParentId = 1,
+                            PermissionTitle = "بازگردانی کاربر "
+                        });
                 });
 
             modelBuilder.Entity("MyEMShop.Data.Entities.Permission.RolePermission", b =>
@@ -63,6 +128,74 @@ namespace MyEMShop.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("RolePermission");
+
+                    b.HasData(
+                        new
+                        {
+                            RP_Id = 1,
+                            PermissionId = 1,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            RP_Id = 2,
+                            PermissionId = 2,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            RP_Id = 3,
+                            PermissionId = 3,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            RP_Id = 4,
+                            PermissionId = 4,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            RP_Id = 5,
+                            PermissionId = 5,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            RP_Id = 6,
+                            PermissionId = 6,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            RP_Id = 7,
+                            PermissionId = 7,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            RP_Id = 8,
+                            PermissionId = 8,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            RP_Id = 9,
+                            PermissionId = 9,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            RP_Id = 10,
+                            PermissionId = 10,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            RP_Id = 11,
+                            PermissionId = 11,
+                            RoleId = 1
+                        });
                 });
 
             modelBuilder.Entity("MyEMShop.Data.Entities.User.Role", b =>

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyEMShop.Data.Context;
 
 namespace MyEMShop.Data.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230611185242_Init")]
+    partial class Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -91,18 +93,6 @@ namespace MyEMShop.Data.Migrations
                             PermissionId = 9,
                             ParentId = 3,
                             PermissionTitle = "حذف نقش "
-                        },
-                        new
-                        {
-                            PermissionId = 10,
-                            ParentId = 2,
-                            PermissionTitle = "لیست کاربران حذف شده "
-                        },
-                        new
-                        {
-                            PermissionId = 11,
-                            ParentId = 2,
-                            PermissionTitle = "بازگردانی کاربر "
                         });
                 });
 
@@ -180,18 +170,6 @@ namespace MyEMShop.Data.Migrations
                         {
                             RP_Id = 9,
                             PermissionId = 9,
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            RP_Id = 10,
-                            PermissionId = 10,
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            RP_Id = 11,
-                            PermissionId = 11,
                             RoleId = 1
                         });
                 });

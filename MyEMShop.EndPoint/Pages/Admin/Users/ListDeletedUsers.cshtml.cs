@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
 using static MyEMShop.Data.Dtos.UserDto.UserDto;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Users
 {
+    [PermissionChecker(10)]
     public class ListDeletedUsersModel : PageModel
     {
         #region Injection
