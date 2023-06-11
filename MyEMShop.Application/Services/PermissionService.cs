@@ -87,5 +87,23 @@ namespace MyEMShop.Application.Services
             // Add New roles
             SetRoles(roleIds,userId);
         }
+
+        public IList<int> PermissionsRole(int roleId)
+        {
+            return _db.RolePermission
+                .Where(r=> r.RoleId == roleId)
+                .Select(r=> r.PermissionId)
+                .ToList();
+        }
+
+        public void UpdatePermissionsRole(int roleId, IList<int> Permissions)
+        {
+            _db.RolePermission
+                .Where(p=> p.RoleId == roleId)
+                .ToList()
+                .ForEach(p=> _db.RolePermission.Remove(p));
+
+            AddPermissionToRole(roleId, Permissions);
+        }
     }
 }

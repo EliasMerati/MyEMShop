@@ -23,6 +23,8 @@ namespace MyEMShop.Application.Interfaces
         #region Permission
         IList<Permission> GetAllPermissions();
         void AddPermissionToRole(int roleId, IList<int> Permissions);
+        IList<int> PermissionsRole(int roleId);
+        void UpdatePermissionsRole(int roleId , IList<int> Permissions);
         #endregion
     }
 }
