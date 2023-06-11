@@ -28,7 +28,7 @@ namespace MyEMShop.EndPoint.Pages.Admin.Roles
                 return Page();
             }
             Role.IsDelete = false;
-            _permissionService.AddRole(Role);
+            int roleid = _permissionService.AddRole(Role);
             return RedirectToPage("Index");
         }
     }

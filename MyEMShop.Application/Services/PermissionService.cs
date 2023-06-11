@@ -24,6 +24,11 @@ namespace MyEMShop.Application.Services
             return role.RoleId;
         }
 
+        public Role GetRoleById(int roleId)
+        {
+            return _db.Roles.Find(roleId);
+        }
+
         public IList<Role> GetRoles()
         {
             return _db.Roles.ToList();
@@ -39,6 +44,12 @@ namespace MyEMShop.Application.Services
                     UserId = userId,
                 });
             }
+            _db.SaveChanges();
+        }
+
+        public void UpdateRole(Role role)
+        {
+            _db.Update(role);
             _db.SaveChanges();
         }
 
