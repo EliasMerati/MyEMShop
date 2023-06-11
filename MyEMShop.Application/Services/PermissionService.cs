@@ -17,6 +17,13 @@ namespace MyEMShop.Application.Services
         #endregion
 
 
+        public int AddRole(Role role)
+        {
+            _db.Add(role);
+            _db.SaveChanges();
+            return role.RoleId;
+        }
+
         public IList<Role> GetRoles()
         {
             return _db.Roles.ToList();

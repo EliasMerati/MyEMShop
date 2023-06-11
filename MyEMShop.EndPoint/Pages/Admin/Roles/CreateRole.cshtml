@@ -1,0 +1,43 @@
+﻿@page
+@model MyEMShop.EndPoint.Pages.Admin.Roles.CreateRoleModel
+@{
+    ViewData["Title"] = "افزودن نقش";
+}
+<div id="page-wrapper">
+    <div class="row">
+        <form method="post">
+            <div class="col-lg-8">
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        اطلاعات نقش
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label>عنوان نقش</label>
+                            <input type="text" asp-for="Role.RoleTitle" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-success">ثبت نقش جدید</button>
+
+                    </div>
+                    <div class="panel-footer">
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        دسترسی های نقش
+                    </div>
+                    <div class="panel-body">
+
+                    </div>
+                    <div class="panel-footer">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

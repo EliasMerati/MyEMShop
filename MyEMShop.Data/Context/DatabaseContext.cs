@@ -35,8 +35,8 @@ namespace MyEMShop.Data.Context
 
             #region Seed Data
             modelBuilder.Entity<Role>()
-                .HasData(new { RoleId = 1, RoleTitle = "Admin", RoleName = "مدیر کل سیستم" , IsDelete = false },
-                         new { RoleId = 2, RoleTitle = "User", RoleName = "کاربر عادی", IsDelete = false });
+                .HasData(new { RoleId = 1, RoleTitle = "مدیر کل سیستم", IsDelete = false },
+                         new { RoleId = 2, RoleTitle = "کاربر عادی", IsDelete = false });
 
             modelBuilder.Entity<WalletType>()
                 .HasData(new { TypeId = 1, TypeTitle = "واریز" },

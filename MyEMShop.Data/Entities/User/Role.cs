@@ -20,11 +20,6 @@ namespace MyEMShop.Data.Entities.User
         [MaxLength(100)]
         public string RoleTitle { get; set; }
 
-        [Display(Name = "نام سیستمی نقش")]
-        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        [MaxLength(100)]
-        public string RoleName { get; set; }
-
         public bool IsDelete { get; set; }
 
 

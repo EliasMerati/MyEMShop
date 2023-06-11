@@ -55,7 +55,7 @@
                         {
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="SelectedRoles" value="@item.RoleId" @((Model.editUser.UserRoles.Any(r=> r== item.RoleId))?"Checked":"")>@item.RoleName
+                                    <input type="checkbox" name="SelectedRoles" value="@item.RoleId" @((Model.editUser.UserRoles.Any(r=> r== item.RoleId))?"Checked":"")>@item.RoleTitle
                                 </label>
                             </div>
                         }
