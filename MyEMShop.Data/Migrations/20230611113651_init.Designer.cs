@@ -10,8 +10,8 @@ using MyEMShop.Data.Context;
 namespace MyEMShop.Data.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230611063601_DeleteRoleNameForRoleTable")]
-    partial class DeleteRoleNameForRoleTable
+    [Migration("20230611113651_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,10 +21,56 @@ namespace MyEMShop.Data.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("MyEMShop.Data.Entities.Permission.Permission", b =>
+                {
+                    b.Property<int>("PermissionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("ParentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PermissionTitle")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("PermissionId");
+
+                    b.HasIndex("ParentId");
+
+                    b.ToTable("Permission");
+                });
+
+            modelBuilder.Entity("MyEMShop.Data.Entities.Permission.RolePermission", b =>
+                {
+                    b.Property<int>("RP_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("PermissionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RP_Id");
+
+                    b.HasIndex("PermissionId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("RolePermission");
+                });
+
             modelBuilder.Entity("MyEMShop.Data.Entities.User.Role", b =>
                 {
                     b.Property<int>("RoleId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
@@ -206,6 +252,32 @@ namespace MyEMShop.Data.Migrations
                         });
                 });
 
+            modelBuilder.Entity("MyEMShop.Data.Entities.Permission.Permission", b =>
+                {
+                    b.HasOne("MyEMShop.Data.Entities.Permission.Permission", null)
+                        .WithMany("Permissions")
+                        .HasForeignKey("ParentId");
+                });
+
+            modelBuilder.Entity("MyEMShop.Data.Entities.Permission.RolePermission", b =>
+                {
+                    b.HasOne("MyEMShop.Data.Entities.Permission.Permission", "Permission")
+                        .WithMany("RolePermissions")
+                        .HasForeignKey("PermissionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyEMShop.Data.Entities.User.Role", "Role")
+                        .WithMany("RolePermissions")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Permission");
+
+                    b.Navigation("Role");
+                });
+
             modelBuilder.Entity("MyEMShop.Data.Entities.User.UserRole", b =>
                 {
                     b.HasOne("MyEMShop.Data.Entities.User.Role", "Role")
@@ -242,8 +314,17 @@ namespace MyEMShop.Data.Migrations
                     b.Navigation("WalletType");
                 });
 
+            modelBuilder.Entity("MyEMShop.Data.Entities.Permission.Permission", b =>
+                {
+                    b.Navigation("Permissions");
+
+                    b.Navigation("RolePermissions");
+                });
+
             modelBuilder.Entity("MyEMShop.Data.Entities.User.Role", b =>
                 {
+                    b.Navigation("RolePermissions");
+
                     b.Navigation("UserRoles");
                 });
 

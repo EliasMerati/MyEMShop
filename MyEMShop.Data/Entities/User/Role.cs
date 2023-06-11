@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using MyEMShop.Data.Entities.Permission;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -12,7 +13,7 @@ namespace MyEMShop.Data.Entities.User
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int RoleId { get; set; }
 
         [Display(Name = "نام نقش")]
@@ -26,6 +27,7 @@ namespace MyEMShop.Data.Entities.User
 
         #region Navigation Property
         public virtual ICollection<UserRole> UserRoles { get; set; }
+        public virtual ICollection<RolePermission> RolePermissions { get; set; }
         #endregion
     }
 }

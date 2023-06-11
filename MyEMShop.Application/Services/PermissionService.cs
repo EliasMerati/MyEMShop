@@ -1,5 +1,6 @@
 ﻿using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Context;
+using MyEMShop.Data.Entities.Permission;
 using MyEMShop.Data.Entities.User;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,10 +25,27 @@ namespace MyEMShop.Application.Services
             return role.RoleId;
         }
 
+        public void AddPermissionToRole(int roleId, IList<int> Permissions)
+        {
+            foreach (var p in Permissions)
+            {
+                _db.RolePermission.Add(new RolePermission 
+                {
+                    RoleId = roleId,
+                    PermissionId = p,
+                }); 
+            }
+            _db.SaveChanges();
+        }
         public void DeleteRole(Role role)
         {
             role.IsDelete = true;
             UpdateRole(role);
+        }
+
+        public IList<Permission> GetAllPermissions()
+        {
+            return _db.Permission.ToList();
         }
 
         public Role GetRoleById(int roleId)

@@ -3,17 +3,38 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MyEMShop.Data.Migrations
 {
-    public partial class FirstInit : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Permission",
+                columns: table => new
+                {
+                    PermissionId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PermissionTitle = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ParentId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Permission", x => x.PermissionId);
+                    table.ForeignKey(
+                        name: "FK_Permission_Permission_ParentId",
+                        column: x => x.ParentId,
+                        principalTable: "Permission",
+                        principalColumn: "PermissionId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Roles",
                 columns: table => new
                 {
-                    RoleId = table.Column<int>(type: "int", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     RoleTitle = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    RoleName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -38,7 +59,8 @@ namespace MyEMShop.Data.Migrations
                     Ostan = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RegisterDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    RegisterDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -55,6 +77,32 @@ namespace MyEMShop.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_WalletTypes", x => x.TypeId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RolePermission",
+                columns: table => new
+                {
+                    RP_Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleId = table.Column<int>(type: "int", nullable: false),
+                    PermissionId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RolePermission", x => x.RP_Id);
+                    table.ForeignKey(
+                        name: "FK_RolePermission_Permission_PermissionId",
+                        column: x => x.PermissionId,
+                        principalTable: "Permission",
+                        principalColumn: "PermissionId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RolePermission_Roles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "Roles",
+                        principalColumn: "RoleId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -116,11 +164,11 @@ namespace MyEMShop.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Roles",
-                columns: new[] { "RoleId", "RoleName", "RoleTitle" },
+                columns: new[] { "RoleId", "IsDelete", "RoleTitle" },
                 values: new object[,]
                 {
-                    { 1, "مدیر کل سیستم", "Admin" },
-                    { 2, "کاربر عادی", "User" }
+                    { 1, false, "مدیر کل سیستم" },
+                    { 2, false, "کاربر عادی" }
                 });
 
             migrationBuilder.InsertData(
@@ -131,6 +179,21 @@ namespace MyEMShop.Data.Migrations
                     { 1, "واریز" },
                     { 2, "برداشت" }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Permission_ParentId",
+                table: "Permission",
+                column: "ParentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RolePermission_PermissionId",
+                table: "RolePermission",
+                column: "PermissionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RolePermission_RoleId",
+                table: "RolePermission",
+                column: "RoleId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserRoles_RoleId",
@@ -156,10 +219,16 @@ namespace MyEMShop.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "RolePermission");
+
+            migrationBuilder.DropTable(
                 name: "UserRoles");
 
             migrationBuilder.DropTable(
                 name: "Wallets");
+
+            migrationBuilder.DropTable(
+                name: "Permission");
 
             migrationBuilder.DropTable(
                 name: "Roles");

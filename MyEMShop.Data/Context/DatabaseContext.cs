@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyEMShop.Data.Entities.Permission;
 using MyEMShop.Data.Entities.User;
 using MyEMShop.Data.Entities.Wallet;
 using System.Drawing;
@@ -19,6 +20,11 @@ namespace MyEMShop.Data.Context
         #region Wallet
         public DbSet<Wallet> Wallets { get; set; }
         public DbSet<WalletType> WalletTypes { get; set; }
+        #endregion
+
+        #region Permission
+        public DbSet<Permission> Permission { get; set; }
+        public DbSet<RolePermission> RolePermission { get; set; }
         #endregion
 
 

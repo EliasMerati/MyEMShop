@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Entities.User;
+using System.Collections.Generic;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Roles
 {
@@ -19,9 +20,10 @@ namespace MyEMShop.EndPoint.Pages.Admin.Roles
         public Role Role { get; set; }
         public void OnGet()
         {
+            ViewData["Permission"] = _permissionService.GetAllPermissions();
         }
 
-        public IActionResult OnPost()
+        public IActionResult OnPost( IList<int> SelectedPermission)
         {
             if (!ModelState.IsValid)
             {
@@ -29,6 +31,7 @@ namespace MyEMShop.EndPoint.Pages.Admin.Roles
             }
             Role.IsDelete = false;
             int roleid = _permissionService.AddRole(Role);
+            _permissionService.AddPermissionToRole(roleid, SelectedPermission);
             return RedirectToPage("Index");
         }
     }
