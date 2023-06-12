@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyEMShop.Data.Entities.Group;
 using MyEMShop.Data.Entities.Permission;
 using MyEMShop.Data.Entities.User;
 using MyEMShop.Data.Entities.Wallet;
@@ -23,6 +24,10 @@ namespace MyEMShop.Data.Context
         #region Permission
         public DbSet<Permission> Permission { get; set; }
         public DbSet<RolePermission> RolePermission { get; set; }
+        #endregion
+
+        #region Group
+        public DbSet<Group> Groups { get; set; }
         #endregion
 
 
@@ -81,6 +86,9 @@ namespace MyEMShop.Data.Context
 
             modelBuilder.Entity<Role>()
                 .HasQueryFilter(r => !r.IsDelete);
+
+            modelBuilder.Entity<Group>()
+                .HasQueryFilter(g => !g.IsDelete);
             #endregion
 
             base.OnModelCreating(modelBuilder);

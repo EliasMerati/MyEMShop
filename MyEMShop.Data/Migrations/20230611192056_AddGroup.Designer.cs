@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyEMShop.Data.Context;
 
 namespace MyEMShop.Data.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230611192056_AddGroup")]
+    partial class AddGroup
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,8 +40,6 @@ namespace MyEMShop.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("GroupId");
-
-                    b.HasIndex("ParentId");
 
                     b.ToTable("Groups");
                 });
@@ -408,13 +408,6 @@ namespace MyEMShop.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MyEMShop.Data.Entities.Group.Group", b =>
-                {
-                    b.HasOne("MyEMShop.Data.Entities.Group.Group", null)
-                        .WithMany("Groups")
-                        .HasForeignKey("ParentId");
-                });
-
             modelBuilder.Entity("MyEMShop.Data.Entities.Permission.Permission", b =>
                 {
                     b.HasOne("MyEMShop.Data.Entities.Permission.Permission", null)
@@ -475,11 +468,6 @@ namespace MyEMShop.Data.Migrations
                     b.Navigation("User");
 
                     b.Navigation("WalletType");
-                });
-
-            modelBuilder.Entity("MyEMShop.Data.Entities.Group.Group", b =>
-                {
-                    b.Navigation("Groups");
                 });
 
             modelBuilder.Entity("MyEMShop.Data.Entities.Permission.Permission", b =>

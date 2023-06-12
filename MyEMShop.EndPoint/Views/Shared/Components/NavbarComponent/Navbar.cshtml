@@ -1,0 +1,60 @@
+﻿@using MyEMShop.Data.Entities.Group
+@model IEnumerable<Group>
+<nav id="menu" class="navbar">
+    <div class="navbar-header"> <span class="visible-xs visible-sm"> منو <b></b></span></div>
+    <div class="container">
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li><a class="home_link" title="خانه" href="/">خانه</a></li>
+                @foreach (var group in Model.Where(g => g.ParentId is null))
+                {
+                    <li class="dropdown">
+                        <a href="">@group.GroupTitle</a>
+                        @if (Model.Any(g => g.ParentId == group.GroupId))
+                        {
+                            <div class="dropdown-menu">
+                                <ul>
+                                    @foreach (var sub in Model.Where(g => g.ParentId == group.GroupId))
+                                    {
+                                        <li class="dropdown">
+                                            <a href="">@sub.GroupTitle<span>&rsaquo;</span></a>
+                                            @if (Model.Any(g=>g.ParentId == sub.GroupId))
+                                            {
+                                                <div class="dropdown-menu">
+                                                    <ul>
+                                                        @foreach (var sub2 in Model.Where(g => g.ParentId == sub.GroupId))
+                                                        {
+                                                            <li class="dropdown">
+                                                                <a href="">@sub2.GroupTitle <span>&rsaquo;</span></a>
+                                                                @if (Model.Any(g=>g.ParentId == sub2.GroupId))
+                                                                {
+                                                                    <div class="dropdown-menu">
+                                                                        <ul>
+                                                                            @foreach (var sub3 in Model.Where(g => g.ParentId == sub2.GroupId))
+                                                                            {
+                                                                                <li class="dropdown">
+                                                                                    <a href="">@sub3.GroupTitle<span>&rsaquo;</span></a>
+                                                                                </li>
+                                                                            }
+                                                                        </ul>
+                                                                    </div>
+                                                                }
+                                                           </li> 
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            }
+                                        </li>
+                                    }
+                                </ul> 
+                            </div>
+                        }
+
+                    </li>
+                }
+
+                <li class="custom-link-right"><a href="#" target="_blank"> همین حالا بخرید!</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

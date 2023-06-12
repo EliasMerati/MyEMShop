@@ -38,6 +38,7 @@ namespace MyEMShop.EndPoint
             services.AddScoped<IUserWalletService, UserWalletService>();
             services.AddScoped<IManageUserService, ManageUserService>();
             services.AddScoped<IPermissionService, PermissionService>();
+            services.AddScoped<IGroupService, GroupService>();
             #endregion
 
             #region Authentication
