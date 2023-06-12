@@ -10,8 +10,8 @@ using MyEMShop.Data.Context;
 namespace MyEMShop.Data.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230612105402_Init")]
-    partial class Init
+    [Migration("20230612130741_Init1")]
+    partial class Init1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -281,9 +281,6 @@ namespace MyEMShop.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ProductGroupGroupId")
-                        .HasColumnType("int");
-
                     b.Property<int>("ProductPrice")
                         .HasMaxLength(150)
                         .HasColumnType("int");
@@ -293,6 +290,9 @@ namespace MyEMShop.Data.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
+                    b.Property<int?>("SubGroup")
+                        .HasColumnType("int");
+
                     b.Property<string>("Tags")
                         .IsRequired()
                         .HasMaxLength(600)
@@ -300,7 +300,9 @@ namespace MyEMShop.Data.Migrations
 
                     b.HasKey("ProductId");
 
-                    b.HasIndex("ProductGroupGroupId");
+                    b.HasIndex("GroupId");
+
+                    b.HasIndex("SubGroup");
 
                     b.ToTable("Products");
                 });
@@ -686,11 +688,19 @@ namespace MyEMShop.Data.Migrations
 
             modelBuilder.Entity("MyEMShop.Data.Entities.Product.Product", b =>
                 {
-                    b.HasOne("MyEMShop.Data.Entities.Product.ProductGroup", "ProductGroup")
+                    b.HasOne("MyEMShop.Data.Entities.Product.ProductGroup", "productGroup")
                         .WithMany("Products")
-                        .HasForeignKey("ProductGroupGroupId");
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("ProductGroup");
+                    b.HasOne("MyEMShop.Data.Entities.Product.ProductGroup", "GroupSub")
+                        .WithMany("SubGroups")
+                        .HasForeignKey("SubGroup");
+
+                    b.Navigation("GroupSub");
+
+                    b.Navigation("productGroup");
                 });
 
             modelBuilder.Entity("MyEMShop.Data.Entities.Product.ProductColor", b =>
@@ -829,6 +839,8 @@ namespace MyEMShop.Data.Migrations
                     b.Navigation("Groups");
 
                     b.Navigation("Products");
+
+                    b.Navigation("SubGroups");
                 });
 
             modelBuilder.Entity("MyEMShop.Data.Entities.Product.Size", b =>

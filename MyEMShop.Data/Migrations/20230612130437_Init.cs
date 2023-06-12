@@ -145,6 +145,7 @@ namespace MyEMShop.Data.Migrations
                     ProductId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     GroupId = table.Column<int>(type: "int", nullable: false),
+                    SubGroup = table.Column<int>(type: "int", nullable: true),
                     PL_Id = table.Column<int>(type: "int", nullable: false),
                     PC_Id = table.Column<int>(type: "int", nullable: false),
                     PI_Id = table.Column<int>(type: "int", nullable: false),
@@ -154,15 +155,20 @@ namespace MyEMShop.Data.Migrations
                     ProductDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ProductCheck = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Tags = table.Column<string>(type: "nvarchar(600)", maxLength: 600, nullable: false),
-                    IsDelete = table.Column<bool>(type: "bit", nullable: false),
-                    ProductGroupGroupId = table.Column<int>(type: "int", nullable: true)
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.ProductId);
                     table.ForeignKey(
-                        name: "FK_Products_ProductGroups_ProductGroupGroupId",
-                        column: x => x.ProductGroupGroupId,
+                        name: "FK_Products_ProductGroups_GroupId",
+                        column: x => x.GroupId,
+                        principalTable: "ProductGroups",
+                        principalColumn: "GroupId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Products_ProductGroups_SubGroup",
+                        column: x => x.SubGroup,
                         principalTable: "ProductGroups",
                         principalColumn: "GroupId",
                         onDelete: ReferentialAction.Restrict);
@@ -487,9 +493,14 @@ namespace MyEMShop.Data.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_ProductGroupGroupId",
+                name: "IX_Products_GroupId",
                 table: "Products",
-                column: "ProductGroupGroupId");
+                column: "GroupId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_SubGroup",
+                table: "Products",
+                column: "SubGroup");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductSizes_ProductId",

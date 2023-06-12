@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace MyEMShop.Application.Services
 {
-    public class GroupService :IGroupService
+    public class ProductService :IProductService
     {
         #region Inject Context
         private readonly DatabaseContext _db;
-        public GroupService(DatabaseContext db)
+        public ProductService(DatabaseContext db)
         {
             _db = db;
         }

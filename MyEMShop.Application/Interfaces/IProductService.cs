@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MyEMShop.Application.Interfaces
 {
-    public interface IGroupService
+    public interface IProductService
     {
         IList<ProductGroup> GetGroups();
     }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyEMShop.Data.Entities.Product
 {
@@ -11,6 +12,9 @@ namespace MyEMShop.Data.Entities.Product
         [Required]
         [Display(Name = "گروه")]
         public int GroupId { get; set; }
+
+        [Display(Name = "گروه فرعی")]
+        public int? SubGroup { get; set; }
 
         [Required]
         [Display(Name = "وضعیت")]
@@ -57,7 +61,11 @@ namespace MyEMShop.Data.Entities.Product
 
 
         #region Navigation Property
-        public ProductGroup ProductGroup { get; set; }
+        [ForeignKey(nameof(GroupId))]
+        public ProductGroup productGroup { get; set; }
+
+        [ForeignKey(nameof(SubGroup))]
+        public ProductGroup GroupSub { get; set; }
         public ICollection<ProductLevel> ProductLevels { get; set; }
         public ICollection<ProductColor> ProductColors { get; set; }
         public ICollection<ProductImage> ProductImages { get; set; }
