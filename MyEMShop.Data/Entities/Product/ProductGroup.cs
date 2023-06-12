@@ -2,11 +2,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MyEMShop.Data.Entities.Group
+namespace MyEMShop.Data.Entities.Product
 {
-    public class Group
+    public class ProductGroup
     {
-        public Group()
+        public ProductGroup()
         {
 
         }
@@ -28,7 +28,9 @@ namespace MyEMShop.Data.Entities.Group
 
         #region Navigation Property
         [ForeignKey(nameof(ParentId))]
-        public virtual ICollection<Group> Groups { get; set; }
+        public ICollection<ProductGroup> Groups { get; set; }
+
+        public ICollection<Product> Products { get; set; }
         #endregion
     }
 }

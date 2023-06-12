@@ -8,6 +8,32 @@ namespace MyEMShop.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Colors",
+                columns: table => new
+                {
+                    PC_Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PC_Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Colors", x => x.PC_Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Levels",
+                columns: table => new
+                {
+                    PL_Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PL_Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Levels", x => x.PL_Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Permission",
                 columns: table => new
                 {
@@ -27,6 +53,27 @@ namespace MyEMShop.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ProductGroups",
+                columns: table => new
+                {
+                    GroupId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    GroupTitle = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false),
+                    ParentId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductGroups", x => x.GroupId);
+                    table.ForeignKey(
+                        name: "FK_ProductGroups_ProductGroups_ParentId",
+                        column: x => x.ParentId,
+                        principalTable: "ProductGroups",
+                        principalColumn: "GroupId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Roles",
                 columns: table => new
                 {
@@ -38,6 +85,19 @@ namespace MyEMShop.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Roles", x => x.RoleId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sizes",
+                columns: table => new
+                {
+                    PS_Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SizeTitle = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sizes", x => x.PS_Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -76,6 +136,36 @@ namespace MyEMShop.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_WalletTypes", x => x.TypeId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    ProductId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    GroupId = table.Column<int>(type: "int", nullable: false),
+                    PL_Id = table.Column<int>(type: "int", nullable: false),
+                    PC_Id = table.Column<int>(type: "int", nullable: false),
+                    PI_Id = table.Column<int>(type: "int", nullable: false),
+                    PS_Id = table.Column<int>(type: "int", nullable: false),
+                    ProductTitle = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    ProductPrice = table.Column<int>(type: "int", maxLength: 150, nullable: false),
+                    ProductDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductCheck = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Tags = table.Column<string>(type: "nvarchar(600)", maxLength: 600, nullable: false),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false),
+                    ProductGroupGroupId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.ProductId);
+                    table.ForeignKey(
+                        name: "FK_Products_ProductGroups_ProductGroupGroupId",
+                        column: x => x.ProductGroupGroupId,
+                        principalTable: "ProductGroups",
+                        principalColumn: "GroupId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -161,6 +251,117 @@ namespace MyEMShop.Data.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ProductColors",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    PC_Id = table.Column<int>(type: "int", nullable: false),
+                    ColorPC_Id = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductColors", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProductColors_Colors_ColorPC_Id",
+                        column: x => x.ColorPC_Id,
+                        principalTable: "Colors",
+                        principalColumn: "PC_Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ProductColors_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductImages",
+                columns: table => new
+                {
+                    PI_Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PI_ImageName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductImages", x => x.PI_Id);
+                    table.ForeignKey(
+                        name: "FK_ProductImages_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductLevels",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    PL_Id = table.Column<int>(type: "int", nullable: false),
+                    LevelPL_Id = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductLevels", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProductLevels_Levels_LevelPL_Id",
+                        column: x => x.LevelPL_Id,
+                        principalTable: "Levels",
+                        principalColumn: "PL_Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ProductLevels_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductSizes",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    PS_Id = table.Column<int>(type: "int", nullable: false),
+                    SizePS_Id = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductSizes", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_ProductSizes_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductSizes_Sizes_SizePS_Id",
+                        column: x => x.SizePS_Id,
+                        principalTable: "Sizes",
+                        principalColumn: "PS_Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Levels",
+                columns: new[] { "PL_Id", "PL_Title" },
+                values: new object[,]
+                {
+                    { 1, "موجود" },
+                    { 2, "ناموجود" },
+                    { 3, "به زودی" }
+                });
+
             migrationBuilder.InsertData(
                 table: "Permission",
                 columns: new[] { "PermissionId", "ParentId", "PermissionTitle" },
@@ -173,6 +374,18 @@ namespace MyEMShop.Data.Migrations
                 {
                     { 1, false, "مدیر کل سیستم" },
                     { 2, false, "کاربر عادی" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Sizes",
+                columns: new[] { "PS_Id", "SizeTitle" },
+                values: new object[,]
+                {
+                    { 1, "FreeSize" },
+                    { 2, "Medium" },
+                    { 3, "Large" },
+                    { 4, "Small" },
+                    { 5, "XXLarge" }
                 });
 
             migrationBuilder.InsertData(
@@ -207,6 +420,8 @@ namespace MyEMShop.Data.Migrations
                     { 4, 2, "افزودن کاربر " },
                     { 5, 2, "ویرایش کاربر " },
                     { 6, 2, "حذف کاربر " },
+                    { 10, 2, "لیست کاربران حذف شده " },
+                    { 11, 2, "بازگردانی کاربر " },
                     { 7, 3, "افزودن نقش " },
                     { 8, 3, "ویرایش نقش " },
                     { 9, 3, "حذف نقش " }
@@ -229,6 +444,8 @@ namespace MyEMShop.Data.Migrations
                     { 4, 4, 1 },
                     { 5, 5, 1 },
                     { 6, 6, 1 },
+                    { 10, 10, 1 },
+                    { 11, 11, 1 },
                     { 7, 7, 1 },
                     { 8, 8, 1 },
                     { 9, 9, 1 }
@@ -238,6 +455,51 @@ namespace MyEMShop.Data.Migrations
                 name: "IX_Permission_ParentId",
                 table: "Permission",
                 column: "ParentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductColors_ColorPC_Id",
+                table: "ProductColors",
+                column: "ColorPC_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductColors_ProductId",
+                table: "ProductColors",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductGroups_ParentId",
+                table: "ProductGroups",
+                column: "ParentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductImages_ProductId",
+                table: "ProductImages",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductLevels_LevelPL_Id",
+                table: "ProductLevels",
+                column: "LevelPL_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductLevels_ProductId",
+                table: "ProductLevels",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_ProductGroupGroupId",
+                table: "Products",
+                column: "ProductGroupGroupId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductSizes_ProductId",
+                table: "ProductSizes",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductSizes_SizePS_Id",
+                table: "ProductSizes",
+                column: "SizePS_Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RolePermission_PermissionId",
@@ -273,6 +535,18 @@ namespace MyEMShop.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "ProductColors");
+
+            migrationBuilder.DropTable(
+                name: "ProductImages");
+
+            migrationBuilder.DropTable(
+                name: "ProductLevels");
+
+            migrationBuilder.DropTable(
+                name: "ProductSizes");
+
+            migrationBuilder.DropTable(
                 name: "RolePermission");
 
             migrationBuilder.DropTable(
@@ -280,6 +554,18 @@ namespace MyEMShop.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Wallets");
+
+            migrationBuilder.DropTable(
+                name: "Colors");
+
+            migrationBuilder.DropTable(
+                name: "Levels");
+
+            migrationBuilder.DropTable(
+                name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "Sizes");
 
             migrationBuilder.DropTable(
                 name: "Permission");
@@ -292,6 +578,9 @@ namespace MyEMShop.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "WalletTypes");
+
+            migrationBuilder.DropTable(
+                name: "ProductGroups");
         }
     }
 }

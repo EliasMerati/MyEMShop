@@ -75,8 +75,8 @@ namespace MyEMShop.Data.Entities.User
 
 
         #region Navigation Property
-        public virtual ICollection<Wallet.Wallet> Wallets { get; set; }
-        public virtual ICollection<UserRole> UserRoles { get; set; }
+        public ICollection<Wallet.Wallet> Wallets { get; set; }
+        public ICollection<UserRole> UserRoles { get; set; }
         #endregion
     }
 }

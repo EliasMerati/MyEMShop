@@ -21,8 +21,8 @@ namespace MyEMShop.Data.Entities.User
         public int RoleId { get; set; }
 
         #region Relations
-        public virtual User User { get; set; }=null!;
-        public virtual Role Role { get; set; }= null!;
+        public User User { get; set; }=null!;
+        public Role Role { get; set; }= null!;
         #endregion
     }
 }

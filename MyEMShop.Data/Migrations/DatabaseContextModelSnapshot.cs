@@ -19,31 +19,6 @@ namespace MyEMShop.Data.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("MyEMShop.Data.Entities.Group.Group", b =>
-                {
-                    b.Property<int>("GroupId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("GroupTitle")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<bool>("IsDelete")
-                        .HasColumnType("bit");
-
-                    b.Property<int?>("ParentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("GroupId");
-
-                    b.HasIndex("ParentId");
-
-                    b.ToTable("Groups");
-                });
-
             modelBuilder.Entity("MyEMShop.Data.Entities.Permission.Permission", b =>
                 {
                     b.Property<int>("PermissionId")
@@ -218,6 +193,279 @@ namespace MyEMShop.Data.Migrations
                             RP_Id = 11,
                             PermissionId = 11,
                             RoleId = 1
+                        });
+                });
+
+            modelBuilder.Entity("MyEMShop.Data.Entities.Product.Color", b =>
+                {
+                    b.Property<int>("PC_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("PC_Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("PC_Id");
+
+                    b.ToTable("Colors");
+                });
+
+            modelBuilder.Entity("MyEMShop.Data.Entities.Product.Level", b =>
+                {
+                    b.Property<int>("PL_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("PL_Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("PL_Id");
+
+                    b.ToTable("Levels");
+
+                    b.HasData(
+                        new
+                        {
+                            PL_Id = 1,
+                            PL_Title = "موجود"
+                        },
+                        new
+                        {
+                            PL_Id = 2,
+                            PL_Title = "ناموجود"
+                        },
+                        new
+                        {
+                            PL_Id = 3,
+                            PL_Title = "به زودی"
+                        });
+                });
+
+            modelBuilder.Entity("MyEMShop.Data.Entities.Product.Product", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("GroupId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("PC_Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PI_Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PL_Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PS_Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProductCheck")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ProductGroupGroupId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductPrice")
+                        .HasMaxLength(150)
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProductTitle")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("Tags")
+                        .IsRequired()
+                        .HasMaxLength(600)
+                        .HasColumnType("nvarchar(600)");
+
+                    b.HasKey("ProductId");
+
+                    b.HasIndex("ProductGroupGroupId");
+
+                    b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("MyEMShop.Data.Entities.Product.ProductColor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("ColorPC_Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PC_Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ColorPC_Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductColors");
+                });
+
+            modelBuilder.Entity("MyEMShop.Data.Entities.Product.ProductGroup", b =>
+                {
+                    b.Property<int>("GroupId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("GroupTitle")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ParentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("GroupId");
+
+                    b.HasIndex("ParentId");
+
+                    b.ToTable("ProductGroups");
+                });
+
+            modelBuilder.Entity("MyEMShop.Data.Entities.Product.ProductImage", b =>
+                {
+                    b.Property<int>("PI_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("PI_ImageName")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PI_Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductImages");
+                });
+
+            modelBuilder.Entity("MyEMShop.Data.Entities.Product.ProductLevel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("LevelPL_Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PL_Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LevelPL_Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductLevels");
+                });
+
+            modelBuilder.Entity("MyEMShop.Data.Entities.Product.ProductSize", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("PS_Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SizePS_Id")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("SizePS_Id");
+
+                    b.ToTable("ProductSizes");
+                });
+
+            modelBuilder.Entity("MyEMShop.Data.Entities.Product.Size", b =>
+                {
+                    b.Property<int>("PS_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("SizeTitle")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("PS_Id");
+
+                    b.ToTable("Sizes");
+
+                    b.HasData(
+                        new
+                        {
+                            PS_Id = 1,
+                            SizeTitle = "FreeSize"
+                        },
+                        new
+                        {
+                            PS_Id = 2,
+                            SizeTitle = "Medium"
+                        },
+                        new
+                        {
+                            PS_Id = 3,
+                            SizeTitle = "Large"
+                        },
+                        new
+                        {
+                            PS_Id = 4,
+                            SizeTitle = "Small"
+                        },
+                        new
+                        {
+                            PS_Id = 5,
+                            SizeTitle = "XXLarge"
                         });
                 });
 
@@ -408,13 +656,6 @@ namespace MyEMShop.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MyEMShop.Data.Entities.Group.Group", b =>
-                {
-                    b.HasOne("MyEMShop.Data.Entities.Group.Group", null)
-                        .WithMany("Groups")
-                        .HasForeignKey("ParentId");
-                });
-
             modelBuilder.Entity("MyEMShop.Data.Entities.Permission.Permission", b =>
                 {
                     b.HasOne("MyEMShop.Data.Entities.Permission.Permission", null)
@@ -439,6 +680,82 @@ namespace MyEMShop.Data.Migrations
                     b.Navigation("Permission");
 
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("MyEMShop.Data.Entities.Product.Product", b =>
+                {
+                    b.HasOne("MyEMShop.Data.Entities.Product.ProductGroup", "ProductGroup")
+                        .WithMany("Products")
+                        .HasForeignKey("ProductGroupGroupId");
+
+                    b.Navigation("ProductGroup");
+                });
+
+            modelBuilder.Entity("MyEMShop.Data.Entities.Product.ProductColor", b =>
+                {
+                    b.HasOne("MyEMShop.Data.Entities.Product.Color", "Color")
+                        .WithMany("ProductColors")
+                        .HasForeignKey("ColorPC_Id");
+
+                    b.HasOne("MyEMShop.Data.Entities.Product.Product", "Product")
+                        .WithMany("ProductColors")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Color");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("MyEMShop.Data.Entities.Product.ProductGroup", b =>
+                {
+                    b.HasOne("MyEMShop.Data.Entities.Product.ProductGroup", null)
+                        .WithMany("Groups")
+                        .HasForeignKey("ParentId");
+                });
+
+            modelBuilder.Entity("MyEMShop.Data.Entities.Product.ProductImage", b =>
+                {
+                    b.HasOne("MyEMShop.Data.Entities.Product.Product", "Product")
+                        .WithMany("ProductImages")
+                        .HasForeignKey("ProductId");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("MyEMShop.Data.Entities.Product.ProductLevel", b =>
+                {
+                    b.HasOne("MyEMShop.Data.Entities.Product.Level", "Level")
+                        .WithMany("ProductLevels")
+                        .HasForeignKey("LevelPL_Id");
+
+                    b.HasOne("MyEMShop.Data.Entities.Product.Product", "Product")
+                        .WithMany("ProductLevels")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Level");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("MyEMShop.Data.Entities.Product.ProductSize", b =>
+                {
+                    b.HasOne("MyEMShop.Data.Entities.Product.Product", "Product")
+                        .WithMany("ProductSizes")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyEMShop.Data.Entities.Product.Size", "Size")
+                        .WithMany("ProductSizes")
+                        .HasForeignKey("SizePS_Id");
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Size");
                 });
 
             modelBuilder.Entity("MyEMShop.Data.Entities.User.UserRole", b =>
@@ -477,16 +794,44 @@ namespace MyEMShop.Data.Migrations
                     b.Navigation("WalletType");
                 });
 
-            modelBuilder.Entity("MyEMShop.Data.Entities.Group.Group", b =>
-                {
-                    b.Navigation("Groups");
-                });
-
             modelBuilder.Entity("MyEMShop.Data.Entities.Permission.Permission", b =>
                 {
                     b.Navigation("Permissions");
 
                     b.Navigation("RolePermissions");
+                });
+
+            modelBuilder.Entity("MyEMShop.Data.Entities.Product.Color", b =>
+                {
+                    b.Navigation("ProductColors");
+                });
+
+            modelBuilder.Entity("MyEMShop.Data.Entities.Product.Level", b =>
+                {
+                    b.Navigation("ProductLevels");
+                });
+
+            modelBuilder.Entity("MyEMShop.Data.Entities.Product.Product", b =>
+                {
+                    b.Navigation("ProductColors");
+
+                    b.Navigation("ProductImages");
+
+                    b.Navigation("ProductLevels");
+
+                    b.Navigation("ProductSizes");
+                });
+
+            modelBuilder.Entity("MyEMShop.Data.Entities.Product.ProductGroup", b =>
+                {
+                    b.Navigation("Groups");
+
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("MyEMShop.Data.Entities.Product.Size", b =>
+                {
+                    b.Navigation("ProductSizes");
                 });
 
             modelBuilder.Entity("MyEMShop.Data.Entities.User.Role", b =>

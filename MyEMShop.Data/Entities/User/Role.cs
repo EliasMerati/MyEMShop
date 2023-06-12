@@ -25,8 +25,8 @@ namespace MyEMShop.Data.Entities.User
 
 
         #region Navigation Property
-        public virtual ICollection<UserRole> UserRoles { get; set; }
-        public virtual ICollection<RolePermission> RolePermissions { get; set; }
+        public ICollection<UserRole> UserRoles { get; set; }
+        public ICollection<RolePermission> RolePermissions { get; set; }
         #endregion
     }
 }

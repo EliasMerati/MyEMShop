@@ -23,9 +23,9 @@ namespace MyEMShop.Data.Entities.Permission
 
         #region Navigation Property
         [ForeignKey(nameof(ParentId))]
-        public virtual IList<Permission> Permissions { get; set; }
+        public ICollection<Permission> Permissions { get; set; }
 
-        public virtual ICollection<RolePermission> RolePermissions { get; set; }
+        public ICollection<RolePermission> RolePermissions { get; set; }
         #endregion
 
     }
