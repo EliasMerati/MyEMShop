@@ -10,5 +10,7 @@ namespace MyEMShop.Application.Interfaces
         IList<SelectListItem> GetGroupsForManageProduct();
         IList<SelectListItem> GetSubGroupsForManageProduct(int groupId);
 
+        IList<SelectListItem> GetProductLevel();
+        IList<SelectListItem> GetProductSize();
     }
 }

@@ -28,6 +28,14 @@ namespace MyEMShop.EndPoint.Pages.Admin.Product
 
             var subgroups = _productService.GetSubGroupsForManageProduct(int.Parse(groups.First().Value));
             ViewData["SubGroups"] = new SelectList(subgroups, "Value", "Text");
+
+            var productlevel = _productService.GetProductLevel();
+            ViewData["ProductLevel"] = new SelectList(productlevel, "Value", "Text");
+
+            var size = _productService.GetProductSize();
+            ViewData["ProductSize"] = new SelectList(size, "Value", "Text");
         }
+
+
     }
 }

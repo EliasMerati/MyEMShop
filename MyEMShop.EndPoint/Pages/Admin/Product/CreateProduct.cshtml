@@ -29,6 +29,40 @@
                             <label>گروه فرعی</label>
                             <select class="form-control" asp-for="product.SubGroup" asp-items="@(ViewData["SubGroups"] as SelectList)"></select>
                         </div>
+                        <div class="form-group">
+                            <label>وضعیت محصول</label>
+                            <select class="form-control" asp-for="product.PL_Id" asp-items="@(ViewData["ProductLevel"] as SelectList)"></select>
+                        </div>
+                        <div class="form-group">
+                            <label>سایز محصول</label>
+                            <select class="form-control" asp-for="product.PL_Id" asp-items="@(ViewData["ProductSize"] as SelectList)"></select>
+                        </div>
+                        <div class="form-group">
+                            <label>رنگ محصول</label>
+                            <input type="text" asp-for="product.ProductColors" class="form-control">
+                            <span asp-validation-for="product.ProductColors"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>توضیح محصول</label>
+                            <textarea type="text"  asp-for="product.ProductDescription" rows="6" class="form-control"></textarea>
+                            <span asp-validation-for="product.ProductDescription"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>قیمت محصول</label>
+                            <input type="number" asp-for="product.ProductPrice" value="0" class="form-control">
+                            <span asp-validation-for="product.ProductPrice"></span>
+                        </div>
+                          <div class="form-group">
+                            <label>بررسی محصول</label>
+                            <textarea type="text"  asp-for="product.ProductCheck" rows="10" class="form-control"></textarea>
+                            <span asp-validation-for="product.ProductCheck"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>کلمات کلیدی محصول</label>
+                            <p class="help-block text-danger"> لطفا با - کلمات کلیدی را از هم جدا کنید</p>
+                            <input type="text" asp-for="product.Tags" class="form-control">
+                            <span asp-validation-for="product.Tags"></span>
+                        </div>
                         <button type="submit" class="btn btn-success">ثبت محصول </button>
                     </div>
                 </div>
@@ -40,6 +74,11 @@
                     </div>
 
                     <div class="panel-body">
+                        <img id="ImgProduct" class="thumbnail" src="/Template/image/product/Default.jpg" />
+                        <div class="form-group">
+                            <lable>تصویر محصول</lable>
+                            <input type="file" multiple asp-for="product.ProductImages"/>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -52,7 +91,7 @@
         <script>
         $("#product_GroupId").change(function(){
             $("#product_SubGroup").empty();
-            $.getJSON("/home/GetSubGroups/" + $("#product_GroupId:selected").val(),function(data){
+            $.getJSON("/home/GetSubGroups/" + $("#product_GroupId :selected").val(),function(data){
 
                 $.each(data,function(){
                     $("#product_SubGroup").append('<option value = ' + this.value + '>' + this.text + '</option>');

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.EndPoint.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -75,6 +76,8 @@ namespace MyEMShop.EndPoint.Controllers
 
             list.AddRange(_productService.GetSubGroupsForManageProduct(id));
             return Json(new SelectList(list, "Value", "Text"));
+
+            
         }
     }
 }

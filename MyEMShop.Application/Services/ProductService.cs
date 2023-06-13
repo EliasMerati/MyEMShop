@@ -32,9 +32,27 @@ namespace MyEMShop.Application.Services
                 .Select(p => new SelectListItem
                 {
                     Value = p.GroupId.ToString(),
-                    Text = p.GroupTitle
+                    Text = p.GroupTitle,
                 })
                 .ToList();
+        }
+
+        public IList<SelectListItem> GetProductLevel()
+        {
+            return _db.Levels.Select(l=> new SelectListItem()
+            {
+                Value = l.PL_Id.ToString(),
+                Text = l.PL_Title
+            }).ToList();
+        }
+
+        public IList<SelectListItem> GetProductSize()
+        {
+            return _db.Sizes.Select(l => new SelectListItem()
+            {
+                Value = l.PS_Id.ToString(),
+                Text = l.SizeTitle
+            }).ToList();
         }
 
         public IList<SelectListItem> GetSubGroupsForManageProduct(int groupId)
@@ -44,7 +62,7 @@ namespace MyEMShop.Application.Services
                 .Select(p => new SelectListItem
                 {
                     Value = p.GroupId.ToString(),
-                    Text = p.GroupTitle
+                    Text = p.GroupTitle,
                 })
                 .ToList();
         }
