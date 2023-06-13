@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.EndPoint.Models;
@@ -12,14 +13,19 @@ namespace MyEMShop.EndPoint.Controllers
 {
     public class HomeController : Controller
     {
+        #region Inject Services
         private readonly ILogger<HomeController> _logger;
         private readonly IUserWalletService _userWalletService;
+        private readonly IProductService _productService;
 
-        public HomeController(ILogger<HomeController> logger,IUserWalletService userWalletService)
+        public HomeController(ILogger<HomeController> logger, IUserWalletService userWalletService, IProductService productService)
         {
             _logger = logger;
             _userWalletService = userWalletService;
+            _productService = productService;
         }
+        #endregion
+
 
         public IActionResult Index()
         {
@@ -58,6 +64,17 @@ namespace MyEMShop.EndPoint.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult GetSubGroups(int id)
+        {
+            List<SelectListItem> list = new List<SelectListItem>()
+            {
+                new SelectListItem(){Text = "انتخاب کنید" , Value = ""}
+            };
+
+            list.AddRange(_productService.GetSubGroupsForManageProduct(id));
+            return Json(new SelectList(list, "Value", "Text"));
         }
     }
 }

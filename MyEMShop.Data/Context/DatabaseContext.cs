@@ -66,7 +66,9 @@ namespace MyEMShop.Data.Context
                          new { RP_Id = 8, RoleId = 1, PermissionId = 8 },
                          new { RP_Id = 9, RoleId = 1, PermissionId = 9 },
                          new { RP_Id = 10, RoleId = 1, PermissionId = 10 },
-                         new { RP_Id = 11, RoleId = 1, PermissionId = 11 });
+                         new { RP_Id = 11, RoleId = 1, PermissionId = 11 },
+                         new { RP_Id = 12, RoleId = 1, PermissionId = 12 },
+                         new { RP_Id = 13, RoleId = 1, PermissionId = 13 });
 
 
             modelBuilder.Entity<Permission>()
@@ -80,7 +82,9 @@ namespace MyEMShop.Data.Context
                          new { PermissionId = 8, PermissionTitle = "ویرایش نقش ", ParentId = 3 },
                          new { PermissionId = 9, PermissionTitle = "حذف نقش ", ParentId = 3 },
                          new { PermissionId = 10, PermissionTitle = "لیست کاربران حذف شده ", ParentId = 2 },
-                         new { PermissionId = 11, PermissionTitle = "بازگردانی کاربر ", ParentId = 2 });
+                         new { PermissionId = 11, PermissionTitle = "بازگردانی کاربر ", ParentId = 2 },
+                         new { PermissionId = 12, PermissionTitle = "مدیریت محصولات ", ParentId = 1 },
+                         new { PermissionId = 13, PermissionTitle = "افزودن محصول", ParentId = 12 });
 
 
             modelBuilder.Entity<WalletType>()
