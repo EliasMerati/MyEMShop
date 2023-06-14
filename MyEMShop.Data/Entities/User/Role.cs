@@ -1,7 +1,6 @@
 ﻿using MyEMShop.Data.Entities.Permission;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyEMShop.Data.Entities.User
 {
@@ -12,7 +11,7 @@ namespace MyEMShop.Data.Entities.User
 
         }
 
-        [Key]  
+        [Key]
         public int RoleId { get; set; }
 
         [Display(Name = "نام نقش")]

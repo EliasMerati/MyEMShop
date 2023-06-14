@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MyEMShop.Data.Entities.Product
 {

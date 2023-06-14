@@ -1,10 +1,5 @@
-﻿using MyEMShop.Data.Entities.User;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyEMShop.Data.Entities.Wallet
 {
@@ -19,7 +14,7 @@ namespace MyEMShop.Data.Entities.Wallet
         public int WalletId { get; set; }
 
         [Display(Name = "نوع تراکنش")]
-        [Required(ErrorMessage ="لطفا {0} را وارد کنید")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public int TypeId { get; set; }
 
         [Display(Name = "کاربر")]

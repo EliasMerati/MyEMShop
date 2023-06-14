@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyEMShop.Common
 {
@@ -10,7 +6,7 @@ namespace MyEMShop.Common
     {
         public static string GenerateUniqueCode()
         {
-            return Guid.NewGuid().ToString().Replace("-","");
+            return Guid.NewGuid().ToString().Replace("-", "");
         }
     }
 }

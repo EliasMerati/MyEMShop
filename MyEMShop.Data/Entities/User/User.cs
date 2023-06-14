@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyEMShop.Data.Entities.User
 {
@@ -67,7 +65,7 @@ namespace MyEMShop.Data.Entities.User
         public string PostalCode { get; set; }
 
         [Display(Name = "تاریخ ثبت نام")]
-        public DateTime  RegisterDate { get; set; }
+        public DateTime RegisterDate { get; set; }
 
         [Display(Name = "حذف شده")]
         public bool IsDelete { get; set; }

@@ -1,9 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
-using MyEMShop.Data.Entities.Product;
 using System.Linq;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Product

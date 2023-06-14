@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MyEMShop.Data.Entities.User
 {
@@ -21,8 +15,8 @@ namespace MyEMShop.Data.Entities.User
         public int RoleId { get; set; }
 
         #region Relations
-        public User User { get; set; }=null!;
-        public Role Role { get; set; }= null!;
+        public User User { get; set; } = null!;
+        public Role Role { get; set; } = null!;
         #endregion
     }
 }
