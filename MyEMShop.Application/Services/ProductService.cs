@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Context;
 using MyEMShop.Data.Entities.Product;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyEMShop.Application.Services
 {
@@ -39,7 +39,7 @@ namespace MyEMShop.Application.Services
 
         public IList<SelectListItem> GetProductLevel()
         {
-            return _db.Levels.Select(l=> new SelectListItem()
+            return _db.Levels.Select(l => new SelectListItem()
             {
                 Value = l.PL_Id.ToString(),
                 Text = l.PL_Title
@@ -66,5 +66,32 @@ namespace MyEMShop.Application.Services
                 })
                 .ToList();
         }
+
+        public int AddProduct(Product product, IFormFile imageProduct)
+        {
+            throw new NotImplementedException();
+        }
+
+        #region Insert More Image
+        //        string webRootPath = _hostingEnvironment.WebRootPath;
+        //        var files = HttpContext.Request.Form.Files;
+
+        //           if (files.Count > 0)
+        //            {
+        //                foreach (var item in files)
+        //                 {
+        //                   var uploads = Path.Combine(webRootPath, "images");
+        //        var extension = Path.GetExtension(item.FileName);
+        //        var dynamicFileName = Guid.NewGuid().ToString() + "_" + ProductVM.Product.Id + extension;
+
+        //                     using (var filesStream = new FileStream(Path.Combine(uploads, dynamicFileName), FileMode.Create))
+        //                   {
+        //                      item.CopyTo(filesStream);
+        //                    }
+
+        //newproduct.product_Images.Add(new Product_Images { ImageName = dynamicFileName });
+        //                }
+        //           }
+        #endregion
     }
 }

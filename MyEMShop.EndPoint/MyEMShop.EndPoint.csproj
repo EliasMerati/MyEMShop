@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\Template\image\product\" />
+    <Folder Include="wwwroot\Template\image\product\Thumbnail\" />
   </ItemGroup>
 
 </Project>

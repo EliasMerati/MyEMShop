@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -32,6 +33,17 @@ namespace MyEMShop.EndPoint.Pages.Admin.Product
 
             var size = _productService.GetProductSize();
             ViewData["ProductSize"] = new SelectList(size, "Value", "Text");
+        }
+
+        public IActionResult OnPost(IFormFile imgProduct)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+
+            return RedirectToPage("Index");
         }
 
 
