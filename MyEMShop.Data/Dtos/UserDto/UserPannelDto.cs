@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MyEMShop.Data.Dtos.UserDto
 {
-    public class ShowUserInformationForPannelDto
+    public record ShowUserInformationForPannelDto
     {
         [Display(Name = "نام")]
         [MaxLength(150)]
@@ -43,7 +43,7 @@ namespace MyEMShop.Data.Dtos.UserDto
         public DateTime RegisterDate { get; set; }
     }
 
-    public class ShowUserInfoForEditPannelDto
+    public record ShowUserInfoForEditPannelDto
     {
         [Display(Name = "نام")]
         [MaxLength(150)]

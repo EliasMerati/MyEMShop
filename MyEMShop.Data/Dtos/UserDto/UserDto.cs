@@ -9,16 +9,16 @@ using System.Xml.Linq;
 
 namespace MyEMShop.Data.Dtos.UserDto
 {
-    public class UserDto
+    public record UserDto
     {
-        public class UserListForAdminDto
+        public record UserListForAdminDto
         {
             public IList<User> Users { get; set; }
             public int CurrentPage { get; set; }
             public int PageCount { get; set; }
         }
 
-        public class CreateUserWithadminDto
+        public record CreateUserWithadminDto
         {
             [Display(Name = "نام کاربری")]
             [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
@@ -48,7 +48,7 @@ namespace MyEMShop.Data.Dtos.UserDto
             //public IList<int> SelectedRoles { get; set; }
         }
 
-        public class EditUserWithAdminDto
+        public record EditUserWithAdminDto
         {
             public int UserId { get; set; }
             public string UserName { get; set; }

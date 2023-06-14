@@ -2,7 +2,7 @@
 
 namespace MyEMShop.Data.Dtos.UserDto
 {
-    public class RegisterDto
+    public record RegisterDto
     {
         [Display(Name = "نام کاربری")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
@@ -29,7 +29,7 @@ namespace MyEMShop.Data.Dtos.UserDto
         public string RePassword { get; set; }
     }
 
-    public class LoginDto
+    public record LoginDto
     {
         [Display(Name = "ایمیل")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
@@ -46,7 +46,7 @@ namespace MyEMShop.Data.Dtos.UserDto
         public bool IsPersistence { get; set; }
     }
 
-    public class ForgotPasswordDto
+    public record ForgotPasswordDto
     {
         [Display(Name = "ایمیل")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
@@ -55,7 +55,7 @@ namespace MyEMShop.Data.Dtos.UserDto
         public string Email { get; set; }
     }
 
-    public class ResetPasswordDto
+    public record ResetPasswordDto
     {
         public string Activecode { get; set; }
 
@@ -73,7 +73,7 @@ namespace MyEMShop.Data.Dtos.UserDto
         public string RePassword { get; set; }
     }
 
-    public class ChangePasswordDto
+    public record ChangePasswordDto
     {
         [Display(Name = "کلمه عبور فعلی")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
