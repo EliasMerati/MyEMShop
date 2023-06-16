@@ -21,6 +21,11 @@
                             <input type="text" asp-for="product.ProductTitle" class="form-control">
                             <span asp-validation-for="product.ProductTitle"></span>
                         </div>
+                         <div class="form-group">
+                            <label>جنس محصول</label>
+                            <input type="text" asp-for="product.Productmark" class="form-control">
+                            <span asp-validation-for="product.Productmark"></span>
+                        </div>
                         <div class="form-group">
                             <label>گروه اصلی</label>
                             <select class="form-control" asp-for="product.GroupId" asp-items="@(ViewData["Groups"] as SelectList)"></select>

@@ -37,6 +37,11 @@ namespace MyEMShop.Data.Entities.Product
         [MaxLength(300)]
         public string ProductTitle { get; set; }
 
+        [Display(Name = "جنس محصول")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(200)]
+        public string Productmark { get; set; }
+
         [Display(Name = "قیمت محصول")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(150)]
