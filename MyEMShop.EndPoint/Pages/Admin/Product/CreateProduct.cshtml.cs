@@ -43,7 +43,7 @@ namespace MyEMShop.EndPoint.Pages.Admin.Product
                 return Page();
             }
 
-            _productService.AddImages(imgProduct,product);
+            _productService.AddProductWithMultipleImage(imgProduct,product);
             return RedirectToPage("Index");
         }
 

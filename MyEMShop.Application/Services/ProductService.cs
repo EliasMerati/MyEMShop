@@ -77,7 +77,7 @@ namespace MyEMShop.Application.Services
             return product.ProductId;
         }
 
-        public void AddImages(IFormFileCollection images,Product product)
+        public void AddProductWithMultipleImage(IFormFileCollection images,Product product)
         {
            int productid = AddProduct(product);
             #region Save multiple Picture
@@ -112,10 +112,5 @@ namespace MyEMShop.Application.Services
             _db.AddAsync(product);
             _db.SaveChangesAsync();
         }
-
-
-
-
-
     }
 }
