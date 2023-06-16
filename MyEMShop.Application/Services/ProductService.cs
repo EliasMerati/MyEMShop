@@ -79,8 +79,8 @@ namespace MyEMShop.Application.Services
 
         public void AddImages(IFormFileCollection images,Product product)
         {
-           
-            //var productid = AddProduct(product);
+           int productid = AddProduct(product);
+            #region Save multiple Picture
             string webRootPath = Directory.GetCurrentDirectory();
             var files = images;
             if (files.Count > 0)
@@ -88,7 +88,7 @@ namespace MyEMShop.Application.Services
 
                 foreach (var item in files)
                 {
-                    
+
                     var uploads = Path.Combine(webRootPath, "wwwroot/Template/image/product/Image/");
                     var extension = Path.GetExtension(item.FileName);
                     var dynamicFileName = GenerateCode.GenerateUniqueCode() + extension;
@@ -98,15 +98,19 @@ namespace MyEMShop.Application.Services
                         item.CopyTo(filesStream);
                     }
 
-                    _db.ProductImages.Add(new ProductImage { /*ProductId = product.ProductId,*/ PI_ImageName = dynamicFileName });
+                    _db.ProductImages.Add(new ProductImage { ProductId = productid, PI_ImageName = dynamicFileName });
+                    _db.SaveChanges();
                 }
             }
             else
             {
-                _db.ProductImages.Add(new ProductImage {  /*ProductId = product.ProductId,*/ PI_ImageName = "Default.jpg" });
+                _db.ProductImages.Add(new ProductImage {ProductId = productid,  PI_ImageName = "Default.jpg" });
+                _db.SaveChanges();
             }
-            _db.Add(product);
-            _db.SaveChanges();
+            #endregion
+
+            _db.AddAsync(product);
+            _db.SaveChangesAsync();
         }
 
 
