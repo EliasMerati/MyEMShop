@@ -6,6 +6,7 @@ namespace MyEMShop.Data.Entities.Product
     {
         [Key]
         public int PI_Id { get; set; }
+        public int ProductId { get; set; }
 
         [Required]
         [MaxLength(150)]

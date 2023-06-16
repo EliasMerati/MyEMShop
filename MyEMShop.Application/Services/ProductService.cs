@@ -1,12 +1,15 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MyEMShop.Application.Interfaces;
+using MyEMShop.Common;
 using MyEMShop.Data.Context;
 using MyEMShop.Data.Entities.Product;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 
 namespace MyEMShop.Application.Services
 {
@@ -67,31 +70,48 @@ namespace MyEMShop.Application.Services
                 .ToList();
         }
 
-        public int AddProduct(Product product, IFormFile imageProduct)
+        public int AddProduct(Product product)
         {
-            throw new NotImplementedException();
+            _db.Add(product);
+            _db.SaveChanges();
+            return product.ProductId;
         }
 
-        #region Insert More Image
-        //        string webRootPath = _hostingEnvironment.WebRootPath;
-        //        var files = HttpContext.Request.Form.Files;
+        public void AddImages(IFormFileCollection images,Product product)
+        {
+           
+            //var productid = AddProduct(product);
+            string webRootPath = Directory.GetCurrentDirectory();
+            var files = images;
+            if (files.Count > 0)
+            {
 
-        //           if (files.Count > 0)
-        //            {
-        //                foreach (var item in files)
-        //                 {
-        //                   var uploads = Path.Combine(webRootPath, "images");
-        //        var extension = Path.GetExtension(item.FileName);
-        //        var dynamicFileName = Guid.NewGuid().ToString() + "_" + ProductVM.Product.Id + extension;
+                foreach (var item in files)
+                {
+                    
+                    var uploads = Path.Combine(webRootPath, "wwwroot/Template/image/product/Image/");
+                    var extension = Path.GetExtension(item.FileName);
+                    var dynamicFileName = GenerateCode.GenerateUniqueCode() + extension;
+                    using (var filesStream = new FileStream(Path.Combine(uploads, dynamicFileName), FileMode.Create))
+                    {
+                        //uploadedFiles.Add(dynamicFileName);
+                        item.CopyTo(filesStream);
+                    }
 
-        //                     using (var filesStream = new FileStream(Path.Combine(uploads, dynamicFileName), FileMode.Create))
-        //                   {
-        //                      item.CopyTo(filesStream);
-        //                    }
+                    _db.ProductImages.Add(new ProductImage { /*ProductId = product.ProductId,*/ PI_ImageName = dynamicFileName });
+                }
+            }
+            else
+            {
+                _db.ProductImages.Add(new ProductImage {  /*ProductId = product.ProductId,*/ PI_ImageName = "Default.jpg" });
+            }
+            _db.Add(product);
+            _db.SaveChanges();
+        }
 
-        //newproduct.product_Images.Add(new Product_Images { ImageName = dynamicFileName });
-        //                }
-        //           }
-        #endregion
+
+
+
+
     }
 }

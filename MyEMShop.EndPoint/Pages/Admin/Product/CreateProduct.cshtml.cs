@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MyEMShop.Application.Interfaces;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Product
@@ -35,14 +36,14 @@ namespace MyEMShop.EndPoint.Pages.Admin.Product
             ViewData["ProductSize"] = new SelectList(size, "Value", "Text");
         }
 
-        public IActionResult OnPost(IFormFile imgProduct)
+        public IActionResult OnPost(IFormFileCollection imgProduct)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-
+            _productService.AddImages(imgProduct,product);
             return RedirectToPage("Index");
         }
 

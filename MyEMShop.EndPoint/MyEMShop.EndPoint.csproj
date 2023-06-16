@@ -21,8 +21,4 @@
     <ProjectReference Include="..\MyEMShop.Data\MyEMShop.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\Template\image\product\Thumbnail\" />
-  </ItemGroup>
-
 </Project>
