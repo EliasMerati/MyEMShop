@@ -4,12 +4,11 @@ using MyEMShop.Application.Interfaces;
 using MyEMShop.Common;
 using MyEMShop.Data.Context;
 using MyEMShop.Data.Entities.Product;
-using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Net.Http.Headers;
+using TopLearn.Core.Convertors;
 
 namespace MyEMShop.Application.Services
 {
@@ -77,39 +76,60 @@ namespace MyEMShop.Application.Services
             return product.ProductId;
         }
 
-        public void AddProductWithMultipleImage(IFormFileCollection images,Product product)
+        public void AddProductWithMultipleImage(List<IFormFile> images, Product product, IFormFile Demo)
         {
-           int productid = AddProduct(product);
+            int productid = AddProduct(product);
+
             #region Save multiple Picture
-            string webRootPath = Directory.GetCurrentDirectory();
-            var files = images;
-            if (files.Count > 0)
+            if (images.Count > 0)
             {
-
-                foreach (var item in files)
+                foreach (var item in images)
                 {
-
-                    var uploads = Path.Combine(webRootPath, "wwwroot/Template/image/product/Image/");
-                    var extension = Path.GetExtension(item.FileName);
-                    var dynamicFileName = GenerateCode.GenerateUniqueCode() + extension;
-                    using (var filesStream = new FileStream(Path.Combine(uploads, dynamicFileName), FileMode.Create))
+                    if (item.IsImage())
                     {
-                        //uploadedFiles.Add(dynamicFileName);
-                        item.CopyTo(filesStream);
+                        string uploads = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/Image/");
+                        string output = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/Thumbnail/");
+                        var extension = Path.GetExtension(item.FileName);
+                        var dynamicFileName = GenerateCode.GenerateUniqueCode() + extension;
+                        using (var filesStream = new FileStream(Path.Combine(uploads, dynamicFileName), FileMode.Create))
+                        {
+                            item.CopyTo(filesStream);
+                        }
+
+                        #region Resize Image To 150px
+                        ImageConvertor resizer = new ImageConvertor();
+                        resizer.Image_resize(uploads, output, 150);
+                        #endregion
+
+                        _db.ProductImages.Add(new ProductImage { ProductId = productid, PI_ImageName = dynamicFileName });
+                        _db.SaveChanges();
                     }
 
-                    _db.ProductImages.Add(new ProductImage { ProductId = productid, PI_ImageName = dynamicFileName });
-                    _db.SaveChanges();
                 }
+
             }
             else
             {
-                _db.ProductImages.Add(new ProductImage {ProductId = productid,  PI_ImageName = "Default.jpg" });
+                _db.ProductImages.Add(new ProductImage { ProductId = productid, PI_ImageName = "Default.jpg" });
                 _db.SaveChanges();
             }
             #endregion
 
-            _db.AddAsync(product);
+            #region Save demo of product
+            if (Demo is not null)
+            {
+                var DemoExtension = Path.GetExtension(Demo.FileName);
+                var DemoFileName = GenerateCode.GenerateUniqueCode() + DemoExtension;
+                var DemoPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/Demos/", DemoFileName);
+                using (var filesStream = new FileStream(Path.Combine(DemoPath), FileMode.Create))
+                {
+                    Demo.CopyTo(filesStream);
+                }
+                var productnew = _db.Products.First(p => p.ProductId == productid);
+                productnew.ProductDemo = DemoFileName;
+                _db.Update(productnew);
+            }
+            #endregion
             _db.SaveChangesAsync();
         }
     }

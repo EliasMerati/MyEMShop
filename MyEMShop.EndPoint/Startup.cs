@@ -1,6 +1,8 @@
+
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,6 +29,10 @@ namespace MyEMShop.EndPoint
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
+            #region Configure Limit File For Mac & Linux
+            services.Configure<FormOptions>(opt => opt.MultipartBodyLengthLimit = 52428800);
+            #endregion
+
             #region Context
             services.AddDbContext<DatabaseContext>(option => option.UseSqlServer(Configuration.GetConnectionString("BehDokhtConnectionString")));
             #endregion
@@ -38,7 +44,7 @@ namespace MyEMShop.EndPoint
             services.AddScoped<IUserWalletService, UserWalletService>();
             services.AddScoped<IManageUserService, ManageUserService>();
             services.AddScoped<IPermissionService, PermissionService>();
-            services.AddScoped<IProductService, ProductService>();
+            services.AddTransient<IProductService, ProductService>();
             #endregion
 
             #region Authentication

@@ -62,6 +62,10 @@ namespace MyEMShop.Data.Entities.Product
         [Display(Name = "حذف شده؟")]
         public bool IsDelete { get; set; }
 
+        [Display(Name = "فیلم محصول")]
+        [MaxLength(200)]
+        public string ProductDemo { get; set; }
+
 
 
 
