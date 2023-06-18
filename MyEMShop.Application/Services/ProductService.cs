@@ -7,7 +7,6 @@ using MyEMShop.Data.Entities.Product;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using TopLearn.Core.Convertors;
 
 namespace MyEMShop.Application.Services
 {
@@ -75,20 +74,47 @@ namespace MyEMShop.Application.Services
             return product.ProductId;
         }
 
-        public void AddProductWithMultipleImage(List<IFormFile> images, Product product, IFormFile Demo,List<string> colors)
+        public void CreateProduct(List<IFormFile> images, Product product, IFormFile Demo, List<string> colors)
+        {
+            SetMultiColorForProduct(colors, product);
+
+            SetMultiImageForProduct(images, product);
+
+            SaveDemoForProduct(Demo, product);
+
+            _db.SaveChangesAsync();
+        }
+
+        public void SaveDemoForProduct(IFormFile Demo, Product product)
         {
             int productid = AddProduct(product);
+            if (Demo is not null)
+            {
+                var DemoExtension = Path.GetExtension(Demo.FileName);
+                var DemoFileName = GenerateCode.GenerateUniqueCode() + DemoExtension;
+                var DemoPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/Demos/", DemoFileName);
+                using (var filesStream = new FileStream(Path.Combine(DemoPath), FileMode.Create))
+                {
+                    Demo.CopyTo(filesStream);
+                }
+                var productnew = _db.Products.First(p => p.ProductId == productid);
+                productnew.ProductDemo = DemoFileName;
+                _db.Update(productnew);
+            }
+        }
 
-            #region  Set Multi color For Product
-
+        public void SetMultiColorForProduct(List<string> colors, Product product)
+        {
+            int productid = AddProduct(product);
             foreach (var item in colors)
             {
                 _db.Colors.Add(new Color { ProductId = productid, PC_Name = item });
             }
+        }
 
-            #endregion
-
-            #region Save multiple Picture
+        public void SetMultiImageForProduct(List<IFormFile> images, Product product)
+        {
+            int productid = AddProduct(product);
             if (images.Count > 0)
             {
                 foreach (var item in images)
@@ -121,25 +147,6 @@ namespace MyEMShop.Application.Services
                 _db.ProductImages.Add(new ProductImage { ProductId = productid, PI_ImageName = "Default.jpg" });
                 _db.SaveChanges();
             }
-            #endregion
-
-            #region Save demo For product
-            if (Demo is not null)
-            {
-                var DemoExtension = Path.GetExtension(Demo.FileName);
-                var DemoFileName = GenerateCode.GenerateUniqueCode() + DemoExtension;
-                var DemoPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/Demos/", DemoFileName);
-                using (var filesStream = new FileStream(Path.Combine(DemoPath), FileMode.Create))
-                {
-                    Demo.CopyTo(filesStream);
-                }
-                var productnew = _db.Products.First(p => p.ProductId == productid);
-                productnew.ProductDemo = DemoFileName;
-                _db.Update(productnew);
-            }
-            #endregion
-
-            _db.SaveChangesAsync();
         }
     }
 }
