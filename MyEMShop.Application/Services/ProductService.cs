@@ -5,7 +5,6 @@ using MyEMShop.Common;
 using MyEMShop.Data.Context;
 using MyEMShop.Data.Entities.Product;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using TopLearn.Core.Convertors;
@@ -76,9 +75,18 @@ namespace MyEMShop.Application.Services
             return product.ProductId;
         }
 
-        public void AddProductWithMultipleImage(List<IFormFile> images, Product product, IFormFile Demo)
+        public void AddProductWithMultipleImage(List<IFormFile> images, Product product, IFormFile Demo,List<string> colors)
         {
             int productid = AddProduct(product);
+
+            #region  Set Multi color For Product
+
+            foreach (var item in colors)
+            {
+                _db.Colors.Add(new Color { ProductId = productid, PC_Name = item });
+            }
+
+            #endregion
 
             #region Save multiple Picture
             if (images.Count > 0)
@@ -97,8 +105,8 @@ namespace MyEMShop.Application.Services
                         }
 
                         #region Resize Image To 150px
-                        ImageConvertor resizer = new ImageConvertor();
-                        resizer.Image_resize(uploads, output, 150);
+                        //ImageConvertor resizer = new ImageConvertor();
+                        //resizer.Image_resize(uploads, output, 150);
                         #endregion
 
                         _db.ProductImages.Add(new ProductImage { ProductId = productid, PI_ImageName = dynamicFileName });
@@ -115,7 +123,7 @@ namespace MyEMShop.Application.Services
             }
             #endregion
 
-            #region Save demo of product
+            #region Save demo For product
             if (Demo is not null)
             {
                 var DemoExtension = Path.GetExtension(Demo.FileName);
@@ -130,6 +138,7 @@ namespace MyEMShop.Application.Services
                 _db.Update(productnew);
             }
             #endregion
+
             _db.SaveChangesAsync();
         }
     }

@@ -21,14 +21,6 @@ namespace MyEMShop.Data.Entities.Product
         public int PL_Id { get; set; }
 
         [Required]
-        [Display(Name = "رنگ")]
-        public int PC_Id { get; set; }
-
-        [Required]
-        [Display(Name = "عکس")]
-        public int PI_Id { get; set; }
-
-        [Required]
         [Display(Name = "سایز")]
         public int PS_Id { get; set; }
 
@@ -76,7 +68,7 @@ namespace MyEMShop.Data.Entities.Product
         [ForeignKey(nameof(SubGroup))]
         public ProductGroup GroupSub { get; set; }
         public ICollection<ProductLevel> ProductLevels { get; set; }
-        public ICollection<ProductColor> ProductColors { get; set; }
+        public ICollection<Color> Colors { get; set; }
         public ICollection<ProductImage> ProductImages { get; set; }
         public ICollection<ProductSize> ProductSizes { get; set; }
         #endregion

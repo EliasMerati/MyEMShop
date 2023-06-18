@@ -19,6 +19,21 @@ namespace MyEMShop.Data.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("ColorProduct", b =>
+                {
+                    b.Property<int>("ColorsPC_Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductsProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ColorsPC_Id", "ProductsProductId");
+
+                    b.HasIndex("ProductsProductId");
+
+                    b.ToTable("ColorProduct");
+                });
+
             modelBuilder.Entity("MyEMShop.Data.Entities.Permission.Permission", b =>
                 {
                     b.Property<int>("PermissionId")
@@ -228,9 +243,11 @@ namespace MyEMShop.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("PC_Name")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
 
                     b.HasKey("PC_Id");
 
@@ -284,12 +301,6 @@ namespace MyEMShop.Data.Migrations
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<int>("PC_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PI_Id")
-                        .HasColumnType("int");
-
                     b.Property<int>("PL_Id")
                         .HasColumnType("int");
 
@@ -337,31 +348,6 @@ namespace MyEMShop.Data.Migrations
                     b.HasIndex("SubGroup");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("MyEMShop.Data.Entities.Product.ProductColor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("ColorPC_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PC_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ColorPC_Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductColors");
                 });
 
             modelBuilder.Entity("MyEMShop.Data.Entities.Product.ProductGroup", b =>
@@ -692,6 +678,21 @@ namespace MyEMShop.Data.Migrations
                         });
                 });
 
+            modelBuilder.Entity("ColorProduct", b =>
+                {
+                    b.HasOne("MyEMShop.Data.Entities.Product.Color", null)
+                        .WithMany()
+                        .HasForeignKey("ColorsPC_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyEMShop.Data.Entities.Product.Product", null)
+                        .WithMany()
+                        .HasForeignKey("ProductsProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("MyEMShop.Data.Entities.Permission.Permission", b =>
                 {
                     b.HasOne("MyEMShop.Data.Entities.Permission.Permission", null)
@@ -733,23 +734,6 @@ namespace MyEMShop.Data.Migrations
                     b.Navigation("GroupSub");
 
                     b.Navigation("productGroup");
-                });
-
-            modelBuilder.Entity("MyEMShop.Data.Entities.Product.ProductColor", b =>
-                {
-                    b.HasOne("MyEMShop.Data.Entities.Product.Color", "Color")
-                        .WithMany("ProductColors")
-                        .HasForeignKey("ColorPC_Id");
-
-                    b.HasOne("MyEMShop.Data.Entities.Product.Product", "Product")
-                        .WithMany("ProductColors")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Color");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("MyEMShop.Data.Entities.Product.ProductGroup", b =>
@@ -847,11 +831,6 @@ namespace MyEMShop.Data.Migrations
                     b.Navigation("RolePermissions");
                 });
 
-            modelBuilder.Entity("MyEMShop.Data.Entities.Product.Color", b =>
-                {
-                    b.Navigation("ProductColors");
-                });
-
             modelBuilder.Entity("MyEMShop.Data.Entities.Product.Level", b =>
                 {
                     b.Navigation("ProductLevels");
@@ -859,8 +838,6 @@ namespace MyEMShop.Data.Migrations
 
             modelBuilder.Entity("MyEMShop.Data.Entities.Product.Product", b =>
                 {
-                    b.Navigation("ProductColors");
-
                     b.Navigation("ProductImages");
 
                     b.Navigation("ProductLevels");

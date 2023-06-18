@@ -32,7 +32,6 @@ namespace MyEMShop.Data.Context
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<Level> Levels { get; set; }
         public DbSet<ProductLevel> ProductLevels { get; set; }
-        public DbSet<ProductColor> ProductColors { get; set; }
         public DbSet<ProductSize> ProductSizes { get; set; }
         public DbSet<Size> Sizes { get; set; }
         public DbSet<Product> Products { get; set; }

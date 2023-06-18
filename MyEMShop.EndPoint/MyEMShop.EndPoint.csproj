@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\Template\image\product\Demos\" />
+    <Folder Include="wwwroot\Template\image\product\CkEditors Image\" />
   </ItemGroup>
 
 </Project>

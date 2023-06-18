@@ -7,13 +7,12 @@ namespace MyEMShop.Data.Entities.Product
     {
         [Key]
         public int PC_Id { get; set; }
-
-        [Required]
+        public int ProductId { get; set; }
         [MaxLength(100)]
         public string PC_Name { get; set; }
 
         #region Navigation Property
-        public ICollection<ProductColor> ProductColors { get; set; }
+        public ICollection<Product> Products { get; set; }
         #endregion
     }
 }

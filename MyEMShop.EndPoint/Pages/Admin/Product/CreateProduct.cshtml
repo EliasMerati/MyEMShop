@@ -21,7 +21,7 @@
                             <input type="text" asp-for="product.ProductTitle" class="form-control">
                             <span asp-validation-for="product.ProductTitle"></span>
                         </div>
-                         <div class="form-group">
+                        <div class="form-group">
                             <label>جنس محصول</label>
                             <input type="text" asp-for="product.Productmark" class="form-control">
                             <span asp-validation-for="product.Productmark"></span>
@@ -43,9 +43,15 @@
                             <select class="form-control" asp-for="product.PS_Id" asp-items="@(ViewData["ProductSize"] as SelectList)"></select>
                         </div>
                         <div class="form-group">
-                            <label>رنگ محصول</label>
-                            <input type="text" asp-for="product.ProductColors" class="form-control">
-                            <span asp-validation-for="product.ProductColors"></span>
+                            <label>رنگ 1 محصول</label>
+                            <input type="color" asp-for="product.ProductImages" class="form-control" name="Pcolor">
+                            <label>رنگ 2 محصول</label>
+                            <input type="color" asp-for="product.ProductImages" class="form-control" name="Pcolor">
+                            <label>رنگ 3 محصول</label>
+                            <input type="color" asp-for="product.ProductImages" class="form-control" name="Pcolor">
+                            <label>رنگ 4 محصول</label>
+                            <input type="color" asp-for="product.ProductImages" class="form-control" name="Pcolor">
+                            <span asp-validation-for="product.ProductImages"></span>
                         </div>
                         <div class="form-group">
                             <label>توضیح محصول</label>
@@ -57,7 +63,7 @@
                             <input type="number" asp-for="product.ProductPrice" value="0" class="form-control">
                             <span asp-validation-for="product.ProductPrice"></span>
                         </div>
-                          <div class="form-group">
+                        <div class="form-group">
                             <label>بررسی محصول</label>
                             <textarea type="text" asp-for="product.ProductCheck" rows="10" class="form-control"></textarea>
                             <span asp-validation-for="product.ProductCheck"></span>
@@ -106,12 +112,12 @@
 
 @section Scripts
     {
-        <script>
-        $("#product_GroupId").change(function(){
+    <script>
+        $("#product_GroupId").change(function () {
             $("#product_SubGroup").empty();
-            $.getJSON("/home/GetSubGroups/" + $("#product_GroupId :selected").val(),function(data){
+            $.getJSON("/home/GetSubGroups/" + $("#product_GroupId :selected").val(), function (data) {
 
-                $.each(data,function(){
+                $.each(data, function () {
                     $("#product_SubGroup").append('<option value = ' + this.value + '>' + this.text + '</option>');
                 });
             });
@@ -134,5 +140,22 @@
         $("#imgProductUp").change(function () {
             readURL(this);
         });
-        </script>
+
+    </script>
+
+
+    <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+
+    <script>
+
+        CKEDITOR.replace('product_ProductCheck', {
+            customConfig: '/js/Config.js'
+        });
+
+        CKEDITOR.replace('product_ProductDescription', {
+            customConfig: '/js/Config.js'
+        });
+
+    </script>
+
     }

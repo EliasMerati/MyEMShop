@@ -17,7 +17,7 @@ namespace MyEMShop.Application.Interfaces
 
         #region Product
         int AddProduct(Product product);
-        void AddProductWithMultipleImage(List<IFormFile> images,Product product, IFormFile Demo);
+        void AddProductWithMultipleImage(List<IFormFile> images,Product product, IFormFile Demo, List<string> colors);
         #endregion
 
     }
