@@ -46,7 +46,10 @@
                                                     <td>@item.ProductTitle</td>
                                                     <td>@item.Productmark</td>
                                                     <td>@item.ProductPrice</td>
-                                                    <td></td>
+                                                    <td>
+                                                        <a asp-page="EditProduct" class="btn btn-warning btn-sm" asp-route-id="@item.ProductId">ویرایش</a>
+                                                        <a asp-page="DeleteProduct" class="btn btn-danger btn-sm" asp-route-id="@item.ProductId">حذف</a>
+                                                    </td>
                                                 </tr>
                                             }
                                         </tbody>

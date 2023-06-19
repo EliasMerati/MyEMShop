@@ -162,5 +162,10 @@ namespace MyEMShop.Application.Services
                 ProductTitle = p.ProductTitle,
             }).ToList();
         }
+
+        public Product GetProductById(int productId)
+        {
+            return _db.Products.Find(productId);
+        }
     }
 }
