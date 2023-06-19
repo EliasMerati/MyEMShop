@@ -6,6 +6,7 @@ using MyEMShop.Common;
 using MyEMShop.Data.Context;
 using MyEMShop.Data.Dtos.ProductDto;
 using MyEMShop.Data.Entities.Product;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -78,6 +79,7 @@ namespace MyEMShop.Application.Services
 
         public void CreateProduct(List<IFormFile> images, Product product, IFormFile Demo, List<string> colors)
         {
+            product.InsertDate= DateTime.Now;
             SetMultiColorForProduct(colors, product);
 
             SetMultiImageForProduct(images, product);
@@ -166,6 +168,36 @@ namespace MyEMShop.Application.Services
         public Product GetProductById(int productId)
         {
             return _db.Products.Find(productId);
+        }
+
+        public void UpdateProduct(Product product, IFormFile Demo)
+        {
+            product.UpdateTime = DateTime.Now;
+
+            #region UpdateDemo
+            if (Demo is not null)
+            {
+                if (product.ProductDemo is not null)
+                {
+                    var DeleteDemoPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/Demos/", product.ProductDemo);
+                    if (File.Exists(DeleteDemoPath))
+                    {
+                        File.Delete(DeleteDemoPath);
+                    }
+                }
+                var DemoExtension = Path.GetExtension(Demo.FileName);
+                var DemoFileName = GenerateCode.GenerateUniqueCode() + DemoExtension;
+                var DemoPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/Demos/", DemoFileName);
+                using (var filesStream = new FileStream(Path.Combine(DemoPath), FileMode.Create))
+                {
+                    Demo.CopyTo(filesStream);
+                }
+                product.ProductDemo = DemoFileName;
+            }
+            #endregion
+
+            _db.Update(product);
+            _db.SaveChanges();
         }
     }
 }

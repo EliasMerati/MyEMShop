@@ -47,23 +47,13 @@
                             <select class="form-control" asp-for="product.PS_Id" asp-items="@(ViewData["ProductSize"] as SelectList)"></select>
                         </div>
                         <div class="form-group">
-                            <label>رنگ 1 محصول</label>
-                            <input type="color"  class="form-control" name="Pcolor" asp-for="product.Colors">
-                            <label>رنگ 2 محصول</label>
-                            <input type="color" class="form-control" name="Pcolor" asp-for="product.Colors">
-                            <label>رنگ 3 محصول</label>
-                            <input type="color" class="form-control" name="Pcolor" asp-for="product.Colors">
-                            <label>رنگ 4 محصول</label>
-                            <input type="color" class="form-control" name="Pcolor" asp-for="product.Colors">
-                        </div>
-                        <div class="form-group">
                             <label>توضیح محصول</label>
                             <textarea type="text" asp-for="product.ProductDescription" rows="4" class="form-control"></textarea>
                             <span asp-validation-for="product.ProductDescription"></span>
                         </div>
                         <div class="form-group">
                             <label>قیمت محصول</label>
-                            <input type="number" asp-for="product.ProductPrice" value="0" class="form-control">
+                            <input type="number" asp-for="product.ProductPrice"  class="form-control">
                             <span asp-validation-for="product.ProductPrice"></span>
                         </div>
                         <div class="form-group">
@@ -77,22 +67,7 @@
                             <input type="text" asp-for="product.Tags" class="form-control">
                             <span asp-validation-for="product.Tags"></span>
                         </div>
-                        <button type="submit" class="btn btn-success">ثبت محصول </button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        عکس محصول
-                    </div>
-
-                    <div class="panel-body">
-                        <img id="ImgProduct" class="thumbnail" src="/Template/image/product/Image/@Model.product.ProductImages" />
-                        <div class="form-group">
-                            <lable>تصویر محصول</lable>
-                            <input type="file" multiple id="imgProductUp" name="imgProduct" asp-for="product.ProductImages" />
-                        </div>
+                        <button type="submit" class="btn btn-warning">ویرایش محصول </button>
                     </div>
                 </div>
             </div>

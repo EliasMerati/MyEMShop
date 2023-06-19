@@ -24,6 +24,7 @@ namespace MyEMShop.Application.Interfaces
         void SetMultiColorForProduct(List<string> colors, Product product);
         void SetMultiImageForProduct(List<IFormFile> images, Product product);
         Product GetProductById(int productId);
+        void UpdateProduct(Product product, IFormFile Demo);
         #endregion
 
     }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -57,6 +58,9 @@ namespace MyEMShop.Data.Entities.Product
         [Display(Name = "فیلم محصول")]
         [MaxLength(200)]
         public string ProductDemo { get; set; }
+
+        public DateTime InsertDate { get; set; } 
+        public DateTime UpdateTime { get; set; }
 
 
 
