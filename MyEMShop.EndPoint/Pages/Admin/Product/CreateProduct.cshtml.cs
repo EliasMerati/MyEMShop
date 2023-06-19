@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MyEMShop.Application.Interfaces;
-using MyEMShop.Data.Entities.Product;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -44,7 +43,7 @@ namespace MyEMShop.EndPoint.Pages.Admin.Product
                 return Page();
             }
 
-            _productService.AddProductWithMultipleImage(imgProduct,product, DemoProduct, Pcolor);
+            _productService.CreateProduct(imgProduct, product, DemoProduct, Pcolor);
             return RedirectToPage("Index");
         }
 

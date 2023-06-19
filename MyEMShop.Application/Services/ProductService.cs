@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Common;
 using MyEMShop.Data.Context;
+using MyEMShop.Data.Dtos.ProductDto;
 using MyEMShop.Data.Entities.Product;
 using System.Collections.Generic;
 using System.IO;
@@ -147,6 +149,18 @@ namespace MyEMShop.Application.Services
                 _db.ProductImages.Add(new ProductImage { ProductId = productid, PI_ImageName = "Default.jpg" });
                 _db.SaveChanges();
             }
+        }
+
+        public IEnumerable<GetProductForAdminDto> GetProducts()
+        {
+            return _db.Products
+                .Select(p=> new GetProductForAdminDto
+            {
+                ProductId= p.ProductId,
+                Productmark= p.Productmark,
+                ProductPrice= p.ProductPrice,
+                ProductTitle = p.ProductTitle,
+            }).ToList();
         }
     }
 }

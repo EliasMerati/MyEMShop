@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using MyEMShop.Data.Dtos.ProductDto;
 using MyEMShop.Data.Entities.Product;
 using System.Collections.Generic;
 
@@ -16,6 +17,7 @@ namespace MyEMShop.Application.Interfaces
         #endregion
 
         #region Product
+        IEnumerable<GetProductForAdminDto> GetProducts();
         int AddProduct(Product product);
         void CreateProduct(List<IFormFile> images,Product product, IFormFile Demo, List<string> colors);
         void SaveDemoForProduct(IFormFile Demo, Product product);

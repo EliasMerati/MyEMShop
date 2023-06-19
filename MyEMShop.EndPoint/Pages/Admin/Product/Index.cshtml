@@ -18,9 +18,46 @@
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-                     <div class="col-md-12" style="margin:10px 0;">
-                                <a asp-page="CreateProduct" class="btn btn-success">افزودن محصول جدید</a>
+                    <div class="col-md-12" style="margin:10px 0;">
+                        <a asp-page="CreateProduct" class="btn btn-success">افزودن محصول جدید</a>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="panel panel-default col-md-12">
+                            <div class="panel-heading">
+                                نمایش محصولات
                             </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="table-responsive ">
+                                    <table class="table table-striped col-md-12">
+                                        <thead>
+                                            <tr>
+                                                <th>نام محصول</th>
+                                                <th>جنس محصول</th>
+                                                <th>قیمت</th>
+                                                <th>عملیات</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.products)
+                                            {
+                                                 <tr>
+                                                    <td>@item.ProductTitle</td>
+                                                    <td>@item.Productmark</td>
+                                                    <td>@item.ProductPrice</td>
+                                                    <td></td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
                 </div>
                 <!-- /.panel-body -->
             </div>
