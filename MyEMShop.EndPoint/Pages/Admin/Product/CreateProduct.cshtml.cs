@@ -23,6 +23,7 @@ namespace MyEMShop.EndPoint.Pages.Admin.Product
         public Data.Entities.Product.Product product { get; set; }
         public void OnGet()
         {
+            
             var groups = _productService.GetGroupsForManageProduct();
             ViewData["Groups"] = new SelectList(groups, "Value", "Text");
 

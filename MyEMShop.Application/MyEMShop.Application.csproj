@@ -9,6 +9,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MyEMShop.Common\MyEMShop.Common.csproj" />
     <ProjectReference Include="..\MyEMShop.Data\MyEMShop.Data.csproj" />
   </ItemGroup>

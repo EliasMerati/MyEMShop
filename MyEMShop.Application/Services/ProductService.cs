@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Common;
 using MyEMShop.Data.Context;
@@ -8,8 +7,14 @@ using MyEMShop.Data.Dtos.ProductDto;
 using MyEMShop.Data.Entities.Product;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Processing;
+using static System.Net.Mime.MediaTypeNames;
+using Image = SixLabors.ImageSharp.Image;
+using ImageProcessor.Imaging.Helpers;
 
 namespace MyEMShop.Application.Services
 {
@@ -91,7 +96,7 @@ namespace MyEMShop.Application.Services
 
         public void SaveDemoForProduct(IFormFile Demo, Product product)
         {
-            int productid = AddProduct(product);
+            
             if (Demo is not null)
             {
                 var DemoExtension = Path.GetExtension(Demo.FileName);
@@ -101,7 +106,7 @@ namespace MyEMShop.Application.Services
                 {
                     Demo.CopyTo(filesStream);
                 }
-                var productnew = _db.Products.First(p => p.ProductId == productid);
+                var productnew = _db.Products.First(p => p.ProductId == product.ProductId);
                 productnew.ProductDemo = DemoFileName;
                 _db.Update(productnew);
             }
@@ -109,16 +114,16 @@ namespace MyEMShop.Application.Services
 
         public void SetMultiColorForProduct(List<string> colors, Product product)
         {
-            int productid = AddProduct(product);
+            
             foreach (var item in colors)
             {
-                _db.Colors.Add(new Color { ProductId = productid, PC_Name = item });
+                _db.Colors.Add(new Data.Entities.Product.Color { ProductId = product.ProductId, PC_Name = item });
             }
         }
 
         public void SetMultiImageForProduct(List<IFormFile> images, Product product)
         {
-            int productid = AddProduct(product);
+            int productid = product.ProductId; ;
             if (images.Count > 0)
             {
                 foreach (var item in images)
@@ -126,25 +131,35 @@ namespace MyEMShop.Application.Services
                     if (item.IsImage())
                     {
                         string uploads = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/Image/");
-                        string output = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/Thumbnail/");
+                        
                         var extension = Path.GetExtension(item.FileName);
                         var dynamicFileName = GenerateCode.GenerateUniqueCode() + extension;
                         using (var filesStream = new FileStream(Path.Combine(uploads, dynamicFileName), FileMode.Create))
                         {
                             item.CopyTo(filesStream);
                         }
+                        _db.ProductImages.Add(new ProductImage { ProductId = product.ProductId, PI_ImageName = dynamicFileName });
+                        _db.SaveChanges();
 
-                        #region Resize Image To 150px
-                        //ImageConvertor resizer = new ImageConvertor();
-                        //resizer.Image_resize(uploads, output, 150);
+                        #region Resize Image For Thumbnail
+                        foreach (var file in images)
+                        {
+                            string output = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/Thumbnail/")
+                               + "-Thumbnail" + extension;
+
+                            using (Image image = Image.Load(uploads + dynamicFileName))
+                            {
+                                image.Mutate(x => x.Resize(220, 330));
+                                image.Save(output);
+                            }
+                        }
                         #endregion
 
-                        _db.ProductImages.Add(new ProductImage { ProductId = productid, PI_ImageName = dynamicFileName });
-                        _db.SaveChanges();
+
                     }
 
                 }
-
+                _db.SaveChanges();
             }
             else
             {
