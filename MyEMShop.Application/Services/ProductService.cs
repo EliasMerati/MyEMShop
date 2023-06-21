@@ -141,24 +141,26 @@ namespace MyEMShop.Application.Services
                         _db.ProductImages.Add(new ProductImage { ProductId = priductid, PI_ImageName = dynamicFileName });
                         _db.SaveChanges();
                     }
-
-                }
-                #region Resize Image For Thumbnail
-                string MainImages = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/Image/");
-                IEnumerable<string> Images = Directory.EnumerateFiles(MainImages);
-                foreach (string file in Images)
-                {
-                    string output = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/Thumbnail/"
-                        ,Path.GetFileNameWithoutExtension(file)
-                    + "_Thumb" + Path.GetExtension(file));
-                    
-                    using (Image image = Image.Load(file))
+                    #region Resize Image For Thumbnail
+                    string MainImages = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/Image/");
+                    IEnumerable<string> Images = Directory.EnumerateFiles(MainImages);
+                    foreach (string file in Images)
                     {
-                        image.Mutate(x => x.Resize(220, 330));
-                        image.Save(output);
+                        string output = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/Thumbnail/"
+                            , Path.GetFileNameWithoutExtension(file)
+                        + "_Thumb" + Path.GetExtension(file));
+
+                        using (Image image = Image.Load(file))
+                        {
+                            image.Mutate(x => x.Resize(220, 330));
+                            image.Save(output);
+                        }
                     }
+                    #endregion
                 }
-                #endregion
+
+
+
                 _db.SaveChanges();
             }
             else
