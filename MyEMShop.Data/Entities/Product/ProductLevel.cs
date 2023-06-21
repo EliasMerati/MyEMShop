@@ -6,7 +6,10 @@ namespace MyEMShop.Data.Entities.Product
     {
         [Key]
         public int Id { get; set; }
+
+        [Required]
         public int ProductId { get; set; }
+
         public int PL_Id { get; set; }
 
         #region Navigation Property

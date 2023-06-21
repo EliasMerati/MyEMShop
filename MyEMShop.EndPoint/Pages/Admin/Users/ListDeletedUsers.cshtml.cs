@@ -16,7 +16,7 @@ namespace MyEMShop.EndPoint.Pages.Admin.Users
         }
         #endregion
 
-        public UserListForAdminDto User { get; set; }
+        public new UserListForAdminDto User { get; set; }
         public void OnGet(int pageid = 1, string email = "", string username = "", string name = "", string family = "")
         {
             User = _manageUser.GetDeleteUsers(pageid, email, username, name, family);

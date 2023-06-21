@@ -123,7 +123,7 @@ namespace MyEMShop.Application.Services
 
         public void SetMultiImageForProduct(List<IFormFile> images, Product product)
         {
-            int productid = product.ProductId; ;
+            int priductid = AddProduct(product);
             if (images.Count > 0)
             {
                 foreach (var item in images)
@@ -138,32 +138,32 @@ namespace MyEMShop.Application.Services
                         {
                             item.CopyTo(filesStream);
                         }
-                        _db.ProductImages.Add(new ProductImage { ProductId = product.ProductId, PI_ImageName = dynamicFileName });
+                        _db.ProductImages.Add(new ProductImage { ProductId = priductid, PI_ImageName = dynamicFileName });
                         _db.SaveChanges();
-
-                        #region Resize Image For Thumbnail
-                        foreach (var file in images)
-                        {
-                            string output = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/Thumbnail/")
-                               + "-Thumbnail" + extension;
-
-                            using (Image image = Image.Load(uploads + dynamicFileName))
-                            {
-                                image.Mutate(x => x.Resize(220, 330));
-                                image.Save(output);
-                            }
-                        }
-                        #endregion
-
-
                     }
 
                 }
+                #region Resize Image For Thumbnail
+                string MainImages = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/Image/");
+                IEnumerable<string> Images = Directory.EnumerateFiles(MainImages);
+                foreach (string file in Images)
+                {
+                    string output = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/Thumbnail/"
+                        ,Path.GetFileNameWithoutExtension(file)
+                    + "_Thumb" + Path.GetExtension(file));
+                    
+                    using (Image image = Image.Load(file))
+                    {
+                        image.Mutate(x => x.Resize(220, 330));
+                        image.Save(output);
+                    }
+                }
+                #endregion
                 _db.SaveChanges();
             }
             else
             {
-                _db.ProductImages.Add(new ProductImage { ProductId = productid, PI_ImageName = "Default.jpg" });
+                _db.ProductImages.Add(new ProductImage { ProductId = priductid, PI_ImageName = "Default.jpg" });
                 _db.SaveChanges();
             }
         }

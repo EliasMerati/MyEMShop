@@ -6,11 +6,14 @@ namespace MyEMShop.Data.Entities.Product
     {
         [Key]
         public int PI_Id { get; set; }
+
+        [Required]
         public int ProductId { get; set; }
 
         [Required]
         [MaxLength(150)]
         public string PI_ImageName { get; set; }
+
 
         #region Navigation Property
         public Product Product { get; set; }

@@ -7,7 +7,11 @@ namespace MyEMShop.Data.Entities.Product
     {
         [Key]
         public int PC_Id { get; set; }
+
+        [Required]
         public int ProductId { get; set; }
+
+        [Required]
         [MaxLength(100)]
         public string PC_Name { get; set; }
 
