@@ -6,5 +6,6 @@
         public string ProductTitle { get; set; }
         public string ProductPrice { get; set; }
         public string Productmark { get; set; }
+        public string MainImageProduct { get; set; }
     }
 }

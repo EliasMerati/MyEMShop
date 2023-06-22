@@ -19,12 +19,14 @@ namespace MyEMShop.Application.Interfaces
         #region Product
         IEnumerable<GetProductForAdminDto> GetProducts();
         int AddProduct(Product product);
-        void CreateProduct(List<IFormFile> images,Product product, IFormFile Demo, List<string> colors);
+        void CreateProduct(List<IFormFile> images,Product product, IFormFile Demo, IFormFile Image, string color/*, List<string> colors*/);
+        void AddColorForProduct(string color , Product product);
+        void SetMainImageForProduct(Product product, IFormFile Image);
         void SaveDemoForProduct(IFormFile Demo, Product product);
         void SetMultiColorForProduct(List<string> colors, Product product);
         void SetMultiImageForProduct(List<IFormFile> images, Product product);
         Product GetProductById(int productId);
-        void UpdateProduct(Product product, IFormFile Demo);
+        void UpdateProduct(Product product, IFormFile Demo, IFormFile Image);
         #endregion
 
     }

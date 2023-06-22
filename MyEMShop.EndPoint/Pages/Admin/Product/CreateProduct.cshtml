@@ -43,15 +43,9 @@
                             <select class="form-control" asp-for="product.PS_Id" asp-items="@(ViewData["ProductSize"] as SelectList)"></select>
                         </div>
                         <div class="form-group">
-                            <label>رنگ 1 محصول</label>
-                            <input type="color" asp-for="product.ProductImages" class="form-control" name="Pcolor">
-                            <label>رنگ 2 محصول</label>
-                            <input type="color" asp-for="product.ProductImages" class="form-control" name="Pcolor">
-                            <label>رنگ 3 محصول</label>
-                            <input type="color" asp-for="product.ProductImages" class="form-control" name="Pcolor">
-                            <label>رنگ 4 محصول</label>
-                            <input type="color" asp-for="product.ProductImages" class="form-control" name="Pcolor">
-                            <span asp-validation-for="product.ProductImages"></span>
+                            <label>رنگ محصول</label>
+                            <input type="color" asp-for="product.Colors" class="form-control" name="Pcolor">
+                            <span asp-validation-for="product.Colors"></span>
                         </div>
                         <div class="form-group">
                             <label>توضیح محصول</label>
@@ -79,15 +73,29 @@
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="panel panel-info">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
-                        عکس محصول
+                         عکس اصلی محصول
                     </div>
 
                     <div class="panel-body">
-                        <img id="ImgProduct" class="thumbnail" src="/Template/image/product/Image/Default.jpg" />
+                        <img id="ImgProduct" class="thumbnail" src="/Template/image/product/MainPic/Default.jpg" />
                         <div class="form-group">
-                            <lable>تصویر محصول</lable>
+                            <lable>تصویر اصلی محصول</lable>
+                            <input type="file" id="MainimgProductUp" name="MainimgProduct" asp-for="product.MainImageProduct" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        سایر عکس های محصول
+                    </div>
+
+                    <div class="panel-body">                 
+                        <div class="form-group">
+                            <lable>سایر تصاویر محصول</lable>
                             <input type="file" multiple id="imgProductUp" name="imgProduct" asp-for="product.ProductImages" />
                         </div>
                     </div>
@@ -137,7 +145,7 @@
             }
         }
 
-        $("#imgProductUp").change(function () {
+        $("#MainimgProductUp").change(function () {
             readURL(this);
         });
 

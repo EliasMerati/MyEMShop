@@ -38,13 +38,13 @@ namespace MyEMShop.EndPoint.Pages.Admin.Product
             ViewData["ProductSize"] = new SelectList(size, "Value", "Text",product.PS_Id);
         }
 
-        public IActionResult OnPost(IFormFile DemoProduct)
+        public IActionResult OnPost(IFormFile DemoProduct,IFormFile MainimgProduct)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            _productService.UpdateProduct(product, DemoProduct);
+            _productService.UpdateProduct(product, DemoProduct, MainimgProduct);
             return RedirectToPage("Index");
         }
     }

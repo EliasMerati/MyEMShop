@@ -22,7 +22,7 @@
                         <a asp-page="CreateProduct" class="btn btn-success">افزودن محصول جدید</a>
                     </div>
 
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <div class="panel panel-default col-md-12">
                             <div class="panel-heading">
                                 نمایش محصولات
@@ -33,6 +33,7 @@
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
+                                                <th>عکس محصول</th>
                                                 <th>نام محصول</th>
                                                 <th>جنس محصول</th>
                                                 <th>قیمت</th>
@@ -43,12 +44,15 @@
                                             @foreach (var item in Model.products)
                                             {
                                                  <tr>
+                                                    <td>
+                                                        <img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" class="thumbnail" style="max-height:100px;" />
+                                                    </td>
                                                     <td>@item.ProductTitle</td>
                                                     <td>@item.Productmark</td>
                                                     <td>@item.ProductPrice</td>
                                                     <td>
                                                         <a asp-page="EditProduct" class="btn btn-warning btn-sm" asp-route-id="@item.ProductId">ویرایش</a>
-                                                        <a asp-page="DeleteProduct" class="btn btn-danger btn-sm" asp-route-id="@item.ProductId">حذف</a>
+                                                        @*<a asp-page="DeleteProduct" class="btn btn-danger btn-sm" asp-route-id="@item.ProductId">حذف</a>*@
                                                     </td>
                                                 </tr>
                                             }

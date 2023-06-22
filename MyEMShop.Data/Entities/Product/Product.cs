@@ -52,6 +52,10 @@ namespace MyEMShop.Data.Entities.Product
         [MaxLength(600)]
         public string Tags { get; set; }
 
+        [Display(Name = "عکس اصلی محصول")]
+        [MaxLength(200)]
+        public string MainImageProduct { get; set; }
+
         [Display(Name = "حذف شده؟")]
         public bool IsDelete { get; set; }
 

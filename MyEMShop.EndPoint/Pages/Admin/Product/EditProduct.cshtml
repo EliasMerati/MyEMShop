@@ -7,6 +7,11 @@
 <div id="page-wrapper">
     <div class="row">
         <form method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="product.ProductId" />
+            <input type="hidden" asp-for="product.MainImageProduct" />
+            <input type="hidden" asp-for="product.ProductDemo" />
+            <input type="hidden" asp-for="product.InsertDate" />
+           
             <div class="col-lg-8">
                 <div class="panel panel-warning">
                     <div class="panel-heading">
@@ -15,10 +20,6 @@
 
                     <div class="panel-body">
                         <h3>اطلاعات محصول</h3>
-                        <input type="hidden" asp-for="product.ProductId" />
-                        <input type="hidden" asp-for="product.ProductImages" />
-                        <input type="hidden" asp-for="product.ProductDemo" />
-
                         <hr />
                         <div class="form-group">
                             <label>عنوان محصول</label>
@@ -72,6 +73,21 @@
                 </div>
             </div>
             <div class="col-lg-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        عکس اصلی محصول
+                    </div>
+
+                    <div class="panel-body">
+                        <img id="ImgProduct" class="thumbnail" src="/Template/image/product/MainPic/@Model.product.MainImageProduct" />
+                        <div class="form-group">
+                            <lable>تصویر اصلی محصول</lable>
+                            <input type="file" id="MainimgProductUp" name="MainimgProduct" asp-for="product.MainImageProduct" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
                 <div class="panel panel-success">
                     <div class="panel-heading">
                         دموی محصول
@@ -115,7 +131,7 @@
             }
         }
 
-        $("#imgProductUp").change(function () {
+        $("#MainimgProductUp").change(function () {
             readURL(this);
         });
 

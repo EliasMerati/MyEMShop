@@ -37,14 +37,14 @@ namespace MyEMShop.EndPoint.Pages.Admin.Product
             ViewData["ProductSize"] = new SelectList(size, "Value", "Text");
         }
 
-        public IActionResult OnPost(List<IFormFile> imgProduct, IFormFile DemoProduct, List<string> Pcolor)
+        public IActionResult OnPost(List<IFormFile> imgProduct, IFormFile DemoProduct/*, List<string> Pcolor*/,IFormFile MainimgProduct , string Pcolor)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _productService.CreateProduct(imgProduct, product, DemoProduct, Pcolor);
+            _productService.CreateProduct(imgProduct,product, DemoProduct, MainimgProduct, Pcolor/*, Pcolor*/);
             return RedirectToPage("Index");
         }
 

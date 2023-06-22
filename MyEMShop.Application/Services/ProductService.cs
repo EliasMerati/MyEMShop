@@ -82,10 +82,13 @@ namespace MyEMShop.Application.Services
             return product.ProductId;
         }
 
-        public void CreateProduct(List<IFormFile> images, Product product, IFormFile Demo, List<string> colors)
+        public void CreateProduct(List<IFormFile> images, Product product, IFormFile Demo, IFormFile Image,string color/*, List<string> colors*/)
         {
             product.InsertDate= DateTime.Now;
-            SetMultiColorForProduct(colors, product);
+
+            SetMainImageForProduct(product, Image);
+
+            AddColorForProduct(color, product);
 
             SetMultiImageForProduct(images, product);
 
@@ -178,6 +181,7 @@ namespace MyEMShop.Application.Services
                 Productmark= p.Productmark,
                 ProductPrice= p.ProductPrice,
                 ProductTitle = p.ProductTitle,
+                MainImageProduct= p.MainImageProduct,
             }).ToList();
         }
 
@@ -186,7 +190,7 @@ namespace MyEMShop.Application.Services
             return _db.Products.Find(productId);
         }
 
-        public void UpdateProduct(Product product, IFormFile Demo)
+        public void UpdateProduct(Product product, IFormFile Demo , IFormFile ImageSet)
         {
             product.UpdateTime = DateTime.Now;
 
@@ -212,8 +216,69 @@ namespace MyEMShop.Application.Services
             }
             #endregion
 
+            #region UpdatePicture
+            if (ImageSet is not null)
+            {
+                if (product.MainImageProduct is not "Default.jpg")
+                {
+                    var DeleteImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MainPic/", product.MainImageProduct);
+                    if (File.Exists(DeleteImagePath))
+                    {
+                        File.Delete(DeleteImagePath);
+                    }
+                    var DeleteThumbPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MainPicThumbnail/", product.MainImageProduct);
+                    if (File.Exists(DeleteThumbPath))
+                    {
+                        File.Delete(DeleteThumbPath);
+                    }
+                }
+                var mainExtension = Path.GetExtension(ImageSet.FileName);
+                var MainFileName = GenerateCode.GenerateUniqueCode() + mainExtension;
+                var MainPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MainPic/", MainFileName);
+                using (var filesStream = new FileStream(Path.Combine(MainPath), FileMode.Create))
+                {
+                    ImageSet.CopyTo(filesStream);
+                }
+                string ThumbPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MainPicThumbnail/", MainFileName);
+
+                using (Image image = Image.Load(MainPath))
+                {
+                    image.Mutate(x => x.Resize(220, 330));
+                    image.SaveAsync(ThumbPath);
+                }
+
+
+            }
+            #endregion
+
             _db.Update(product);
             _db.SaveChanges();
+        }
+
+        public void SetMainImageForProduct(Product product, IFormFile ImageFile)
+        {
+            if (ImageFile is not null)
+            {
+                product.MainImageProduct = GenerateCode.GenerateUniqueCode() + Path.GetExtension(ImageFile.FileName);
+                string Imagepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MainPic/", product.MainImageProduct);
+                using (var stream = new FileStream(Imagepath, FileMode.CreateNew))
+                {
+                    ImageFile.CopyTo(stream);
+                }
+
+                string OutputPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MainPicThumbnail/", product.MainImageProduct);
+
+                using (Image image = Image.Load(Imagepath))
+                {
+                    image.Mutate(x => x.Resize(220, 330));
+                    image.SaveAsync(OutputPath);
+                }
+            }
+        }
+
+        public void AddColorForProduct(string color, Product product)
+        {
+            _db.Colors.Add(new Data.Entities.Product.Color { ProductId = product.ProductId, PC_Name = color });
         }
     }
 }
