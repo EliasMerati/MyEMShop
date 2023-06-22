@@ -217,7 +217,7 @@ namespace MyEMShop.Application.Services
             #endregion
 
             #region UpdatePicture
-            if (ImageSet is not null)
+            if (ImageSet is not null && ImageSet.IsImage())
             {
                 if (product.MainImageProduct is not "Default.jpg")
                 {
