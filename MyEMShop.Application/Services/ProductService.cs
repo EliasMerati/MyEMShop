@@ -5,16 +5,13 @@ using MyEMShop.Common;
 using MyEMShop.Data.Context;
 using MyEMShop.Data.Dtos.ProductDto;
 using MyEMShop.Data.Entities.Product;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
-using static System.Net.Mime.MediaTypeNames;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using Image = SixLabors.ImageSharp.Image;
-using ImageProcessor.Imaging.Helpers;
 
 namespace MyEMShop.Application.Services
 {
@@ -82,9 +79,9 @@ namespace MyEMShop.Application.Services
             return product.ProductId;
         }
 
-        public void CreateProduct(List<IFormFile> images, Product product, IFormFile Demo, IFormFile Image,string color/*, List<string> colors*/)
+        public void CreateProduct(List<IFormFile> images, Product product, IFormFile Demo, IFormFile Image, string color/*, List<string> colors*/)
         {
-            product.InsertDate= DateTime.Now;
+            product.InsertDate = DateTime.Now;
 
             SetMainImageForProduct(product, Image);
 
@@ -99,7 +96,7 @@ namespace MyEMShop.Application.Services
 
         public void SaveDemoForProduct(IFormFile Demo, Product product)
         {
-            
+
             if (Demo is not null)
             {
                 var DemoExtension = Path.GetExtension(Demo.FileName);
@@ -117,7 +114,7 @@ namespace MyEMShop.Application.Services
 
         public void SetMultiColorForProduct(List<string> colors, Product product)
         {
-            
+
             foreach (var item in colors)
             {
                 _db.Colors.Add(new Data.Entities.Product.Color { ProductId = product.ProductId, PC_Name = item });
@@ -134,7 +131,7 @@ namespace MyEMShop.Application.Services
                     if (item.IsImage())
                     {
                         string uploads = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/Image/");
-                        
+
                         var extension = Path.GetExtension(item.FileName);
                         var dynamicFileName = GenerateCode.GenerateUniqueCode() + extension;
                         using (var filesStream = new FileStream(Path.Combine(uploads, dynamicFileName), FileMode.Create))
@@ -175,14 +172,14 @@ namespace MyEMShop.Application.Services
         public IEnumerable<GetProductForAdminDto> GetProducts()
         {
             return _db.Products
-                .Select(p=> new GetProductForAdminDto
-            {
-                ProductId= p.ProductId,
-                Productmark= p.Productmark,
-                ProductPrice= p.ProductPrice,
-                ProductTitle = p.ProductTitle,
-                MainImageProduct= p.MainImageProduct,
-            }).ToList();
+                .Select(p => new GetProductForAdminDto
+                {
+                    ProductId = p.ProductId,
+                    Productmark = p.Productmark,
+                    ProductPrice = p.ProductPrice,
+                    ProductTitle = p.ProductTitle,
+                    MainImageProduct = p.MainImageProduct,
+                }).ToList();
         }
 
         public Product GetProductById(int productId)
@@ -190,7 +187,7 @@ namespace MyEMShop.Application.Services
             return _db.Products.Find(productId);
         }
 
-        public void UpdateProduct(Product product, IFormFile Demo , IFormFile ImageSet)
+        public void UpdateProduct(Product product, IFormFile Demo, IFormFile ImageSet)
         {
             product.UpdateTime = DateTime.Now;
 
@@ -217,16 +214,17 @@ namespace MyEMShop.Application.Services
             #endregion
 
             #region UpdatePicture
+
             if (ImageSet is not null && ImageSet.IsImage())
             {
-                if (product.MainImageProduct is not "Default.jpg")
+                if (product.MainImageProduct != "Default.jpg")
                 {
-                    var DeleteImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MainPic/", product.MainImageProduct);
+                    string DeleteImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MainPic/", product.MainImageProduct);
                     if (File.Exists(DeleteImagePath))
                     {
                         File.Delete(DeleteImagePath);
                     }
-                    var DeleteThumbPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MainPicThumbnail/", product.MainImageProduct);
+                    string DeleteThumbPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MainPicThumbnail/", product.MainImageProduct);
                     if (File.Exists(DeleteThumbPath))
                     {
                         File.Delete(DeleteThumbPath);
@@ -247,8 +245,9 @@ namespace MyEMShop.Application.Services
                     image.SaveAsync(ThumbPath);
                 }
 
-
+                product.MainImageProduct = MainFileName;
             }
+
             #endregion
 
             _db.Update(product);
@@ -273,6 +272,22 @@ namespace MyEMShop.Application.Services
                     image.Mutate(x => x.Resize(220, 330));
                     image.SaveAsync(OutputPath);
                 }
+
+
+            }
+            else
+            {
+                product.MainImageProduct = "Default.jpg";
+
+                string Imagepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MainPic/", product.MainImageProduct);
+                string OutputPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MainPicThumbnail/", "Default.jpg");
+
+                using (Image image = Image.Load(Imagepath))
+                {
+                    image.Mutate(x => x.Resize(220, 330));
+                    image.SaveAsync(OutputPath);
+                }
+
             }
         }
 
