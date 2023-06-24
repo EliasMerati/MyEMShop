@@ -63,8 +63,14 @@ namespace MyEMShop.Data.Entities.Product
         [MaxLength(200)]
         public string ProductDemo { get; set; }
 
-        public DateTime InsertDate { get; set; } 
+        [Display(Name = "تاریخ ثبت محصول")]
+        public DateTime InsertDate { get; set; }
+
+        [Display(Name = "تاریخ آپدیت محصول")]
         public DateTime UpdateTime { get; set; }
+
+        [Display(Name = "پیشنهاد محصول")]
+        public bool Isspecial { get; set; }
 
 
 

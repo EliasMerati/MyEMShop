@@ -29,7 +29,7 @@ namespace MyEMShop.EndPoint.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(_productService.ShowProduct());
         }
 
         #region OnlinePayment

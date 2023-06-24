@@ -27,6 +27,7 @@ namespace MyEMShop.Application.Interfaces
         void SetMultiImageForProduct(List<IFormFile> images, Product product);
         Product GetProductById(int productId);
         void UpdateProduct(Product product, IFormFile Demo, IFormFile Image);
+        IList<ShowProductForIndex> ShowProduct(int pageid =1 , string Filter = "", string orderbytype = "all",int take = 0);
         #endregion
 
     }

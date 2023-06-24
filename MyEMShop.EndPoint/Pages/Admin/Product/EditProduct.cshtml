@@ -26,6 +26,11 @@
                             <input type="text" asp-for="product.ProductTitle" class="form-control">
                             <span asp-validation-for="product.ProductTitle"></span>
                         </div>
+                        <div>
+                            <label>پیشنهاد محصول</label>
+                            <input type="checkbox" asp-for="product.Isspecial">
+                            <span asp-validation-for="product.Isspecial"></span>
+                        </div>
                         <div class="form-group">
                             <label>جنس محصول</label>
                             <input type="text" asp-for="product.Productmark" class="form-control">

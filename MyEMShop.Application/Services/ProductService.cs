@@ -295,5 +295,48 @@ namespace MyEMShop.Application.Services
         {
             _db.Colors.Add(new Data.Entities.Product.Color { ProductId = product.ProductId, PC_Name = color });
         }
+
+        public IList<ShowProductForIndex> ShowProduct(int pageid = 1, string Filter = "", string orderbytype = "featured",int take = 0)
+        {
+            if (take == 0)
+            {
+                take = 8;
+            }
+            var result = _db.Products.AsQueryable();
+            //============================================================== Filter
+            if (Filter is not null)
+            {
+                result = _db.Products.Where(p => p.ProductTitle.Contains(Filter));
+            }
+            //============================================================== OrderBy
+            switch (orderbytype)
+            {
+                case "featured":
+                    break;
+                case "latest":
+                    {
+                        result = _db.Products.OrderByDescending(p => p.InsertDate);
+                        break;
+                    }
+                case "special":
+                    {
+                        result = _db.Products.Where(p => p.Isspecial == true);
+                        break;
+                    }
+
+            }
+            int skip = (pageid - 1) * take;
+
+            return result
+                .Select(r => new ShowProductForIndex
+            {
+                ProductTitle= r.ProductTitle,
+                MainImageProduct=r.MainImageProduct,
+                ProductId=r.ProductId,
+                ProductPrice = r.ProductPrice,
+            }).Skip(skip)
+              .Take(take)
+              .ToList();
+        }
     }
 }
