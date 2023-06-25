@@ -2,7 +2,7 @@
 <html dir="rtl">
 <head>
     <partial name="_Meta" />
-    <title>@ViewData["Title"] | فروشگاه </title>
+    <title>@ViewData["Title"] | فروشگاه به دخت </title>
     <!-- CSS Part Start-->
     <partial name="_Styles" />
     <!-- CSS Part End-->
@@ -51,7 +51,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div id="language" class="btn-group">
+                            @*<div id="language" class="btn-group">
                                 <button class="btn-link dropdown-toggle" data-toggle="dropdown"> <span> <img src="/Template/image/flags/gb.png" alt="انگلیسی" title="انگلیسی">انگلیسی <i class="fa fa-caret-down"></i></span></button>
                                 <ul class="dropdown-menu">
                                     <li>
@@ -61,8 +61,8 @@
                                         <button class="btn btn-link btn-block language-select" type="button" name="GB"><img src="/Template/image/flags/ar.png" alt="عربی" title="عربی" /> عربی</button>
                                     </li>
                                 </ul>
-                            </div>
-                            <div id="currency" class="btn-group">
+                            </div>*@
+                            @*<div id="currency" class="btn-group">
                                 <button class="btn-link dropdown-toggle" data-toggle="dropdown"> <span> تومان <i class="fa fa-caret-down"></i></span></button>
                                 <ul class="dropdown-menu">
                                     <li>
@@ -75,7 +75,7 @@
                                         <button class="currency-select btn btn-link btn-block" type="button" name="USD">$ USD</button>
                                     </li>
                                 </ul>
-                            </div>
+                            </div>*@
                         </div>
                         <div id="top-links" class="nav pull-right flip">
                             <ul>
@@ -186,7 +186,9 @@
                     <!--Middle Part Start-->
                     <div id="content" class="col-xs-12">
                         <!-- Slideshow Start-->
+                        @RenderSection("Banner",false)
                         @RenderSection("Slider",false)
+                 @*       @RenderSection("Banner2",false)*@
                         <!-- Slideshow End-->
                         @RenderBody()
                     </div>

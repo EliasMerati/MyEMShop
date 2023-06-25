@@ -4,6 +4,11 @@
     ViewData["Title"] = "خانه";
 }
 
+@section Banner
+    {
+    <partial name="_Banner" />
+}
+
 @section Slider
     {
     <partial name="_Slider" />
@@ -20,10 +25,10 @@
     </ul>
     <div id="tab-featured" class="tab_content">
         <div class="owl-carousel product_carousel_tab">
-           
+
             @foreach (var item in Model)
             {
-                <partial name="_ProductBox" model="@item"/>
+                <partial name="_ProductBox" model="@item" />
             }
 
         </div>
@@ -265,6 +270,7 @@
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><a href="#"><img src="/Template/image/banner/sample-banner-5-600x250.jpg" alt="2 Block Banner 1" title="2 Block Banner 1" /></a></div>
     </div>
 </div>
+
 <!-- Banner End -->
 <!-- دسته ها محصولات Slider Start-->
 <div class="category-module" id="latest_category">
