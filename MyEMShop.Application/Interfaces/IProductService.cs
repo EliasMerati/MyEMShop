@@ -19,7 +19,7 @@ namespace MyEMShop.Application.Interfaces
         #region Product
         IEnumerable<GetProductForAdminDto> GetProducts();
         int AddProduct(Product product);
-        void CreateProduct(List<IFormFile> images,Product product, IFormFile Demo, IFormFile Image, string color/*, List<string> colors*/);
+        void CreateProduct(List<IFormFile> images,Product product, IFormFile Demo, IFormFile Image, string color);
         void AddColorForProduct(string color , Product product);
         void SetMainImageForProduct(Product product, IFormFile Image);
         void SaveDemoForProduct(IFormFile Demo, Product product);
@@ -27,7 +27,7 @@ namespace MyEMShop.Application.Interfaces
         void SetMultiImageForProduct(List<IFormFile> images, Product product);
         Product GetProductById(int productId);
         void UpdateProduct(Product product, IFormFile Demo, IFormFile Image);
-        IList<ShowProductForIndex> ShowProduct(int pageid =1 , string Filter = "", string orderbytype = "all",int take = 0);
+        IList<ShowProductForIndex> ShowProduct(int pageid =1 , string Filter = "",List<int> selectedgroup = null , string orderbytype = "all",int take = 0);
         #endregion
 
     }

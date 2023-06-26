@@ -334,7 +334,7 @@ namespace MyEMShop.Application.Services
             _db.Colors.Add(new Data.Entities.Product.Color { ProductId = product.ProductId, PC_Name = color });
         }
 
-        public IList<ShowProductForIndex> ShowProduct(int pageid = 1, string Filter = "", string orderbytype = "featured", int take = 0)
+        public IList<ShowProductForIndex> ShowProduct(int pageid = 1, string Filter = "", List<int> selectedgroup = null, string orderbytype = "featured", int take = 0)
         {
             if (take == 0)
             {
@@ -345,6 +345,15 @@ namespace MyEMShop.Application.Services
             if (Filter is not null)
             {
                 result = _db.Products.Where(p => p.ProductTitle.Contains(Filter));
+            }
+             //=============================================================Groups
+
+            if (selectedgroup != null && selectedgroup.Any())
+            {
+                foreach (var groupid in selectedgroup)
+                {
+                    result.Where(p => p.SubGroup == groupid || p.GroupId == groupid);
+                }
             }
             //============================================================== OrderBy
             switch (orderbytype)
