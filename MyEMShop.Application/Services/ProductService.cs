@@ -79,7 +79,7 @@ namespace MyEMShop.Application.Services
             return product.ProductId;
         }
 
-        public void CreateProduct(List<IFormFile> images, Product product, IFormFile Demo, IFormFile Image, string color/*, List<string> colors*/)
+        public void CreateProduct(List<IFormFile> images, Product product, IFormFile Demo, IFormFile Image, string color)
         {
             product.InsertDate = DateTime.Now;
 
@@ -143,23 +143,6 @@ namespace MyEMShop.Application.Services
                     }
                 }
 
-                #region Resize Image For Thumbnail
-                string MainImages = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/Image/");
-                IEnumerable<string> Images = Directory.EnumerateFiles(MainImages);
-                foreach (string file in Images)
-                {
-                    string output = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/Thumbnail/"
-                        , Path.GetFileNameWithoutExtension(file)
-                    + "_Thumb" + Path.GetExtension(file));
-
-                    using (Image image = Image.Load(file))
-                    {
-                        image.Mutate(x => x.Resize(220, 330));
-                        image.SaveAsync(output);
-                    }
-                }
-                #endregion
-
                 _db.SaveChangesAsync();
             }
             else
@@ -217,6 +200,9 @@ namespace MyEMShop.Application.Services
 
             if (ImageSet is not null && ImageSet.IsImage())
             {
+                //====================================================================================================== Delete Files
+
+                #region Delete Files
                 if (product.MainImageProduct != "Default.jpg")
                 {
                     string DeleteImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MainPic/", product.MainImageProduct);
@@ -230,6 +216,11 @@ namespace MyEMShop.Application.Services
                         File.Delete(DeleteThumbPath);
                     }
                 }
+                #endregion
+
+                //====================================================================================================== Main Pic
+
+                #region Main Pic
                 var mainExtension = Path.GetExtension(ImageSet.FileName);
                 var MainFileName = GenerateCode.GenerateUniqueCode() + mainExtension;
                 var MainPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MainPic/", MainFileName);
@@ -237,6 +228,11 @@ namespace MyEMShop.Application.Services
                 {
                     ImageSet.CopyTo(filesStream);
                 }
+                #endregion
+
+                //====================================================================================================== Thumbnail
+
+                #region Thumbnail
                 string ThumbPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MainPicThumbnail/", MainFileName);
 
                 using (Image image = Image.Load(MainPath))
@@ -244,6 +240,8 @@ namespace MyEMShop.Application.Services
                     image.Mutate(x => x.Resize(220, 330));
                     image.SaveAsync(ThumbPath);
                 }
+                #endregion
+
 
                 product.MainImageProduct = MainFileName;
             }
@@ -258,13 +256,18 @@ namespace MyEMShop.Application.Services
         {
             if (ImageFile is not null)
             {
+                #region Main Pic
                 product.MainImageProduct = GenerateCode.GenerateUniqueCode() + Path.GetExtension(ImageFile.FileName);
                 string Imagepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MainPic/", product.MainImageProduct);
                 using (var stream = new FileStream(Imagepath, FileMode.CreateNew))
                 {
                     ImageFile.CopyTo(stream);
                 }
+                #endregion
 
+                //=====================================================================================================
+
+                #region thumbnail
                 string OutputPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MainPicThumbnail/", product.MainImageProduct);
 
                 using (Image image = Image.Load(Imagepath))
@@ -272,6 +275,7 @@ namespace MyEMShop.Application.Services
                     image.Mutate(x => x.Resize(220, 330));
                     image.SaveAsync(OutputPath);
                 }
+                #endregion
 
 
             }
