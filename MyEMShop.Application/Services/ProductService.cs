@@ -215,6 +215,11 @@ namespace MyEMShop.Application.Services
                     {
                         File.Delete(DeleteThumbPath);
                     }
+                    string DeleteMiniPicPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MiniPic/", product.MainImageProduct);
+                    if (File.Exists(DeleteMiniPicPath))
+                    {
+                        File.Delete(DeleteMiniPicPath);
+                    }
                 }
                 #endregion
 
@@ -242,7 +247,17 @@ namespace MyEMShop.Application.Services
                 }
                 #endregion
 
+                //====================================================================================================== Mini Pic
 
+                #region Mini Pic
+                string MiniPicPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MiniPic/", product.MainImageProduct);
+
+                using (Image image = Image.Load(MainPath))
+                {
+                    image.Mutate(x => x.Resize(50, 75));
+                    image.SaveAsync(MiniPicPath);
+                }
+                #endregion
                 product.MainImageProduct = MainFileName;
             }
 
@@ -277,7 +292,17 @@ namespace MyEMShop.Application.Services
                 }
                 #endregion
 
+                //=====================================================================================================
 
+                #region Mini Pic
+                string MiniPicPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MiniPic/", product.MainImageProduct);
+
+                using (Image image = Image.Load(Imagepath))
+                {
+                    image.Mutate(x => x.Resize(50, 75));
+                    image.SaveAsync(MiniPicPath);
+                }
+                #endregion
             }
             else
             {
@@ -291,6 +316,15 @@ namespace MyEMShop.Application.Services
                     image.Mutate(x => x.Resize(220, 330));
                     image.SaveAsync(OutputPath);
                 }
+                //====================================================================================================================
+
+                string MiniPicPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MiniPic/", product.MainImageProduct);
+
+                using (Image image = Image.Load(Imagepath))
+                {
+                    image.Mutate(x => x.Resize(50, 75));
+                    image.SaveAsync(MiniPicPath);
+                }
 
             }
         }
@@ -300,7 +334,7 @@ namespace MyEMShop.Application.Services
             _db.Colors.Add(new Data.Entities.Product.Color { ProductId = product.ProductId, PC_Name = color });
         }
 
-        public IList<ShowProductForIndex> ShowProduct(int pageid = 1, string Filter = "", string orderbytype = "featured",int take = 0)
+        public IList<ShowProductForIndex> ShowProduct(int pageid = 1, string Filter = "", string orderbytype = "featured", int take = 0)
         {
             if (take == 0)
             {
@@ -333,12 +367,12 @@ namespace MyEMShop.Application.Services
 
             return result
                 .Select(r => new ShowProductForIndex
-            {
-                ProductTitle= r.ProductTitle,
-                MainImageProduct=r.MainImageProduct,
-                ProductId=r.ProductId,
-                ProductPrice = r.ProductPrice,
-            }).Skip(skip)
+                {
+                    ProductTitle = r.ProductTitle,
+                    MainImageProduct = r.MainImageProduct,
+                    ProductId = r.ProductId,
+                    ProductPrice = r.ProductPrice,
+                }).Skip(skip)
               .Take(take)
               .ToList();
         }
