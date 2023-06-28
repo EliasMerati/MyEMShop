@@ -38,8 +38,7 @@ namespace MyEMShop.Data.Entities.Product
 
         [Display(Name = "قیمت محصول")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        [MaxLength(150)]
-        public string ProductPrice { get; set; }
+        public int ProductPrice { get; set; }
 
         [Display(Name = "توضیحات محصول")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]

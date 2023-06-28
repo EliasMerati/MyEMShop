@@ -407,5 +407,10 @@ namespace MyEMShop.Application.Services
                 .Include(p=> p.ProductImages)
                 .FirstOrDefault(p=> p.ProductId== productId);
         }
+
+        public Product GetProductByProductId(int productId)
+        {
+            return _db.Products.Find(productId);
+        }
     }
 }

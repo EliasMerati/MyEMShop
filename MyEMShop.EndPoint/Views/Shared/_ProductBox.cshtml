@@ -4,7 +4,7 @@
         <div class="image"><a href="/ShowProduct/@Model.ProductId"><img src="/Template/image/product/MainPicThumbnail/@Model.MainImageProduct" alt="@Model.ProductTitle" title="@Model.ProductTitle" class="img-responsive"></a></div>
         <div class="caption">
             <h4><a href="/ShowProduct/@Model.ProductId">@Model.ProductTitle</a></h4>
-            <p class="price"><span class="price-new">@Model.ProductPrice تومان</span> <span class="price-old">122000 تومان</span><span class="saving">-10%</span><span class="price-tax">بدون مالیات : @Model.ProductPrice تومان</span></p>
+            <p class="price"><span class="price-new">@Model.ProductPrice.ToString("N0") تومان</span> <span class="price-old">122000 تومان</span><span class="saving">-10%</span><span class="price-tax">بدون مالیات : @Model.ProductPrice.ToString("N0") تومان</span></p>
         </div>
         <div class="button-group">
             <button class="btn-primary" type="button" onclick=""><span>افزودن به سبد</span></button>

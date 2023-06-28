@@ -20,6 +20,7 @@ namespace MyEMShop.Application.Interfaces
         #region Product
         IEnumerable<GetProductForAdminDto> GetProducts();
         int AddProduct(Product product);
+        Product GetProductByProductId(int productId);
         void CreateProduct(List<IFormFile> images,Product product, IFormFile Demo, IFormFile Image, string color);
         void AddColorForProduct(string color , Product product);
         void SetMainImageForProduct(Product product, IFormFile Image);

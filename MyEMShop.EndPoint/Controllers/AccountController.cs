@@ -77,7 +77,7 @@ namespace MyEMShop.EndPoint.Controllers
 
         [HttpPost]
         [Route("Login")]
-        public IActionResult Login(LoginDto login)
+        public IActionResult Login(LoginDto login , string returnUrl = "/")
         {
             if (!ModelState.IsValid) { return View(login); }
             var user = _AccountServices.LoginUser(login);
@@ -94,6 +94,10 @@ namespace MyEMShop.EndPoint.Controllers
                     var Principal = new ClaimsPrincipal(identity);
                     var property = new AuthenticationProperties { IsPersistent = login.IsPersistence };
                     HttpContext.SignInAsync(Principal, property);
+                    if (returnUrl != "/")
+                    {
+                        return Redirect(returnUrl);
+                    }
                     return Redirect("/");
                 }
                 else
