@@ -344,7 +344,7 @@ namespace MyEMShop.Application.Services
             //============================================================== Filter
             if (Filter is not null)
             {
-                result = _db.Products.Where(p => p.ProductTitle.Contains(Filter));
+                result = result.Where(p => p.ProductTitle.Contains(Filter));
             }
              //=============================================================Groups
 
@@ -352,7 +352,7 @@ namespace MyEMShop.Application.Services
             {
                 foreach (var groupid in selectedgroup)
                 {
-                    result.Where(p => p.SubGroup == groupid || p.GroupId == groupid);
+                    result = result.Where(p => p.SubGroup == groupid || p.GroupId == groupid);
                 }
             }
             //============================================================== OrderBy
@@ -362,12 +362,12 @@ namespace MyEMShop.Application.Services
                     break;
                 case "latest":
                     {
-                        result = _db.Products.OrderByDescending(p => p.InsertDate);
+                        result = result.OrderByDescending(p => p.InsertDate);
                         break;
                     }
                 case "special":
                     {
-                        result = _db.Products.Where(p => p.Isspecial == true);
+                        result = result.Where(p => p.Isspecial == true);
                         break;
                     }
 

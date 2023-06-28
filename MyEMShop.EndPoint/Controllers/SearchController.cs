@@ -18,6 +18,7 @@ namespace MyEMShop.EndPoint.Controllers
         public IActionResult Index(int pageid = 1, string Filter = "", List<int> selectedgroup = null, string orderbytype = "featured", int take = 0)
         {
             ViewBag.pageid = pageid;
+            ViewBag.SelectedGroup = selectedgroup;
             ViewBag.Groups = _productService.GetGroups();
             return View(_productService.ShowProduct(pageid,Filter,selectedgroup,orderbytype,12));
         }
