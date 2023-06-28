@@ -345,7 +345,7 @@ namespace MyEMShop.Application.Services
             //============================================================== Filter
             if (Filter is not null)
             {
-                result = result.Where(p => p.ProductTitle.Contains(Filter));
+                result = result.Where(p => p.ProductTitle.Contains(Filter) || p.Tags.Contains(Filter));
             }
              //=============================================================Groups
 

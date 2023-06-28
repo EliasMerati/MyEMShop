@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyEMShop.Data.Entities.Order;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -81,6 +82,7 @@ namespace MyEMShop.Data.Entities.Product
 
         [ForeignKey(nameof(SubGroup))]
         public ProductGroup GroupSub { get; set; }
+        public ICollection<OrderDetail> OrderDetails { get; set; }
         public ICollection<ProductLevel> ProductLevels { get; set; }
         public ICollection<Color> Colors { get; set; }
         public ICollection<ProductImage> ProductImages { get; set; }

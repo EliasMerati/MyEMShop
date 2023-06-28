@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyEMShop.Data.Entities.Order;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -75,6 +76,7 @@ namespace MyEMShop.Data.Entities.User
         #region Navigation Property
         public ICollection<Wallet.Wallet> Wallets { get; set; }
         public ICollection<UserRole> UserRoles { get; set; }
+        public ICollection<Order.Order> Orders { get; set; }
         #endregion
     }
 }
