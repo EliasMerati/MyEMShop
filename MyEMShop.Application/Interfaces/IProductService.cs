@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MyEMShop.Data.Dtos.ProductDto;
 using MyEMShop.Data.Entities.Product;
+using System;
 using System.Collections.Generic;
 
 namespace MyEMShop.Application.Interfaces
@@ -27,7 +28,7 @@ namespace MyEMShop.Application.Interfaces
         void SetMultiImageForProduct(List<IFormFile> images, Product product);
         Product GetProductById(int productId);
         void UpdateProduct(Product product, IFormFile Demo, IFormFile Image);
-        IList<ShowProductForIndex> ShowProduct(int pageid =1 , string Filter = "",List<int> selectedgroup = null , string orderbytype = "all",int take = 0);
+        Tuple<List<ShowProductForIndex>,int> ShowProduct(int pageid =1 , string Filter = "",List<int> selectedgroup = null , string orderbytype = "all",int take = 0);
         #endregion
 
     }

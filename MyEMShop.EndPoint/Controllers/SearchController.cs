@@ -15,7 +15,7 @@ namespace MyEMShop.EndPoint.Controllers
         #endregion
 
 
-        public IActionResult Index(int pageid = 1, string Filter = "", List<int> selectedgroup = null, string orderbytype = "featured", int take = 0)
+        public IActionResult Index(int pageid = 1, string Filter = "", List<int> selectedgroup = null, string orderbytype = "featured", int take = 8)
         {
             ViewBag.pageid = pageid;
             ViewBag.SelectedGroup = selectedgroup;

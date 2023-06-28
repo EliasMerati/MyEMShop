@@ -1,12 +1,12 @@
 ﻿@using MyEMShop.Data.Entities.Product;
-@model IEnumerable<MyEMShop.Data.Dtos.ProductDto.ShowProductForIndex>
+@model Tuple<List<MyEMShop.Data.Dtos.ProductDto.ShowProductForIndex>,int>
 @{
     ViewData["Title"] = "جستجو";
 }
 
 <div class="container">
     <form action="/Search" id="FormSubmit" method="get">
-        <input type="hidden" name="pageid" value="@ViewBag.pageid.ToString()" />
+        <input type="hidden" id="pageid" name="pageid" value="@ViewBag.pageid.ToString()" />
 
         <!-- Breadcrumb Start-->
         <ul class="breadcrumb">
@@ -31,7 +31,7 @@
                         <select onchange="Change()" class="form-control" name="selectedgroup">
                             @foreach (var item in Groups.Where(g => g.ParentId is null))
                             {
-                                <option  value="@item.GroupId" >
+                                <option value="@item.GroupId">
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@item.GroupTitle
                                     @if (Groups.Any(p => p.ParentId == item.GroupId))
                                     {
@@ -98,22 +98,25 @@
                 <br>
                 <div class="row products-category">
 
-                    @foreach (var item in Model)
+                    @foreach (var item in Model.Item1)
                     {
                         <partial name="_ProductBox" model="@item" />
                     }
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6 text-left">
-                    <ul class="pagination">
-                        <li class="active"><span>1</span></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">&gt;</a></li>
-                        <li><a href="#">&gt;|</a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-6 text-right">نمایش 1 تا 12 از 15 (مجموع 2 صفحه)</div>
+                @if (Model.Item2 > 1)
+                {
+                    <div class="col-sm-6 text-center">
+                        <ul class="pagination">
+                            @for (int i = 1; i <= Model.Item2; i++)
+                            {
+                                <li onclick="ChangePage(@i)"><a href="#">@i</a></li>
+                            }
+
+                        </ul>
+                    </div>
+                }
             </div>
         </div>
         <!--Middle Part End -->
@@ -122,8 +125,14 @@
 
 
 <script>
+    function ChangePage(pageid) {
+        $("#pageid").val(pageid);
+        $("#FormSubmit").submit();
+    }
+    //=======================================
     function Change() {
         $("#FormSubmit").submit();
     }
 </script>
+
 

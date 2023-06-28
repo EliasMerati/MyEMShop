@@ -334,7 +334,7 @@ namespace MyEMShop.Application.Services
             _db.Colors.Add(new Data.Entities.Product.Color { ProductId = product.ProductId, PC_Name = color });
         }
 
-        public IList<ShowProductForIndex> ShowProduct(int pageid = 1, string Filter = "", List<int> selectedgroup = null, string orderbytype = "featured", int take = 0)
+        public Tuple<List<ShowProductForIndex>, int> ShowProduct(int pageid = 1, string Filter = "", List<int> selectedgroup = null, string orderbytype = "featured", int take = 0)
         {
             if (take == 0)
             {
@@ -372,9 +372,21 @@ namespace MyEMShop.Application.Services
                     }
 
             }
+
             int skip = (pageid - 1) * take;
 
-            return result
+            //================================================
+            int pagecount = result
+                .Select(r => new ShowProductForIndex
+                {
+                    ProductTitle = r.ProductTitle,
+                    MainImageProduct = r.MainImageProduct,
+                    ProductId = r.ProductId,
+                    ProductPrice = r.ProductPrice,
+                }).Count() / take;
+
+            //==================================================
+            var query = result
                 .Select(r => new ShowProductForIndex
                 {
                     ProductTitle = r.ProductTitle,
@@ -384,6 +396,8 @@ namespace MyEMShop.Application.Services
                 }).Skip(skip)
               .Take(take)
               .ToList();
+
+            return Tuple.Create(query,pagecount);
         }
     }
 }
