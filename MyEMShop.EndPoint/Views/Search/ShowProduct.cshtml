@@ -14,7 +14,7 @@
             <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="" itemprop="url"><span itemprop="title">@Model.ProductTitle</span></a></li>
         </ul>
 
-       
+
         <div class="row">
             <!--Middle Part Start-->
             <div id="content" class="col-sm-9">
@@ -25,7 +25,7 @@
                             <div class="image"><img class="img-responsive" itemprop="image" id="zoom_01" src="/Template/image/product/MainPic/@Model.MainImageProduct" title="@Model.ProductTitle" alt="@Model.ProductTitle" data-zoom-image="/Template/image/product/MainPic/@Model.MainImageProduct" /> </div>
                             <div class="center-block text-center"><span class="zoom-gallery"><i class="fa fa-search"></i> برای مشاهده گالری روی تصویر کلیک کنید</span></div>
                             <div class="image-additional" id="gallery_01">
-                               @foreach (var item in Model.ProductImages)
+                                @foreach (var item in Model.ProductImages)
                                 {
                                     <a class="thumbnail" style="height:60px;width:90px;" href="#" data-zoom-image="/Template/image/product/Image/@item.PI_ImageName" data-image="/Template/image/product/Image/@item.PI_ImageName" title="@item.PI_ImageName">
                                         <img src="/Template/image/product/Image/@item.PI_ImageName" title="@item.PI_ImageName" alt="@item.PI_ImageName" />
@@ -38,16 +38,23 @@
                                 <li><b>برند :</b> <a href="#"><span itemprop="brand">اپل</span></a></li>
                                 <li><b>کد محصول :</b> <span itemprop="mpn">محصولات 17</span></li>
                                 <li><b>امتیازات خرید:</b> 700</li>
-                                <li><b>وضعیت موجودی :</b> <span class="instock">موجود</span></li>
+                                @if (Model.PL_Id == 1)
+                                {
+                                    <li><b>وضعیت موجودی : </b> <span class="instock">موجود</span></li>
+                                }
+                                else if (Model.PL_Id == 2)
+                                {
+                                    <li><b>وضعیت موجودی : </b> <span class="nostock">ناموجود</span></li>
+                                }
                             </ul>
                             <ul class="price-box">
-                                <li class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer"><span class="price-old">12 میلیون تومان</span> <span itemprop="price">10 میلیون تومان<span itemprop="availability" content="موجود"></span></span></li>
+                                <li class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer"><span class="price-old">@Model.ProductPrice  تومان</span> <span itemprop="price">@Model.ProductPrice  تومان<span itemprop="availability" content="موجود"></span></span></li>
                                 <li></li>
-                                <li>بدون مالیات : 9 میلیون تومان</li>
+                                <li>بدون مالیات : @Model.ProductPrice تومان</li>
                             </ul>
                             <div id="product">
                                 <h3 class="subtitle">انتخاب های در دسترس</h3>
-                                <div class="form-group required">
+                                @*<div class="form-group required">
                                     <label class="control-label">رنگ</label>
                                     <select class="form-control" id="input-option200" name="option[200]">
                                         <option value=""> --- لطفا انتخاب کنید --- </option>
@@ -56,7 +63,7 @@
                                         <option value="1">سبز </option>
                                         <option value="2">آبی </option>
                                     </select>
-                                </div>
+                                </div>*@
                                 <div class="cart">
                                     <div>
                                         <div class="qty">
@@ -88,52 +95,20 @@
                     </div>
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#tab-description" data-toggle="tab">توضیحات</a></li>
-                        <li><a href="#tab-specification" data-toggle="tab">مشخصات</a></li>
-                        <li><a href="#tab-review" data-toggle="tab">بررسی (2)</a></li>
+                        <li><a href="#tab-specification" data-toggle="tab">بررسی محصول</a></li>
+                        <li><a href="#tab-review" data-toggle="tab">نظرات کاربران</a></li>
                     </ul>
                     <div class="tab-content">
                         <div itemprop="description" id="tab-description" class="tab-pane active">
                             <div>
-                                <p><b>پردازشگر اینتل core i7</b></p>
-                                <p>مک بوک جدید با پردازشگر اینتل core i7 از همیشه سریعتر ظاهر شده و آماده است که گوی سبقت را از رقبا بگیرد.</p>
-                                <p><b>16 گیگابایت رم و هارد دیسک های بزرگتر</b></p>
-                                <p>ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
-                                <p><b>طراحی خارق العاده و بی نظیر</b></p>
-                                <p>مک بوک در واقع ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
-                                <p><b>با دوربین i-Sight درون ساخت</b></p>
-                                <p>بدون نیاز به ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+                                <p>@Model.ProductDescription</p>
                             </div>
                         </div>
-                        <div id="tab-specification" class="tab-pane">
-                            <div id="tab-specification" class="tab-pane">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <td colspan="2"><strong>حافظه</strong></td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>تست 1</td>
-                                            <td>8gb</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <td colspan="2"><strong>پردازشگر</strong></td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>تعداد هسته</td>
-                                            <td>1</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                        <div id="tab-specification" class="tab-pane ">
+                            <div>
+                                <p>@Model.ProductCheck</p>
                             </div>
-                        </div>
+                    </div>
                         <div id="tab-review" class="tab-pane">
                             <form class="form-horizontal">
                                 <div id="review">
