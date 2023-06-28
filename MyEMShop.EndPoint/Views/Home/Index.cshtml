@@ -1,4 +1,4 @@
-﻿@model Tuple<List<MyEMShop.Data.Dtos.ProductDto.ShowProductForIndex>,int>
+﻿@model IEnumerable<MyEMShop.Data.Dtos.ProductDto.ShowProductForIndex>
 
 @{
     ViewData["Title"] = "خانه";
@@ -26,7 +26,7 @@
     <div id="tab-featured" class="tab_content">
         <div class="owl-carousel product_carousel_tab">
 
-            @foreach (var item in Model.Item1)
+            @foreach (var item in Model)
             {
                 <partial name="_ProductBox" model="@item" />
             }

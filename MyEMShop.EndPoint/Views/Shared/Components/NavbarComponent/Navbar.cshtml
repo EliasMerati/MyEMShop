@@ -9,7 +9,7 @@
                 @foreach (var group in Model.Where(g => g.ParentId is null))
                 {
                     <li class="dropdown">
-                        <a href="">@group.GroupTitle</a>
+                        <a href="/Search?SelectedGroup=@group.GroupId">@group.GroupTitle</a>
                         @if (Model.Any(g => g.ParentId == group.GroupId))
                         {
                             <div class="dropdown-menu">
@@ -17,7 +17,7 @@
                                     @foreach (var sub in Model.Where(g => g.ParentId == group.GroupId))
                                     {
                                         <li class="dropdown">
-                                            <a href="">@sub.GroupTitle<span>&rsaquo;</span></a>
+                                            <a href="/Search?SelectedGroup=@sub.GroupId">@sub.GroupTitle<span>&rsaquo;</span></a>
                                             @if (Model.Any(g=>g.ParentId == sub.GroupId))
                                             {
                                                 <div class="dropdown-menu">
@@ -25,7 +25,7 @@
                                                         @foreach (var sub2 in Model.Where(g => g.ParentId == sub.GroupId))
                                                         {
                                                             <li class="dropdown">
-                                                                <a href="">@sub2.GroupTitle <span>&rsaquo;</span></a>
+                                                                <a href="/Search?SelectedGroup=@sub2.GroupId">@sub2.GroupTitle <span>&rsaquo;</span></a>
                                                                 @if (Model.Any(g=>g.ParentId == sub2.GroupId))
                                                                 {
                                                                     <div class="dropdown-menu">
@@ -33,7 +33,7 @@
                                                                             @foreach (var sub3 in Model.Where(g => g.ParentId == sub2.GroupId))
                                                                             {
                                                                                 <li class="dropdown">
-                                                                                    <a href="">@sub3.GroupTitle<span>&rsaquo;</span></a>
+                                                                                    <a href="/Search?SelectedGroup=@sub3.GroupId">@sub3.GroupTitle<span>&rsaquo;</span></a>
                                                                                 </li>
                                                                             }
                                                                         </ul>
