@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Common;
 using MyEMShop.Data.Context;
@@ -398,6 +399,13 @@ namespace MyEMShop.Application.Services
               .ToList();
 
             return Tuple.Create(query,pagecount);
+        }
+
+        public Product GetProductForShow(int productId)
+        {
+            return _db.Products
+                .Include(p=> p.ProductImages)
+                .FirstOrDefault(p=> p.ProductId== productId);
         }
     }
 }
