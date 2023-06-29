@@ -66,7 +66,7 @@ namespace MyEMShop.Application.Services
 
         public int GetUserIdByUserName(string userName)
         {
-            return _db.Users.Single(u => u.UserName == userName).UserId;
+            return _db.Users.SingleOrDefault(u => u.UserName == userName).UserId;
         }
         public int BalanceWallet(string userName)
         {

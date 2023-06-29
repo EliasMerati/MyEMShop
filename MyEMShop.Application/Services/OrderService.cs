@@ -1,6 +1,8 @@
-﻿using MyEMShop.Application.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Context;
 using MyEMShop.Data.Entities.Order;
+using MyEMShop.Data.Entities.Wallet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +11,20 @@ namespace MyEMShop.Application.Services
 {
     public class OrderService : IOrderService
     {
-        #region Inject Database
+        #region Injection
         private readonly DatabaseContext _db;
         private readonly IUserPannelService _userPannel;
         private readonly IProductService _productService;
-        public OrderService(DatabaseContext db, IUserPannelService userPannel, IProductService productService)
+        private readonly IUserWalletService _userWallet;
+        public OrderService(DatabaseContext db
+            , IUserPannelService userPannel
+            , IProductService productService
+            , IUserWalletService userWallet)
         {
             _db = db;
             _userPannel = userPannel;
             _productService = productService;
+            _userWallet = userWallet;
         }
         #endregion
 
@@ -75,6 +82,42 @@ namespace MyEMShop.Application.Services
             }
             
             return order.OrderId;
+        }
+
+        public bool FinallyOrder(string userName, int orderId)
+        {
+            int userId = _userPannel.GetUserIdByUserName(userName);
+
+            var order = _db.Orders.Include(o => o.OrderDetails).ThenInclude(od => od.Product)
+                .FirstOrDefault(o => o.UserId == userId && o.OrderId == orderId);
+
+            if (order is null || order.IsFinally) { return false; }
+
+            if(_userPannel.BalanceWallet(userName) >= order.OrderSum)
+            {
+                order.IsFinally = true;
+                _userWallet.AddWallet(new Wallet()
+                {
+                    Amount= order.OrderSum,
+                    CreateDate = DateTime.Now,
+                    Description = "فاکتور شماره ی #" +order.OrderId,
+                    IsPay=true,
+                    UserId =userId,
+                    TypeId = 2,
+                });
+                _db.Update(order);
+                _db.SaveChanges();
+                return true;
+            }
+
+            return false;
+        }
+
+        public Order GetOrderForUserPannel(string userName, int orderId)
+        {
+            int userId = _userPannel.GetUserIdByUserName(userName);
+            return _db.Orders.Include(o=> o.OrderDetails).ThenInclude(od=> od.Product)
+                .FirstOrDefault(o => o.UserId == userId && o.OrderId == orderId);
         }
 
         public void UpdatePriceOrder(int orderId)

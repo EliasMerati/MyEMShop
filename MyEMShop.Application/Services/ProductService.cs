@@ -405,6 +405,7 @@ namespace MyEMShop.Application.Services
         {
             return _db.Products
                 .Include(p=> p.ProductImages)
+                .Include(p=> p.Colors)
                 .FirstOrDefault(p=> p.ProductId== productId);
         }
 

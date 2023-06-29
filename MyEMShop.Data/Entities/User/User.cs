@@ -66,6 +66,7 @@ namespace MyEMShop.Data.Entities.User
         public string PostalCode { get; set; }
 
         [Display(Name = "تاریخ ثبت نام")]
+        [MaxLength(300)]
         public DateTime RegisterDate { get; set; }
 
         [Display(Name = "حذف شده")]

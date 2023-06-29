@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MyEMShop.Application.Interfaces;
 using System.Collections.Generic;
 
@@ -8,9 +9,11 @@ namespace MyEMShop.EndPoint.Controllers
     {
         #region Inject Service
         private readonly IProductService _productService;
-        public SearchController(IProductService productService)
+        private readonly IOrderService _orderService;
+        public SearchController(IProductService productService,IOrderService orderService)
         {
             _productService = productService;
+            _orderService = orderService;
         }
         #endregion
 
@@ -32,6 +35,13 @@ namespace MyEMShop.EndPoint.Controllers
                 return Redirect("NotFound");
             }
             return View(product);
+        }
+
+        [Authorize]
+        public IActionResult BuyProduct(int id)
+        {
+            int orderId = _orderService.AddOrder(User.Identity.Name, id);
+            return Redirect("/UserPannel/Order/ShowOrder/" + orderId);
         }
     }
 

@@ -53,15 +53,14 @@
                                 <li>بدون مالیات : @Model.ProductPrice.ToString("N0") تومان</li>
                             </ul>
                             <div id="product">
-                                @*<h3 class="subtitle">انتخاب های در دسترس</h3>*@
-                                @*<div class="form-group required">
+@*                                <h3 class="subtitle">انتخاب های در دسترس</h3>
+                                <div class="form-group required">
                                 <label class="control-label">رنگ</label>
                                 <select class="form-control" id="input-option200" name="option[200]">
-                                <option value=""> --- لطفا انتخاب کنید --- </option>
-                                <option value="4">مشکی </option>
-                                <option value="3">نقره ای </option>
-                                <option value="1">سبز </option>
-                                <option value="2">آبی </option>
+                                        @foreach (var item in Model.Colors)
+                                        {
+                                            <option value="">@item.PC_Name </option>
+                                        }
                                 </select>
                                 </div>*@
                                 <div class="cart">
@@ -73,7 +72,7 @@
                                             <a class="qtyBtn mines" href="javascript:void(0);">-</a>
                                             <div class="clear"></div>
                                         </div>
-                                        <button type="button" id="button-cart" class="btn btn-primary btn-lg">افزودن به سبد</button>
+                                        <a href="/Search/BuyProduct/@Model.ProductId" id="button-cart" class="btn btn-primary btn-lg">افزودن به سبد</a>
                                     </div>
                                     <div>
                                         <button type="button" class="wishlist" onClick=""><i class="fa fa-heart"></i> افزودن به علاقه مندی ها</button>

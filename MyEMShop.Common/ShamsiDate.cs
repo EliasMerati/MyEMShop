@@ -7,7 +7,7 @@ namespace MyEMShop.Common
     {
         public static string ToShamsi(this DateTime value)
         {
-            PersianCalendar pc = new PersianCalendar();
+            PersianCalendar pc = new();
             return pc.GetYear(value) + "/" 
                  + pc.GetMonth(value).ToString("00") + "/" 
                  + pc.GetDayOfMonth(value).ToString("00");
