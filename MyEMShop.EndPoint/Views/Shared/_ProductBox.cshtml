@@ -1,18 +1,22 @@
 ﻿@model MyEMShop.Data.Dtos.ProductDto.ShowProductForIndex
-
+@{
+    int newprice = Model.ProductPrice - (Model.ProductPrice * Model.Save / 100);
+}
 <div class="product-thumb">
     <div class="image"><a href="/ShowProduct/@Model.ProductId"><img src="/Template/image/product/MainPicThumbnail/@Model.MainImageProduct" alt="@Model.ProductTitle" title="@Model.ProductTitle" class="img-responsive"></a></div>
     <div class="caption">
         <h4><a href="/ShowProduct/@Model.ProductId">@Model.ProductTitle</a></h4>
         <p class="price">
-            <span class="price-new">@Model.ProductPrice.ToString("N0") تومان</span>
-
-                <span class="price-old">@*@Model.OldPrice.ToString("N0") تومان*@ </span>
-
-
+            
             @if (Model.Save != 0)
             {
+                <span class="price-old">@Model.ProductPrice.ToString("N0") تومان</span>
+                <span class="price-new">@newprice.ToString("N0") تومان</span>
                 <span class="saving">@Model.Save %</span>
+            }
+            else
+            {
+                <span class="price-new">@Model.ProductPrice.ToString("N0") تومان</span>
             }
         </p>
         
