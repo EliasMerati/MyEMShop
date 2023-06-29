@@ -1,22 +1,28 @@
 ﻿@model MyEMShop.Data.Dtos.ProductDto.ShowProductForIndex
-<div class="product-layout product-grid col-lg-3 col-md-3 col-sm-4 col-xs-12">
-    <div class="product-thumb clearfix">
-        <div class="image"><a href="/ShowProduct/@Model.ProductId"><img src="/Template/image/product/MainPicThumbnail/@Model.MainImageProduct" alt="@Model.ProductTitle" title="@Model.ProductTitle" class="img-responsive"></a></div>
-        <div class="caption">
-            <h4><a href="/ShowProduct/@Model.ProductId">@Model.ProductTitle</a></h4>
-            <p class="price"><span class="price-new">@Model.ProductPrice.ToString("N0") تومان</span> <span class="price-old">122000 تومان</span><span class="saving">-10%</span><span class="price-tax">بدون مالیات : @Model.ProductPrice.ToString("N0") تومان</span></p>
-        </div>
-        <div class="button-group">
-            <button class="btn-primary" type="button" onclick=""><span>افزودن به سبد</span></button>
-            <div class="add-to-links">
-                <button type="button" data-toggle="tooltip" title="افزودن به علاقه مندی ها" onClick=""><i class="fa fa-heart"></i></button>
-                <button type="button" data-toggle="tooltip" title="مقایسه این محصول" onClick=""><i class="fa fa-exchange"></i></button>
-            </div>
+
+<div class="product-thumb">
+    <div class="image"><a href="/ShowProduct/@Model.ProductId"><img src="/Template/image/product/MainPicThumbnail/@Model.MainImageProduct" alt="@Model.ProductTitle" title="@Model.ProductTitle" class="img-responsive"></a></div>
+    <div class="caption">
+        <h4><a href="/ShowProduct/@Model.ProductId">@Model.ProductTitle</a></h4>
+        <p class="price">
+            <span class="price-new">@Model.ProductPrice.ToString("N0") تومان</span>
+            @if (Model.OldPrice != 0)
+            {
+                <span class="price-old">@Model.OldPrice.ToString("N0") تومان </span>
+            }
+
+            @if (Model.Save != 0)
+            {
+                <span class="saving">@Model.Save%</span>
+            }
+        </p>
+        <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> </div>
+    </div>
+    <div class="button-group">
+        <button class="btn-primary" type="button" onclick=""><span>افزودن به سبد</span></button>
+        <div class="add-to-links">
+            <button type="button" data-toggle="tooltip" title="" onclick="" data-original-title="افزودن به علاقه مندی"><i class="fa fa-heart"></i></button>
+            <button type="button" data-toggle="tooltip" title="" onclick="" data-original-title="افزودن به مقایسه"><i class="fa fa-exchange"></i></button>
         </div>
     </div>
 </div>
-
-
-
-
-

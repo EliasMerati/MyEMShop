@@ -47,6 +47,12 @@ namespace MyEMShop.Data.Entities.Product
         [Display(Name = "بررسی محصول")]
         public string ProductCheck { get; set; }
 
+        [Display(Name = "تخفیف محصول")]
+        public int Save { get; set; }
+
+        [Display(Name = "قیمت قبل محصول")]
+        public int OldPrice { get; set; }
+
         [Display(Name = "تگ ها")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(600)]

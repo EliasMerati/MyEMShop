@@ -259,6 +259,7 @@ namespace MyEMShop.Application.Services
                     image.SaveAsync(MiniPicPath);
                 }
                 #endregion
+
                 product.MainImageProduct = MainFileName;
             }
 

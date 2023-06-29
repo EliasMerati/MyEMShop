@@ -48,9 +48,13 @@
                                 }
                             </ul>
                             <ul class="price-box">
-                                <li class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer"><span class="price-old">@Model.ProductPrice.ToString("N0")  تومان</span> <span itemprop="price">@Model.ProductPrice.ToString("N0")  تومان<span itemprop="availability" content="موجود"></span></span></li>
-                                <li></li>
-                                <li>بدون مالیات : @Model.ProductPrice.ToString("N0") تومان</li>
+                                <li class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                   @if (Model.OldPrice != 0)
+                                    {
+                                        <span class="price-old"> @Model.OldPrice.ToString("N0") تومان</span>
+                                    } 
+                                    <span itemprop="price">@Model.ProductPrice.ToString("N0")  تومان<span itemprop="availability" content="موجود"></span></span></li>                                
+                                @*<li>بدون مالیات : @Model.ProductPrice.ToString("N0") تومان</li>*@
                             </ul>
                             <div id="product">
 @*                                <h3 class="subtitle">انتخاب های در دسترس</h3>

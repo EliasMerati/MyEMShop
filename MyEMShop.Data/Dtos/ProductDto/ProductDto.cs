@@ -1,4 +1,7 @@
-﻿namespace MyEMShop.Data.Dtos.ProductDto
+﻿using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
+
+namespace MyEMShop.Data.Dtos.ProductDto
 {
     public record GetProductForAdminDto
     {
@@ -15,5 +18,7 @@
         public string ProductTitle { get; set; }
         public int ProductPrice { get; set; }
         public string MainImageProduct { get; set; }
+        public int Save { get; set; }
+        public int OldPrice { get; set; }
     }
 }
