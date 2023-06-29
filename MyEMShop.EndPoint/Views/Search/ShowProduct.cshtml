@@ -54,20 +54,26 @@
                                     {
                                         <span class="price-old"> @Model.ProductPrice.ToString("N0")  تومان</span>
                                     }
-                                        
-                                    
-                                    <span itemprop="price">@newprice.ToString("N0") تومان<span itemprop="availability" content="موجود"></span></span></li>                                
+
+
+                                    <span itemprop="price">
+                                        @newprice.ToString("N0") تومان
+                                        <span itemprop="availability" content="موجود">
+
+                                        </span>
+                                    </span>
+                                </li>
                                 @*<li>بدون مالیات : @Model.ProductPrice.ToString("N0") تومان</li>*@
                             </ul>
                             <div id="product">
-@*                                <h3 class="subtitle">انتخاب های در دسترس</h3>
+                                @*                                <h3 class="subtitle">انتخاب های در دسترس</h3>
                                 <div class="form-group required">
                                 <label class="control-label">رنگ</label>
                                 <select class="form-control" id="input-option200" name="option[200]">
-                                        @foreach (var item in Model.Colors)
-                                        {
-                                            <option value="">@item.PC_Name </option>
-                                        }
+                                @foreach (var item in Model.Colors)
+                                {
+                                <option value="">@item.PC_Name </option>
+                                }
                                 </select>
                                 </div>*@
                                 <div class="cart">
@@ -371,7 +377,7 @@
                 @if (Model.Tags != null)
                 {
                     <div class="tag">
-                        @foreach (string tag in Model.Tags.Split('-',StringSplitOptions.RemoveEmptyEntries))
+                        @foreach (string tag in Model.Tags.Split('-', StringSplitOptions.RemoveEmptyEntries))
                         {
                             <a href="/Search?filter=@tag">@tag</a>
                         }
