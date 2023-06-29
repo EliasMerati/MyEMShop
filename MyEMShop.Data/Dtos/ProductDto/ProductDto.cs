@@ -19,6 +19,5 @@ namespace MyEMShop.Data.Dtos.ProductDto
         public int ProductPrice { get; set; }
         public string MainImageProduct { get; set; }
         public int Save { get; set; }
-        public int OldPrice { get; set; }
     }
 }

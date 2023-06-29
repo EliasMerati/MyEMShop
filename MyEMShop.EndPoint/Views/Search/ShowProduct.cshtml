@@ -2,6 +2,7 @@
 @model Product
 @{
     ViewData["Title"] = Model.ProductTitle;
+    int newprice = Model.ProductPrice - (Model.ProductPrice * Model.Save / 100);
 }
 
 
@@ -49,11 +50,13 @@
                             </ul>
                             <ul class="price-box">
                                 <li class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                                   @if (Model.OldPrice != 0)
+                                    @if (Model.Save != 0)
                                     {
-                                        <span class="price-old"> @Model.OldPrice.ToString("N0") تومان</span>
-                                    } 
-                                    <span itemprop="price">@Model.ProductPrice.ToString("N0")  تومان<span itemprop="availability" content="موجود"></span></span></li>                                
+                                        <span class="price-old"> @Model.ProductPrice.ToString("N0")  تومان</span>
+                                    }
+                                        
+                                    
+                                    <span itemprop="price">@newprice.ToString("N0") تومان<span itemprop="availability" content="موجود"></span></span></li>                                
                                 @*<li>بدون مالیات : @Model.ProductPrice.ToString("N0") تومان</li>*@
                             </ul>
                             <div id="product">
@@ -87,7 +90,51 @@
                             </div>
                             <div class="rating" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
                                 <meta itemprop="ratingValue" content="0" />
-                                <p><span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span> <a onClick="$('a[href=\'#tab-review\']').trigger('click'); return false;" href=""><span itemprop="reviewCount">1 بررسی</span></a> / <a onClick="$('a[href=\'#tab-review\']').trigger('click'); return false;" href="">یک بررسی بنویسید</a></p>
+                                <p>
+                                    <span class="fa fa-stack">
+                                        <i class="fa fa-star fa-stack-1x">
+
+                                        </i>
+                                        <i class="fa fa-star-o fa-stack-1x">
+
+                                        </i>
+                                    </span>
+                                    <span class="fa fa-stack">
+                                        <i class="fa fa-star fa-stack-1x">
+
+                                        </i>
+                                        <i class="fa fa-star-o fa-stack-1x">
+
+                                        </i>
+                                    </span>
+                                    <span class="fa fa-stack">
+                                        <i class="fa fa-star fa-stack-1x">
+
+                                        </i>
+                                        <i class="fa fa-star-o fa-stack-1x">
+
+                                        </i>
+                                    </span> <span class="fa fa-stack">
+                                        <i class="fa fa-star fa-stack-1x">
+
+                                        </i>
+                                        <i class="fa fa-star-o fa-stack-1x">
+
+                                        </i>
+                                    </span>
+                                    <span class="fa fa-stack">
+                                        <i class="fa fa-star-o fa-stack-1x">
+
+                                        </i>
+                                    </span>
+                                    <a onClick="$('a[href=\'#tab-review\']').trigger('click'); return false;" href="">
+                                        <span itemprop="reviewCount">
+                                            1 بررسی
+                                        </span>
+                                    </a>
+                                    /
+                                    <a onClick="$('a[href=\'#tab-review\']').trigger('click'); return false;" href="">یک بررسی بنویسید</a>
+                                </p>
                             </div>
                             <hr>
                             <!-- AddThis Button BEGIN -->

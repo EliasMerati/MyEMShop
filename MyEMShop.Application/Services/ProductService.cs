@@ -385,6 +385,7 @@ namespace MyEMShop.Application.Services
                     MainImageProduct = r.MainImageProduct,
                     ProductId = r.ProductId,
                     ProductPrice = r.ProductPrice,
+                    Save = r.Save,
                 }).Count() / take;
 
             //==================================================
@@ -395,6 +396,7 @@ namespace MyEMShop.Application.Services
                     MainImageProduct = r.MainImageProduct,
                     ProductId = r.ProductId,
                     ProductPrice = r.ProductPrice,
+                    Save = r.Save,
                 }).Skip(skip)
               .Take(take)
               .ToList();

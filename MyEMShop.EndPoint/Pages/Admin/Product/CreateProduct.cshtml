@@ -63,6 +63,11 @@
                             <span asp-validation-for="product.ProductPrice"></span>
                         </div>
                         <div class="form-group">
+                            <label>درصد تخفیف محصول</label>
+                            <input type="number" asp-for="product.Save" value="0" class="form-control">
+                            <span asp-validation-for="product.Save"></span>
+                        </div>
+                        <div class="form-group">
                             <label>بررسی محصول</label>
                             <textarea type="text" asp-for="product.ProductCheck" rows="10" class="form-control"></textarea>
                             <span asp-validation-for="product.ProductCheck"></span>
