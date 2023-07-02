@@ -1,4 +1,5 @@
 ﻿using MyEMShop.Data.Entities.Order;
+using System.Collections.Generic;
 
 namespace MyEMShop.Application.Interfaces
 {
@@ -8,5 +9,6 @@ namespace MyEMShop.Application.Interfaces
         void UpdatePriceOrder(int orderId);
         Order GetOrderForUserPannel(string userName, int orderId);
         bool FinallyOrder(string userName, int orderId);
+        IList<Order> GetUserOrders(string userName);
     }
 }

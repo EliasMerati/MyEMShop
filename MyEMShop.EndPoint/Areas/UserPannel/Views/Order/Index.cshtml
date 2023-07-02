@@ -1,0 +1,64 @@
+﻿@using MyEMShop.Data.Entities.Order
+@model IEnumerable<Order>
+@{
+    ViewData["Title"] = "فاکتور های من";
+}
+
+<div id="container">
+    <div class="container">
+        <!-- Breadcrumb Start-->
+        <ul class="breadcrumb">
+            <li><a href="index.html"><i class="fa fa-home"></i></a></li>
+            <li><a href="cart.html">فاکتور های من</a></li>
+        </ul>
+        <!-- Breadcrumb End-->
+        <div class="row">
+            <!--Middle Part Start-->
+            <div id="content" class="col-sm-12">
+                <h1 class="title">مشاهده ی فاکتور ها</h1>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <td class="text-center">کد فاکتور</td>
+                                <td class="text-left">تاریخ فاکتور</td>
+                                <td class="text-left">جمع</td>
+                                <td class="text-right">وضعیت پرداخت</td>
+                                <td class="text-right">دستورات</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="text-center">@item.OrderId</td>
+                                    <td class="text-left">
+                                        @item.OrderDate.ToShamsi()
+                                    </td>
+                                    <td class="text-left">
+                                        @item.OrderSum.ToString("N0") تومان
+                                    </td>
+                                    <td class="text-right">
+                                        @if (item.IsFinally)
+                                        {
+                                            <p class="text text-success">پرداخت شده</p>
+                                        }
+                                        else
+                                        {
+                                            <p class="text text-danger">پرداخت نشده</p>
+                                        }
+
+                                    </td>
+                                    <td class="text-right">
+                                        <a href="/UserPannel/Order/ShowOrder/@item.OrderId" class="btn btn-info"> نمایش فاکتور</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--Middle Part End -->
+        </div>
+    </div>
+</div>

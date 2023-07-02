@@ -19,7 +19,7 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(_orderService.GetUserOrders(User.Identity.Name));
         }
 
         public IActionResult ShowOrder(int id,bool finall=false)

@@ -120,6 +120,12 @@ namespace MyEMShop.Application.Services
                 .FirstOrDefault(o => o.UserId == userId && o.OrderId == orderId);
         }
 
+        public IList<Order> GetUserOrders(string userName)
+        {
+            int userId = _userPannel.GetUserIdByUserName(userName);
+            return _db.Orders.Where(o => o.UserId == userId).ToList();
+        }
+
         public void UpdatePriceOrder(int orderId)
         {
             var order = _db.Orders.Find(orderId);

@@ -32,6 +32,7 @@ namespace MyEMShop.Data.Context
         #region Order
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<Discount> Discounts { get; set; }
         #endregion
 
         #region product

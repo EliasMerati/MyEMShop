@@ -36,7 +36,8 @@ namespace MyEMShop.Application.Services
 
         public ShowUserInfoForEditPannelDto GetInfoForEdit(string userName)
         {
-            return _db.Users.Where(u => u.UserName == userName).Select(u => new ShowUserInfoForEditPannelDto
+            return _db.Users.Where(u => u.UserName == userName)
+                .Select(u => new ShowUserInfoForEditPannelDto
             {
                 Address = u.Address,
                 City = u.City,
@@ -61,6 +62,7 @@ namespace MyEMShop.Application.Services
             info.Name = user.Name;
             info.PostalCode = user.PostalCode;
             info.Wallet = BalanceWallet(userName);
+            info.RegisterDate = user.RegisterDate;
             return info;
         }
 
@@ -112,6 +114,7 @@ namespace MyEMShop.Application.Services
             info.Name = user.Name;
             info.PostalCode = user.PostalCode;
             info.Wallet = BalanceWallet(user.UserName);
+            info.RegisterDate= user.RegisterDate;
             return info;
         }
         public ShowUserInformationForPannelDto GetUserRefreshInfo(int userId)
