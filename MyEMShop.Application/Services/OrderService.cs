@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Context;
+using MyEMShop.Data.Dtos.Order;
 using MyEMShop.Data.Entities.Order;
 using MyEMShop.Data.Entities.Wallet;
 using System;
@@ -113,6 +114,16 @@ namespace MyEMShop.Application.Services
             return false;
         }
 
+        public Discount GetDiscount(string code)
+        {
+            return _db.Discounts.SingleOrDefault(d => d.DiscountCode == code);
+        }
+
+        public Order GetOrderById(int orderId)
+        {
+            return _db.Orders.Find(orderId);
+        }
+
         public Order GetOrderForUserPannel(string userName, int orderId)
         {
             int userId = _userPannel.GetUserIdByUserName(userName);
@@ -126,12 +137,45 @@ namespace MyEMShop.Application.Services
             return _db.Orders.Where(o => o.UserId == userId).ToList();
         }
 
+        public void UpdateOrder(Order order)
+        {
+            _db.Orders.Update(order);
+            _db.SaveChanges();
+        }
+
         public void UpdatePriceOrder(int orderId)
         {
             var order = _db.Orders.Find(orderId);
             order.OrderSum = _db.OrderDetails.Where(o => o.OrderId == order.OrderId).Sum(d => d.Price);
             _db.Update(order);
             _db.SaveChanges();
+        }
+
+        public DiscountUseType UseDiscount(int orderId, string code)
+        {
+            var discount = GetDiscount(code);
+
+            if (discount is null) { return DiscountUseType.NotFound; }
+
+            if (discount.StartDate != null && discount.StartDate< DateTime.Now) { return DiscountUseType.ExpireDate; }
+
+            if (discount.EndDate != null && discount.EndDate >= DateTime.Now) { return DiscountUseType.ExpireDate; }
+
+            if (discount.UsableCount != null && discount.UsableCount < 1) { return DiscountUseType.Finished; }
+
+            var order = GetOrderById(orderId);
+            int percent = (order.OrderSum * discount.DiscountPercent) / 100;
+            order.OrderSum = order.OrderSum - percent;
+            _db.Update(order);
+
+            if (discount.UsableCount != null)
+            {
+                discount.UsableCount -= 1;
+            }
+            _db.Discounts.Update(discount);
+            _db.SaveChanges();
+
+            return DiscountUseType.Success;
         }
     }
 }

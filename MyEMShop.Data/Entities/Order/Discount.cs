@@ -15,7 +15,7 @@ namespace MyEMShop.Data.Entities.Order
 
         [Display(Name = "درصد تخفیف")]
         [Required]
-        public int Percent { get; set; }
+        public int DiscountPercent { get; set; }
 
         [Display(Name = "تعداد استفاده کنندگان از تخفیف")]
         public int? UsableCount { get; set; }

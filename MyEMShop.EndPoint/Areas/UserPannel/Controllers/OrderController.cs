@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyEMShop.Application.Interfaces;
+using MyEMShop.Data.Dtos.Order;
 
 namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
 {
@@ -37,9 +38,16 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
         {
             if (_orderService.FinallyOrder(User.Identity.Name , id))
             {
-                return Redirect("/UserPannel/Order/" + id + "?finall = true");
+                return Redirect("/UserPannel/Order/ShowOrder/" + id + "?finall = true");
             }
             return BadRequest();
+        }
+
+        public IActionResult UseDiscount(int orderId , string code)
+        {
+            ViewBag.code = code;
+            DiscountUseType type = _orderService.UseDiscount(orderId, code);
+            return Redirect("/UserPannel/Order/ShowOrder/"+ orderId +"?Type =" + type.ToString());
         }
     }
 }
