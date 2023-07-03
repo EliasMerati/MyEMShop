@@ -78,6 +78,7 @@ namespace MyEMShop.Data.Entities.User
         public ICollection<Wallet.Wallet> Wallets { get; set; }
         public ICollection<UserRole> UserRoles { get; set; }
         public ICollection<Order.Order> Orders { get; set; }
+        public ICollection<UserDiscountCode> UserDiscountCodes { get; set; }
         #endregion
     }
 }

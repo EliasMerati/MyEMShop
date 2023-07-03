@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MyEMShop.Data.Entities.User;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace MyEMShop.Data.Entities.Order
@@ -25,5 +28,9 @@ namespace MyEMShop.Data.Entities.Order
 
         [Display(Name = "تاریخ پایان تخفیف")]
         public DateTime? EndDate { get; set; }
+
+        #region Relations
+        public ICollection<UserDiscountCode> UserDiscountCodes { get; set; }
+        #endregion
     }
 }
