@@ -23,13 +23,14 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
             return View(_orderService.GetUserOrders(User.Identity.Name));
         }
 
-        public IActionResult ShowOrder(int id,bool finall=false)
+        public IActionResult ShowOrder(int id,bool finall=false , string type ="")
         {
             var order = _orderService.GetOrderForUserPannel(User.Identity.Name, id);
             if (order is null)
             {
                 return Redirect("NotFound");
             }
+            ViewBag.TypeDiscount = type;
             ViewBag.final = finall;
             return View(order);
         }

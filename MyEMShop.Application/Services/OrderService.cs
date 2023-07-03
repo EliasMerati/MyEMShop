@@ -164,6 +164,9 @@ namespace MyEMShop.Application.Services
             if (discount.UsableCount != null && discount.UsableCount < 1) { return DiscountUseType.Finished; }
 
             var order = GetOrderById(orderId);
+
+            if (_db.UserDiscountCodes.Any(d=> d.UserId == order.UserId && d.DiscountId == discount.DiscountId)) { return DiscountUseType.UserUsed; }
+
             int percent = (order.OrderSum * discount.DiscountPercent) / 100;
             order.OrderSum = order.OrderSum - percent;
             _db.Update(order);
@@ -173,6 +176,13 @@ namespace MyEMShop.Application.Services
                 discount.UsableCount -= 1;
             }
             _db.Discounts.Update(discount);
+
+            _db.UserDiscountCodes.Add(new Data.Entities.User.UserDiscountCode
+            {
+                DiscountId= discount.DiscountId,
+                UserId= order.UserId,
+            });
+
             _db.SaveChanges();
 
             return DiscountUseType.Success;
