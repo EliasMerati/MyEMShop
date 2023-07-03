@@ -30,10 +30,10 @@
                         </div>
                         <input type="submit" value="شارژ کیف پول" class="btn btn-primary">
                     </form>
-                   <hr />
-                   @{
+                    <hr />
+                    @{
                         IList<ShowWalletDto> list = ViewBag.Wallets as IList<ShowWalletDto>;
-                   }
+                    }
                     <p><strong>تاریخچه ی کیف پول</strong></p>
                     <div class="table-responsive">
                         <table class="table table-hover">
@@ -49,7 +49,7 @@
                                 @foreach (var item in list)
                                 {
                                     <tr>
-                                        <th >@item.Amount.ToString("#,0 تومان")</th>
+                                        <th>@item.Amount.ToString("#,0 تومان")</th>
                                         <td>@item.CreateDate.ToShamsi()</td>
                                         <td>
                                             @if (item.TypeId == 1)
@@ -58,10 +58,15 @@
                                             }
                                             else
                                             {
-                                                  <p class="text-danger"> برداشت</p>  
+                                                <p class="text-danger"> برداشت</p>
                                             }
                                         </td>
-                                        <td>@item.Description</td>
+                                        <td>
+                                            @{
+                                                string TagHref = "<a href='/UserPannel/Order/ShowOrder/" + item.Description.Replace("فاکتور شماره ی #", "") + "'>#</a>";
+                                            }
+                                            @item.Description.Replace("#",TagHref)
+                                        </td>
                                     </tr>
                                 }
                             </tbody>
@@ -69,8 +74,8 @@
                     </div>
                 </aside>
             </div>
-                
-            
+
+
 
             <!--Right Part Start -->
             <partial name="_SideBar" />

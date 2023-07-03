@@ -45,7 +45,7 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
 
         public IActionResult UseDiscount(int orderId , string code)
         {
-            ViewBag.code = code;
+            ViewBag.discount = _orderService.GetDiscount(code);
             DiscountUseType type = _orderService.UseDiscount(orderId, code);
             return Redirect("/UserPannel/Order/ShowOrder/"+ orderId +"?Type =" + type.ToString());
         }
