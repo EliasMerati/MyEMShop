@@ -27,8 +27,15 @@ namespace MyEMShop.Application.Services
             _productService = productService;
             _userWallet = userWallet;
         }
+
+
         #endregion
 
+        public void AddDiscount(Discount discount)
+        {
+            _db.Add(discount);
+            _db.SaveChanges();
+        }
 
         public int AddOrder(string userName, int productId)
         {
@@ -117,6 +124,11 @@ namespace MyEMShop.Application.Services
         public Discount GetDiscount(string code)
         {
             return _db.Discounts.SingleOrDefault(d => d.DiscountCode == code);
+        }
+
+        public IList<Discount> GetDiscounts()
+        {
+            return _db.Discounts.ToList();
         }
 
         public Order GetOrderById(int orderId)

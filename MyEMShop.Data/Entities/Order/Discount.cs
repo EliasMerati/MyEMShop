@@ -1,6 +1,5 @@
 ﻿using MyEMShop.Data.Entities.User;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -12,12 +11,12 @@ namespace MyEMShop.Data.Entities.Order
         public int DiscountId { get; set; }
 
         [Display(Name = "کد تخفیف")]
-        [Required]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(150)]
         public string DiscountCode { get; set; }
 
         [Display(Name = "درصد تخفیف")]
-        [Required]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public int DiscountPercent { get; set; }
 
         [Display(Name = "تعداد استفاده کنندگان از تخفیف")]
@@ -28,6 +27,9 @@ namespace MyEMShop.Data.Entities.Order
 
         [Display(Name = "تاریخ پایان تخفیف")]
         public DateTime? EndDate { get; set; }
+
+
+
 
         #region Relations
         public ICollection<UserDiscountCode> UserDiscountCodes { get; set; }
