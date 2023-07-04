@@ -21,6 +21,7 @@ namespace MyEMShop.Application.Interfaces
         List<Discount> GetDiscounts();
         Discount GetDiscountById(int discountId);
         void UpdateDiscount(Discount discount);
+        bool IsExistCode(string code);
         #endregion
     }
 }

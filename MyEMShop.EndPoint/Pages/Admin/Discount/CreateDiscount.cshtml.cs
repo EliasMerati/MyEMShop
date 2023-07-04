@@ -41,9 +41,14 @@ namespace MyEMShop.EndPoint.Pages.Admin.Discount
                     , new PersianCalendar());
             }
 
-            if (!ModelState.IsValid) { return Page(); }
+            if (!ModelState.IsValid && _orderService.IsExistCode(Discount.DiscountCode)) { return Page(); }
             _orderService.AddDiscount(Discount);
             return RedirectToPage("Index");
+        }
+
+        public IActionResult OnGetCheckCode(string code)
+        {
+            return Content(_orderService.IsExistCode(code).ToString());
         }
     }
 }

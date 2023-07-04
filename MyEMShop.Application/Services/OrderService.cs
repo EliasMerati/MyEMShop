@@ -154,6 +154,11 @@ namespace MyEMShop.Application.Services
             return _db.Orders.Where(o => o.UserId == userId).ToList();
         }
 
+        public bool IsExistCode(string code)
+        {
+           return _db.Discounts.Any(d=> d.DiscountCode == code);
+        }
+
         public void UpdateDiscount(Discount discount)
         {
             _db.Update(discount);

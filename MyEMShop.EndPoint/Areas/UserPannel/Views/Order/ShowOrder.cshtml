@@ -23,7 +23,11 @@
             <div id="content" class="col-sm-12">
                 @if (ViewBag.final == true)
                 {
-                    <div class="alert alert-success"><i class="fa fa-exclamation-circle"></i><strong>فاکتور با موفقیت پرداخت گردید</strong></div>
+                    <div class="alert alert-success">
+                        <i class="fa fa-exclamation-circle">
+
+                        </i><strong>فاکتور با موفقیت پرداخت گردید</strong>
+                    </div>
                 }
                 <h1 class="title">سبد خرید</h1>
                 <div class="table-responsive">
@@ -85,7 +89,7 @@
                                         </div>
                                     </form>
                                     @if (TypeDiscount is not null)
-                                    {          
+                                    {
                                         switch (TypeDiscount)
                                         {
                                             case "Success":
