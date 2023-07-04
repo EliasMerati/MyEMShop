@@ -126,7 +126,7 @@ namespace MyEMShop.Application.Services
             return _db.Discounts.SingleOrDefault(d => d.DiscountCode == code);
         }
 
-        public IList<Discount> GetDiscounts()
+        public List<Discount> GetDiscounts()
         {
             return _db.Discounts.ToList();
         }

@@ -13,8 +13,7 @@ namespace MyEMShop.EndPoint.Pages.Admin.Discount
             _orderService = orderService;
         }
 
-        [BindProperty]
-        IList<MyEMShop.Data.Entities.Order.Discount> Discounts { get; set; }
+       public List<MyEMShop.Data.Entities.Order.Discount> Discounts { get; set; }
         public void OnGet()
         {
             Discounts = _orderService.GetDiscounts();
