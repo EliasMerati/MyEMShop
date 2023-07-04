@@ -5,7 +5,7 @@
     var discount = ViewBag.discount;
     int SumOrder = Model.OrderSum;
     int Percent = (Model.OrderSum * discount.DiscountPercent) / 100;
-    var TypeDiscount = ViewBag.TypeDiscount.tostring();
+    string TypeDiscount = ViewBag.TypeDiscount.tostring();
 }
 
 
@@ -85,7 +85,7 @@
                                         </div>
                                     </form>
                                     @if (TypeDiscount is not null)
-                                    {
+                                    {          
                                         switch (TypeDiscount)
                                         {
                                             case "Success":
