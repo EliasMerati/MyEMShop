@@ -57,8 +57,8 @@
                                             <td class="center">@item.DiscountCode</td>
                                             <td class="center">@item.DiscountPercent</td>
                                             <td class="center">@item.UsableCount</td>
-                                            <td class="center">@((@item.StartDate is not null) ? @item.StartDate.Value.ToShamsi() : "" )</td>
-                                            <td class="center">@((@item.EndDate is not null) ? @item.EndDate.Value.ToShamsi() : "")</td>
+                                            <td class="center">@((item.StartDate is not null) ? item.StartDate.Value.ToShamsi() : "" )</td>
+                                            <td class="center">@((item.EndDate is not null) ? item.EndDate.Value.ToShamsi() : "")</td>
                                             <td class="center">
                                                 <a href="/Admin/Discount/EditDiscount/@item.DiscountId" class="btn btn-sm btn-warning">ویرایش</a>
                                                 <a href="/Admin/Discount/DeleteDiscount/@item.DiscountId" class="btn btn-sm btn-danger">حذف</a>
