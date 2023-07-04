@@ -126,6 +126,11 @@ namespace MyEMShop.Application.Services
             return _db.Discounts.SingleOrDefault(d => d.DiscountCode == code);
         }
 
+        public Discount GetDiscountById(int discountId)
+        {
+            return _db.Discounts.Find(discountId);
+        }
+
         public List<Discount> GetDiscounts()
         {
             return _db.Discounts.ToList();
@@ -147,6 +152,12 @@ namespace MyEMShop.Application.Services
         {
             int userId = _userPannel.GetUserIdByUserName(userName);
             return _db.Orders.Where(o => o.UserId == userId).ToList();
+        }
+
+        public void UpdateDiscount(Discount discount)
+        {
+            _db.Update(discount);
+            _db.SaveChanges();
         }
 
         public void UpdateOrder(Order order)

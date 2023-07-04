@@ -19,6 +19,8 @@ namespace MyEMShop.Application.Interfaces
         DiscountUseType UseDiscount(int orderId, string code);
         void AddDiscount(Discount discount);
         List<Discount> GetDiscounts();
+        Discount GetDiscountById(int discountId);
+        void UpdateDiscount(Discount discount);
         #endregion
     }
 }

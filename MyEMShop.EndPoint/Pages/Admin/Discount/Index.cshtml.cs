@@ -7,13 +7,16 @@ namespace MyEMShop.EndPoint.Pages.Admin.Discount
 {
     public class IndexModel : PageModel
     {
+        #region Inject
         private readonly IOrderService _orderService;
         public IndexModel(IOrderService orderService)
         {
             _orderService = orderService;
         }
+        #endregion
 
-       public List<MyEMShop.Data.Entities.Order.Discount> Discounts { get; set; }
+
+        public List<MyEMShop.Data.Entities.Order.Discount> Discounts { get; set; }
         public void OnGet()
         {
             Discounts = _orderService.GetDiscounts();
