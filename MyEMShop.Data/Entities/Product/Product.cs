@@ -89,6 +89,7 @@ namespace MyEMShop.Data.Entities.Product
         public ICollection<Color> Colors { get; set; }
         public ICollection<ProductImage> ProductImages { get; set; }
         public ICollection<ProductSize> ProductSizes { get; set; }
+        public ICollection<ProductComment> ProductComments { get; set; }
         #endregion
     }
 }

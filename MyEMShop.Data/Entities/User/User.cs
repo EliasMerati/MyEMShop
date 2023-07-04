@@ -1,4 +1,5 @@
 ﻿using MyEMShop.Data.Entities.Order;
+using MyEMShop.Data.Entities.Product;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -79,6 +80,7 @@ namespace MyEMShop.Data.Entities.User
         public ICollection<UserRole> UserRoles { get; set; }
         public ICollection<Order.Order> Orders { get; set; }
         public ICollection<UserDiscountCode> UserDiscountCodes { get; set; }
+        public ICollection<ProductComment> ProductComments { get; set; }
         #endregion
     }
 }
