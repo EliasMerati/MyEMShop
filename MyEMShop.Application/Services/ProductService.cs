@@ -348,7 +348,7 @@ namespace MyEMShop.Application.Services
             {
                 result = result.Where(p => p.ProductTitle.Contains(Filter) || p.Tags.Contains(Filter));
             }
-             //=============================================================Groups
+            //=============================================================Groups
 
             if (selectedgroup != null && selectedgroup.Any())
             {
@@ -401,20 +401,38 @@ namespace MyEMShop.Application.Services
               .Take(take)
               .ToList();
 
-            return Tuple.Create(query,pagecount);
+            return Tuple.Create(query, pagecount);
         }
 
         public Product GetProductForShow(int productId)
         {
             return _db.Products
-                .Include(p=> p.ProductImages)
-                .Include(p=> p.Colors)
-                .FirstOrDefault(p=> p.ProductId== productId);
+                .Include(p => p.ProductImages)
+                .Include(p => p.Colors)
+                .FirstOrDefault(p => p.ProductId == productId);
         }
 
         public Product GetProductByProductId(int productId)
         {
             return _db.Products.Find(productId);
+        }
+
+        public void AddProductComment(ProductComment comment)
+        {
+            _db.ProductComments.Add(comment);
+            _db.SaveChanges();
+        }
+
+        public Tuple<List<ProductComment>, int> GetAllComments(int productId, int pageId = 1)
+        {
+            int take = 5;
+            int skip = (pageId - 1) * take;
+            int pageCount = _db.ProductComments.Where(pc => pc.ProductId == productId && !pc.IsDelete).Count() / take;
+            return Tuple.Create(_db.ProductComments.Include(u=> u.User)
+                .Where(pc => pc.ProductId == productId && !pc.IsDelete)
+                .Skip(skip).Take(take)
+                .OrderByDescending(pc => pc.CreateDate)
+                .ToList(), pageCount);
         }
     }
 }

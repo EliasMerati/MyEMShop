@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyEMShop.Application.Interfaces;
+using MyEMShop.Data.Entities.Product;
+using System;
 using System.Collections.Generic;
 
 namespace MyEMShop.EndPoint.Controllers
@@ -10,10 +12,14 @@ namespace MyEMShop.EndPoint.Controllers
         #region Inject Service
         private readonly IProductService _productService;
         private readonly IOrderService _orderService;
-        public SearchController(IProductService productService,IOrderService orderService)
+        private readonly IUserPannelService _userPannel;
+        public SearchController(IProductService productService
+            ,IOrderService orderService
+            , IUserPannelService userPannel)
         {
             _productService = productService;
             _orderService = orderService;
+            _userPannel = userPannel;
         }
         #endregion
 
@@ -42,6 +48,21 @@ namespace MyEMShop.EndPoint.Controllers
         {
             int orderId = _orderService.AddOrder(User.Identity.Name, id);
             return Redirect("/UserPannel/Order/ShowOrder/" + orderId);
+        }
+
+        [HttpPost]
+        public IActionResult AddComment(ProductComment productComment)
+        {
+            productComment.IsDelete= false;
+            productComment.CreateDate = DateTime.Now;
+            productComment.UserId = _userPannel.GetUserIdByUserName(User.Identity.Name);
+            _productService.AddProductComment(productComment);
+            return View("ShowComment",_productService.GetAllComments(productComment.ProductId));
+        }
+
+        public IActionResult ShowComment(int id , int pageId=1) 
+        {
+            return View(_productService.GetAllComments(id,pageId));
         }
     }
 

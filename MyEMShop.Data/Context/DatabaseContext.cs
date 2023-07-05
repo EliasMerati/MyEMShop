@@ -63,9 +63,6 @@ namespace MyEMShop.Data.Context
 
             #endregion
 
-            //modelBuilder.Entity<Product>()
-            //    .Property(p=>p.ProductId).UseIdentityColumn();
-
             #region Seed Data
             modelBuilder.Entity<Role>()
                 .HasData(new { RoleId = 1, RoleTitle = "مدیر کل سیستم", IsDelete = false },

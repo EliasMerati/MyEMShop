@@ -166,76 +166,44 @@
                             </div>
                         </div>
                         <div id="tab-review" class="tab-pane">
-                            <form class="form-horizontal">
-                                <div id="review">
-                                    <div>
-                                        <table class="table table-striped table-bordered">
-                                            <tbody>
-                                                <tr>
-                                                    <td style="width: 50%;"><strong><span>هاروی</span></strong></td>
-                                                    <td class="text-right"><span>1395/1/20</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="2">
-                                                        <p>ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
-                                                        <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <table class="table table-striped table-bordered">
-                                            <tbody>
-                                                <tr>
-                                                    <td style="width: 50%;"><strong><span>اندرسون</span></strong></td>
-                                                    <td class="text-right"><span>1395/1/20</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="2">
-                                                        <p>ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
-                                                        <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="text-right"></div>
+                            <div id="review">
+
+                                <div id="ListComment">
                                 </div>
-                                <h2>یک بررسی بنویسید</h2>
-                                <div class="form-group required">
-                                    <div class="col-sm-12">
-                                        <label for="input-name" class="control-label">نام شما</label>
-                                        <input type="text" class="form-control" id="input-name" value="" name="name">
+                                <div class="text-right"></div>
+                            </div>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <form class="form-horizontal" asp-controller="Search" asp-action="AddComment"
+                                  data-ajax="true"
+                                  data-ajax-method="post"
+                                  data-ajax-mode="replace"
+                                  data-ajax-update="#ListComment"
+                                  data-ajax-success="success">
+                                    <input type="hidden" name="comment.ProductId" value="@Model.ProductId" />
+
+                                    <h2>یک بررسی بنویسید</h2>
+                                    <div class="form-group required">
                                     </div>
-                                </div>
-                                <div class="form-group required">
-                                    <div class="col-sm-12">
-                                        <label for="input-review" class="control-label">بررسی شما</label>
-                                        <textarea class="form-control" id="input-review" rows="5" name="text"></textarea>
-                                        <div class="help-block"><span class="text-danger">توجه :</span> HTML بازگردانی نخواهد شد!</div>
+                                    <div class="form-group required">
+                                        <div class="col-sm-12">
+                                            <label for="input-review" class="control-label">بررسی شما</label>
+                                            <textarea class="form-control" id="productComment_Comment" rows="5" name="productComment.Comment"></textarea>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group required">
-                                    <div class="col-sm-12">
-                                        <label class="control-label">رتبه</label>
-                                        &nbsp;&nbsp;&nbsp; بد&nbsp;
-                                        <input type="radio" value="1" name="rating">
-                                        &nbsp;
-                                        <input type="radio" value="2" name="rating">
-                                        &nbsp;
-                                        <input type="radio" value="3" name="rating">
-                                        &nbsp;
-                                        <input type="radio" value="4" name="rating">
-                                        &nbsp;
-                                        <input type="radio" value="5" name="rating">
-                                        &nbsp;خوب
+                                    <div class="buttons">
+                                        <div class="pull-right">
+                                            <button type="submit" class="btn btn-primary" id="button-review">ثبت نظر</button>
+                                        </div>
                                     </div>
+                                </form>
+                            }
+                            else
+                            {
+                                <div class="alert alert-warning">
+                                    جهت درج نظر باید وارد سایت شوید
                                 </div>
-                                <div class="buttons">
-                                    <div class="pull-right">
-                                        <button class="btn btn-primary" id="button-review" type="button">ادامه</button>
-                                    </div>
-                                </div>
-                            </form>
+                            }
                         </div>
                     </div>
                     <h3 class="subtitle">محصولات مرتبط</h3>
@@ -437,4 +405,44 @@
     </div>
 </div>
 
+
+@section Scripts
+    {
+    @*// =================================================== Zoom Pic*@
+    <script type="text/javascript">
+        // Elevate Zoom for Product Page image
+        $("#zoom_01").elevateZoom({
+            gallery: 'gallery_01',
+            cursor: 'pointer',
+            galleryActiveClass: 'active',
+            imageCrossfade: true,
+            zoomWindowFadeIn: 500,
+            zoomWindowFadeOut: 500,
+            zoomWindowPosition: 11,
+            lensFadeIn: 500,
+            lensFadeOut: 500,
+            loadingIcon: 'image/progress.gif'
+        });
+        //////pass the images to swipebox
+        $("#zoom_01").bind("click", function (e) {
+            var ez = $('#zoom_01').data('elevateZoom');
+            $.swipebox(ez.getGalleryList());
+            return false;
+        });
+    </script>
+
+    @*// =================================================== AJAX*@
+
+    <script type="text/javascript" src="/js/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript">
+        function success() {
+            $("#productComment_Comment").val("");
+        }
+
+        $(function () {
+            $("#ListComment").load("/Search/ShowComment/" + @Model.ProductId);
+        });
+    </script>
+    @*// =================================================== AJAX*@
+}
 
