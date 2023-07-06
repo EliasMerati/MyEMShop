@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyEMShop.Data.Context;
 
 namespace MyEMShop.Data.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230705190441_AddBanner")]
+    partial class AddBanner
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,21 +36,21 @@ namespace MyEMShop.Data.Migrations
                     b.ToTable("ColorProduct");
                 });
 
-            modelBuilder.Entity("MyEMShop.Data.Entities.Banner.Slider", b =>
+            modelBuilder.Entity("MyEMShop.Data.Entities.Banner.Banner", b =>
                 {
-                    b.Property<int>("SliderId")
+                    b.Property<int>("BannerId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("SliderImageName")
+                    b.Property<string>("BannerImageName")
                         .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.HasKey("SliderId");
+                    b.HasKey("BannerId");
 
-                    b.ToTable("Sliders");
+                    b.ToTable("Banners");
                 });
 
             modelBuilder.Entity("MyEMShop.Data.Entities.Order.Discount", b =>

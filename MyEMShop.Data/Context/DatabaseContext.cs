@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyEMShop.Data.Entities.Slider;
 using MyEMShop.Data.Entities.Order;
 using MyEMShop.Data.Entities.Permission;
 using MyEMShop.Data.Entities.Product;
 using MyEMShop.Data.Entities.User;
 using MyEMShop.Data.Entities.Wallet;
 using System.Linq;
-using System.Net.Http.Headers;
 
 namespace MyEMShop.Data.Context
 {
@@ -36,6 +36,10 @@ namespace MyEMShop.Data.Context
         public DbSet<Discount> Discounts { get; set; }
         #endregion
 
+        #region Slider
+        public DbSet<Slider> Sliders { get; set; }
+        #endregion
+
         #region product
         public DbSet<ProductGroup> ProductGroups { get; set; }
         public DbSet<Color> Colors { get; set; }
@@ -56,7 +60,7 @@ namespace MyEMShop.Data.Context
             foreach (var relationship in modelBuilder.Model
                 .GetEntityTypes()
                 .SelectMany(e => e.GetForeignKeys())
-                .Where(fk=> !fk.IsOwnership && fk.DeleteBehavior == DeleteBehavior.Cascade))
+                .Where(fk => !fk.IsOwnership && fk.DeleteBehavior == DeleteBehavior.Cascade))
             {
                 relationship.DeleteBehavior = DeleteBehavior.Restrict;
             }

@@ -434,5 +434,23 @@ namespace MyEMShop.Application.Services
                 .OrderByDescending(pc => pc.CreateDate)
                 .ToList(), pageCount);
         }
+
+        public List<Product> GetPopularProduct()
+        {
+            return _db.Products.Include(p => p.OrderDetails)
+                .OrderByDescending(o => o.OrderDetails.Count)
+                .Take(8)
+                .ToList();
+        }
+
+        public List<Product> GetSpecialProduct()
+        {
+            return _db.Products.Where(p=>!p.IsDelete && p.Isspecial==true).Take(8).ToList();
+        }
+
+        public List<Product> GetLatestProduct()
+        {
+            return _db.Products.OrderByDescending(p=>p.InsertDate).Take(8).ToList();
+        }
     }
 }

@@ -29,6 +29,9 @@ namespace MyEMShop.EndPoint.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.popularproduct = _productService.GetPopularProduct();
+            ViewBag.Special = _productService.GetSpecialProduct();
+            ViewBag.latest = _productService.GetLatestProduct();
             return View(_productService.ShowProduct().Item1);
         }
 

@@ -22,7 +22,7 @@ namespace MyEMShop.Application.Attribute
                 string userName = context.HttpContext.User.Identity.Name;
                 if (!_permissionService.PermissionChecker(permissionId,userName))
                 {
-                    context.Result = new RedirectResult("/Login");
+                    context.Result = new RedirectResult("/Login?" + context.HttpContext.Request.Path);
                 }
             }
             else
