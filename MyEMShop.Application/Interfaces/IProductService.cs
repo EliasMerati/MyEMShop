@@ -35,6 +35,7 @@ namespace MyEMShop.Application.Interfaces
         List<Product> GetPopularProduct();
         List<Product> GetSpecialProduct();
         List<Product> GetLatestProduct();
+        List<Product> GetAllProduct();
         #endregion
 
         #region Comment

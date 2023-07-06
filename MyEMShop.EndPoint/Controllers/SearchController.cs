@@ -35,11 +35,16 @@ namespace MyEMShop.EndPoint.Controllers
         [Route("/ShowProduct/{id}")]
         public IActionResult ShowProduct(int id)
         {
+            ViewBag.special = _productService.GetSpecialProduct();
+            ViewBag.popular = _productService.GetPopularProduct();
+
             var product = _productService.GetProductForShow(id);
             if (product is null)
             {
                 return Redirect("NotFound");
             }
+            
+            ViewBag.product = _productService.GetAllProduct();
             return View(product);
         }
 

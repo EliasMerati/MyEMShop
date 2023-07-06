@@ -42,7 +42,7 @@
             @foreach (var item in latest)
             {
                 <div class="product-thumb">
-                    <div class="image"><a href="product.html"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
+                    <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
                 <div class="caption">
                     <h4><a href="product.html">@item.ProductTitle</a></h4>
                     <p class="price"> 
@@ -81,7 +81,7 @@
            @foreach (var item in popular)
             {
                 <div class="product-thumb">
-                    <div class="image"><a href="product.html"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
+                    <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
                     <div class="caption">
                         <h4><a href="product.html">@item.ProductTitle</a></h4>
                         <p class="price">
@@ -120,7 +120,7 @@
             @foreach (var item in special)
             {
                 <div class="product-thumb clearfix">
-                    <div class="image"><a href="product.html"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
+                    <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
                 <div class="caption">
                     <h4><a href="product.html">@item.ProductTitle</a></h4>
                     <p class="price">
