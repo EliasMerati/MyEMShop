@@ -461,7 +461,7 @@ namespace MyEMShop.Application.Services
 
         public List<Product> GetAllProduct()
         {
-            return _db.Products.Take(10).ToList();
+            return _db.Products.OrderByDescending(p=>p.InsertDate).Take(10).ToList();
         }
     }
 }
