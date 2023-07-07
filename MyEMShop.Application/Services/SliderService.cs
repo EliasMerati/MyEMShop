@@ -19,6 +19,7 @@ namespace MyEMShop.Application.Services
         }
 
         #endregion
+
         public void AddSlider(Slider slider, IFormFile ImageFile)
         {
             SetImageForSlider(slider, ImageFile);
