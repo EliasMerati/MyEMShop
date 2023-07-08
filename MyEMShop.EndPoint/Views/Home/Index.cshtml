@@ -25,11 +25,14 @@
     </ul>
     <div id="tab-featured" class="tab_content">
         <div class="owl-carousel product_carousel_tab">
-
-            @foreach (var item in Model)
+            @if (Model is not null)
             {
-                <partial name="_ProductBox" model="@item" />
+                foreach (var item in Model)
+                {
+                    <partial name="_ProductBox" model="@item" />
+                }
             }
+
 
         </div>
     </div>
@@ -39,36 +42,39 @@
             List<Product> latest = ViewBag.latest as List<Product>;
         }
         <div class="owl-carousel product_carousel_tab">
-            @foreach (var item in latest)
+            @if (latest is not null)
             {
-                <div class="product-thumb">
-                    <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
-                <div class="caption">
-                    <h4><a href="product.html">@item.ProductTitle</a></h4>
-                    <p class="price"> 
-                           @{
-                                int newprice = item.ProductPrice - (item.ProductPrice * item.Save / 100);
-                            }
-                            @if (item.Save != 0)
-                            {
-                                <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
-                                <span class="price-new">@newprice.ToString("N0") تومان</span>
-                                <span class="saving">@item.Save %</span>
-                            }
-                            else
-                            {
-                                <span class="price-new">@item.ProductPrice.ToString("N0") تومان</span>
-                            }
-                    </p>
-                </div>
-                <div class="button-group">
-                    <button class="btn-primary" type="button" onClick=""><span>افزودن به سبد</span></button>
-                    <div class="add-to-links">
-                        <button type="button" data-toggle="tooltip" title="افزودن به علاقه مندی" onClick=""><i class="fa fa-heart"></i></button>
-                        <button type="button" data-toggle="tooltip" title="افزودن به مقایسه" onClick=""><i class="fa fa-exchange"></i></button>
+                foreach (var item in latest)
+                {
+                    <div class="product-thumb">
+                        <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
+                        <div class="caption">
+                            <h4><a href="product.html">@item.ProductTitle</a></h4>
+                            <p class="price">
+                                @{
+                                    int newprice = item.ProductPrice - (item.ProductPrice * item.Save / 100);
+                                }
+                                @if (item.Save != 0)
+                                {
+                                    <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
+                                    <span class="price-new">@newprice.ToString("N0") تومان</span>
+                                    <span class="saving">@item.Save %</span>
+                                }
+                                else
+                                {
+                                    <span class="price-new">@item.ProductPrice.ToString("N0") تومان</span>
+                                }
+                            </p>
+                        </div>
+                        <div class="button-group">
+                            <button class="btn-primary" type="button" onClick=""><span>افزودن به سبد</span></button>
+                            <div class="add-to-links">
+                                <button type="button" data-toggle="tooltip" title="افزودن به علاقه مندی" onClick=""><i class="fa fa-heart"></i></button>
+                                <button type="button" data-toggle="tooltip" title="افزودن به مقایسه" onClick=""><i class="fa fa-exchange"></i></button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                }
             }
 
         </div>
@@ -78,36 +84,39 @@
             List<Product> popular = ViewBag.popularproduct as List<Product>;
         }
         <div class="owl-carousel product_carousel_tab">
-           @foreach (var item in popular)
+            @if (popular is not null)
             {
-                <div class="product-thumb">
-                    <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
-                    <div class="caption">
-                        <h4><a href="product.html">@item.ProductTitle</a></h4>
-                        <p class="price">
-                            @{
-                                int newprice = item.ProductPrice - (item.ProductPrice * item.Save / 100);
-                            }
-                            @if (item.Save != 0)
-                            {
-                                <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
-                                <span class="price-new">@newprice.ToString("N0") تومان</span>
-                                <span class="saving">@item.Save %</span>
-                            }
-                            else
-                            {
-                                <span class="price-new">@item.ProductPrice.ToString("N0") تومان</span>
-                            }
-                        </p>
-                    </div>
-                    <div class="button-group">
-                        <button class="btn-primary" type="button" onClick=""><span>افزودن به سبد</span></button>
-                        <div class="add-to-links">
-                            <button type="button" data-toggle="tooltip" title="افزودن به علاقه مندی" onClick=""><i class="fa fa-heart"></i></button>
-                            <button type="button" data-toggle="tooltip" title="افزودن به مقایسه" onClick=""><i class="fa fa-exchange"></i></button>
+                foreach (var item in popular)
+                {
+                    <div class="product-thumb">
+                        <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
+                        <div class="caption">
+                            <h4><a href="product.html">@item.ProductTitle</a></h4>
+                            <p class="price">
+                                @{
+                                    int newprice = item.ProductPrice - (item.ProductPrice * item.Save / 100);
+                                }
+                                @if (item.Save != 0)
+                                {
+                                    <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
+                                    <span class="price-new">@newprice.ToString("N0") تومان</span>
+                                    <span class="saving">@item.Save %</span>
+                                }
+                                else
+                                {
+                                    <span class="price-new">@item.ProductPrice.ToString("N0") تومان</span>
+                                }
+                            </p>
+                        </div>
+                        <div class="button-group">
+                            <button class="btn-primary" type="button" onClick=""><span>افزودن به سبد</span></button>
+                            <div class="add-to-links">
+                                <button type="button" data-toggle="tooltip" title="افزودن به علاقه مندی" onClick=""><i class="fa fa-heart"></i></button>
+                                <button type="button" data-toggle="tooltip" title="افزودن به مقایسه" onClick=""><i class="fa fa-exchange"></i></button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                }
             }
         </div>
     </div>
@@ -117,36 +126,39 @@
         }
         <div class="owl-carousel product_carousel_tab">
 
-            @foreach (var item in special)
+            @if (special is not null)
             {
-                <div class="product-thumb clearfix">
-                    <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
-                <div class="caption">
-                    <h4><a href="product.html">@item.ProductTitle</a></h4>
-                    <p class="price">
-                            @{
-                                int newprice = item.ProductPrice - (item.ProductPrice * item.Save / 100);
-                            }
-                            @if (item.Save != 0)
-                            {
-                                <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
-                                <span class="price-new">@newprice.ToString("N0") تومان</span>
-                                <span class="saving">@item.Save %</span>
-                            }
-                            else
-                            {
-                                <span class="price-new">@item.ProductPrice.ToString("N0") تومان</span>
-                            }
-                    </p>
-                </div>
-                <div class="button-group">
-                    <button class="btn-primary" type="button" onClick="cart.add('42');"><span>افزودن به سبد</span></button>
-                    <div class="add-to-links">
-                        <button type="button" data-toggle="tooltip" title="افزودن به علاقه مندی ها" onClick=""><i class="fa fa-heart"></i></button>
-                        <button type="button" data-toggle="tooltip" title="مقایسه این محصول" onClick=""><i class="fa fa-exchange"></i></button>
+                foreach (var item in special)
+                {
+                    <div class="product-thumb clearfix">
+                        <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
+                        <div class="caption">
+                            <h4><a href="product.html">@item.ProductTitle</a></h4>
+                            <p class="price">
+                                @{
+                                    int newprice = item.ProductPrice - (item.ProductPrice * item.Save / 100);
+                                }
+                                @if (item.Save != 0)
+                                {
+                                    <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
+                                    <span class="price-new">@newprice.ToString("N0") تومان</span>
+                                    <span class="saving">@item.Save %</span>
+                                }
+                                else
+                                {
+                                    <span class="price-new">@item.ProductPrice.ToString("N0") تومان</span>
+                                }
+                            </p>
+                        </div>
+                        <div class="button-group">
+                            <button class="btn-primary" type="button" onClick="cart.add('42');"><span>افزودن به سبد</span></button>
+                            <div class="add-to-links">
+                                <button type="button" data-toggle="tooltip" title="افزودن به علاقه مندی ها" onClick=""><i class="fa fa-heart"></i></button>
+                                <button type="button" data-toggle="tooltip" title="مقایسه این محصول" onClick=""><i class="fa fa-exchange"></i></button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                }
             }
 
         </div>

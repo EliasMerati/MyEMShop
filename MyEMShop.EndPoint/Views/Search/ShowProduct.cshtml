@@ -5,7 +5,21 @@
     int newprice = Model.ProductPrice - (Model.ProductPrice * Model.Save / 100);
 }
 
-
+@section MetaTag
+    {
+    <meta name=googlebot content=index,follow>
+    <meta name=robots content=noodp,noydir>
+    <meta property=og:site_name value="فروشگاه پوشاک زنانه به دخت - مشاهده ی محصول">
+    <meta property=og:title content=@ViewData["Title"]>
+                    @*    <meta property=og:url content="https://toplearn.com/ShowCourse/@Model.CourseTitle" />*@
+    <meta property=og:image content="/course/image/@Model.MainImageProduct">
+    <meta property=og:image:url content="/course/image/@Model.MainImageProduct" />
+    <meta property=og:image:width content="700">
+    <meta property=og:image:type content="image/jpg">
+    <meta property=og:description content=" مشاهده ی محصول فروشگاه پوشاک زنانه به دخت">
+    <meta property=og:price:currency content="IRR">
+    <meta property=og:locale content="ir_FA">
+}
 
 <div id="container">
     <div class="container">
@@ -211,11 +225,52 @@
                         List<Product> liked = ViewBag.product as List<Product>;
                     }
                     <div class="owl-carousel related_pro">
-                        @foreach (var item in liked)
+                        @if (liked is not null)
+                        {
+                            foreach (var item in liked)
+                            {
+                                <div class="product-thumb clearfix">
+                                    <input type="hidden" value="@item.ProductId" />
+                                    <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt=" @item.ProductTitle " title=" @item.ProductTitle " class="img-responsive" /></a></div>
+                                    <div class="caption">
+                                        <input type="hidden" value="@item.ProductId" />
+                                        <h4><a href="/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
+                                        <p class="price">
+
+                                            @if (item.Save != 0)
+                                            {
+                                                <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
+                                                <span class="price-new">@newprice.ToString("N0") تومان</span>
+                                                <span class="saving">@item.Save %</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="price-new">@item.ProductPrice.ToString("N0") تومان</span>
+                                            }
+                                        </p>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <!--Middle Part End -->
+            <!--Right Part Start -->
+            <aside id="column-right" class="col-sm-3 hidden-xs">
+                <h3 class="subtitle">پرفروش ها</h3>
+                @{
+                    List<Product> popular = ViewBag.popular as List<Product>;
+                }
+                <div class="side-item">
+                    @if (popular is not null)
+                    {
+                        foreach (var item in popular)
                         {
                             <div class="product-thumb clearfix">
                                 <input type="hidden" value="@item.ProductId" />
-                                <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt=" @item.ProductTitle " title=" @item.ProductTitle " class="img-responsive" /></a></div>
+                                <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MiniPic/@item.MainImageProduct" alt=" @item.ProductTitle " title=" @item.ProductTitle " class="img-responsive" /></a></div>
                                 <div class="caption">
                                     <input type="hidden" value="@item.ProductId" />
                                     <h4><a href="/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
@@ -235,41 +290,6 @@
                                 </div>
                             </div>
                         }
-
-                    </div>
-                </div>
-            </div>
-            <!--Middle Part End -->
-            <!--Right Part Start -->
-            <aside id="column-right" class="col-sm-3 hidden-xs">
-                <h3 class="subtitle">پرفروش ها</h3>
-                @{
-                    List<Product> popular = ViewBag.popular as List<Product>;
-                }
-                <div class="side-item">
-                    @foreach (var item in popular)
-                    {
-                        <div class="product-thumb clearfix">
-                            <input type="hidden" value="@item.ProductId" />
-                            <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MiniPic/@item.MainImageProduct" alt=" @item.ProductTitle " title=" @item.ProductTitle " class="img-responsive" /></a></div>
-                            <div class="caption">
-                                <input type="hidden" value="@item.ProductId"/>
-                                <h4><a href="/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
-                                <p class="price">
-
-                                    @if (item.Save != 0)
-                                    {
-                                        <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
-                                        <span class="price-new">@newprice.ToString("N0") تومان</span>
-                                        <span class="saving">@item.Save %</span>
-                                    }
-                                    else
-                                    {
-                                        <span class="price-new">@item.ProductPrice.ToString("N0") تومان</span>
-                                    }
-                                </p>
-                            </div>
-                        </div>
                     }
 
                 </div>
@@ -289,28 +309,31 @@
                     List<Product> products = ViewBag.special as List<Product>;
                 }
                 <div class="side-item">
-                    @foreach (var item in products)
+                    @if (products is not null)
                     {
-                        <div class="product-thumb clearfix">
-                            <input type="hidden" value="@item.ProductId" />
-                            <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MiniPic/@item.MainImageProduct" alt=" @item.ProductTitle " title=" @item.ProductTitle " class="img-responsive" /></a></div>
-                            <div class="caption">
-                                <h4><a href="/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
-                                <p class="price">
+                        foreach (var item in products)
+                        {
+                            <div class="product-thumb clearfix">
+                                <input type="hidden" value="@item.ProductId" />
+                                <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MiniPic/@item.MainImageProduct" alt=" @item.ProductTitle " title=" @item.ProductTitle " class="img-responsive" /></a></div>
+                                <div class="caption">
+                                    <h4><a href="/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
+                                    <p class="price">
 
-                                    @if (item.Save != 0)
-                                    {
-                                        <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
-                                        <span class="price-new">@newprice.ToString("N0") تومان</span>
-                                        <span class="saving">@item.Save %</span>
-                                    }
-                                    else
-                                    {
-                                        <span class="price-new">@item.ProductPrice.ToString("N0") تومان</span>
-                                    }
-                                </p>
+                                        @if (item.Save != 0)
+                                        {
+                                            <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
+                                            <span class="price-new">@newprice.ToString("N0") تومان</span>
+                                            <span class="saving">@item.Save %</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="price-new">@item.ProductPrice.ToString("N0") تومان</span>
+                                        }
+                                    </p>
+                                </div>
                             </div>
-                        </div>
+                        }
                     }
 
                 </div>

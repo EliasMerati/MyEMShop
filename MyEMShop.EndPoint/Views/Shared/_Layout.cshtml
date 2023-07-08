@@ -3,6 +3,7 @@
 <head>
     <partial name="_Meta" />
     <title>@ViewData["Title"] | فروشگاه به دخت </title>
+    @RenderSection("MetaTag",false)
     <!-- CSS Part Start-->
     <partial name="_Styles" />
     <!-- CSS Part End-->
@@ -205,7 +206,7 @@
         <!--Footer Start-->
         <partial name="_Footer" />
         <!--Footer End-->
-        <partial name="_Twitter-Facebook" />
+        @*<partial name="_Twitter-Facebook" />*@
     </div>
     <!-- JS Part Start-->
     <partial name="_Script" />

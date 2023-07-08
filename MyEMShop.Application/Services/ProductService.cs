@@ -397,7 +397,9 @@ namespace MyEMShop.Application.Services
                     ProductId = r.ProductId,
                     ProductPrice = r.ProductPrice,
                     Save = r.Save,
-                }).Skip(skip)
+                    InsertDate = r.InsertDate
+                }).OrderByDescending(p => p.InsertDate)
+                .Skip(skip)
               .Take(take)
               .ToList();
 
@@ -428,7 +430,7 @@ namespace MyEMShop.Application.Services
             int take = 5;
             int skip = (pageId - 1) * take;
             int pageCount = _db.ProductComments.Where(pc => pc.ProductId == productId && !pc.IsDelete).Count() / take;
-            return Tuple.Create(_db.ProductComments.Include(u=> u.User)
+            return Tuple.Create(_db.ProductComments.Include(u => u.User)
                 .Where(pc => pc.ProductId == productId && !pc.IsDelete)
                 .Skip(skip).Take(take)
                 .OrderByDescending(pc => pc.CreateDate)
@@ -438,6 +440,7 @@ namespace MyEMShop.Application.Services
         public List<Product> GetPopularProduct()
         {
             return _db.Products.Include(p => p.OrderDetails)
+                .Where(od=>od.OrderDetails.Any())
                 .OrderByDescending(o => o.OrderDetails.Count)
                 .Take(6)
                 .ToList();
@@ -445,7 +448,7 @@ namespace MyEMShop.Application.Services
 
         public List<Product> GetSpecialProduct()
         {
-            return _db.Products.Where(p=>!p.IsDelete && p.Isspecial==true)
+            return _db.Products.Where(p => !p.IsDelete && p.Isspecial == true)
                 .OrderByDescending(p => p.InsertDate)
                 .Take(6)
                 .ToList();
@@ -454,14 +457,14 @@ namespace MyEMShop.Application.Services
         public List<Product> GetLatestProduct()
         {
             return _db.Products
-                .OrderByDescending(p=>p.InsertDate)
+                .OrderByDescending(p => p.InsertDate)
                 .Take(6)
                 .ToList();
         }
 
         public List<Product> GetAllProduct()
         {
-            return _db.Products.OrderByDescending(p=>p.InsertDate).Take(10).ToList();
+            return _db.Products.OrderByDescending(p => p.InsertDate).Take(10).ToList();
         }
     }
 }

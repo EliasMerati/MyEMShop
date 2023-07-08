@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
 namespace MyEMShop.Data.Dtos.ProductDto
@@ -19,5 +20,6 @@ namespace MyEMShop.Data.Dtos.ProductDto
         public int ProductPrice { get; set; }
         public string MainImageProduct { get; set; }
         public int Save { get; set; }
+        public DateTime InsertDate { get; set; }
     }
 }
