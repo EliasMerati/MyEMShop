@@ -10,7 +10,7 @@ namespace MyEMShop.Application.Interfaces
     public interface IProductService
     {
         #region Group
-        IList<ProductGroup> GetGroups();
+        List<ProductGroup> GetGroups();
         IList<SelectListItem> GetGroupsForManageProduct();
         IList<SelectListItem> GetSubGroupsForManageProduct(int groupId);
         IList<SelectListItem> GetProductLevel();

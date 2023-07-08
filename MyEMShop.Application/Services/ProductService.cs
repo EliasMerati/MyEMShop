@@ -26,9 +26,9 @@ namespace MyEMShop.Application.Services
         }
         #endregion
 
-        public IList<ProductGroup> GetGroups()
+        public List<ProductGroup> GetGroups()
         {
-            return _db.ProductGroups.ToList();
+            return _db.ProductGroups.Include(p=>p.Groups).ToList();
         }
 
         public IList<SelectListItem> GetGroupsForManageProduct()

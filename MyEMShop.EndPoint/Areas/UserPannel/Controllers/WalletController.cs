@@ -38,10 +38,10 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
 
             #region Online Payment
             var payment = new ZarinpalSandbox.Payment(charge.Amount);
-            var response = payment.PaymentRequest("واریز به حساب", "https://localhost:44392/OnlinePayment" + walletid);
+            var response = payment.PaymentRequest("واریز به حساب", "https://localhost:44346/OnlinePayment/" + walletid);
             if (response.Result.Status == 100)
             {
-                return Redirect("https://sandbox.zarinpal.com/pg/StartPay" + response.Result.Authority);
+                return Redirect("https://sandbox.zarinpal.com/pg/StartPay/" + response.Result.Authority);
             }
             #endregion
 
