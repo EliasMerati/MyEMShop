@@ -1,8 +1,9 @@
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MyEMShop.Application.Interfaces;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Product
@@ -28,8 +29,17 @@ namespace MyEMShop.EndPoint.Pages.Admin.Product
             var groups = _productService.GetGroupsForManageProduct();
             ViewData["Groups"] = new SelectList(groups, "Value", "Text",product.GroupId);
 
-            var subgroups = _productService.GetSubGroupsForManageProduct(int.Parse(groups.First().Value));
-            ViewData["SubGroups"] = new SelectList(subgroups, "Value", "Text",product.SubGroup??0);
+            List<SelectListItem> subgroup= new List<SelectListItem>() 
+            { 
+                new SelectListItem(){Text = "انتخاب کنید", Value =""}
+            };
+            subgroup.AddRange(_productService.GetSubGroupsForManageProduct(product.GroupId));
+            string SelectedSubGroup = null;
+            if (product.SubGroup is not null)
+            {
+                SelectedSubGroup = product.SubGroup.ToString();
+            }
+            ViewData["SubGroups"] = new SelectList(subgroup, "Value", "Text", SelectedSubGroup);
 
             var productlevel = _productService.GetProductLevel();
             ViewData["ProductLevel"] = new SelectList(productlevel, "Value", "Text",product.PL_Id);
