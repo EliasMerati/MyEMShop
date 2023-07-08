@@ -39,29 +39,35 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>مبلغ</th>
-                                    <th>تاریخ</th>
-                                    <th>نوع تراکنش</th>
-                                    <th>شرح تراکنش</th>
+                                    <th class="text-center">مبلغ</th>
+                                    <th class="text-center">تاریخ</th>
+                                    <th class="text-center">نوع تراکنش</th>
+                                    <th class="text-center">شرح تراکنش</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in list)
                                 {
                                     <tr>
-                                        <th>@item.Amount.ToString("#,0 تومان")</th>
-                                        <td>@item.CreateDate.ToShamsi()</td>
-                                        <td>
+                                        <td class="text-center"><strong>@item.Amount.ToString("#,0 تومان")</strong></td>
+                                        <td class="text-center">@item.CreateDate.ToShamsi()</td>
+                                        <td class="text-center">
                                             @if (item.TypeId == 1)
                                             {
-                                                <p class="text-success">واریز</p>
+                                                <div class="alert-success">
+                                                    <p class="text-success">واریز</p>
+                                                </div>
+                                                
                                             }
                                             else
                                             {
-                                                <p class="text-danger"> برداشت</p>
+                                                <div class="alert-danger">
+                                                    <p class="text-danger"> برداشت</p>
+                                                </div>
+                                               
                                             }
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             @{
                                                 string TagHref = "<a href='/UserPannel/Order/ShowOrder/" + item.Description.Replace("فاکتور شماره ی #", "") + "'>#</a>";
                                             }

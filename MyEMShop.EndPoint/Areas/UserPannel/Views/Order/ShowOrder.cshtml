@@ -2,10 +2,10 @@
 @inject MyEMShop.Application.Interfaces.IUserPannelService _UserPannelService
 @{
     ViewData["Title"] = "مشاهده ی فاکتور";
-    var discount = ViewBag.discount;
+    //var discount = ViewBag.discount;
     int SumOrder = Model.OrderSum;
-    int Percent = (Model.OrderSum * discount.DiscountPercent) / 100;
-    string TypeDiscount = ViewBag.TypeDiscount.tostring();
+    //int Percent = (Model.OrderSum * discount.DiscountPercent) / 100;
+    string TypeDiscount = ViewBag.TypeDiscount;
 }
 
 
@@ -191,7 +191,7 @@
                                 </tr>
                                 <tr>
                                     <td class="text-right"><strong> تخفیف:</strong></td>
-                                    <td class="text-right">@Percent.ToString("N0") تومان</td>
+                                    <td class="text-right">@*@Percent.ToString("N0")*@ تومان</td>
                                 </tr>
                                 <tr>
                                     <td class="text-right"><strong>مالیات:</strong></td>
@@ -199,7 +199,7 @@
                                 </tr>
                                 <tr>
                                     <td class="text-right"><strong>کل :</strong></td>
-                                    <td class="text-right">@SumOrder - @Percent تومان</td>
+                                    <td class="text-right">@SumOrder.ToString("N0") @*- @Percent*@ تومان</td>
                                 </tr>
                             </tbody>
                         </table>
