@@ -7,18 +7,32 @@ namespace MyEMShop.EndPoint.Pages.Admin.Group
     public class CreateGroupModel : PageModel
     {
         #region Injection
-        private readonly IProductService _productService;
-        public CreateGroupModel(IProductService productService)
+        private readonly IGroupService _groupService;
+        public CreateGroupModel(IGroupService groupService)
         {
-            _productService = productService;
+            _groupService= groupService;
         }
 
         #endregion
 
         [BindProperty]
-        public MyEMShop.Data.Entities.Product.Product Product { get; set; }
-        public void OnGet()
+        public MyEMShop.Data.Entities.Product.ProductGroup group { get; set; }
+        public void OnGet(int? id)
         {
+            group = new Data.Entities.Product.ProductGroup()
+            {
+                ParentId = id
+            };
+        }
+
+        public IActionResult OnPost() 
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            _groupService.AddGroup(group);
+            return RedirectToPage("Index");
         }
     }
 }

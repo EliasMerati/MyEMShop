@@ -59,5 +59,10 @@ namespace MyEMShop.Application.Services
                 })
                 .ToList();
         }
+
+        public ProductGroup GetGroupById(int groupId)
+        {
+            return _db.ProductGroups.Find(groupId);
+        }
     }
 }

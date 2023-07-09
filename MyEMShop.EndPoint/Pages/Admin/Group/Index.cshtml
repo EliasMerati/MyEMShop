@@ -1,4 +1,4 @@
-﻿@page
+﻿@page 
 @model MyEMShop.EndPoint.Pages.Admin.Group.IndexModel
 @{
     ViewData["Title"] = "مدیریت گروه ها";
@@ -54,14 +54,15 @@
                                                     <ul>
                                                         @foreach (var sub in item.Groups)
                                                         {
-                                                            <li>@sub.GroupTitle</li>
+                                                            <li>@sub.GroupTitle - <a href="/Admin/Group/EditGroup/@sub.GroupId" class="btn btn-sm btn-warning">ویرایش</a></li>
                                                         }
                                                     </ul>
                                                 }
                                             </td>
                                             <td class="center">
-                                                <a href="/Admin/Roles/EditGroup/@item.GroupId" class="btn btn-sm btn-warning">ویرایش</a>
-                                                <a href="/Admin/Roles/DeleteGroup/@item.GroupId" class="btn btn-sm btn-danger">حذف</a>
+                                                <a href="/Admin/Group/CreateGroup/@item.GroupId" class="btn btn-sm btn-info">افزودن زیر گروه</a>
+                                                <a href="/Admin/Group/EditGroup/@item.GroupId" class="btn btn-sm btn-warning">ویرایش</a>
+                                                <a href="/Admin/Group/DeleteGroup/@item.GroupId" class="btn btn-sm btn-danger">حذف</a>
                                             </td>
                                         </tr>
                                     }

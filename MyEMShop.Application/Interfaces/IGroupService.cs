@@ -11,5 +11,6 @@ namespace MyEMShop.Application.Interfaces
         IList<SelectListItem> GetSubGroupsForManageProduct(int groupId);
         void AddGroup(ProductGroup group);
         void UpdateGroup(ProductGroup group);
+        ProductGroup GetGroupById(int groupId);
     }
 }
