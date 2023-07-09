@@ -438,6 +438,11 @@ namespace MyEMShop.Application.Services
             return _db.Products.OrderByDescending(p => p.InsertDate).Take(10).ToList();
         }
 
-
+        public void DeleteProduct(Product product)
+        {
+            product.IsDelete = true;
+            _db.Update(product);
+            _db.SaveChanges();
+        }
     }
 }
