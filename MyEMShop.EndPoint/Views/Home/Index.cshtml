@@ -3,17 +3,17 @@
 @{
     ViewData["Title"] = "خانه";
 }
+@*@section Slider
+    {
+    <partial name="_Slider" />
 
+}*@
 @section Banner
     {
     <partial name="_Banner" />
 }
 
-@section Slider
-    {
-    <partial name="_Slider" />
 
-}
 
 <!-- محصولات Tab Start -->
 <div id="product-tab" class="product-tab">
@@ -24,7 +24,7 @@
         <li><a href="#tab-special">پیشنهادی</a></li>
     </ul>
     <div id="tab-featured" class="tab_content">
-        <div class="owl-carousel product_carousel_tab">
+        <div class="@*owl-carousel*@ product_carousel_tab">
             @if (Model is not null)
             {
                 foreach (var item in Model)

@@ -311,7 +311,7 @@ namespace MyEMShop.Application.Services
         {
             if (take == 0)
             {
-                take = 8;
+                take = 20;
             }
             var result = _db.Products.AsQueryable();
             //============================================================== Filter
@@ -413,7 +413,7 @@ namespace MyEMShop.Application.Services
             return _db.Products.Include(p => p.OrderDetails)
                 .Where(od => od.OrderDetails.Any())
                 .OrderByDescending(o => o.OrderDetails.Count)
-                .Take(6)
+                .Take(10)
                 .ToList();
         }
 
@@ -421,7 +421,7 @@ namespace MyEMShop.Application.Services
         {
             return _db.Products.Where(p => !p.IsDelete && p.Isspecial == true)
                 .OrderByDescending(p => p.InsertDate)
-                .Take(6)
+                .Take(10)
                 .ToList();
         }
 

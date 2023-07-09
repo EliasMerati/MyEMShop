@@ -162,6 +162,12 @@
                             <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-514863386b357649"></script>
                             <!-- AddThis Button END -->
                         </div>
+                        @if (!string.IsNullOrEmpty(Model.ProductDemo))
+                        {
+                            <video style="width:60%" controls poster="/Template/image/product/MainPic/@Model.MainImageProduct">
+                                <source src="/Template//image/product//Demos/@Model.ProductDemo"/>
+                            </video>
+                        }
                     </div>
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#tab-description" data-toggle="tab">توضیحات</a></li>
@@ -171,12 +177,12 @@
                     <div class="tab-content">
                         <div itemprop="description" id="tab-description" class="tab-pane active">
                             <div>
-                                <p>@Model.ProductDescription</p>
+                                @Html.Raw(Model.ProductDescription)
                             </div>
                         </div>
                         <div id="tab-specification" class="tab-pane ">
                             <div>
-                                <p>@Model.ProductCheck</p>
+                                @Html.Raw(Model.ProductCheck)
                             </div>
                         </div>
                         <div id="tab-review" class="tab-pane">
