@@ -44,16 +44,27 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                            @*        @foreach (var item in Model)
+                                    @foreach (var item in Model.ProductGroups.Where(g => g.ParentId is null))
                                     {
                                         <tr class="gradeA">
-                                            <td class="center">@item.RoleTitle</td>
+                                            <td class="center">@item.GroupTitle</td>
                                             <td class="center">
-                                                <a href="/Admin/Roles/EditGroup/@item.RoleId" class="btn btn-sm btn-warning">ویرایش</a>
-                                                <a href="/Admin/Roles/DeleteGroup/@item.RoleId" class="btn btn-sm btn-danger">حذف</a>
+                                                @if (item.Groups.Any())
+                                                {
+                                                    <ul>
+                                                        @foreach (var sub in item.Groups)
+                                                        {
+                                                            <li>@sub.GroupTitle</li>
+                                                        }
+                                                    </ul>
+                                                }
+                                            </td>
+                                            <td class="center">
+                                                <a href="/Admin/Roles/EditGroup/@item.GroupId" class="btn btn-sm btn-warning">ویرایش</a>
+                                                <a href="/Admin/Roles/DeleteGroup/@item.GroupId" class="btn btn-sm btn-danger">حذف</a>
                                             </td>
                                         </tr>
-                                    }*@
+                                    }
                                 </tbody>
                             </table>
                         </div>

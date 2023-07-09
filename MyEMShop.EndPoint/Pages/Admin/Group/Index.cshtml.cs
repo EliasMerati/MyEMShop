@@ -14,7 +14,7 @@ namespace MyEMShop.EndPoint.Pages.Admin.Group
         }
         #endregion
 
-        List<MyEMShop.Data.Entities.Product.ProductGroup> ProductGroups { get; set; }
+       public List<MyEMShop.Data.Entities.Product.ProductGroup> ProductGroups { get; set; }
         public void OnGet()
         {
             ProductGroups = _productService.GetGroups();
