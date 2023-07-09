@@ -88,7 +88,7 @@ namespace MyEMShop.EndPoint.Controllers
                     var claims = new List<Claim>()
                     {
                         new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
-                        new Claim(ClaimTypes.Name, user.UserName)
+                        new Claim(ClaimTypes.Name, user.UserName),
                     };
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     var Principal = new ClaimsPrincipal(identity);

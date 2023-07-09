@@ -68,10 +68,12 @@
                                             }
                                         </td>
                                         <td class="text-center">
+                                            
+                                            
                                             @{
                                                 string TagHref = "<a href='/UserPannel/Order/ShowOrder/" + item.Description.Replace("فاکتور شماره ی #", "") + "'>#</a>";
                                             }
-                                            @item.Description.Replace("#",TagHref)
+                                            @item.Description.Replace("فاکتور",TagHref)
                                         </td>
                                     </tr>
                                 }
