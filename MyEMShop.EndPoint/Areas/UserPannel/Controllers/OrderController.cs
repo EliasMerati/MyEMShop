@@ -11,9 +11,11 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
     {
         #region Injection
         private readonly IOrderService _orderService;
-        public OrderController(IOrderService orderService)
+        private readonly IDiscountService _discountService;
+        public OrderController(IOrderService orderService, IDiscountService discountService)
         {
             _orderService = orderService;
+            _discountService = discountService;
         }
         #endregion
 
@@ -46,8 +48,8 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
 
         public IActionResult UseDiscount(int orderId , string code)
         {
-            ViewBag.discount = _orderService.GetDiscount(code);
-            DiscountUseType type = _orderService.UseDiscount(orderId, code);
+            ViewBag.discount = _discountService.GetDiscount(code);
+            DiscountUseType type = _discountService.UseDiscount(orderId, code);
             return Redirect("/UserPannel/Order/ShowOrder/"+ orderId +"?Type =" + type.ToString());
         }
     }

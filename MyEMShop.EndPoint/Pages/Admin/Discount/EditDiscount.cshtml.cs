@@ -9,9 +9,11 @@ namespace MyEMShop.EndPoint.Pages.Admin.Discount
     {
         #region Inject
         private readonly IOrderService _orderService;
-        public EditDiscountModel(IOrderService orderService)
+        private readonly IDiscountService _discountService;
+        public EditDiscountModel(IOrderService orderService, IDiscountService discountService)
         {
             _orderService = orderService;
+            _discountService = discountService;
         }
         #endregion
 
@@ -19,7 +21,7 @@ namespace MyEMShop.EndPoint.Pages.Admin.Discount
         public MyEMShop.Data.Entities.Order.Discount Discount { get; set; }
         public void OnGet(int id)
         {
-           Discount = _orderService.GetDiscountById(id);
+           Discount = _discountService.GetDiscountById(id);
         }
 
         public IActionResult OnPost(string StDate = "", string EdDate = "")
@@ -42,7 +44,7 @@ namespace MyEMShop.EndPoint.Pages.Admin.Discount
             }
 
             if (!ModelState.IsValid) { return Page(); }
-            _orderService.UpdateDiscount(Discount);
+            _discountService.UpdateDiscount(Discount);
             return RedirectToPage("Index");
         }
     }

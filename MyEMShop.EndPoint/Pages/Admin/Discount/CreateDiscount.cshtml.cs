@@ -9,9 +9,11 @@ namespace MyEMShop.EndPoint.Pages.Admin.Discount
     {
         #region Inject
         private readonly IOrderService _orderService;
-        public CreateDiscountModel(IOrderService orderService)
+        private readonly IDiscountService _discountService;
+        public CreateDiscountModel(IOrderService orderService, IDiscountService discountService)
         {
             _orderService = orderService;
+            _discountService = discountService;
         }
 
         #endregion
@@ -41,14 +43,14 @@ namespace MyEMShop.EndPoint.Pages.Admin.Discount
                     , new PersianCalendar());
             }
 
-            if (!ModelState.IsValid && _orderService.IsExistCode(Discount.DiscountCode)) { return Page(); }
-            _orderService.AddDiscount(Discount);
+            if (!ModelState.IsValid && _discountService.IsExistCode(Discount.DiscountCode)) { return Page(); }
+            _discountService.AddDiscount(Discount);
             return RedirectToPage("Index");
         }
 
         public IActionResult OnGetCheckCode(string code)
         {
-            return Content(_orderService.IsExistCode(code).ToString());
+            return Content(_discountService.IsExistCode(code).ToString());
         }
     }
 }

@@ -48,6 +48,7 @@ namespace MyEMShop.EndPoint
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<ISliderService, SliderService>();
             services.AddScoped<IGroupService, GroupService>();
+            services.AddScoped<IDiscountService, DiscountService>();
             #endregion
 
             #region Authentication
