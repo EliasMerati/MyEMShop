@@ -7,17 +7,17 @@ namespace MyEMShop.EndPoint.Pages.Admin.Group
     public class IndexModel : PageModel
     {
         #region Injection
-        private readonly IProductService _productService;
-        public IndexModel(IProductService productService)
+        private readonly IGroupService _groupService;
+        public IndexModel(IGroupService groupService)
         {
-            _productService = productService;
+            _groupService= groupService;
         }
         #endregion
 
        public List<MyEMShop.Data.Entities.Product.ProductGroup> ProductGroups { get; set; }
         public void OnGet()
         {
-            ProductGroups = _productService.GetGroups();
+            ProductGroups = _groupService.GetGroups();
         }
     }
 }

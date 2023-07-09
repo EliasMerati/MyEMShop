@@ -7,8 +7,8 @@ namespace MyEMShop.EndPoint.Component
     public class NavbarComponent : ViewComponent
     {
         #region Injection
-        private readonly IProductService _groupService;
-        public NavbarComponent(IProductService groupService)
+        private readonly IGroupService _groupService;
+        public NavbarComponent(IGroupService groupService)
         {
             _groupService = groupService;
         }

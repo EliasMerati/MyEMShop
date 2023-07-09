@@ -9,17 +9,12 @@ namespace MyEMShop.Application.Interfaces
 {
     public interface IProductService
     {
-        #region Group
-        List<ProductGroup> GetGroups();
-        IList<SelectListItem> GetGroupsForManageProduct();
-        IList<SelectListItem> GetSubGroupsForManageProduct(int groupId);
-        IList<SelectListItem> GetProductLevel();
-        IList<SelectListItem> GetProductSize();
-        #endregion
 
         #region Product
         IEnumerable<GetProductForAdminDto> GetProducts();
         int AddProduct(Product product);
+        IList<SelectListItem> GetProductLevel();
+        IList<SelectListItem> GetProductSize();
         Product GetProductByProductId(int productId);
         void CreateProduct(List<IFormFile> images,Product product, IFormFile Demo, IFormFile Image, string color);
         void AddColorForProduct(string color , Product product);

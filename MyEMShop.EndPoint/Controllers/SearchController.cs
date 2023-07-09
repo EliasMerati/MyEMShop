@@ -11,15 +11,18 @@ namespace MyEMShop.EndPoint.Controllers
     {
         #region Inject Service
         private readonly IProductService _productService;
+        private readonly IGroupService _groupService;
         private readonly IOrderService _orderService;
         private readonly IUserPannelService _userPannel;
         public SearchController(IProductService productService
-            ,IOrderService orderService
-            , IUserPannelService userPannel)
+            , IOrderService orderService
+            , IUserPannelService userPannel,
+IGroupService groupService)
         {
             _productService = productService;
             _orderService = orderService;
             _userPannel = userPannel;
+            _groupService = groupService;
         }
         #endregion
 
@@ -28,7 +31,7 @@ namespace MyEMShop.EndPoint.Controllers
         {
             ViewBag.pageid = pageid;
             ViewBag.SelectedGroup = selectedgroup;
-            ViewBag.Groups = _productService.GetGroups();
+            ViewBag.Groups = _groupService.GetGroups();
             return View(_productService.ShowProduct(pageid, Filter, selectedgroup, orderbytype, 12));
         }
 
@@ -43,7 +46,7 @@ namespace MyEMShop.EndPoint.Controllers
             {
                 return Redirect("NotFound");
             }
-            
+
             ViewBag.product = _productService.GetAllProduct();
             return View(product);
         }
@@ -58,16 +61,16 @@ namespace MyEMShop.EndPoint.Controllers
         [HttpPost]
         public IActionResult AddComment(ProductComment productComment)
         {
-            productComment.IsDelete= false;
+            productComment.IsDelete = false;
             productComment.CreateDate = DateTime.Now;
             productComment.UserId = _userPannel.GetUserIdByUserName(User.Identity.Name);
             _productService.AddProductComment(productComment);
-            return View("ShowComment",_productService.GetAllComments(productComment.ProductId));
+            return View("ShowComment", _productService.GetAllComments(productComment.ProductId));
         }
 
-        public IActionResult ShowComment(int id , int pageId=1) 
+        public IActionResult ShowComment(int id, int pageId = 1)
         {
-            return View(_productService.GetAllComments(id,pageId));
+            return View(_productService.GetAllComments(id, pageId));
         }
     }
 

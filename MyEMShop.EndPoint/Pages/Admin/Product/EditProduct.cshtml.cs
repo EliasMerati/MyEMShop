@@ -12,9 +12,11 @@ namespace MyEMShop.EndPoint.Pages.Admin.Product
     {
         #region Inject Service
         private readonly IProductService _productService;
-        public EditProductModel(IProductService productService)
+        private readonly IGroupService _groupService;
+        public EditProductModel(IProductService productService, IGroupService groupService)
         {
             _productService = productService;
+            _groupService = groupService;
         }
         #endregion
 
@@ -26,14 +28,14 @@ namespace MyEMShop.EndPoint.Pages.Admin.Product
 
             //====================================================================================Bind DropDown
 
-            var groups = _productService.GetGroupsForManageProduct();
+            var groups = _groupService.GetGroupsForManageProduct();
             ViewData["Groups"] = new SelectList(groups, "Value", "Text",product.GroupId);
 
             List<SelectListItem> subgroup= new List<SelectListItem>() 
             { 
                 new SelectListItem(){Text = "انتخاب کنید", Value =""}
             };
-            subgroup.AddRange(_productService.GetSubGroupsForManageProduct(product.GroupId));
+            subgroup.AddRange(_groupService.GetSubGroupsForManageProduct(product.GroupId));
             string SelectedSubGroup = null;
             if (product.SubGroup is not null)
             {

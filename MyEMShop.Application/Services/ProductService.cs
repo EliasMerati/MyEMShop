@@ -26,22 +26,6 @@ namespace MyEMShop.Application.Services
         }
         #endregion
 
-        public List<ProductGroup> GetGroups()
-        {
-            return _db.ProductGroups.Include(p => p.Groups).ToList();
-        }
-
-        public IList<SelectListItem> GetGroupsForManageProduct()
-        {
-            return _db.ProductGroups
-                .Where(p => p.ParentId == null)
-                .Select(p => new SelectListItem
-                {
-                    Value = p.GroupId.ToString(),
-                    Text = p.GroupTitle,
-                })
-                .ToList();
-        }
 
         public IList<SelectListItem> GetProductLevel()
         {
@@ -60,19 +44,6 @@ namespace MyEMShop.Application.Services
                 Text = l.SizeTitle
             }).ToList();
         }
-
-        public IList<SelectListItem> GetSubGroupsForManageProduct(int groupId)
-        {
-            return _db.ProductGroups
-                .Where(p => p.ParentId == groupId)
-                .Select(p => new SelectListItem
-                {
-                    Value = p.GroupId.ToString(),
-                    Text = p.GroupTitle,
-                })
-                .ToList();
-        }
-
         public int AddProduct(Product product)
         {
             _db.Add(product);
@@ -440,7 +411,7 @@ namespace MyEMShop.Application.Services
         public List<Product> GetPopularProduct()
         {
             return _db.Products.Include(p => p.OrderDetails)
-                .Where(od=>od.OrderDetails.Any())
+                .Where(od => od.OrderDetails.Any())
                 .OrderByDescending(o => o.OrderDetails.Count)
                 .Take(6)
                 .ToList();
@@ -466,5 +437,7 @@ namespace MyEMShop.Application.Services
         {
             return _db.Products.OrderByDescending(p => p.InsertDate).Take(10).ToList();
         }
+
+
     }
 }

@@ -16,12 +16,14 @@ namespace MyEMShop.EndPoint.Controllers
         #region Inject Services
         private readonly ILogger<HomeController> _logger;
         private readonly IUserWalletService _userWalletService;
+        private readonly IGroupService _groupService;
         private readonly IProductService _productService;
 
-        public HomeController(ILogger<HomeController> logger, IUserWalletService userWalletService, IProductService productService)
+        public HomeController(ILogger<HomeController> logger, IUserWalletService userWalletService,IGroupService groupService, IProductService productService)
         {
             _logger = logger;
             _userWalletService = userWalletService;
+            _groupService = groupService;
             _productService = productService;
         }
         #endregion
@@ -76,7 +78,7 @@ namespace MyEMShop.EndPoint.Controllers
                 new SelectListItem(){Text = "انتخاب کنید" , Value = ""}
             };
 
-            list.AddRange(_productService.GetSubGroupsForManageProduct(id));
+            list.AddRange(_groupService.GetSubGroupsForManageProduct(id));
             return Json(new SelectList(list, "Value", "Text"));
 
 

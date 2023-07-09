@@ -13,9 +13,11 @@ namespace MyEMShop.EndPoint.Pages.Admin.Product
     {
         #region Inject Service
         private readonly IProductService _productService;
-        public CreateProductModel(IProductService productService)
+        private readonly IGroupService _groupService;
+        public CreateProductModel(IProductService productService, IGroupService groupService)
         {
             _productService = productService;
+            _groupService = groupService;
         }
         #endregion
 
@@ -24,10 +26,10 @@ namespace MyEMShop.EndPoint.Pages.Admin.Product
         public void OnGet()
         {
             
-            var groups = _productService.GetGroupsForManageProduct();
+            var groups = _groupService.GetGroupsForManageProduct();
             ViewData["Groups"] = new SelectList(groups, "Value", "Text");
 
-            var subgroups = _productService.GetSubGroupsForManageProduct(int.Parse(groups.First().Value));
+            var subgroups = _groupService.GetSubGroupsForManageProduct(int.Parse(groups.First().Value));
             ViewData["SubGroups"] = new SelectList(subgroups, "Value", "Text");
 
             var productlevel = _productService.GetProductLevel();
