@@ -54,7 +54,8 @@
                                                     <ul>
                                                         @foreach (var sub in item.Groups)
                                                         {
-                                                            <li>@sub.GroupTitle - <a href="/Admin/Group/EditGroup/@sub.GroupId" class="btn btn-sm btn-warning">ویرایش</a></li>
+                                                            <li>@sub.GroupTitle - <a href="/Admin/Group/EditGroup/@sub.GroupId" class="btn btn-xs btn-warning">ویرایش</a>
+                                                            <a href="/Admin/Group/DeleteGroup/@sub.GroupId" class="btn btn-xs btn-danger">حذف</a></li>
                                                         }
                                                     </ul>
                                                 }

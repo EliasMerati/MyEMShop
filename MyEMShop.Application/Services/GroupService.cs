@@ -64,5 +64,11 @@ namespace MyEMShop.Application.Services
         {
             return _db.ProductGroups.Find(groupId);
         }
+
+        public void DeleteGroup(ProductGroup group)
+        {
+            group.IsDelete = true;
+            UpdateGroup(group);
+        }
     }
 }

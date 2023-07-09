@@ -12,5 +12,6 @@ namespace MyEMShop.Application.Interfaces
         void AddGroup(ProductGroup group);
         void UpdateGroup(ProductGroup group);
         ProductGroup GetGroupById(int groupId);
+        void DeleteGroup(ProductGroup group);
     }
 }
