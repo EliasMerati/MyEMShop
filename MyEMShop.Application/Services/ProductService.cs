@@ -10,6 +10,7 @@ using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using Image = SixLabors.ImageSharp.Image;
@@ -249,6 +250,7 @@ namespace MyEMShop.Application.Services
                 string Imagepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MainPic/", product.MainImageProduct);
                 using (var stream = new FileStream(Imagepath, FileMode.CreateNew))
                 {
+                    
                     ImageFile.CopyTo(stream);
                 }
                 #endregion
@@ -260,7 +262,7 @@ namespace MyEMShop.Application.Services
 
                 using (Image image = Image.Load(Imagepath))
                 {
-                    image.Mutate(x => x.Resize(220, 330));
+                    image.Mutate(x => x.Resize(330,220));
                     image.SaveAsync(OutputPath);
                 }
                 #endregion
@@ -272,7 +274,7 @@ namespace MyEMShop.Application.Services
 
                 using (Image image = Image.Load(Imagepath))
                 {
-                    image.Mutate(x => x.Resize(50, 75));
+                    image.Mutate(x => x.Resize(75,50));
                     image.SaveAsync(MiniPicPath);
                 }
                 #endregion
@@ -281,7 +283,7 @@ namespace MyEMShop.Application.Services
             {
                 product.MainImageProduct = "Default.jpg";
 
-                string Imagepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MainPic/", product.MainImageProduct);
+                string Imagepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MainPic/", "Default.jpg");
                 string OutputPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MainPicThumbnail/", "Default.jpg");
 
                 using (Image image = Image.Load(Imagepath))
@@ -291,7 +293,7 @@ namespace MyEMShop.Application.Services
                 }
                 //====================================================================================================================
 
-                string MiniPicPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MiniPic/", product.MainImageProduct);
+                string MiniPicPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MiniPic/", "Default.jpg");
 
                 using (Image image = Image.Load(Imagepath))
                 {
