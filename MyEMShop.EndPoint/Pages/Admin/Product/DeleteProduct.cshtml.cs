@@ -31,6 +31,7 @@ namespace MyEMShop.EndPoint.Pages.Admin.Product
         {
             var product = _productService.GetProductById(id);
             _productService.DeleteProduct(product);
+            _cache.RemoveAsync(CatchHelper.GenerateShowIndexCacheKey());
             _cache.RemoveAsync(CatchHelper.GenerateShowProductCacheKey());
             return RedirectToPage("Index");
         }

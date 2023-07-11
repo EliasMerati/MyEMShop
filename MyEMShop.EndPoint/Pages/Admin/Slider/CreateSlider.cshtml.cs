@@ -32,6 +32,7 @@ namespace MyEMShop.EndPoint.Pages.Admin.Slider
                 return Page();
             }
             _sliderService.AddSlider(Slider, MainimgSlider);
+            _cache.RemoveAsync(CatchHelper.GenerateShowIndexCacheKey());
             _cache.RemoveAsync(CatchHelper.GenerateShowProductCacheKey());
             return RedirectToPage("Index");
         }

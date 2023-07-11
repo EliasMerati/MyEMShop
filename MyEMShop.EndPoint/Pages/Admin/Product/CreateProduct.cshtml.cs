@@ -51,6 +51,7 @@ namespace MyEMShop.EndPoint.Pages.Admin.Product
             }
 
             _productService.CreateProduct(imgProduct,product, DemoProduct, MainimgProduct, Pcolor);
+            _cache.RemoveAsync(CatchHelper.GenerateShowIndexCacheKey());
             _cache.RemoveAsync(CatchHelper.GenerateShowProductCacheKey());
             return RedirectToPage("Index");
         }

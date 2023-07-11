@@ -1,9 +1,14 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Distributed;
 using MyEMShop.Application.Interfaces;
+using MyEMShop.Common;
+using MyEMShop.Data.Dtos.ProductDto;
 using MyEMShop.Data.Entities.Product;
 using System;
 using System.Collections.Generic;
+using System.Text;
+using System.Text.Json;
 
 namespace MyEMShop.EndPoint.Controllers
 {
@@ -14,15 +19,18 @@ namespace MyEMShop.EndPoint.Controllers
         private readonly IGroupService _groupService;
         private readonly IOrderService _orderService;
         private readonly IUserPannelService _userPannel;
+        private readonly IDistributedCache _cache;
         public SearchController(IProductService productService
             , IOrderService orderService
             , IUserPannelService userPannel,
-IGroupService groupService)
+              IGroupService groupService,
+              IDistributedCache cache)
         {
             _productService = productService;
             _orderService = orderService;
             _userPannel = userPannel;
             _groupService = groupService;
+            _cache = cache;
         }
         #endregion
 
@@ -41,7 +49,22 @@ IGroupService groupService)
             ViewBag.special = _productService.GetSpecialProduct();
             ViewBag.popular = _productService.GetPopularProduct();
 
-            var product = _productService.GetProductForShow(id);
+            #region Caching
+            Product product = new Product();
+            var showproductcache = _cache.GetAsync(CatchHelper.GenerateShowProductCacheKey()).Result;
+            if (showproductcache is not null)
+            {
+                product = JsonSerializer.Deserialize<Product>(showproductcache);
+            }
+            else
+            {
+                product = _productService.GetProductForShow(id);
+                string JsonData = JsonSerializer.Serialize(product);
+                byte[] encodeJson = Encoding.UTF8.GetBytes(JsonData);
+                var option = new DistributedCacheEntryOptions().SetSlidingExpiration(CatchHelper.DefaultCatchDuration);
+                _cache.SetAsync(CatchHelper.GenerateShowProductCacheKey(), encodeJson, option);
+            }
+            #endregion
             if (product is null)
             {
                 return Redirect("NotFound");

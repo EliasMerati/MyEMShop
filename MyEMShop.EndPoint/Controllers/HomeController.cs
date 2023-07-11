@@ -47,7 +47,7 @@ namespace MyEMShop.EndPoint.Controllers
             ViewBag.Special = _productService.GetSpecialProduct();
             ViewBag.latest = _productService.GetLatestProduct();
             List<ShowProductForIndex>  showProduct = new List<ShowProductForIndex>();
-           var showproductcache = _cache.GetAsync(CatchHelper.GenerateShowProductCacheKey()).Result;
+           var showproductcache = _cache.GetAsync(CatchHelper.GenerateShowIndexCacheKey()).Result;
             if (showproductcache is not null)
             {
                 showProduct = JsonSerializer.Deserialize<List<ShowProductForIndex>>(showproductcache);
@@ -58,7 +58,7 @@ namespace MyEMShop.EndPoint.Controllers
                 string JsonData = JsonSerializer.Serialize(showProduct);
                 byte[] encodeJson = Encoding.UTF8.GetBytes(JsonData);
                 var option = new DistributedCacheEntryOptions().SetSlidingExpiration(CatchHelper.DefaultCatchDuration);
-                _cache.SetAsync(CatchHelper.GenerateShowProductCacheKey(), encodeJson, option);
+                _cache.SetAsync(CatchHelper.GenerateShowIndexCacheKey(), encodeJson, option);
             }
             return View(showProduct);
         }
