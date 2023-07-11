@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Caching.Distributed;
 using MyEMShop.Application.Interfaces;
+using MyEMShop.Common;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Slider
 {
@@ -9,9 +11,11 @@ namespace MyEMShop.EndPoint.Pages.Admin.Slider
     {
         #region Injection
         private readonly ISliderService _sliderService;
-        public CreateSliderModel(ISliderService sliderService)
+        private readonly IDistributedCache _cache;
+        public CreateSliderModel(ISliderService sliderService, IDistributedCache cache)
         {
             _sliderService = sliderService;
+            _cache = cache;
         }
 
         #endregion
@@ -28,6 +32,7 @@ namespace MyEMShop.EndPoint.Pages.Admin.Slider
                 return Page();
             }
             _sliderService.AddSlider(Slider, MainimgSlider);
+            _cache.RemoveAsync(CatchHelper.GenerateShowProductCacheKey());
             return RedirectToPage("Index");
         }
     }

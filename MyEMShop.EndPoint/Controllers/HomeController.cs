@@ -1,13 +1,18 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using MyEMShop.Application.Interfaces;
+using MyEMShop.Common;
+using MyEMShop.Data.Dtos.ProductDto;
 using MyEMShop.EndPoint.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Text;
+using System.Text.Json;
 
 namespace MyEMShop.EndPoint.Controllers
 {
@@ -18,13 +23,20 @@ namespace MyEMShop.EndPoint.Controllers
         private readonly IUserWalletService _userWalletService;
         private readonly IGroupService _groupService;
         private readonly IProductService _productService;
+        private readonly IDistributedCache _cache;
 
-        public HomeController(ILogger<HomeController> logger, IUserWalletService userWalletService,IGroupService groupService, IProductService productService)
+
+        public HomeController(ILogger<HomeController> logger
+            , IUserWalletService userWalletService
+            ,IGroupService groupService
+            , IProductService productService
+            ,IDistributedCache cache)
         {
             _logger = logger;
             _userWalletService = userWalletService;
             _groupService = groupService;
             _productService = productService;
+            _cache = cache;
         }
         #endregion
 
@@ -34,7 +46,21 @@ namespace MyEMShop.EndPoint.Controllers
             ViewBag.popularproduct = _productService.GetPopularProduct();
             ViewBag.Special = _productService.GetSpecialProduct();
             ViewBag.latest = _productService.GetLatestProduct();
-            return View(_productService.ShowProduct().Item1);
+            List<ShowProductForIndex>  showProduct = new List<ShowProductForIndex>();
+           var showproductcache = _cache.GetAsync(CatchHelper.GenerateShowProductCacheKey()).Result;
+            if (showproductcache is not null)
+            {
+                showProduct = JsonSerializer.Deserialize<List<ShowProductForIndex>>(showproductcache);
+            }
+            else
+            {
+                showProduct = _productService.ShowProduct().Item1;
+                string JsonData = JsonSerializer.Serialize(showProduct);
+                byte[] encodeJson = Encoding.UTF8.GetBytes(JsonData);
+                var option = new DistributedCacheEntryOptions().SetSlidingExpiration(CatchHelper.DefaultCatchDuration);
+                _cache.SetAsync(CatchHelper.GenerateShowProductCacheKey(), encodeJson, option);
+            }
+            return View(showProduct);
         }
 
         #region OnlinePayment

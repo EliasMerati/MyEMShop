@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Caching.Distributed;
 using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
+using MyEMShop.Common;
 using MyEMShop.Data.Entities.User;
 using System.Collections.Generic;
 
@@ -18,6 +20,7 @@ namespace MyEMShop.EndPoint.Pages.Admin.Roles
         }
 
         #endregion
+
         [BindProperty]
         public Role Role { get; set; }
         public void OnGet()

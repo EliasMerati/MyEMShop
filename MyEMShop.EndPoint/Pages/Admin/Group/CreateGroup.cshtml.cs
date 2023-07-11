@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Caching.Distributed;
 using MyEMShop.Application.Interfaces;
+using MyEMShop.Common;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Group
 {
@@ -8,9 +10,11 @@ namespace MyEMShop.EndPoint.Pages.Admin.Group
     {
         #region Injection
         private readonly IGroupService _groupService;
-        public CreateGroupModel(IGroupService groupService)
+        private readonly IDistributedCache _cache;
+        public CreateGroupModel(IGroupService groupService, IDistributedCache cache)
         {
             _groupService= groupService;
+            _cache= cache;
         }
 
         #endregion
@@ -32,6 +36,7 @@ namespace MyEMShop.EndPoint.Pages.Admin.Group
                 return Page();
             }
             _groupService.AddGroup(group);
+            _cache.RemoveAsync(CatchHelper.GenerateShowProductCacheKey());
             return RedirectToPage("Index");
         }
     }

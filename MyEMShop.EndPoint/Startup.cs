@@ -33,6 +33,15 @@ namespace MyEMShop.EndPoint
             services.Configure<FormOptions>(opt => opt.MultipartBodyLengthLimit = 52428800);
             #endregion
 
+            #region Caching With SqlServer
+            services.AddDistributedSqlServerCache(opt =>
+            {
+                opt.SchemaName = "dbo";
+                opt.TableName = "CatchData";
+                opt.ConnectionString = Configuration.GetConnectionString("BehDokhtConnectionString");
+            });
+            #endregion
+
             #region Context
             services.AddDbContext<DatabaseContext>(option => option.UseSqlServer(Configuration.GetConnectionString("BehDokhtConnectionString")));
             #endregion

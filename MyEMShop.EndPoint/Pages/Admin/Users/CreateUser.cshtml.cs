@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Caching.Distributed;
 using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
+using MyEMShop.Common;
 using System.Collections.Generic;
 using static MyEMShop.Data.Dtos.UserDto.UserDto;
 
@@ -13,7 +15,7 @@ namespace MyEMShop.EndPoint.Pages.Admin.Users
         #region Inject services
         private readonly IPermissionService _permissionService;
         private readonly IManageUserService _userService;
-        public CreateUserModel(IPermissionService permissionService, IManageUserService userService)
+        public CreateUserModel(IPermissionService permissionService,IManageUserService userService)
         {
             _permissionService = permissionService;
             _userService = userService;
