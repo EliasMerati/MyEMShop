@@ -31,7 +31,6 @@ namespace MyEMShop.EndPoint.Pages.Admin.Group
         {
              var group =_groupService.GetGroupById(id);
             _groupService.DeleteGroup(group);
-            _cache.RemoveAsync(CatchHelper.GenerateShowIndexCacheKey());
             _cache.RemoveAsync(CatchHelper.GenerateShowProductCacheKey());
             return RedirectToPage("Index");
         }

@@ -49,7 +49,6 @@ namespace MyEMShop.EndPoint.Pages.Admin.Discount
 
             if (!ModelState.IsValid) { return Page(); }
             _discountService.UpdateDiscount(Discount);
-            _cache.RemoveAsync(CatchHelper.GenerateShowIndexCacheKey());
             _cache.RemoveAsync(CatchHelper.GenerateShowProductCacheKey());
             return RedirectToPage("Index");
         }

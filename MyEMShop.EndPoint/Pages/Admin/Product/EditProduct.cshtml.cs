@@ -61,7 +61,6 @@ namespace MyEMShop.EndPoint.Pages.Admin.Product
                 return Page();
             }
             _productService.UpdateProduct(product, DemoProduct, MainimgProduct);
-            _cache.RemoveAsync(CatchHelper.GenerateShowIndexCacheKey());
             _cache.RemoveAsync(CatchHelper.GenerateShowProductCacheKey());
             return RedirectToPage("Index");
         }

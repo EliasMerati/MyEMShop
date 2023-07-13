@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,6 +13,8 @@ using MyEMShop.Application.Services;
 using MyEMShop.Common;
 using MyEMShop.Data.Context;
 using System;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace MyEMShop.EndPoint
 {
@@ -27,8 +30,17 @@ namespace MyEMShop.EndPoint
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(options =>
+            {
+                options.OutputFormatters.RemoveType<SystemTextJsonOutputFormatter>();
+                options.OutputFormatters.Add(new SystemTextJsonOutputFormatter(new JsonSerializerOptions(JsonSerializerDefaults.Web)
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                }));
+            });
+
             services.AddRazorPages();
+
             #region Configure Limit File For Mac & Linux
             services.Configure<FormOptions>(opt => opt.MultipartBodyLengthLimit = 52428800);
             #endregion

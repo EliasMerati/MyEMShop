@@ -55,12 +55,13 @@ namespace MyEMShop.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             #region Solve Cascading ForeignKeys
 
             foreach (var relationship in modelBuilder.Model
                 .GetEntityTypes()
                 .SelectMany(e => e.GetForeignKeys())
-                .Where(fk => !fk.IsOwnership && fk.DeleteBehavior == DeleteBehavior.Cascade))
+                .Where(fk => !fk.IsOwnership && fk.DeleteBehavior is DeleteBehavior.Cascade))
             {
                 relationship.DeleteBehavior = DeleteBehavior.Restrict;
             }

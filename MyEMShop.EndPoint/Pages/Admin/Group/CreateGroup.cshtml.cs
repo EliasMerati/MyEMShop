@@ -36,7 +36,6 @@ namespace MyEMShop.EndPoint.Pages.Admin.Group
                 return Page();
             }
             _groupService.AddGroup(group);
-            _cache.RemoveAsync(CatchHelper.GenerateShowIndexCacheKey());
             _cache.RemoveAsync(CatchHelper.GenerateShowProductCacheKey());
             
             return RedirectToPage("Index");

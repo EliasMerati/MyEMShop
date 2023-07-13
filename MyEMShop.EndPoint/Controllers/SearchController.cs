@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Common;
-using MyEMShop.Data.Dtos.ProductDto;
 using MyEMShop.Data.Entities.Product;
 using System;
 using System.Collections.Generic;
@@ -43,35 +42,39 @@ namespace MyEMShop.EndPoint.Controllers
             return View(_productService.ShowProduct(pageid, Filter, selectedgroup, orderbytype, 12));
         }
 
+
         [Route("/ShowProduct/{id}")]
         public IActionResult ShowProduct(int id)
         {
             ViewBag.special = _productService.GetSpecialProduct();
             ViewBag.popular = _productService.GetPopularProduct();
-
-            #region Caching
-            Product product = new Product();
-            var showproductcache = _cache.GetAsync(CatchHelper.GenerateShowProductCacheKey()).Result;
-            if (showproductcache is not null)
-            {
-                product = JsonSerializer.Deserialize<Product>(showproductcache);
-            }
-            else
-            {
-                product = _productService.GetProductForShow(id);
-                string JsonData = JsonSerializer.Serialize(product);
-                byte[] encodeJson = Encoding.UTF8.GetBytes(JsonData);
-                var option = new DistributedCacheEntryOptions().SetSlidingExpiration(CatchHelper.DefaultCatchDuration);
-                _cache.SetAsync(CatchHelper.GenerateShowProductCacheKey(), encodeJson, option);
-            }
-            #endregion
-            if (product is null)
-            {
-                return Redirect("NotFound");
-            }
-
             ViewBag.product = _productService.GetAllProduct();
-            return View(product);
+
+            //#region Caching
+            //Product product = new Product();
+            //var showproductcache = _cache.GetAsync(CatchHelper.GenerateShowProductCacheKey()).Result;
+            //if (showproductcache is not null)
+            //{
+            //    product = JsonSerializer.Deserialize<Product>(showproductcache);
+            //}
+            //else
+            //{
+            //    product = _productService.GetProductForShow(id);
+            //    var JsonData = JsonSerializer.Serialize(product);
+            //    byte[] encodeJson = Encoding.UTF8.GetBytes(JsonData);
+            //    var option = new DistributedCacheEntryOptions().SetSlidingExpiration(CatchHelper.DefaultCatchDuration);
+            //    _cache.SetAsync(CatchHelper.GenerateShowProductCacheKey(), encodeJson, option);
+
+            //    if (product is null)
+            //    {
+            //        return Redirect("NotFound");
+            //    }
+            //}
+            //#endregion
+
+
+
+            return View(_productService.GetProductForShow(id));
         }
 
         [Authorize]
