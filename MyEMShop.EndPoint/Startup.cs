@@ -70,6 +70,7 @@ namespace MyEMShop.EndPoint
             services.AddScoped<ISliderService, SliderService>();
             services.AddScoped<IGroupService, GroupService>();
             services.AddScoped<IDiscountService, DiscountService>();
+            services.AddScoped<ICommentService, CommentService>();
             #endregion
 
             #region Authentication

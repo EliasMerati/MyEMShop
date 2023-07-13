@@ -33,10 +33,5 @@ namespace MyEMShop.Application.Interfaces
         List<Product> GetAllProduct();
         #endregion
 
-        #region Comment
-        void AddProductComment(ProductComment comment);
-       Tuple<List<ProductComment>,int> GetAllComments(int productId , int pageId=1);
-        #endregion
-
     }
 }

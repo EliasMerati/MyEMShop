@@ -392,24 +392,6 @@ namespace MyEMShop.Application.Services
             return _db.Products.Find(productId);
         }
 
-        public void AddProductComment(ProductComment comment)
-        {
-            _db.ProductComments.Add(comment);
-            _db.SaveChanges();
-        }
-
-        public Tuple<List<ProductComment>, int> GetAllComments(int productId, int pageId = 1)
-        {
-            int take = 5;
-            int skip = (pageId - 1) * take;
-            int pageCount = _db.ProductComments.Where(pc => pc.ProductId == productId && !pc.IsDelete).Count() / take;
-            return Tuple.Create(_db.ProductComments.Include(u => u.User)
-                .Where(pc => pc.ProductId == productId && !pc.IsDelete)
-                .Skip(skip).Take(take)
-                .OrderByDescending(pc => pc.CreateDate)
-                .ToList(), pageCount);
-        }
-
         public List<Product> GetPopularProduct()
         {
             return _db.Products.Include(p => p.OrderDetails)

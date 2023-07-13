@@ -2,12 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using MyEMShop.Application.Interfaces;
-using MyEMShop.Common;
 using MyEMShop.Data.Entities.Product;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Text.Json;
 
 namespace MyEMShop.EndPoint.Controllers
 {
@@ -15,17 +12,19 @@ namespace MyEMShop.EndPoint.Controllers
     {
         #region Inject Service
         private readonly IProductService _productService;
+        private readonly ICommentService _commentService;
         private readonly IGroupService _groupService;
         private readonly IOrderService _orderService;
         private readonly IUserPannelService _userPannel;
         private readonly IDistributedCache _cache;
-        public SearchController(IProductService productService
+        public SearchController(IProductService productService, ICommentService commentService
             , IOrderService orderService
             , IUserPannelService userPannel,
               IGroupService groupService,
               IDistributedCache cache)
         {
             _productService = productService;
+            _commentService = commentService;
             _orderService = orderService;
             _userPannel = userPannel;
             _groupService = groupService;
@@ -90,13 +89,13 @@ namespace MyEMShop.EndPoint.Controllers
             productComment.IsDelete = false;
             productComment.CreateDate = DateTime.Now;
             productComment.UserId = _userPannel.GetUserIdByUserName(User.Identity.Name);
-            _productService.AddProductComment(productComment);
-            return View("ShowComment", _productService.GetAllComments(productComment.ProductId));
+            _commentService.AddProductComment(productComment);
+            return View("ShowComment", _commentService.GetAllComments(productComment.ProductId));
         }
 
         public IActionResult ShowComment(int id, int pageId = 1)
         {
-            return View(_productService.GetAllComments(id, pageId));
+            return View(_commentService.GetAllComments(id, pageId));
         }
     }
 
