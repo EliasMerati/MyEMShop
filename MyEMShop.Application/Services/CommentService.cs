@@ -28,12 +28,16 @@ namespace MyEMShop.Application.Services
         {
             int take = 5;
             int skip = (pageId - 1) * take;
+
             int pageCount = _db.ProductComments.Where(pc => pc.ProductId == productId && !pc.IsDelete).Count() / take;
-            return Tuple.Create(_db.ProductComments.Include(u => u.User)
+
+            var commentsList = _db.ProductComments.Include(u => u.User)
                 .Where(pc => pc.ProductId == productId && !pc.IsDelete)
                 .Skip(skip).Take(take)
                 .OrderByDescending(pc => pc.CreateDate)
-                .ToList(), pageCount);
+                .ToList();
+
+            return Tuple.Create(commentsList, pageCount);
         }
     }
 }
