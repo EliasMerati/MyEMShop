@@ -413,7 +413,7 @@ namespace MyEMShop.Application.Services
         {
             return _db.Products
                 .OrderByDescending(p => p.InsertDate)
-                .Take(6)
+                .Take(5)
                 .ToList();
         }
 
@@ -430,6 +430,21 @@ namespace MyEMShop.Application.Services
             product.IsDelete = true;
             _db.Update(product);
             _db.SaveChanges();
+        }
+
+        public List<Product> GetPopularProductForIndex()
+        {
+            return _db.Products.Include(p => p.OrderDetails)
+               .Where(od => od.OrderDetails.Any())
+               .Take(20)
+               .ToList();
+        }
+
+        public List<Product> GetSpecialProductForIndex()
+        {
+            return _db.Products.Where(p => !p.IsDelete && p.Isspecial == true)
+                .Take(20)
+                .ToList();
         }
     }
 }

@@ -38,7 +38,7 @@ namespace MyEMShop.EndPoint.Controllers
             ViewBag.pageid = pageid;
             ViewBag.SelectedGroup = selectedgroup;
             ViewBag.Groups = _groupService.GetGroups();
-            return View(_productService.ShowProduct(pageid, Filter, selectedgroup, orderbytype, 12));
+            return View(_productService.ShowProduct(pageid, Filter, selectedgroup, orderbytype, 20));
         }
 
 
@@ -49,30 +49,6 @@ namespace MyEMShop.EndPoint.Controllers
             ViewBag.special = _productService.GetSpecialProduct();
             ViewBag.popular = _productService.GetPopularProduct();
             ViewBag.product = _productService.GetAllProductLikeName(id);
-
-            //#region Caching
-            //Product product = new Product();
-            //var showproductcache = _cache.GetAsync(CatchHelper.GenerateShowProductCacheKey()).Result;
-            //if (showproductcache is not null)
-            //{
-            //    product = JsonSerializer.Deserialize<Product>(showproductcache);
-            //}
-            //else
-            //{
-            //    product = _productService.GetProductForShow(id);
-            //    var JsonData = JsonSerializer.Serialize(product);
-            //    byte[] encodeJson = Encoding.UTF8.GetBytes(JsonData);
-            //    var option = new DistributedCacheEntryOptions().SetSlidingExpiration(CatchHelper.DefaultCatchDuration);
-            //    _cache.SetAsync(CatchHelper.GenerateShowProductCacheKey(), encodeJson, option);
-
-            //    if (product is null)
-            //    {
-            //        return Redirect("NotFound");
-            //    }
-            //}
-            //#endregion
-
-
 
             return View(_productService.GetProductForShow(id));
         }

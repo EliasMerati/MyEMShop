@@ -30,6 +30,8 @@ namespace MyEMShop.Application.Interfaces
         List<Product> GetPopularProduct();
         List<Product> GetSpecialProduct();
         List<Product> GetLatestProduct();
+        List<Product> GetPopularProductForIndex();
+        List<Product> GetSpecialProductForIndex();
         List<Product> GetAllProductLikeName(int productId);
         #endregion
 

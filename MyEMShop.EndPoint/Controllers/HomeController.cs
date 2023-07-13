@@ -40,6 +40,8 @@ namespace MyEMShop.EndPoint.Controllers
             ViewBag.popularproduct = _productService.GetPopularProduct();
             ViewBag.Special = _productService.GetSpecialProduct();
             ViewBag.latest = _productService.GetLatestProduct();
+            ViewBag.PopularForIndex = _productService.GetPopularProductForIndex();
+            ViewBag.SpecialForIndex = _productService.GetSpecialProductForIndex();
             return View(_productService.ShowProduct().Item1);
         }
 
