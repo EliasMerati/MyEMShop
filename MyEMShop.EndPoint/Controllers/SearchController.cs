@@ -45,9 +45,10 @@ namespace MyEMShop.EndPoint.Controllers
         [Route("/ShowProduct/{id}")]
         public IActionResult ShowProduct(int id)
         {
+            ViewBag.CommentCount = _commentService.GetAllProductComments(id);
             ViewBag.special = _productService.GetSpecialProduct();
             ViewBag.popular = _productService.GetPopularProduct();
-            ViewBag.product = _productService.GetAllProduct();
+            ViewBag.product = _productService.GetAllProductLikeName(id);
 
             //#region Caching
             //Product product = new Product();

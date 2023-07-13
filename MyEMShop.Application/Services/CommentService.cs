@@ -39,5 +39,10 @@ namespace MyEMShop.Application.Services
 
             return Tuple.Create(commentsList, pageCount);
         }
+
+        public int GetAllProductComments(int productId)
+        {
+            return _db.ProductComments.Where(p => p.ProductId == productId).Count();
+        }
     }
 }

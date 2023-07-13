@@ -397,7 +397,7 @@ namespace MyEMShop.Application.Services
             return _db.Products.Include(p => p.OrderDetails)
                 .Where(od => od.OrderDetails.Any())
                 .OrderByDescending(o => o.OrderDetails.Count)
-                .Take(10)
+                .Take(5)
                 .ToList();
         }
 
@@ -405,7 +405,7 @@ namespace MyEMShop.Application.Services
         {
             return _db.Products.Where(p => !p.IsDelete && p.Isspecial == true)
                 .OrderByDescending(p => p.InsertDate)
-                .Take(10)
+                .Take(5)
                 .ToList();
         }
 
@@ -417,9 +417,12 @@ namespace MyEMShop.Application.Services
                 .ToList();
         }
 
-        public List<Product> GetAllProduct()
+        public List<Product> GetAllProductLikeName(int productId)
         {
-            return _db.Products.OrderByDescending(p => p.InsertDate).Take(10).ToList();
+            var productName = _db.Products.Single(p => p.ProductId == productId && !p.IsDelete).ProductTitle;
+            
+            return _db.Products.Where(p=>p.ProductTitle.Contains(productName)).ToList();
+                
         }
 
         public void DeleteProduct(Product product)

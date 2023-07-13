@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = Model.ProductTitle;
     int newprice = Model.ProductPrice - (Model.ProductPrice * Model.Save / 100);
+    
 }
 
 @section MetaTag
@@ -147,13 +148,16 @@
 
                                         </i>
                                     </span>
-                                    <a onClick="$('a[href=\'#tab-review\']').trigger('click'); return false;" href="">
+                                    @{
+                                        int comments = ViewBag.CommentCount;
+                                    }
+                                    <a onClick="$('a[href=\'#tab-review\']').trigger('click'); return false;" href="/search/AddComment/">
                                         <span itemprop="reviewCount">
-                                            1 بررسی
+                                            @comments بررسی
                                         </span>
                                     </a>
                                     /
-                                    <a onClick="$('a[href=\'#tab-review\']').trigger('click'); return false;" href="">یک بررسی بنویسید</a>
+                                    <a onClick="$('a[href=\'#tab-review\']').trigger('click'); return false;" href="/search/AddComment/">یک بررسی بنویسید</a>
                                 </p>
                             </div>
                             <hr>
