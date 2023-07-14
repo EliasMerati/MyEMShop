@@ -10,7 +10,6 @@ using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using Image = SixLabors.ImageSharp.Image;
@@ -250,7 +249,7 @@ namespace MyEMShop.Application.Services
                 string Imagepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MainPic/", product.MainImageProduct);
                 using (var stream = new FileStream(Imagepath, FileMode.CreateNew))
                 {
-                    
+
                     ImageFile.CopyTo(stream);
                 }
                 #endregion
@@ -262,7 +261,7 @@ namespace MyEMShop.Application.Services
 
                 using (Image image = Image.Load(Imagepath))
                 {
-                    image.Mutate(x => x.Resize(330,220));
+                    image.Mutate(x => x.Resize(330, 220));
                     image.SaveAsync(OutputPath);
                 }
                 #endregion
@@ -274,7 +273,7 @@ namespace MyEMShop.Application.Services
 
                 using (Image image = Image.Load(Imagepath))
                 {
-                    image.Mutate(x => x.Resize(75,50));
+                    image.Mutate(x => x.Resize(75, 50));
                     image.SaveAsync(MiniPicPath);
                 }
                 #endregion
@@ -420,9 +419,9 @@ namespace MyEMShop.Application.Services
         public List<Product> GetAllProductLikeName(int productId)
         {
             var productName = _db.Products.Single(p => p.ProductId == productId && !p.IsDelete).ProductTitle;
-            
-            return _db.Products.Where(p=>p.ProductTitle.Contains(productName)).ToList();
-                
+
+            return _db.Products.Where(p => p.ProductTitle.Contains(productName)).ToList();
+
         }
 
         public void DeleteProduct(Product product)

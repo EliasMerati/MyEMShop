@@ -1,5 +1,3 @@
-using System;
-
 namespace MyEMShop.EndPoint.Models
 {
     public class ErrorViewModel

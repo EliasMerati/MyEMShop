@@ -25,7 +25,7 @@ namespace MyEMShop.EndPoint.Controllers
         #endregion
 
         //-------------------------------------------------------------------------------
-       
+
         #region Register
         [HttpGet]
         [Route("Register")]
@@ -77,7 +77,7 @@ namespace MyEMShop.EndPoint.Controllers
 
         [HttpPost]
         [Route("Login")]
-        public IActionResult Login(LoginDto login , string returnUrl = "/")
+        public IActionResult Login(LoginDto login, string returnUrl = "/")
         {
             if (!ModelState.IsValid) { return View(login); }
             var user = _AccountServices.LoginUser(login);
@@ -131,7 +131,7 @@ namespace MyEMShop.EndPoint.Controllers
         public IActionResult ForgotPassword(ForgotPasswordDto forgot)
         {
             if (!ModelState.IsValid) { return View(forgot); }
-            
+
             string FixEmail = FixedEmail.Fix(forgot.Email);
             var user = _AccountServices.GetUserByEmail(FixEmail);
             if (user is null)
@@ -140,8 +140,8 @@ namespace MyEMShop.EndPoint.Controllers
                 return View(forgot);
             }
 
-            string body = _viewRender.RenderToStringAsync("_ForgotPassword",user);
-            SendEmail.Send(user.Email,"فعالسازی کلمه ی عبور" , body);
+            string body = _viewRender.RenderToStringAsync("_ForgotPassword", user);
+            SendEmail.Send(user.Email, "فعالسازی کلمه ی عبور", body);
             ViewBag.IsSuccess = true;
             return View();
         }
@@ -151,9 +151,9 @@ namespace MyEMShop.EndPoint.Controllers
 
 
         [Route("ResetPassword")]
-        public IActionResult ResetPassword( string id)
+        public IActionResult ResetPassword(string id)
         {
-            return View( new ResetPasswordDto {Activecode = id });
+            return View(new ResetPasswordDto { Activecode = id });
         }
 
         [HttpPost]
@@ -166,7 +166,7 @@ namespace MyEMShop.EndPoint.Controllers
             string HashPassword = _AccountServices.HashPassword(reset.Password);
             user.Password = HashPassword;
             _AccountServices.UpdateUser(user);
-            return Redirect("/Login") ;
+            return Redirect("/Login");
         }
         //[HttpPost]
         //[Route("ResetPassword")]

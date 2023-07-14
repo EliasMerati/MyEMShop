@@ -1,10 +1,6 @@
 ﻿using MyEMShop.Data.Entities.Permission;
 using MyEMShop.Data.Entities.User;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyEMShop.Application.Interfaces
 {
@@ -24,8 +20,8 @@ namespace MyEMShop.Application.Interfaces
         IList<Permission> GetAllPermissions();
         void AddPermissionToRole(int roleId, IList<int> Permissions);
         IList<int> PermissionsRole(int roleId);
-        void UpdatePermissionsRole(int roleId , IList<int> Permissions);
-        bool PermissionChecker(int permissionId,string userName);
+        void UpdatePermissionsRole(int roleId, IList<int> Permissions);
+        bool PermissionChecker(int permissionId, string userName);
         int GetUserIdByUserName(string userName);
         IList<int> GetUserRoles(string userName);
         IList<int> GetUserRolesPermission(int permissionId);

@@ -1,5 +1,4 @@
-﻿using MyEMShop.Data.Entities.Order;
-using MyEMShop.Data.Entities.Product;
+﻿using MyEMShop.Data.Entities.Product;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

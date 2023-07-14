@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MyEMShop.Application.Interfaces;
 using System.Collections.Generic;
@@ -8,11 +7,11 @@ namespace MyEMShop.EndPoint.Pages.Admin.Discount
     public class IndexModel : PageModel
     {
         #region Inject
-        
+
         private readonly IDiscountService _discountService;
         public IndexModel(IDiscountService discountService)
         {
-            _discountService= discountService;
+            _discountService = discountService;
         }
         #endregion
 

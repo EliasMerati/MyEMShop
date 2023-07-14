@@ -1,9 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Dtos.ProductDto;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Product
@@ -14,7 +12,7 @@ namespace MyEMShop.EndPoint.Pages.Admin.Product
         private readonly IProductService _productService;
         public IndexModel(IProductService productService)
         {
-            _productService = productService;  
+            _productService = productService;
         }
 
         [BindProperty]

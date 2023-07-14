@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Context;
-using MyEMShop.Data.Dtos.Order;
 using MyEMShop.Data.Entities.Order;
 using MyEMShop.Data.Entities.Wallet;
 using System;
@@ -31,7 +30,7 @@ namespace MyEMShop.Application.Services
 
         #endregion
 
-        
+
 
         public int AddOrder(string userName, int productId)
         {
@@ -84,7 +83,7 @@ namespace MyEMShop.Application.Services
                 }
                 UpdatePriceOrder(order.OrderId);
             }
-            
+
             return order.OrderId;
         }
 
@@ -97,16 +96,16 @@ namespace MyEMShop.Application.Services
 
             if (order is null || order.IsFinally) { return false; }
 
-            if(_userPannel.BalanceWallet(userName) >= order.OrderSum)
+            if (_userPannel.BalanceWallet(userName) >= order.OrderSum)
             {
                 order.IsFinally = true;
                 _userWallet.AddWallet(new Wallet()
                 {
-                    Amount= order.OrderSum,
+                    Amount = order.OrderSum,
                     CreateDate = DateTime.Now,
-                    Description = "فاکتور شماره ی #" +order.OrderId,
-                    IsPay=true,
-                    UserId =userId,
+                    Description = "فاکتور شماره ی #" + order.OrderId,
+                    IsPay = true,
+                    UserId = userId,
                     TypeId = 2,
                 });
                 _db.Update(order);
@@ -127,7 +126,7 @@ namespace MyEMShop.Application.Services
         public Order GetOrderForUserPannel(string userName, int orderId)
         {
             int userId = _userPannel.GetUserIdByUserName(userName);
-            return _db.Orders.Include(o=> o.OrderDetails).ThenInclude(od=> od.Product)
+            return _db.Orders.Include(o => o.OrderDetails).ThenInclude(od => od.Product)
                 .FirstOrDefault(o => o.UserId == userId && o.OrderId == orderId);
         }
 
@@ -153,6 +152,6 @@ namespace MyEMShop.Application.Services
             _db.SaveChanges();
         }
 
-        
+
     }
 }

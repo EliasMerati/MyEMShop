@@ -6,7 +6,6 @@ using Microsoft.Extensions.Caching.Distributed;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Common;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Product
 {
@@ -28,15 +27,15 @@ namespace MyEMShop.EndPoint.Pages.Admin.Product
         public Data.Entities.Product.Product product { get; set; }
         public void OnGet(int id)
         {
-            product =  _productService.GetProductById(id);
+            product = _productService.GetProductById(id);
 
             //====================================================================================Bind DropDown
 
             var groups = _groupService.GetGroupsForManageProduct();
-            ViewData["Groups"] = new SelectList(groups, "Value", "Text",product.GroupId);
+            ViewData["Groups"] = new SelectList(groups, "Value", "Text", product.GroupId);
 
-            List<SelectListItem> subgroup= new List<SelectListItem>() 
-            { 
+            List<SelectListItem> subgroup = new List<SelectListItem>()
+            {
                 new SelectListItem(){Text = "انتخاب کنید", Value =""}
             };
             subgroup.AddRange(_groupService.GetSubGroupsForManageProduct(product.GroupId));
@@ -48,13 +47,13 @@ namespace MyEMShop.EndPoint.Pages.Admin.Product
             ViewData["SubGroups"] = new SelectList(subgroup, "Value", "Text", SelectedSubGroup);
 
             var productlevel = _productService.GetProductLevel();
-            ViewData["ProductLevel"] = new SelectList(productlevel, "Value", "Text",product.PL_Id);
+            ViewData["ProductLevel"] = new SelectList(productlevel, "Value", "Text", product.PL_Id);
 
             var size = _productService.GetProductSize();
-            ViewData["ProductSize"] = new SelectList(size, "Value", "Text",product.PS_Id);
+            ViewData["ProductSize"] = new SelectList(size, "Value", "Text", product.PS_Id);
         }
 
-        public IActionResult OnPost(IFormFile DemoProduct,IFormFile MainimgProduct)
+        public IActionResult OnPost(IFormFile DemoProduct, IFormFile MainimgProduct)
         {
             if (!ModelState.IsValid)
             {
