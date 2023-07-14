@@ -312,7 +312,7 @@ namespace MyEMShop.Application.Services
         {
             if (take == 0)
             {
-                take = 20;
+                take = 12;
             }
             var result = _db.Products.AsQueryable();
             //============================================================== Filter
@@ -342,6 +342,12 @@ namespace MyEMShop.Application.Services
                 case "special":
                     {
                         result = result.Where(p => p.Isspecial == true);
+                        break;
+                    }
+                case "Popular":
+                    {
+                        result = result.Where(od => od.OrderDetails.Any())
+                        .OrderByDescending(o => o.OrderDetails.Count);
                         break;
                     }
 

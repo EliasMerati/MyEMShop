@@ -33,12 +33,12 @@ namespace MyEMShop.EndPoint.Controllers
         #endregion
 
 
-        public IActionResult Index(int pageid = 1, string Filter = "", List<int> selectedgroup = null, string orderbytype = "featured", int take = 8)
+        public IActionResult Index(int pageid = 1, string Filter = "", List<int> selectedgroup = null, string orderbytype = "featured")
         {
             ViewBag.pageid = pageid;
             ViewBag.SelectedGroup = selectedgroup;
             ViewBag.Groups = _groupService.GetGroups();
-            return View(_productService.ShowProduct(pageid, Filter, selectedgroup, orderbytype, 20));
+            return View(_productService.ShowProduct(pageid, Filter, selectedgroup, orderbytype));
         }
 
 

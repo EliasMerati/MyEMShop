@@ -3,11 +3,11 @@
 @{
     ViewData["Title"] = "خانه";
 }
-@*@section Slider
+@section Slider
     {
     <partial name="_Slider" />
 
-}*@
+}
 @section Banner
     {
     <partial name="_Banner" />
@@ -176,7 +176,7 @@
 
 <!-- Banner End -->
 <!-- دسته ها محصولات Slider Start -->
-<h3 class="subtitle">پرفروش ها<a class="viewall" href="/Search">نمایش همه</a></h3>
+<h3 class="subtitle">پرفروش ها</h3>
 @{
     List<Product> PopularForIndex = ViewBag.PopularForIndex as List<Product>;
 }
@@ -219,7 +219,7 @@
 <!-- دسته ها محصولات Slider End -->
 <!-- دسته ها محصولات Slider Start-->
 <div class="category-module" id="latest_category">
-    <h3 class="subtitle">پیشنهاد محصول <a class="viewall" href="/Search">نمایش همه</a></h3>
+    <h3 class="subtitle">پیشنهاد محصول </h3>
     <div class="category-module-content">
         @{
             List<Product> SpecialForIndex = ViewBag.SpecialForIndex as List<Product>;
@@ -267,7 +267,7 @@
 <!-- دسته ها محصولات Slider End-->
 
 <!-- برند Logo Carousel Start-->
-<div id="carousel" class="owl-carousel nxt">
+@*<div id="carousel" class="owl-carousel nxt">
     <div class="item text-center"> <a href="#"><img src="/Template/image/product/apple_logo-100x100.jpg" alt="پالم" class="img-responsive" /></a> </div>
     <div class="item text-center"> <a href="#"><img src="/Template/image/product/canon_logo-100x100.jpg" alt="سونی" class="img-responsive" /></a> </div>
     <div class="item text-center"> <a href="#"><img src="/Template/image/product/apple_logo-100x100.jpg" alt="کنون" class="img-responsive" /></a> </div>
@@ -276,5 +276,5 @@
     <div class="item text-center"> <a href="#"><img src="/Template/image/product/canon_logo-100x100.jpg" alt="اچ پی" class="img-responsive" /></a> </div>
     <div class="item text-center"> <a href="#"><img src="/Template/image/product/apple_logo-100x100.jpg" alt="brand" class="img-responsive" /></a> </div>
     <div class="item text-center"> <a href="#"><img src="/Template/image/product/canon_logo-100x100.jpg" alt="brand1" class="img-responsive" /></a> </div>
-</div>
+</div>*@
 <!-- برند Logo Carousel End -->
