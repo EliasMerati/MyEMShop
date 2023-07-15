@@ -6,6 +6,7 @@ using MyEMShop.Data.Entities.Product;
 using MyEMShop.Data.Entities.User;
 using MyEMShop.Data.Entities.Wallet;
 using System.Linq;
+using MyEMShop.Data.Entities.Tax;
 
 namespace MyEMShop.Data.Context
 {
@@ -53,6 +54,9 @@ namespace MyEMShop.Data.Context
         public DbSet<FavoriteProducts> FavoriteProducts { get; set; }
         #endregion
 
+        #region Tax
+        public DbSet<Tax> Taxes { get; set; }
+        #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

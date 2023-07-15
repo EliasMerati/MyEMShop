@@ -41,7 +41,7 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
             }
            int walletid = _userWalletService.ChargeWallet(User.Identity.Name,"واریز" , charge.Amount);
 
-            #region Online Payment For Wallet
+            #region Online Payment With Wallet
             var payment = new Zarinpal.Payment("",charge.Amount);
             var response = payment.PaymentRequest("واریز به حساب", $"https://localhost:44346/OnlineWalletPayment/{walletid}");
             if (response.Result.Status is 100)

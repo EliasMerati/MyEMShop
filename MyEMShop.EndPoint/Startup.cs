@@ -74,6 +74,7 @@ namespace MyEMShop.EndPoint
             services.AddScoped<IDiscountService, DiscountService>();
             services.AddScoped<ICommentService, CommentService>();
             services.AddScoped<IFavoriteProductService, FavoriteProductService>();
+            services.AddScoped<ITaxService, TaxService>();
             #endregion
 
             #region Authentication
