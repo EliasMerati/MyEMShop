@@ -20,4 +20,13 @@ namespace MyEMShop.Data.Dtos.ProductDto
         public int Save { get; set; }
         public DateTime InsertDate { get; set; }
     }
+
+    public record ShowMyFavoriteProductDto
+    {
+        public int ProductId { get; set; }
+        public string ProductTitle { get; set; }
+        public int ProductPrice { get; set; }
+        public string MainImageProduct { get; set; }
+        public int Save { get; set; }
+    }
 }

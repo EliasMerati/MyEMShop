@@ -103,7 +103,7 @@
                                         <a href="/Search/BuyProduct/@Model.ProductId" id="button-cart" class="btn btn-primary btn-lg">افزودن به سبد</a>
                                     </div>
                                     <div>
-                                        <button type="button" class="wishlist" onClick=""><i class="fa fa-heart"></i> افزودن به علاقه مندی ها</button>
+                                        <a asp-area="UserPannel" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-productId ="@Model.ProductId" type="button" class="wishlist" onClick=""><i class="fa fa-heart"></i> افزودن به علاقه مندی ها</a>
                                         <br />
                                         <button type="button" class="wishlist" onClick=""><i class="fa fa-exchange"></i> مقایسه این محصول</button>
                                     </div>
