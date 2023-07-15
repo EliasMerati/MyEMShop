@@ -41,9 +41,9 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
             }
            int walletid = _userWalletService.ChargeWallet(User.Identity.Name,"واریز" , charge.Amount);
 
-            #region Online Payment
+            #region Online Payment For Wallet
             var payment = new Zarinpal.Payment("",charge.Amount);
-            var response = payment.PaymentRequest("واریز به حساب", "https://localhost:44346/OnlineWalletPayment/" + walletid);
+            var response = payment.PaymentRequest("واریز به حساب", $"https://localhost:44346/OnlineWalletPayment/{walletid}");
             if (response.Result.Status is 100)
             {
                 return Redirect($"https://zarinpal.com/pg/StartPay/{response.Result.Authority}");
@@ -55,6 +55,7 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
             #endregion
         }
 
+        #region Online Pay
         public IActionResult OnlinePayment()
         {
             var order = _orderService.OrderNotPayment();
@@ -64,7 +65,7 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
                 return NotFound();
             }
             var payment = new Zarinpal.Payment("", order.OrderSum);
-            var result = payment.PaymentRequest($"پرداخت فاکتور شماره ی {order.OrderId}", $"https://localhost:44346/OnlinePayment/{order.OrderId}", user.Email,((user.PhoneNumber is not null)? user.PhoneNumber : ""));
+            var result = payment.PaymentRequest($"پرداخت فاکتور شماره ی {order.OrderId}", $"https://localhost:44346/OnlinePayment/{order.OrderId}", user.Email, ((user.PhoneNumber is not null) ? user.PhoneNumber : ""));
             if (result.Result.Status is 100)
             {
                 return Redirect($"https://zarinpal.com/pg/StartPay/{result.Result.Authority}");
@@ -74,5 +75,7 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
                 return Content("متاسفانه در حال حاضر درگاه پرداخت در دسترس نیست ، لطفا چند دقیقه ی دیگر مجددا تلاش کنید. با تشکر");
             }
         }
+        #endregion
+
     }
 }
