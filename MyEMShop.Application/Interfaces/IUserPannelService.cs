@@ -1,4 +1,5 @@
 ﻿using MyEMShop.Data.Dtos.UserDto;
+using MyEMShop.Data.Entities.User;
 
 namespace MyEMShop.Application.Interfaces
 {
@@ -14,5 +15,6 @@ namespace MyEMShop.Application.Interfaces
         string HashPassword(string password);
         int BalanceWallet(string userName);
         int GetUserIdByUserName(string userName);
+        User GetUserByUserName(string userName);
     }
 }

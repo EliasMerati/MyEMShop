@@ -16,18 +16,21 @@ namespace MyEMShop.EndPoint.Controllers
         #region Inject Services
         private readonly ILogger<HomeController> _logger;
         private readonly IUserWalletService _userWalletService;
+        private readonly IOrderService _orderService;
         private readonly IGroupService _groupService;
         private readonly IProductService _productService;
 
 
         public HomeController(ILogger<HomeController> logger
             , IUserWalletService userWalletService
+            , IOrderService orderService
             , IGroupService groupService
             , IProductService productService
             )
         {
             _logger = logger;
             _userWalletService = userWalletService;
+            _orderService = orderService;
             _groupService = groupService;
             _productService = productService;
 
@@ -48,7 +51,7 @@ namespace MyEMShop.EndPoint.Controllers
         #region OnlinePayment
 
         [Route("OnlinePayment/{id}")]
-        public IActionResult OnlinePayment(int id)
+        public IActionResult OnlineWalletPayment(int id)
         {
             if (HttpContext.Request.Query["Status"] != "" &&
                 HttpContext.Request.Query["Status"].ToString().ToLower() == "ok" &&
@@ -56,7 +59,7 @@ namespace MyEMShop.EndPoint.Controllers
             {
                 string authority = HttpContext.Request.Query["Authority"];
                 var wallet = _userWalletService.GetWalletByWalletId(id);
-                var payment = new ZarinpalSandbox.Payment(wallet.Amount);
+                var payment = new Zarinpal.Payment("",wallet.Amount);
                 var res = payment.Verification(authority).Result;
                 if (res.Status == 100)
                 {
@@ -69,6 +72,26 @@ namespace MyEMShop.EndPoint.Controllers
             return View();
         }
 
+        public IActionResult OnlinePayment(int id)
+        {
+            if (HttpContext.Request.Query["Status"] != "" &&
+                HttpContext.Request.Query["Status"].ToString().ToLower() == "ok" &&
+                HttpContext.Request.Query["Authority"] != "")
+            {
+                string authority = HttpContext.Request.Query["Authority"];
+                var order = _orderService.GetOrderById(id);
+                var payment = new Zarinpal.Payment("", order.OrderSum);
+                var res = payment.Verification(authority).Result;
+                if (res.Status is 100)
+                {
+                    ViewBag.Code = res.RefId;
+                    ViewBag.IsSuccess = true;
+                    order.IsFinally = true;
+                    _orderService.UpdateOrder(order);
+                }
+            }
+            return View();
+        }
         #endregion
 
 

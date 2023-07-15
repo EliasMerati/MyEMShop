@@ -2,6 +2,7 @@
 using MyEMShop.Common;
 using MyEMShop.Data.Context;
 using MyEMShop.Data.Dtos.UserDto;
+using MyEMShop.Data.Entities.User;
 using System.Linq;
 
 namespace MyEMShop.Application.Services
@@ -131,6 +132,11 @@ namespace MyEMShop.Application.Services
             info.PostalCode = user.PostalCode;
             info.Wallet = BalanceWallet(user.UserName);
             return info;
+        }
+
+        public User GetUserByUserName(string userName)
+        {
+            return _db.Users.SingleOrDefault(u => u.UserName == userName);
         }
     }
 }

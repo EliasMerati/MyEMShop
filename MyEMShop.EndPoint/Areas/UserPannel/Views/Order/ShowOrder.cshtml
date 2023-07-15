@@ -206,19 +206,19 @@
                     </div>
                 </div>
                 <div class="buttons">
-                    <div class="pull-left"><a href="index.html" class="btn btn-default">ادامه خرید</a></div>
+                    <div class="pull-left"><a asp-controller="Wallet" asp-action="OnlinePayment" class="btn btn-primary">پرداخت آنلاین</a></div>
                     @if (!Model.IsFinally)
                     {
                         @if (_UserPannelService.BalanceWallet(User.Identity.Name) >= SumOrder)
                         {
                             <div class="pull-right">
-                                <a href="/UserPannel/Order/FinalOrder/@Model.OrderId" class="btn btn-primary">تسویه حساب</a>
+                                <a href="/UserPannel/Order/FinalOrder/@Model.OrderId" class="btn btn-primary">تسویه حساب از طریق کیف پول</a>
                             </div>
                         }
                         else
                         {
                             <div class="pull-right">
-                                <a disabled class="btn btn-primary">تسویه حساب</a>
+                                <a disabled class="btn btn-primary">  تسویه حساب از طریق کیف پول</a>
                             </div>
                             <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i>موجودی کیف پول شما کافی نیست. لطفا از طریق <a href="/UserPannel/Wallet" class="alert-link"><strong>لینک شارژ حساب</strong></a> اقدام به شارژ آن کنید</div>
                         }

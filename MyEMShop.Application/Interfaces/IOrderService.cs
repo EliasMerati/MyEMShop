@@ -12,6 +12,6 @@ namespace MyEMShop.Application.Interfaces
         void UpdateOrder(Order order);
         bool FinallyOrder(string userName, int orderId);
         IList<Order> GetUserOrders(string userName);
-
+        Order OrderNotPayment();
     }
 }

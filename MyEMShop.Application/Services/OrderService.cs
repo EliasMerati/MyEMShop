@@ -136,7 +136,10 @@ namespace MyEMShop.Application.Services
             return _db.Orders.Where(o => o.UserId == userId).ToList();
         }
 
-
+        public Order OrderNotPayment()
+        {
+            return _db.Orders.SingleOrDefault(o => !o.IsFinally);
+        }
 
         public void UpdateOrder(Order order)
         {
