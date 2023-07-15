@@ -50,6 +50,7 @@ namespace MyEMShop.Data.Context
         public DbSet<Size> Sizes { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductComment> ProductComments { get; set; }
+        public DbSet<FavoriteProducts> FavoriteProducts { get; set; }
         #endregion
 
 

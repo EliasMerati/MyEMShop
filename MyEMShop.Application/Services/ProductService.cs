@@ -380,7 +380,12 @@ namespace MyEMShop.Application.Services
                 .Skip(skip)
               .Take(take)
               .ToList();
-
+            //==================================================
+            if (pagecount % 2 != 0)
+            {
+                pagecount += 1;
+            }
+            //==================================================
             return Tuple.Create(query, pagecount);
         }
 

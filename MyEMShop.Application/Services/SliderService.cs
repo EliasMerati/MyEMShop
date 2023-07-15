@@ -20,10 +20,10 @@ namespace MyEMShop.Application.Services
 
         #endregion
 
-        public void AddSlider(Slider slider, IFormFile ImageFile)
+        public void AddSlider(Slider slider, IFormFile ImgFile)
         {
-            SetImageForSlider(slider, ImageFile);
-            _db.SaveChangesAsync();
+            SetImageForSlider(slider, ImgFile);
+            _db.SaveChanges();
         }
 
         public List<Slider> GetAllSliders()
@@ -38,16 +38,16 @@ namespace MyEMShop.Application.Services
             _db.SaveChanges();
         }
 
-        public void SetImageForSlider(Slider slider, IFormFile ImageFile)
+        public void SetImageForSlider(Slider slider, IFormFile ImgFile)
         {
-            if (ImageFile is not null)
+            if (ImgFile is not null)
             {
-                slider.SliderImageName = GenerateCode.GenerateUniqueCode() + Path.GetExtension(ImageFile.FileName);
+                slider.SliderImageName = GenerateCode.GenerateUniqueCode() + Path.GetExtension(ImgFile.FileName);
                 string Imagepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/slider/", slider.SliderImageName);
 
                 using (var stream = new FileStream(Imagepath, FileMode.CreateNew))
                 {
-                    ImageFile.CopyTo(stream);
+                    ImgFile.CopyTo(stream);
                 }
 
             }

@@ -30,6 +30,7 @@ namespace MyEMShop.EndPoint
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            #region Solve Circle For JSON
             services.AddControllersWithViews(options =>
             {
                 options.OutputFormatters.RemoveType<SystemTextJsonOutputFormatter>();
@@ -38,6 +39,7 @@ namespace MyEMShop.EndPoint
                     ReferenceHandler = ReferenceHandler.Preserve,
                 }));
             });
+            #endregion
 
             services.AddRazorPages();
 
@@ -71,6 +73,7 @@ namespace MyEMShop.EndPoint
             services.AddScoped<IGroupService, GroupService>();
             services.AddScoped<IDiscountService, DiscountService>();
             services.AddScoped<ICommentService, CommentService>();
+            services.AddScoped<IFavoriteProductService, FavoriteProductService>();
             #endregion
 
             #region Authentication

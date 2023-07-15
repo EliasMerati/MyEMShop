@@ -36,7 +36,10 @@ namespace MyEMShop.Application.Services
                 .Skip(skip).Take(take)
                 .OrderByDescending(pc => pc.CreateDate)
                 .ToList();
-
+            if (pageCount%2 != 0)
+            {
+                pageCount += 1;
+            }
             return Tuple.Create(commentsList, pageCount);
         }
 

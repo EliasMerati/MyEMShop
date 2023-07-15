@@ -33,7 +33,7 @@ namespace MyEMShop.EndPoint.Controllers
         #endregion
 
 
-        public IActionResult Index(int pageid = 1, string Filter = "", List<int> selectedgroup = null, string orderbytype = "featured")
+        public IActionResult Index(int pageid = 1, string Filter = "", List<int> selectedgroup = null, string orderbytype = "")
         {
             ViewBag.pageid = pageid;
             ViewBag.SelectedGroup = selectedgroup;
