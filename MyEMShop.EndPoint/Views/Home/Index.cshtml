@@ -29,7 +29,35 @@
             {
                 foreach (var item in Model)
                 {
-                    <partial name="_ProductBox" model="@item" />
+                   @* <partial name="_ProductBox" model="@item" />*@
+                    <div class="product-thumb">
+                        <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
+                        <div class="caption">
+                            <h4><a href="/Search/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
+                            <p class="price">
+                                @{
+                                    int newprice = item.ProductPrice - (item.ProductPrice * item.Save / 100);
+                                }
+                                @if (item.Save != 0)
+                                {
+                                    <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
+                                    <span class="price-new">@newprice.ToString("N0") تومان</span>
+                                    <span class="saving">@item.Save %</span>
+                                }
+                                else
+                                {
+                                    <span class="price-new">@item.ProductPrice.ToString("N0") تومان</span>
+                                }
+                            </p>
+                        </div>
+                        <div class="button-group">
+                            <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button" onClick=""><span>افزودن به سبد</span></a>
+                            <div class="add-to-links" style="padding-top:10px;">
+                                <a asp-area="UserPannel" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-productId="@item.ProductId" type="button" data-toggle="tooltip" title="افزودن به علاقه مندی" onClick=""><i class="fa fa-heart"></i></a>
+                                <button type="button" data-toggle="tooltip" title="افزودن به مقایسه" onClick=""><i class="fa fa-exchange"></i></button>
+                            </div>
+                        </div>
+                    </div>
                 }
             }
 
@@ -49,7 +77,7 @@
                     <div class="product-thumb">
                         <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
                         <div class="caption">
-                            <h4><a href="product.html">@item.ProductTitle</a></h4>
+                            <h4><a href="/Search/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
                             <p class="price">
                                 @{
                                     int newprice = item.ProductPrice - (item.ProductPrice * item.Save / 100);
@@ -66,9 +94,9 @@
                                 }
                             </p>
                         </div>
-                        <div class="button-group">
-                            <button class="btn-primary" type="button" onClick=""><span>افزودن به سبد</span></button>
-                            <div class="add-to-links">
+                        <div class="button-group" >
+                            <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button" onClick=""><span>افزودن به سبد</span></a>
+                            <div class="add-to-links" style="padding-top:10px;">
                                 <a asp-area="UserPannel" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-productId="@item.ProductId" type="button" data-toggle="tooltip" title="افزودن به علاقه مندی" onClick=""><i class="fa fa-heart"></i></a>
                                 <button type="button" data-toggle="tooltip" title="افزودن به مقایسه" onClick=""><i class="fa fa-exchange"></i></button>
                             </div>
@@ -92,7 +120,7 @@
                     <div class="product-thumb">
                         <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
                         <div class="caption">
-                            <h4><a href="product.html">@item.ProductTitle</a></h4>
+                            <h4><a href="/Search/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
                             <p class="price">
                                 @{
                                     int newprice = item.ProductPrice - (item.ProductPrice * item.Save / 100);
@@ -109,9 +137,9 @@
                                 }
                             </p>
                         </div>
-                        <div class="button-group">
-                            <button class="btn-primary" type="button" onClick=""><span>افزودن به سبد</span></button>
-                            <div class="add-to-links">
+                        <div class="button-group" >
+                            <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button" onClick=""><span>افزودن به سبد</span></a>
+                            <div class="add-to-links" style="padding-top:10px;">
                                 <a asp-area="UserPannel" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-productId="@item.ProductId" type="button" data-toggle="tooltip" title="افزودن به علاقه مندی" onClick=""><i class="fa fa-heart"></i></a>
                                 <button type="button" data-toggle="tooltip" title="افزودن به مقایسه" onClick=""><i class="fa fa-exchange"></i></button>
                             </div>
@@ -134,7 +162,7 @@
                     <div class="product-thumb clearfix">
                         <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
                         <div class="caption">
-                            <h4><a href="product.html">@item.ProductTitle</a></h4>
+                            <h4><a href="/Search/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
                             <p class="price">
                                 @{
                                     int newprice = item.ProductPrice - (item.ProductPrice * item.Save / 100);
@@ -151,9 +179,9 @@
                                 }
                             </p>
                         </div>
-                        <div class="button-group">
-                            <button class="btn-primary" type="button" onClick="cart.add('42');"><span>افزودن به سبد</span></button>
-                            <div class="add-to-links">
+                        <div class="button-group" >
+                            <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button" onClick="cart.add('42');"><span>افزودن به سبد</span></a>
+                            <div class="add-to-links" style="padding-top:10px;">
                                 <a asp-area="UserPannel" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-productId="@item.ProductId" type="button" data-toggle="tooltip" title="افزودن به علاقه مندی ها" onClick=""><i class="fa fa-heart"></i></a>
                                 <button type="button" data-toggle="tooltip" title="مقایسه این محصول" onClick=""><i class="fa fa-exchange"></i></button>
                             </div>
@@ -189,7 +217,7 @@
             <div class="product-thumb clearfix">
                 <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
                 <div class="caption">
-                    <h4><a href="product.html">@item.ProductTitle</a></h4>
+                    <h4><a href="/Search/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
                     <p class="price">
                         @{
                             int newprice = item.ProductPrice - (item.ProductPrice * item.Save / 100);
@@ -206,9 +234,9 @@
                         }
                     </p>
                 </div>
-                <div class="button-group">
-                    <button class="btn-primary" type="button" onClick="cart.add('42');"><span>افزودن به سبد</span></button>
-                    <div class="add-to-links">
+                <div class="button-group" >
+                    <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button" onClick="cart.add('42');"><span>افزودن به سبد</span></a>
+                    <div class="add-to-links" style="padding-top:10px;">
                         <a asp-area="UserPannel" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-productId="@item.ProductId" type="button" data-toggle="tooltip" title="افزودن به علاقه مندی ها" onClick=""><i class="fa fa-heart"></i></a>
                         <button type="button" data-toggle="tooltip" title="مقایسه این محصول" onClick=""><i class="fa fa-exchange"></i></button>
                     </div>
@@ -234,7 +262,7 @@
                         <div class="product-thumb clearfix">
                             <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
                             <div class="caption">
-                                <h4><a href="product.html">@item.ProductTitle</a></h4>
+                                <h4><a href="/Search/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
                                 <p class="price">
                                     @{
                                         int newprice = item.ProductPrice - (item.ProductPrice * item.Save / 100);
@@ -252,8 +280,8 @@
                                 </p>
                             </div>
                             <div class="button-group">
-                                <button class="btn-primary" type="button" onClick="cart.add('42');"><span>افزودن به سبد</span></button>
-                                <div class="add-to-links">
+                                <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button" onClick="cart.add('42');"><span>افزودن به سبد</span></a>
+                                <div class="add-to-links" style="padding-top:10px;">
                                     <a asp-area="UserPannel" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-productId="@item.ProductId" type="button" data-toggle="tooltip" title="افزودن به علاقه مندی ها" onClick=""><i class="fa fa-heart"></i></a>
                                     <button type="button" data-toggle="tooltip" title="مقایسه این محصول" onClick=""><i class="fa fa-exchange"></i></button>
                                 </div>
