@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyEMShop.Application.Interfaces;
-using MyEMShop.Data.Entities.Product;
 
 namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
 {
