@@ -10,5 +10,6 @@ namespace MyEMShop.Application.Interfaces
         void UpdateTax(Tax tax);
         bool IsExistTax();
         Tax GetTaxById(int id);
+       
     }
 }
