@@ -28,8 +28,6 @@ namespace MyEMShop.Application.Services
             _productService = productService;
             _userWallet = userWallet;
         }
-
-
         #endregion
 
 
@@ -153,6 +151,22 @@ namespace MyEMShop.Application.Services
         {
             int userId = _userPannel.GetUserIdByUserName(userName);
             return _db.Orders.Where(o => o.UserId == userId).ToList();
+        }
+
+        public void MinesCount(int orderDetailId)
+        {
+            var orderDetail = _db.OrderDetails.Find(orderDetailId);
+            if (orderDetail.Count <= 1) 
+            { }
+            else { orderDetail.Count -= 1; }
+            _db.SaveChanges();
+        }
+
+        public void AddCount(int orderDetailId)
+        {
+            var orderDetail = _db.OrderDetails.Find(orderDetailId);
+            orderDetail.Count += 1;
+            _db.SaveChanges();
         }
 
         public Order OrderNotPayment()

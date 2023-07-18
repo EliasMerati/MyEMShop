@@ -62,6 +62,10 @@
                                 {
                                     <li><b>وضعیت موجودی : </b> <span class="nostock">ناموجود</span></li>
                                 }
+                                else if (Model.PL_Id == 3)
+                                {
+                                    <li><b>وضعیت موجودی : </b> <div class="alert alert-warning">به زودی</div></li>
+                                }
                             </ul>
                             <ul class="price-box">
                                 <li class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
@@ -95,8 +99,8 @@
                                     <div>
                                         <div class="qty">
                                             <label class="control-label" for="input-quantity">تعداد</label>
-                                            <input type="text" name="quantity" value="1" size="2" id="input-quantity" class="form-control" />
-                                            <a class="qtyBtn plus" href="javascript:void(0);">+</a><br />
+                                            <input type="text" name="quantity" value="1" size="2" id="input-quantity" class="form-control">
+                                            <a class="qtyBtn plus" href="javascript:void(0);">+</a><br>
                                             <a class="qtyBtn mines" href="javascript:void(0);">-</a>
                                             <div class="clear"></div>
                                         </div>
@@ -392,5 +396,16 @@
         });
     </script>
     @*// =================================================== AJAX*@
+
+    <script>
+        function AddCount(orderDetailId)
+        {
+            window.location.replace("/UserPannel/Order/AddCount?orderDetailId =" + orderDetailId);
+        }
+
+        function MinusCount(orderDetailId) {
+            window.location.replace("/UserPannel/Order/MinusCount?orderDetailId =" + orderDetailId);
+        }
+    </script>
 }
 

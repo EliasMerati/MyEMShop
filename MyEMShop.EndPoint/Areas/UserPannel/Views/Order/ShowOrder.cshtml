@@ -51,15 +51,15 @@
                                     </td>
                                     <td class="text-left">
                                         <div class="input-group btn-block quantity">
-                                            <input type="text" name="quantity" value="@item.Count" size="1" class="form-control">
+                                            <input type="text" name="quantity" id="count" value="@item.Count" size="1" class="form-control">
                                             <span class="input-group-btn">
-                                                <button type="submit" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="بروزرسانی"><i class="fa fa-refresh"></i></button>
+                                                <button type="button" data-toggle="tooltip" title="" id="btnRefresh" onclick="Refresh()" class="btn btn-primary" data-original-title="بروزرسانی"><i class="fa fa-refresh"></i></button>
                                                 <button type="button" data-toggle="tooltip" title="" class="btn btn-danger" onclick="" data-original-title="حذف"><i class="fa fa-times-circle"></i></button>
                                             </span>
                                         </div>
                                     </td>
-                                    <td class="text-right">@item.Price</td>
-                                    <td class="text-right">@((item.Count * item.Price).ToString("N0"))</td>
+                                    <td id="price" class="text-right">@item.Price</td>
+                                    <td id="total" class="text-right">@((item.Count * item.Price).ToString("N0"))</td>
                                 </tr>
                             }
                         </tbody>
@@ -231,3 +231,13 @@
         </div>
     </div>
 </div>
+
+
+@section Scripts{
+
+    <script>
+        function Refresh(){
+            $("#total").val() = ($("#price").val() * $("#count").val())
+        };
+    </script>
+ }
