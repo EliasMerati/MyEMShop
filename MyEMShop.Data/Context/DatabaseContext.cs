@@ -61,8 +61,9 @@ namespace MyEMShop.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            #region Index & Unique For Email
+            #region Index & Unique For Email & ProductTitle
             modelBuilder.Entity<User>().HasIndex(u => u.Email).IsUnique();
+            modelBuilder.Entity<Product>().HasIndex(u => u.ProductTitle);
             #endregion
 
             #region Solve Cascading ForeignKeys
