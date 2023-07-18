@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Context;
+using MyEMShop.Data.Dtos.Order;
+using MyEMShop.Data.Dtos.OrderState;
 using MyEMShop.Data.Entities.Order;
 using MyEMShop.Data.Entities.Wallet;
 using System;
@@ -45,6 +47,7 @@ namespace MyEMShop.Application.Services
                     UserId = userId,
                     IsFinally = false,
                     OrderSum = product.ProductPrice,
+                    OrderState= OrderState.InProgress,
                     OrderDetails = new List<OrderDetail>()
                     {
                         new OrderDetail()
@@ -128,6 +131,22 @@ namespace MyEMShop.Application.Services
             int userId = _userPannel.GetUserIdByUserName(userName);
             return _db.Orders.Include(o => o.OrderDetails).ThenInclude(od => od.Product)
                 .FirstOrDefault(o => o.UserId == userId && o.OrderId == orderId);
+        }
+
+        public List<OrdersDto> GetOrdersForAdmin(OrderState orderState)
+        {
+            return _db.Orders
+                .Include(o => o.OrderDetails)
+                .Where(os => os.OrderState == orderState)
+                .OrderBy(o=> o.OrderDate)
+                .Select(o => new OrdersDto
+                {
+                    OrderId = o.OrderId,
+                    OrderState = o.OrderState,
+                    InsertTime = o.OrderDate,
+                    ProductCount = o.OrderDetails.Count,
+                    UserId = o.UserId
+                }).ToList();
         }
 
         public IList<Order> GetUserOrders(string userName)

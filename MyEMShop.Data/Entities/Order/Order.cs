@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyEMShop.Data.Dtos.OrderState;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -12,6 +13,8 @@ namespace MyEMShop.Data.Entities.Order
         public int UserId { get; set; }
         public int OrderSum { get; set; }
         public bool IsFinally { get; set; }
+
+        public OrderState  OrderState { get; set; }
         [Required]
         public DateTime OrderDate { get; set; }
 

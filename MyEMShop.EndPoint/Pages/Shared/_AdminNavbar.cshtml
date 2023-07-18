@@ -37,6 +37,26 @@
                 <a href="/Admin/Product/"><i class="fa fa-dashboard fa-fw"></i> مدیریت محصولات</a>
             </li>
             <li>
+                <a href="/Admin/Orders/"><i class="fa fa-bar-chart-o fa-fw"></i> مدیریت سفارشات<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li>
+                        <a href="/Admin/Orders/Index?orderState = InProgress"> در حال پردازش</a>
+                    </li>
+                    <li>
+                        <a href="/Admin/Orders/Index?orderState = IsDone"> آماده ارسال</a>
+                    </li>
+                    <li>
+                        <a href="/Admin/Orders/Index?orderState = IsSend"> ارسال شده</a>
+                    </li>
+                    <li>
+                        <a href="/Admin/Orders/Index?orderState = IsCanceled"> لغو شده</a>
+                    </li>
+                    
+
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> مدیریت تخفیف ها<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <li>
@@ -51,6 +71,7 @@
             <li>
                 <a href="/Admin/Tax/"><i class="fa fa-dashboard fa-fw"></i> مدیریت مالیات</a>
             </li>
+
             <!-- /#side-menu -->
     </div>
     <!-- /.sidebar-collapse -->
