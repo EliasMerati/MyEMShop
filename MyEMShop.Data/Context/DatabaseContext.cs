@@ -7,6 +7,7 @@ using MyEMShop.Data.Entities.User;
 using MyEMShop.Data.Entities.Wallet;
 using System.Linq;
 using MyEMShop.Data.Entities.Tax;
+using System.Drawing.Text;
 
 namespace MyEMShop.Data.Context
 {
@@ -60,6 +61,9 @@ namespace MyEMShop.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            #region Index & Unique For Email
+            modelBuilder.Entity<User>().HasIndex(u => u.Email).IsUnique();
+            #endregion
 
             #region Solve Cascading ForeignKeys
 
@@ -73,7 +77,28 @@ namespace MyEMShop.Data.Context
 
             #endregion
 
-            #region Seed Data
+            SeedData(modelBuilder);
+
+            #region Query Filters
+            //modelBuilder.Entity<User>()
+            //    .HasQueryFilter(u => !u.IsDelete);
+
+            modelBuilder.Entity<Role>()
+                .HasQueryFilter(r => !r.IsDelete);
+
+            modelBuilder.Entity<ProductGroup>()
+                .HasQueryFilter(g => !g.IsDelete);
+
+            modelBuilder.Entity<Product>()
+                .HasQueryFilter(p => !p.IsDelete);
+            #endregion
+
+            base.OnModelCreating(modelBuilder);
+        }
+
+        private void SeedData(ModelBuilder modelBuilder)
+        {
+            
             modelBuilder.Entity<Role>()
                 .HasData(new { RoleId = 1, RoleTitle = "مدیر کل سیستم", IsDelete = false },
                          new { RoleId = 2, RoleTitle = "کاربر عادی", IsDelete = false });
@@ -125,23 +150,7 @@ namespace MyEMShop.Data.Context
                          new { PS_Id = 3, SizeTitle = "Large" },
                          new { PS_Id = 4, SizeTitle = "Small" },
                          new { PS_Id = 5, SizeTitle = "XXLarge" });
-            #endregion
-
-            #region Query Filters
-            //modelBuilder.Entity<User>()
-            //    .HasQueryFilter(u => !u.IsDelete);
-
-            modelBuilder.Entity<Role>()
-                .HasQueryFilter(r => !r.IsDelete);
-
-            modelBuilder.Entity<ProductGroup>()
-                .HasQueryFilter(g => !g.IsDelete);
-
-            modelBuilder.Entity<Product>()
-                .HasQueryFilter(p => !p.IsDelete);
-            #endregion
-
-            base.OnModelCreating(modelBuilder);
+            
         }
 
     }
