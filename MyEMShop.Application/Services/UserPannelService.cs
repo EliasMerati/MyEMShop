@@ -138,5 +138,17 @@ namespace MyEMShop.Application.Services
         {
             return _db.Users.SingleOrDefault(u => u.UserName == userName);
         }
+
+        public UserAddressDto GetUserAddressForOrder(string userName)
+        {
+            return _db.Users.Where(u => u.UserName == userName)
+                .Select(u => new UserAddressDto
+                {
+                    Address = u.Address,
+                    City= u.City,
+                    Ostan= u.Ostan,
+                    PostalCode = u.PostalCode,
+                }).SingleOrDefault();
+        }
     }
 }

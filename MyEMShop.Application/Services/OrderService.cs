@@ -117,8 +117,6 @@ namespace MyEMShop.Application.Services
             return false;
         }
 
-
-
         public Order GetOrderById(int orderId)
         {
             return _db.Orders.Find(orderId);

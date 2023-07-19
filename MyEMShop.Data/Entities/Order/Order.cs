@@ -13,6 +13,7 @@ namespace MyEMShop.Data.Entities.Order
         public int UserId { get; set; }
         public int OrderSum { get; set; }
         public bool IsFinally { get; set; }
+        //public string OrderAddress { get; set; }
 
         public OrderState  OrderState { get; set; }
         [Required]
