@@ -53,7 +53,7 @@
                                         <div class="input-group btn-block quantity">
                                             <input type="text" name="quantity" id="count" value="@item.Count" size="1" class="form-control">
                                             <span class="input-group-btn">
-                                                <button type="button" data-toggle="tooltip" title="" id="btnRefresh" onclick="Refresh()" class="btn btn-primary" data-original-title="بروزرسانی"><i class="fa fa-refresh"></i></button>
+                                                <button type="button" data-toggle="tooltip" title="" id="btnRefresh"  class="btn btn-primary" data-original-title="بروزرسانی"><i class="fa fa-refresh"></i></button>
                                                 <button type="button" data-toggle="tooltip" title="" class="btn btn-danger" onclick="" data-original-title="حذف"><i class="fa fa-times-circle"></i></button>
                                             </span>
                                         </div>
@@ -233,11 +233,23 @@
 </div>
 
 
-@section Scripts{
+@*@section Scripts{
 
     <script>
-        function Refresh(){
-            $("#total").val() = ($("#price").val() * $("#count").val())
+        function Refresh() {
+            $("#").change(function () {
+                var price = 0;
+                var total = 0;
+                var count = 0;
+
+                count = parseInt($("#count").val());
+                price = parseInt($("#price").val());
+
+                total = price * count;
+                
+            });
+            window.location = window.location.pathname;
+            window.location.reload();
         };
     </script>
- }
+ }*@

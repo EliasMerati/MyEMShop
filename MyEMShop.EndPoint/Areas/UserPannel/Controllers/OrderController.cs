@@ -53,16 +53,5 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
             return Redirect("/UserPannel/Order/ShowOrder/"+ orderId +"?Type =" + type.ToString());
         }
 
-        public IActionResult AddCount(int orderDetailId)
-        {
-            _orderService.AddCount(orderDetailId);
-            return RedirectToAction("Index");
-        }
-
-        public IActionResult MinusCount(int orderDetailId)
-        {
-            _orderService.MinesCount(orderDetailId);
-            return RedirectToAction("Index");
-        }
     }
 }

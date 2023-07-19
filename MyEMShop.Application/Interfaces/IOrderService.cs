@@ -16,7 +16,5 @@ namespace MyEMShop.Application.Interfaces
         IList<Order> GetUserOrders(string userName);
         Order OrderNotPayment();
         List<OrdersDto> GetOrdersForAdmin(OrderState orderState);
-        void AddCount(int orderDetailId);
-        void MinesCount(int orderDetailId);
     }
 }
