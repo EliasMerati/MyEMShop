@@ -51,6 +51,7 @@
                                     </td>
                                     <td class="text-right">
                                         <a href="/UserPannel/Order/ShowOrder/@item.OrderId" class="btn btn-info"> نمایش فاکتور</a>
+                                        <a asp-area="UserPannel" asp-controller="Order" asp-action="DeleteOrder" asp-route-orderId="@item.OrderId" class="btn btn-info"> حذف فاکتور</a>
                                     </td>
                                 </tr>
                             }

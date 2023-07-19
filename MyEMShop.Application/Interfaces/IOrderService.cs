@@ -16,5 +16,8 @@ namespace MyEMShop.Application.Interfaces
         IList<Order> GetUserOrders(string userName);
         Order OrderNotPayment();
         List<OrdersDto> GetOrdersForAdmin(OrderState orderState);
+        void DeleteFromOrder(int orderId ,int productid);
+        bool IsOrderExist(int orderId);
+        void DeleteOrder(int orderId);
     }
 }

@@ -53,5 +53,25 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
             return Redirect("/UserPannel/Order/ShowOrder/"+ orderId +"?Type =" + type.ToString());
         }
 
+        [HttpPost]
+        public IActionResult DeleteFromOrder(int orderId, int productid)
+        {
+            _orderService.DeleteFromOrder(orderId,productid);
+            if (_orderService.IsOrderExist(orderId))
+            {
+                return Redirect("/UserPannel/Order/ShowOrder/" + orderId);
+            }
+            else
+            {
+                return Redirect("/UserPannel/Order/");
+            }
+        }
+
+        public IActionResult DeleteOrder(int orderId)
+        {
+            _orderService.DeleteOrder(orderId);
+            return Redirect("/UserPannel/Order/");
+        }
+
     }
 }

@@ -4,6 +4,7 @@ using MyEMShop.Data.Context;
 using MyEMShop.Data.Dtos.Order;
 using MyEMShop.Data.Dtos.OrderState;
 using MyEMShop.Data.Entities.Order;
+using MyEMShop.Data.Entities.Product;
 using MyEMShop.Data.Entities.Wallet;
 using System;
 using System.Collections.Generic;
@@ -34,16 +35,16 @@ namespace MyEMShop.Application.Services
 
         public int AddOrder(string userName, int productId)
         {
-            var user = _userPannel.GetUserByUserName(userName);
-            var order = _db.Orders.FirstOrDefault(o => o.UserId == user.UserId && !o.IsFinally);
+            var userid = _userPannel.GetUserIdByUserName(userName);
+            var order = _db.Orders.FirstOrDefault(o => o.UserId == userid && !o.IsFinally);
             var product = _productService.GetProductById(productId);
             if (order is null)
             {
                 order = new Order()
                 {
                     OrderDate = DateTime.Now,
-                    OrderAddress =$"{order.OrderOstan}-{order.OrderCity}-{order.OrderAddress}-کد پستی :{order.OrderPostalCode}-شماره تلفن :{order.OrderPhoneNumber} به نام : {user.Name} {user.Family}",
-                    UserId = user.UserId,
+                    OrderAddress =$"{order.OrderOstan}-{order.OrderCity}-{order.OrderAddress}-کد پستی :{order.OrderPostalCode}-شماره تلفن :{order.OrderPhoneNumber}",
+                    UserId = userid,
                     IsFinally = false,
                     OrderSum = product.ProductPrice,
                     OrderState= OrderState.InProgress,
@@ -87,6 +88,39 @@ namespace MyEMShop.Application.Services
             }
 
             return order.OrderId;
+        }
+
+        public void DeleteFromOrder(int orderId, int productid)
+        {
+            int products = _db.OrderDetails.Where(o => o.OrderId == orderId).Count();
+            var product = _db.OrderDetails.Where(o=>o.OrderId == orderId && o.ProductId == productid).SingleOrDefault();
+            if (products <= 1) 
+            {
+                var order = _db.Orders.Find(orderId);
+                var orderdetail = _db.OrderDetails.Where(o => o.OrderId == orderId && o.ProductId == productid).Single();
+                _db.OrderDetails.Remove(orderdetail);
+                _db.SaveChanges();
+                _db.Orders.Remove(order);
+                _db.SaveChanges();
+            }
+            else
+            {
+                _db.OrderDetails.Remove(product);
+                _db.SaveChanges();
+            }
+        }
+
+        public void DeleteOrder(int orderId)
+        {
+            var order = _db.Orders.Find(orderId);
+            var orderdetail = _db.OrderDetails.Where(o => o.OrderId == orderId).ToList();
+            for (int i = 1; i <= orderdetail.Count; i++)
+            {
+                _db.OrderDetails.Remove(orderdetail[i]);
+                _db.SaveChanges();
+            }
+            _db.Orders.Remove(order);
+            _db.SaveChanges();
         }
 
         public bool FinallyOrder(string userName, int orderId)
@@ -151,6 +185,11 @@ namespace MyEMShop.Application.Services
         {
             int userId = _userPannel.GetUserIdByUserName(userName);
             return _db.Orders.Where(o => o.UserId == userId).ToList();
+        }
+
+        public bool IsOrderExist(int orderId)
+        {
+            return _db.Orders.Any(o=> o.OrderId == orderId);
         }
 
         public Order OrderNotPayment()
