@@ -9,7 +9,6 @@ namespace MyEMShop.Data.Dtos.Order
         public int UserId { get; set; }
         public OrderState.OrderState OrderState { get; set; }
         public int ProductCount { get; set; }
-
-
+        public string OrderAddress { get; set; }
     }
 }

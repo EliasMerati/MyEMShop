@@ -34,15 +34,16 @@ namespace MyEMShop.Application.Services
 
         public int AddOrder(string userName, int productId)
         {
-            int userId = _userPannel.GetUserIdByUserName(userName);
-            var order = _db.Orders.FirstOrDefault(o => o.UserId == userId && !o.IsFinally);
+            var user = _userPannel.GetUserByUserName(userName);
+            var order = _db.Orders.FirstOrDefault(o => o.UserId == user.UserId && !o.IsFinally);
             var product = _productService.GetProductById(productId);
             if (order is null)
             {
                 order = new Order()
                 {
                     OrderDate = DateTime.Now,
-                    UserId = userId,
+                    OrderAddress =$"{order.OrderOstan}-{order.OrderCity}-{order.OrderAddress}-کد پستی :{order.OrderPostalCode}-شماره تلفن :{order.OrderPhoneNumber} به نام : {user.Name} {user.Family}",
+                    UserId = user.UserId,
                     IsFinally = false,
                     OrderSum = product.ProductPrice,
                     OrderState= OrderState.InProgress,
@@ -141,7 +142,8 @@ namespace MyEMShop.Application.Services
                     OrderState = o.OrderState,
                     InsertTime = o.OrderDate,
                     ProductCount = o.OrderDetails.Count,
-                    UserId = o.UserId
+                    UserId = o.UserId,
+                    OrderAddress = o.OrderAddress,
                 }).ToList();
         }
 

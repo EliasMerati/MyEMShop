@@ -153,7 +153,28 @@
                     </div>
                 }
                 <div class="panel panel-default">
-                    <partial name="_Address" />
+                    <div id="collapse-shipping" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            @if (Model.OrderAddress is null || Model.OrderCity is null || Model.OrderOstan is null || Model.OrderPhoneNumber is null || Model.OrderPostalCode is null)
+                            {
+                                <div class="alert alert-warning"><i class="fa fa-warning"></i> لطفا از منوی کاربری آدرس خود را تکمیل کنید</div>
+                            }
+                            else
+                            {
+                                <div class="form-group required">
+                                    <label class="col-sm-2 control-label" for="input-country">آدرس</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="postcode" value="@Model.OrderAddress" placeholder="آدرس" id="input-postcode" class="form-control">
+                                    </div>
+                                </div>
+                            }
+
+
+
+                            @*  <input type="button" value="دریافت پیش فاکتور" id="button-quote" data-loading-text="بارگذاری ..." class="btn btn-primary">*@
+
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-4 col-sm-offset-8">
