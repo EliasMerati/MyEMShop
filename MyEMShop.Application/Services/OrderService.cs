@@ -4,7 +4,6 @@ using MyEMShop.Data.Context;
 using MyEMShop.Data.Dtos.Order;
 using MyEMShop.Data.Dtos.OrderState;
 using MyEMShop.Data.Entities.Order;
-using MyEMShop.Data.Entities.Product;
 using MyEMShop.Data.Entities.Wallet;
 using System;
 using System.Collections.Generic;
@@ -44,14 +43,14 @@ namespace MyEMShop.Application.Services
                 {
                     OrderDate = DateTime.Now,
                     OrderAddress = user.Address,
-                    OrderCity= user.City,   
+                    OrderCity = user.City,
                     OrderOstan = user.Ostan,
-                    OrderPhoneNumber= user.PhoneNumber,
-                    OrderPostalCode= user.PostalCode,
+                    OrderPhoneNumber = user.PhoneNumber,
+                    OrderPostalCode = user.PostalCode,
                     UserId = user.UserId,
                     IsFinally = false,
                     OrderSum = product.ProductPrice,
-                    OrderState= OrderState.InProgress,
+                    OrderState = OrderState.InProgress,
                     OrderDetails = new List<OrderDetail>()
                     {
                         new OrderDetail()
@@ -74,7 +73,7 @@ namespace MyEMShop.Application.Services
                 {
                     detail.Count += 1;
                     _db.OrderDetails.Update(detail);
-                   
+
                 }
                 else
                 {
@@ -86,12 +85,12 @@ namespace MyEMShop.Application.Services
                         ProductId = productId,
                     };
                     _db.Add(detail);
-                    
+
                 }
                 _db.SaveChanges();
                 UpdatePriceOrder(order.OrderId);
             }
-            
+
             return order.OrderId;
         }
 
@@ -99,7 +98,7 @@ namespace MyEMShop.Application.Services
         {
             int products = _db.OrderDetails.Count(o => o.OrderId == orderId);
             var product = _db.OrderDetails.SingleOrDefault(o => o.OrderId == orderId && o.ProductId == productid);
-            if (products <= 1) 
+            if (products <= 1)
             {
                 var order = _db.Orders.Find(orderId);
                 var orderdetail = _db.OrderDetails.Single(o => o.OrderId == orderId && o.ProductId == productid);
@@ -178,7 +177,7 @@ namespace MyEMShop.Application.Services
             return _db.Orders
                 .Include(o => o.OrderDetails)
                 .Where(os => os.OrderState == orderState)
-                .OrderBy(o=> o.OrderDate)
+                .OrderBy(o => o.OrderDate)
                 .Select(o => new OrdersDto
                 {
                     OrderId = o.OrderId,
@@ -198,7 +197,7 @@ namespace MyEMShop.Application.Services
 
         public bool IsOrderExist(int orderId)
         {
-            return _db.Orders.Any(o=> o.OrderId == orderId);
+            return _db.Orders.Any(o => o.OrderId == orderId);
         }
 
         public Order OrderNotPayment()
@@ -206,9 +205,9 @@ namespace MyEMShop.Application.Services
             return _db.Orders.SingleOrDefault(o => !o.IsFinally);
         }
 
-        public void Refresh(int quantity, int orderId,int productId)
+        public void Refresh(int quantity, int orderId, int productId)
         {
-            var detail = _db.OrderDetails.SingleOrDefault(o=>o.ProductId == productId);
+            var detail = _db.OrderDetails.SingleOrDefault(o => o.ProductId == productId);
             detail.Count = quantity;
             _db.Update(detail);
             _db.SaveChanges();
