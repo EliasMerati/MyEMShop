@@ -35,16 +35,20 @@ namespace MyEMShop.Application.Services
 
         public int AddOrder(string userName, int productId)
         {
-            var userid = _userPannel.GetUserIdByUserName(userName);
-            var order = _db.Orders.FirstOrDefault(o => o.UserId == userid && !o.IsFinally);
+            var user = _userPannel.GetUserByUserName(userName);
+            Order order = _db.Orders.FirstOrDefault(o => o.UserId == user.UserId && !o.IsFinally);
             var product = _productService.GetProductById(productId);
             if (order is null)
             {
                 order = new Order()
                 {
                     OrderDate = DateTime.Now,
-                    OrderAddress =$"{order.OrderOstan}-{order.OrderCity}-{order.OrderAddress}-کد پستی :{order.OrderPostalCode}-شماره تلفن :{order.OrderPhoneNumber}",
-                    UserId = userid,
+                    OrderAddress = user.Address,
+                    OrderCity= user.City,   
+                    OrderOstan = user.Ostan,
+                    OrderPhoneNumber= user.PhoneNumber,
+                    OrderPostalCode= user.PostalCode,
+                    UserId = user.UserId,
                     IsFinally = false,
                     OrderSum = product.ProductPrice,
                     OrderState= OrderState.InProgress,
@@ -55,7 +59,6 @@ namespace MyEMShop.Application.Services
                             Count = 1,
                             Price= product.ProductPrice,
                             ProductId= productId,
-
                         }
                     }
                 };
@@ -114,9 +117,9 @@ namespace MyEMShop.Application.Services
         {
             var order = _db.Orders.Find(orderId);
             var orderdetail = _db.OrderDetails.Where(o => o.OrderId == orderId).ToList();
-            for (int i = 1; i <= orderdetail.Count; i++)
+            foreach (var item in orderdetail)
             {
-                _db.OrderDetails.Remove(orderdetail[i]);
+                _db.OrderDetails.Remove(item);
                 _db.SaveChanges();
             }
             _db.Orders.Remove(order);
