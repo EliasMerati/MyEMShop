@@ -51,17 +51,17 @@
                                     </td>
                                     <td class="text-left">
                                         <div class="input-group btn-block quantity">
-                                            <input type="text" name="quantity" id="count" value="@item.Count" size="1" class="form-control">
                                             <form method="post">
+                                                <input type="text" name="quantity" id="count" value="@item.Count" size="1" class="form-control">
                                                 <span class="input-group-btn">
-                                                    <button type="button" data-toggle="tooltip" title="" id="btnRefresh" class="btn btn-primary" data-original-title="بروزرسانی"><i class="fa fa-refresh"></i></button>
+                                                    <button asp-area="UserPannel" asp-controller="Order" asp-action="RefreshOrder" type="submit" data-toggle="tooltip" asp-route-orderId="@item.Order.OrderId" asp-route-count="quantity" asp-route-productid="@item.Product.ProductId" name="quantity" value="@item.Count" title="" id="btnRefresh" class="btn btn-primary" data-original-title="بروزرسانی"><i class="fa fa-refresh"></i></button>
                                                     <button asp-area="UserPannel" asp-controller="Order" asp-action="DeleteFromOrder" type="submit" asp-route-orderId="@item.Order.OrderId" data-toggle="tooltip" class="btn btn-danger" asp-route-productid="@item.Product.ProductId" data-original-title="حذف"><i class="fa fa-times-circle"></i></button>
                                                 </span>
                                             </form>
 
                                         </div>
                                     </td>
-                                    <td id="price" class="text-right">@item.Price</td>
+                                    <td id="price" class="text-right">@item.Price.ToString("N0")</td>
                                     <td id="total" class="text-right">@((item.Count * item.Price).ToString("N0"))</td>
                                 </tr>
                             }
@@ -167,8 +167,21 @@
                                 <div class="form-group required">
                                     <label class="col-sm-2 control-label" for="input-country">آدرس</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="postcode" value="@Model.OrderAddress" placeholder="آدرس" id="input-postcode" class="form-control">
+                                        <input type="text" name="postcode" value="@Model.OrderOstan - @Model.OrderCity - @Model.OrderAddress" placeholder="آدرس" id="input-postcode" class="form-control">
                                     </div>
+                                    <br/>
+                                    <br/>
+                                    <label class="col-sm-2 control-label" for="input-country">کد پستی</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="postcode" value="@Model.OrderPostalCode" placeholder="کد پستی" id="input-postcode" class="form-control">
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <label class="col-sm-2 control-label" for="input-country">تلفن</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="postcode" value="@Model.OrderPhoneNumber" placeholder="تلفن تماس" id="input-postcode" class="form-control">
+                                    </div>
+                                   
                                 </div>
                             }
 

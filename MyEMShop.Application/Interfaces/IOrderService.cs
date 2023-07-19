@@ -19,5 +19,6 @@ namespace MyEMShop.Application.Interfaces
         void DeleteFromOrder(int orderId ,int productid);
         bool IsOrderExist(int orderId);
         void DeleteOrder(int orderId);
+        void Refresh(int quantity, int orderId, int productId);
     }
 }

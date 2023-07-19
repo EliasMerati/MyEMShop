@@ -69,11 +69,12 @@ namespace MyEMShop.Application.Services
             {
                 var detail = _db.OrderDetails
                      .FirstOrDefault(d => d.OrderId == order.OrderId && d.ProductId == productId);
+
                 if (detail is not null)
                 {
                     detail.Count += 1;
                     _db.OrderDetails.Update(detail);
-                    _db.SaveChanges();
+                   
                 }
                 else
                 {
@@ -85,32 +86,37 @@ namespace MyEMShop.Application.Services
                         ProductId = productId,
                     };
                     _db.Add(detail);
-                    _db.SaveChanges();
+                    
                 }
+                _db.SaveChanges();
                 UpdatePriceOrder(order.OrderId);
             }
-
+            
             return order.OrderId;
         }
 
         public void DeleteFromOrder(int orderId, int productid)
         {
-            int products = _db.OrderDetails.Where(o => o.OrderId == orderId).Count();
-            var product = _db.OrderDetails.Where(o=>o.OrderId == orderId && o.ProductId == productid).SingleOrDefault();
+            int products = _db.OrderDetails.Count(o => o.OrderId == orderId);
+            var product = _db.OrderDetails.SingleOrDefault(o => o.OrderId == orderId && o.ProductId == productid);
             if (products <= 1) 
             {
                 var order = _db.Orders.Find(orderId);
-                var orderdetail = _db.OrderDetails.Where(o => o.OrderId == orderId && o.ProductId == productid).Single();
-                _db.OrderDetails.Remove(orderdetail);
-                _db.SaveChanges();
+                var orderdetail = _db.OrderDetails.Single(o => o.OrderId == orderId && o.ProductId == productid);
                 _db.Orders.Remove(order);
                 _db.SaveChanges();
             }
             else
             {
+                var order = _db.Orders.Find(orderId);
+                var minus = product.Count * product.Price;
+                order.OrderSum -= minus;
                 _db.OrderDetails.Remove(product);
+                _db.Orders.Update(order);
                 _db.SaveChanges();
             }
+            UpdatePriceOrder(orderId);
+
         }
 
         public void DeleteOrder(int orderId)
@@ -200,6 +206,15 @@ namespace MyEMShop.Application.Services
             return _db.Orders.SingleOrDefault(o => !o.IsFinally);
         }
 
+        public void Refresh(int quantity, int orderId,int productId)
+        {
+            var detail = _db.OrderDetails.SingleOrDefault(o=>o.ProductId == productId);
+            detail.Count = quantity;
+            _db.Update(detail);
+            _db.SaveChanges();
+            UpdatePriceOrder(orderId);
+        }
+
         public void UpdateOrder(Order order)
         {
             _db.Orders.Update(order);
@@ -209,11 +224,10 @@ namespace MyEMShop.Application.Services
         public void UpdatePriceOrder(int orderId)
         {
             var order = _db.Orders.Find(orderId);
-            order.OrderSum = _db.OrderDetails.Where(o => o.OrderId == order.OrderId).Sum(d => d.Price);
+            order.OrderSum = _db.OrderDetails.Where(o => o.OrderId == order.OrderId).Sum(d => d.Price * d.Count);
             _db.Update(order);
             _db.SaveChanges();
         }
-
 
     }
 }

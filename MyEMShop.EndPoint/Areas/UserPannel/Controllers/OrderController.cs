@@ -73,5 +73,11 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
             return Redirect("/UserPannel/Order/");
         }
 
+        public IActionResult RefreshOrder(int orderId, int quantity, int productId)
+        {
+            _orderService.Refresh(quantity,orderId,productId);
+            return Redirect("/UserPannel/Order/ShowOrder/" + orderId);
+        }
+
     }
 }
