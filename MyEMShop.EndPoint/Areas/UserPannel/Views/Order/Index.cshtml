@@ -31,12 +31,12 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <td class="text-center">@item.OrderId</td>
-                                    <td class="text-left">
+                                    <td class="text-center text-warning">@item.OrderId</td>
+                                    <td class="text-left text-info">
                                         @item.OrderDate.ToShamsi()
                                     </td>
                                     <td class="text-left">
-                                        @item.OrderSum.ToString("N0") تومان
+                                        <strong class="text-success">@item.OrderSum.ToString("N0")</strong> تومان
                                     </td>
                                     <td class="text-right">
                                         @if (item.IsFinally)
@@ -50,7 +50,7 @@
 
                                     </td>
                                     <td class="text-right">
-                                        <a href="/UserPannel/Order/ShowOrder/@item.OrderId" class="btn btn-info"> نمایش فاکتور</a>
+                                        <a href="/UserPannel/Order/ShowOrder/@item.OrderId" class="btn btn-primary"> نمایش فاکتور</a>
                                         <a asp-area="UserPannel" asp-controller="Order" asp-action="DeleteOrder" asp-route-orderId="@item.OrderId" class="btn btn-info"> حذف فاکتور</a>
                                     </td>
                                 </tr>

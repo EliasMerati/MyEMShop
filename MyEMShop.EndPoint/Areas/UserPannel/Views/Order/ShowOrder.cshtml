@@ -37,8 +37,8 @@
                                 <td class="text-center">تصویر</td>
                                 <td class="text-left">نام محصول</td>
                                 <td class="text-left">تعداد</td>
-                                <td class="text-right">قیمت واحد</td>
-                                <td class="text-right">کل</td>
+                                <td class="text-right">قیمت واحد(تومان)</td>
+                                <td class="text-right"> قیمت کل(تومان)</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -61,8 +61,8 @@
 
                                         </div>
                                     </td>
-                                    <td id="price" class="text-right">@item.Price.ToString("N0")</td>
-                                    <td id="total" class="text-right">@((item.Count * item.Price).ToString("N0"))</td>
+                                    <td id="price" class="text-right"><strong class="text-info">@item.Price.ToString("N0")</strong></td>
+                                    <td id="total" class="text-right"><strong class="text-warning">@((item.Count * item.Price).ToString("N0"))</strong></td>
                                 </tr>
                             }
                         </tbody>
@@ -210,7 +210,7 @@
                                 </tr>
                                 <tr>
                                     <td class="text-right"><strong>کل :</strong></td>
-                                    <td class="text-right">@SumOrder.ToString("N0") @*- @Percent*@ تومان</td>
+                                    <td class="text-right"><strong class="text-success">@SumOrder.ToString("N0")</strong> @*- @Percent*@ تومان</td>
                                 </tr>
                             </tbody>
                         </table>
