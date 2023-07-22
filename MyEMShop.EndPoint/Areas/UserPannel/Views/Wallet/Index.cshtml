@@ -23,6 +23,7 @@
                     <h2 class="subtitle">عملیات شارژ کیف پول</h2>
                     <p><strong>شارژ کیف پول</strong></p>
                     <form class="form-horizontal" method="post">
+                        
                         <div class="form-group ">
                             <label asp-for="Amount" class="control-label">مبلغ(تومان)</label>
                             <input asp-for="Amount" type="number" name="amount" value="" placeholder="مبلغ به تومان" id="amount" class="form-control">
@@ -32,11 +33,13 @@
                     </form>
                     <hr />
                     @{
-                        IList<ShowWalletDto> list = ViewBag.Wallets as IList<ShowWalletDto>;
+                        Tuple<List<ShowWalletDto>, int> list = ViewBag.Wallets as Tuple<List<ShowWalletDto>, int>;
                     }
                     <p><strong>تاریخچه ی کیف پول</strong></p>
+                    
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <input type="hidden" id="pageid" name="pageid" value="@ViewBag.pageid.ToString()" />
+                        <table id="Submit" class="table table-hover">
                             <thead>
                                 <tr>
                                     <th class="text-center">مبلغ</th>
@@ -46,7 +49,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in list)
+                                @foreach (var item in list.Item1)
                                 {
                                     <tr>
                                         <td class="text-center"><strong>@item.Amount.ToString("#,0 تومان")</strong></td>
@@ -71,9 +74,9 @@
                                             
                                             
                                             @{
-                                                string TagHref = "<a href='/UserPannel/Order/ShowOrder/" + item.Description.Replace("فاکتور شماره ی #", "") + "'>#</a>";
+                                                string TagHref = $"<a href ='/UserPannel/Order/ShowOrder/{item.Description.Replace("فاکتور شماره ی #", "")}'>#</a>";
                                             }
-                                            @item.Description.Replace("فاکتور",TagHref)
+                                            @Html.Raw(item.Description.Replace("#",TagHref))
                                         </td>
                                     </tr>
                                 }
@@ -81,6 +84,7 @@
                         </table>
                     </div>
                 </aside>
+
             </div>
 
 
@@ -89,6 +93,28 @@
             <partial name="_SideBar" />
             <!--Right Part End -->
         </div>
+        <div class="row">
+            @if (list.Item2 > 1)
+            {
+                <div class="col-sm-6 text-center">
+                    <ul class="pagination">
+                        @for (int i = 1; i <= list.Item2; i++)
+                        {
+                            <li onclick="ChangePage(@i)"><a href="#">@i</a></li>
+                        }
+
+                    </ul>
+                </div>
+            }
+        </div>
     </div>
 </div>
 
+@section Scripts{
+    <script>
+        function ChangePage(pageid) {
+            $("#pageid").val(pageid);
+            $("#Submit").submit();
+        }
+    </script>
+}

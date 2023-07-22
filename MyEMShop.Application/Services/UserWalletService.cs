@@ -18,10 +18,14 @@ namespace MyEMShop.Application.Services
         }
         #endregion
 
-        public IList<ShowWalletDto> GetWallet(string userName)
+        public Tuple<List<ShowWalletDto>, int> GetWallet(string userName, int pageId = 1)
         {
+            int take = 10;
+            int skip = (pageId - 1) * take;
+
             int userid = _db.Users.Single(u => u.UserName == userName).UserId;
-            return _db.Wallets.Where(w => w.IsPay && w.UserId == userid)
+            int pageCount = _db.Wallets.Where(w => w.UserId == userid).Count() / take;
+            var walletList = _db.Wallets.Where(w => w.IsPay && w.UserId == userid)
                 .Select(w => new ShowWalletDto
                 {
                     Amount = w.Amount,
@@ -29,21 +33,30 @@ namespace MyEMShop.Application.Services
                     Description = w.Description,
                     TypeId = w.TypeId,
                 }).OrderByDescending(w => w.CreateDate)
+                .Take(take)
+                .Skip(skip)
                 .ToList();
+
+            if (pageCount % 2 != 0)
+            {
+                pageCount += 1;
+            }
+
+            return Tuple.Create(walletList, pageCount);
         }
 
         public int ChargeWallet(string userName, string description, int amount, bool ispay = false)
         {
             var wallet = new Wallet()
             {
-                Amount= amount,
+                Amount = amount,
                 CreateDate = DateTime.Now,
-                Description = description,  
-                IsPay= ispay,
-                TypeId =1,
+                Description = description,
+                IsPay = ispay,
+                TypeId = 1,
                 UserId = _db.Users.Single(u => u.UserName == userName).UserId,
             };
-           return AddWallet(wallet);
+            return AddWallet(wallet);
         }
 
         public int AddWallet(Wallet wallet)

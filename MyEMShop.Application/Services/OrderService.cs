@@ -96,25 +96,37 @@ namespace MyEMShop.Application.Services
 
         public void DeleteFromOrder(int orderId, int productid)
         {
-            int products = _db.OrderDetails.Count(o => o.OrderId == orderId);
-            var product = _db.OrderDetails.SingleOrDefault(o => o.OrderId == orderId && o.ProductId == productid);
-            if (products <= 1)
+            try
             {
-                var order = _db.Orders.Find(orderId);
-                var orderdetail = _db.OrderDetails.Single(o => o.OrderId == orderId && o.ProductId == productid);
-                _db.Orders.Remove(order);
-                _db.SaveChanges();
+                int products = _db.OrderDetails.Count(o => o.OrderId == orderId);
+                var product = _db.OrderDetails.SingleOrDefault(o => o.OrderId == orderId && o.ProductId == productid);
+                if (products <= 1)
+                {
+                    var order = _db.Orders.Find(orderId);
+                    var orderdetails = _db.OrderDetails.Where(o => o.OrderId == orderId && o.ProductId == productid).ToList();
+                    foreach (var item in orderdetails)
+                    {
+                        _db.OrderDetails.Remove(item);
+                    }
+                    _db.Orders.Remove(order);
+                    _db.SaveChanges();
+                }
+                else
+                {
+                    var order = _db.Orders.Find(orderId);
+                    var minus = product.Count * product.Price;
+                    order.OrderSum -= minus;
+                    _db.OrderDetails.Remove(product);
+                    _db.Orders.Update(order);
+                    _db.SaveChanges();
+                }
+                UpdatePriceOrder(orderId);
             }
-            else
+            catch (Exception)
             {
-                var order = _db.Orders.Find(orderId);
-                var minus = product.Count * product.Price;
-                order.OrderSum -= minus;
-                _db.OrderDetails.Remove(product);
-                _db.Orders.Update(order);
-                _db.SaveChanges();
+
             }
-            UpdatePriceOrder(orderId);
+      
 
         }
 

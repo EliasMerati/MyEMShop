@@ -32,8 +32,12 @@ namespace MyEMShop.Application.Services
 
         public void DeleteFromFavorites(int productId)
         {
-            var product = _db.FavoriteProducts.Where(p => p.ProductId == productId).Single();
-            _db.FavoriteProducts.Remove(product);
+            var products = _db.FavoriteProducts.Where(p => p.ProductId == productId).ToList();
+            foreach (var item in products)
+            {
+                _db.FavoriteProducts.Remove(item);
+            }
+            
             _db.SaveChanges();
         }
 

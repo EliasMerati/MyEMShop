@@ -24,26 +24,27 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
 
 
         [Route("UserPannel/Wallet")]
-        public IActionResult Index()
+        public IActionResult Index(int pageid = 1)
         {
-            ViewBag.Wallets = _userWalletService.GetWallet(User.Identity.Name);
+            ViewBag.pageid = pageid;
+            ViewBag.Wallets =_userWalletService.GetWallet(User.Identity.Name,pageid);
             return View();
         }
 
         [Route("UserPannel/Wallet")]
         [HttpPost]
-        public IActionResult Index(ChargeWalletDto charge)
+        public IActionResult Index(ChargeWalletDto charge , int pageid)
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.Wallets = _userWalletService.GetWallet(User.Identity.Name);
+                ViewBag.Wallets = _userWalletService.GetWallet(User.Identity.Name,pageid);
                 return View(charge);
             }
            int walletid = _userWalletService.ChargeWallet(User.Identity.Name,"واریز" , charge.Amount);
-
+            var user = _userPannel.GetUserByUserName(User.Identity.Name);
             #region Online Payment With Wallet
             var payment = new Zarinpal.Payment("",charge.Amount);
-            var response = payment.PaymentRequest("واریز به حساب", $"https://localhost:44346/OnlineWalletPayment/{walletid}");
+            var response = payment.PaymentRequest("واریز به حساب", $"https://localhost:44346/OnlineWalletPayment/{walletid}", user.Email, (user.PhoneNumber is not null) ? user.PhoneNumber : "");
             if (response.Result.Status is 100)
             {
                 return Redirect($"https://zarinpal.com/pg/StartPay/{response.Result.Authority}");
@@ -62,10 +63,10 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
             var user = _userPannel.GetUserByUserName(User.Identity.Name);
             if (order is null)
             {
-                return NotFound();
+                return Redirect("NotFound");
             }
             var payment = new Zarinpal.Payment("", order.OrderSum);
-            var result = payment.PaymentRequest($"پرداخت فاکتور شماره ی {order.OrderId}", $"https://localhost:44346/OnlinePayment/{order.OrderId}", user.Email, ((user.PhoneNumber is not null) ? user.PhoneNumber : ""));
+            var result = payment.PaymentRequest($"پرداخت فاکتور شماره ی {order.OrderId}", $"https://localhost:44346/OnlinePayment/{order.OrderId}", user.Email, (user.PhoneNumber is not null) ? user.PhoneNumber : "");
             if (result.Result.Status is 100)
             {
                 return Redirect($"https://zarinpal.com/pg/StartPay/{result.Result.Authority}");
