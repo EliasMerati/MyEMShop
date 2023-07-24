@@ -62,8 +62,23 @@
                                             <td class="center">
                                                 <a href="/UserPannel/Index" class="btn btn-sm btn-info">مشخصات خریدار</a>
                                                 <a href="/UserPannel/Order/ShowOrder/@item.OrderId" class="btn btn-sm btn-info"> مشاهده ی فاکتور</a>
-                                                <a class="btn btn-sm btn-warning">آماده ارسال</a>
-                                                <a class="btn btn-sm btn-danger">ارسال شده</a>
+                                                @if (item.OrderState == MyEMShop.Data.Dtos.OrderState.OrderState.IsSend)
+                                                {
+                                                    <a disabled class="btn btn-sm btn-warning">آماده ارسال</a>
+                                                }
+                                                else
+                                                {
+                                                    <a asp-area="UserPannel" asp-controller="Order" asp-action="ChangeToIsSend" asp-route-orderId="@item.OrderId" class="btn btn-sm btn-warning">آماده ارسال</a>
+                                                }
+                                                @if (item.OrderState == MyEMShop.Data.Dtos.OrderState.OrderState.IsDone)
+                                                {
+                                                    <a disabled class="btn btn-sm btn-success">ارسال شده</a>
+                                                }
+                                                else
+                                                {
+                                                      <a asp-area="UserPannel" asp-controller="Order" asp-action="ChangeToIsDone" asp-route-orderId="@item.OrderId" class="btn btn-sm btn-success">ارسال شده</a>  
+                                                }
+                                                
                                             </td>
                                         </tr>
                                     }

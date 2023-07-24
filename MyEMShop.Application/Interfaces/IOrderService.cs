@@ -20,5 +20,7 @@ namespace MyEMShop.Application.Interfaces
         bool IsOrderExist(int orderId);
         void DeleteOrder(int orderId);
         void Refresh(int quantity, int orderId, int productId);
+        void ChangeStateToIsSend(int orderId);
+        void ChangeStateToIsDone(int orderId);
     }
 }

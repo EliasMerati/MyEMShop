@@ -94,6 +94,33 @@ namespace MyEMShop.Application.Services
             return order.OrderId;
         }
 
+        public void ChangeStateToIsDone(int orderId)
+        {
+            try
+            {
+                var order = GetOrderById(orderId);
+                order.OrderState = OrderState.IsDone;
+                _db.SaveChanges();
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        public void ChangeStateToIsSend(int orderId)
+        {
+            try
+            {
+                var order = GetOrderById(orderId);
+                order.OrderState = OrderState.IsSend;
+                _db.SaveChanges();
+            }
+            catch (Exception)
+            {
+            }
+
+        }
+
         public void DeleteFromOrder(int orderId, int productid)
         {
             try

@@ -79,5 +79,17 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
             return Redirect("/UserPannel/Order/ShowOrder/" + orderId);
         }
 
+        public IActionResult ChangeToIsSend(int orderId)
+        {
+            _orderService.ChangeStateToIsSend(orderId);
+            return Redirect("/Admin/Index");
+        }
+
+        public IActionResult ChangeToIsDone(int orderId)
+        {
+            _orderService.ChangeStateToIsDone(orderId);
+            return Redirect("/Admin/Index");
+        }
+
     }
 }
