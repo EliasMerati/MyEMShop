@@ -219,11 +219,22 @@ namespace MyEMShop.Application.Services
 
         public void Refresh(int quantity, int orderId, int productId)
         {
-            var detail = _db.OrderDetails.SingleOrDefault(o => o.ProductId == productId);
-            detail.Count = quantity;
-            _db.Update(detail);
-            _db.SaveChanges();
-            UpdatePriceOrder(orderId);
+            try
+            {
+                var details = _db.OrderDetails.Where(o => o.ProductId == productId).ToList();
+                foreach (var item in details)
+                {
+                    item.Count = quantity;
+                    _db.Update(item);
+                    _db.SaveChanges();
+                }
+                
+                UpdatePriceOrder(orderId);
+            }
+            catch (Exception)
+            {
+            }
+           
         }
 
         public void UpdateOrder(Order order)
