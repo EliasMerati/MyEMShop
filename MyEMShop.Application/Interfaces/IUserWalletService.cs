@@ -7,7 +7,7 @@ namespace MyEMShop.Application.Interfaces
 {
     public interface IUserWalletService
     {
-        Tuple<List<ShowWalletDto>, int> GetWallet(string userName, int pageId);
+        Tuple<List<ShowWalletDto>, int> GetWallet(string userName, int pageId = 1,int take=0);
         int ChargeWallet(string userName , string description ,int amount, bool ispay = false);
         int AddWallet(Wallet wallet);
         Wallet GetWalletByWalletId(int walletId);

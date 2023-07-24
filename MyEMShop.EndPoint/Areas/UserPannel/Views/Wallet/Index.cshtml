@@ -3,6 +3,10 @@
 @model MyEMShop.Data.Dtos.UserDto.ChargeWalletDto
 @{
     ViewData["Title"] = "عملیات کیف پول";
+    int pageId = 1;
+    int take = 10;
+    int.TryParse(Context.Request.Query["Page"], out pageId);
+    int.TryParse(Context.Request.Query["PageSize"], out take);
 }
 
 
@@ -23,7 +27,7 @@
                     <h2 class="subtitle">عملیات شارژ کیف پول</h2>
                     <p><strong>شارژ کیف پول</strong></p>
                     <form class="form-horizontal" method="post">
-                        
+
                         <div class="form-group ">
                             <label asp-for="Amount" class="control-label">مبلغ(تومان)</label>
                             <input asp-for="Amount" type="number" name="amount" value="" placeholder="مبلغ به تومان" id="amount" class="form-control">
@@ -36,10 +40,10 @@
                         Tuple<List<ShowWalletDto>, int> list = ViewBag.Wallets as Tuple<List<ShowWalletDto>, int>;
                     }
                     <p><strong>تاریخچه ی کیف پول</strong></p>
-                    
-                    <div class="table-responsive">
-                        <input type="hidden" id="pageid" name="pageid" value="@ViewBag.pageid.ToString()" />
-                        <table id="Submit" class="table table-hover">
+
+                    <div class="table-responsive" id="Submit">
+
+                        <table  class="table table-hover">
                             <thead>
                                 <tr>
                                     <th class="text-center">مبلغ</th>
@@ -60,19 +64,19 @@
                                                 <div class="alert-success">
                                                     <p class="text-success">واریز</p>
                                                 </div>
-                                                
+
                                             }
                                             else
                                             {
                                                 <div class="alert-danger">
                                                     <p class="text-danger"> برداشت</p>
                                                 </div>
-                                               
+
                                             }
                                         </td>
                                         <td class="text-center">
-                                            
-                                            
+
+
                                             @{
                                                 string TagHref = $"<a href ='/UserPannel/Order/ShowOrder/{item.Description.Replace("فاکتور شماره ی #", "")}'>#</a>";
                                             }
@@ -83,6 +87,7 @@
                             </tbody>
                         </table>
                     </div>
+
                 </aside>
 
             </div>
@@ -94,27 +99,22 @@
             <!--Right Part End -->
         </div>
         <div class="row">
-            @if (list.Item2 > 1)
-            {
-                <div class="col-sm-6 text-center">
-                    <ul class="pagination">
-                        @for (int i = 1; i <= list.Item2; i++)
-                        {
-                            <li onclick="ChangePage(@i)"><a href="#">@i</a></li>
-                        }
-
-                    </ul>
-                </div>
-            }
+            <paging total-records="@list.Item2"
+                    page-no="@pageId == 0? 1 : pageId"
+                    page-size="@take == 0? 10 : take"
+                    show-prev-next="true"
+                    show-total-pages="false"
+                    show-total-records="false"
+                    show-page-size-nav="true"
+                    show-first-last="true"
+                    query-string-key-page-no="Page"
+                    query-string-key-page-size="PageSize"
+                    query-string-value="@@(Request.QueryString.Value)"
+                    gap-size="2"
+                    >          
+            </paging>
         </div>
     </div>
 </div>
 
-@section Scripts{
-    <script>
-        function ChangePage(pageid) {
-            $("#pageid").val(pageid);
-            $("#Submit").submit();
-        }
-    </script>
-}
+

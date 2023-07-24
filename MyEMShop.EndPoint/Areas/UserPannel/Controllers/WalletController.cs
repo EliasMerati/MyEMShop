@@ -24,20 +24,19 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
 
 
         [Route("UserPannel/Wallet")]
-        public IActionResult Index(int pageid = 1)
+        public IActionResult Index(int pageId = 1)
         {
-            ViewBag.pageid = pageid;
-            ViewBag.Wallets =_userWalletService.GetWallet(User.Identity.Name,pageid);
+            ViewBag.Wallets =_userWalletService.GetWallet(User.Identity.Name, pageId, 10);
             return View();
         }
 
         [Route("UserPannel/Wallet")]
         [HttpPost]
-        public IActionResult Index(ChargeWalletDto charge , int pageid)
+        public IActionResult Index(ChargeWalletDto charge)
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.Wallets = _userWalletService.GetWallet(User.Identity.Name,pageid);
+                ViewBag.Wallets = _userWalletService.GetWallet(User.Identity.Name);
                 return View(charge);
             }
            int walletid = _userWalletService.ChargeWallet(User.Identity.Name,"واریز" , charge.Amount);

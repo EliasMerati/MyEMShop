@@ -18,31 +18,40 @@ namespace MyEMShop.Application.Services
         }
         #endregion
 
-        public Tuple<List<ShowWalletDto>, int> GetWallet(string userName, int pageId = 1)
+        public Tuple<List<ShowWalletDto>, int> GetWallet(string userName, int pageId = 1, int take = 0)
         {
-            int take = 10;
             int skip = (pageId - 1) * take;
 
             int userid = _db.Users.Single(u => u.UserName == userName).UserId;
-            int pageCount = _db.Wallets.Where(w => w.UserId == userid).Count() / take;
-            var walletList = _db.Wallets.Where(w => w.IsPay && w.UserId == userid)
+            int totalcount = _db.Wallets.Where(w => w.UserId == userid && w.IsPay)
                 .Select(w => new ShowWalletDto
                 {
                     Amount = w.Amount,
                     CreateDate = w.CreateDate,
                     Description = w.Description,
                     TypeId = w.TypeId,
-                }).OrderByDescending(w => w.CreateDate)
-                .Take(take)
+                })
+                .Count();
+            if (totalcount % 2 != 0)
+            {
+                totalcount += 1;
+            }
+            var walletList = _db.Wallets.Where(w => w.UserId == userid && w.IsPay)
+                .Select(w => new ShowWalletDto
+                {
+                    Amount = w.Amount,
+                    CreateDate = w.CreateDate,
+                    Description = w.Description,
+                    TypeId = w.TypeId,
+                })
+                .OrderByDescending(w => w.CreateDate)
                 .Skip(skip)
+                .Take(take)
                 .ToList();
 
-            if (pageCount % 2 != 0)
-            {
-                pageCount += 1;
-            }
+           
 
-            return Tuple.Create(walletList, pageCount);
+            return Tuple.Create(walletList, totalcount);
         }
 
         public int ChargeWallet(string userName, string description, int amount, bool ispay = false)
