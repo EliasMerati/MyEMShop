@@ -56,39 +56,12 @@
                                                 @{
                                                     string State = EnumHelpers<MyEMShop.Data.Dtos.OrderState.OrderState>.GetDisplayValue(item.OrderState);
                                                 }
-                                                @switch (State)
-                                                {
-                                                    case "در حال آماده سازی":
-                                                        {
-                                                            <p class="alert-info">
-                                                            </p>
-                                                            break;
-                                                        }
-                                                    case "لغو شده":
-                                                        {
-                                                            <p class="alert-danger">
-                                                            </p>
-                                                            break;
-                                                        }
-                                                    case "آماده ارسال":
-                                                        {
-                                                            <p class="alert-primary">
-                                                            </p>
-                                                            break;
-                                                        }
-                                                    case "ارسال شده":
-                                                        {
-                                                            <p class="alert-success">
-                                                            </p>
-                                                            break;
-                                                        }
-
-                                                }
+                                                @State
                                             </td>
                                             <td class="center">@item.OrderAddress</td>
                                             <td class="center">
-                                                <a class="btn btn-sm btn-info">مشخصات خریدار</a>
-                                                <a class="btn btn-sm btn-info"> مشاهده ی فاکتور</a>
+                                                <a href="/UserPannel/Index" class="btn btn-sm btn-info">مشخصات خریدار</a>
+                                                <a href="/UserPannel/Order/ShowOrder/@item.OrderId" class="btn btn-sm btn-info"> مشاهده ی فاکتور</a>
                                                 <a class="btn btn-sm btn-warning">آماده ارسال</a>
                                                 <a class="btn btn-sm btn-danger">ارسال شده</a>
                                             </td>
