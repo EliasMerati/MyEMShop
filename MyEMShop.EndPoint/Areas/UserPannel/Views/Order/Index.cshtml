@@ -24,6 +24,7 @@
                                 <td class="text-left">تاریخ فاکتور</td>
                                 <td class="text-left">جمع</td>
                                 <td class="text-right">وضعیت پرداخت</td>
+                                <td class="text-right">وضعیت سفارش</td>
                                 <td class="text-right">دستورات</td>
                             </tr>
                         </thead>
@@ -48,6 +49,31 @@
                                             <p class="text text-danger">پرداخت نشده</p>
                                         }
 
+                                    </td>
+                                    <td>
+                                        @switch (item.OrderState)
+                                        {
+                                            case MyEMShop.Data.Dtos.OrderState.OrderState.InProgress:
+                                                {
+                                                    <p class="text-info">در حال آماده سازی</p>
+                                                    break;
+                                                }
+                                            case MyEMShop.Data.Dtos.OrderState.OrderState.IsCanceled:
+                                                {
+                                                    <p class="text-danger">لغو شده</p>
+                                                    break;
+                                                }
+                                            case MyEMShop.Data.Dtos.OrderState.OrderState.IsSend:
+                                                {
+                                                    <p class="text-warning">آماده ارسال</p>
+                                                    break;
+                                                }
+                                            case MyEMShop.Data.Dtos.OrderState.OrderState.IsDone:
+                                                {
+                                                    <p class="text-success">ارسال شده</p>
+                                                    break;
+                                                }
+                                        }
                                     </td>
                                     <td class="text-right">
                                         <a href="/UserPannel/Order/ShowOrder/@item.OrderId" class="btn btn-primary"> نمایش فاکتور</a>

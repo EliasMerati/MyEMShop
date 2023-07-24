@@ -26,7 +26,7 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
         [Route("UserPannel/Wallet")]
         public IActionResult Index(int pageId = 1)
         {
-            ViewBag.Wallets =_userWalletService.GetWallet(User.Identity.Name, pageId, 10);
+            ViewBag.Wallets =_userWalletService.GetWallet(User.Identity.Name, pageId,8);
             return View();
         }
 

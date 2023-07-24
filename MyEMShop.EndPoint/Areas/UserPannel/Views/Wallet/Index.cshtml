@@ -3,10 +3,10 @@
 @model MyEMShop.Data.Dtos.UserDto.ChargeWalletDto
 @{
     ViewData["Title"] = "عملیات کیف پول";
-    int pageId = 1;
-    int take = 10;
-    int.TryParse(Context.Request.Query["Page"], out pageId);
-    int.TryParse(Context.Request.Query["PageSize"], out take);
+    int Page;
+    int pageSize;
+    int.TryParse(Context.Request.Query["P"], out Page);
+    int.TryParse(Context.Request.Query["S"], out pageSize);
 }
 
 
@@ -99,19 +99,9 @@
             <!--Right Part End -->
         </div>
         <div class="row">
-            <paging total-records="@list.Item2"
-                    page-no="@pageId == 0? 1 : pageId"
-                    page-size="@take == 0? 10 : take"
-                    show-prev-next="true"
-                    show-total-pages="false"
-                    show-total-records="false"
-                    show-page-size-nav="true"
-                    show-first-last="true"
-                    query-string-key-page-no="Page"
-                    query-string-key-page-size="PageSize"
-                    query-string-value="@@(Request.QueryString.Value)"
-                    gap-size="2"
-                    >          
+            <paging page-no="@Page"
+                    page-size="@pageSize"
+                    total-records="@list.Item2">
             </paging>
         </div>
     </div>

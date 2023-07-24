@@ -20,6 +20,7 @@ namespace MyEMShop.Application.Services
 
         public Tuple<List<ShowWalletDto>, int> GetWallet(string userName, int pageId = 1, int take = 0)
         {
+            
             int skip = (pageId - 1) * take;
 
             int userid = _db.Users.Single(u => u.UserName == userName).UserId;
@@ -48,8 +49,6 @@ namespace MyEMShop.Application.Services
                 .Skip(skip)
                 .Take(take)
                 .ToList();
-
-           
 
             return Tuple.Create(walletList, totalcount);
         }
