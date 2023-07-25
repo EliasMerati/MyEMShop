@@ -5,9 +5,10 @@ using System.Collections.Generic;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Discount
 {
+    [PermissionChecker(29)]
     public class IndexModel : PageModel
     {
-        [PermissionChecker(29)]
+        
         #region Inject
 
         private readonly IDiscountService _discountService;
