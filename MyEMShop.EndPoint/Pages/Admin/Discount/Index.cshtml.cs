@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
 using System.Collections.Generic;
 
@@ -6,6 +7,7 @@ namespace MyEMShop.EndPoint.Pages.Admin.Discount
 {
     public class IndexModel : PageModel
     {
+        [PermissionChecker(29)]
         #region Inject
 
         private readonly IDiscountService _discountService;

@@ -3,12 +3,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Caching.Distributed;
+using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Common;
 using System.Collections.Generic;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Product
 {
+    [PermissionChecker(14)]
     public class EditProductModel : PageModel
     {
         #region Inject Service

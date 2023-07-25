@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Dtos.Order;
 using MyEMShop.Data.Dtos.OrderState;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Orders
 {
+    [PermissionChecker(23)]
     public class IndexModel : PageModel
     {
         #region Injection

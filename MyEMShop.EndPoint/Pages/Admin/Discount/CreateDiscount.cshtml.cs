@@ -1,12 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Caching.Distributed;
+using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Common;
 using System.Globalization;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Discount
 {
+    [PermissionChecker(30)]
     public class CreateDiscountModel : PageModel
     {
         #region Inject

@@ -1,13 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Caching.Distributed;
+using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Common;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Group
 {
+    [PermissionChecker(17)]
     public class CreateGroupModel : PageModel
     {
+        
         #region Injection
         private readonly IGroupService _groupService;
         private readonly IDistributedCache _cache;

@@ -1,13 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MyEMShop.Data.Entities.Slider;
 using MyEMShop.Data.Entities.Order;
 using MyEMShop.Data.Entities.Permission;
 using MyEMShop.Data.Entities.Product;
+using MyEMShop.Data.Entities.Slider;
+using MyEMShop.Data.Entities.Tax;
 using MyEMShop.Data.Entities.User;
 using MyEMShop.Data.Entities.Wallet;
 using System.Linq;
-using MyEMShop.Data.Entities.Tax;
-using System.Drawing.Text;
 
 namespace MyEMShop.Data.Context
 {
@@ -99,59 +98,110 @@ namespace MyEMShop.Data.Context
 
         private void SeedData(ModelBuilder modelBuilder)
         {
-            
+            #region Role
             modelBuilder.Entity<Role>()
                 .HasData(new { RoleId = 1, RoleTitle = "مدیر کل سیستم", IsDelete = false },
                          new { RoleId = 2, RoleTitle = "کاربر عادی", IsDelete = false });
+            #endregion
 
+            #region Role Permissions
             modelBuilder.Entity<RolePermission>()
-                .HasData(new { RP_Id = 1, RoleId = 1, PermissionId = 1 },
-                         new { RP_Id = 2, RoleId = 1, PermissionId = 2 },
-                         new { RP_Id = 3, RoleId = 1, PermissionId = 3 },
-                         new { RP_Id = 4, RoleId = 1, PermissionId = 4 },
-                         new { RP_Id = 5, RoleId = 1, PermissionId = 5 },
-                         new { RP_Id = 6, RoleId = 1, PermissionId = 6 },
-                         new { RP_Id = 7, RoleId = 1, PermissionId = 7 },
-                         new { RP_Id = 8, RoleId = 1, PermissionId = 8 },
-                         new { RP_Id = 9, RoleId = 1, PermissionId = 9 },
-                         new { RP_Id = 10, RoleId = 1, PermissionId = 10 },
-                         new { RP_Id = 11, RoleId = 1, PermissionId = 11 },
-                         new { RP_Id = 12, RoleId = 1, PermissionId = 12 },
-                         new { RP_Id = 13, RoleId = 1, PermissionId = 13 });
+      .HasData(new { RP_Id = 1, RoleId = 1, PermissionId = 1 },
+               new { RP_Id = 2, RoleId = 1, PermissionId = 2 },
+               new { RP_Id = 3, RoleId = 1, PermissionId = 3 },
+               new { RP_Id = 4, RoleId = 1, PermissionId = 4 },
+               new { RP_Id = 5, RoleId = 1, PermissionId = 5 },
+               new { RP_Id = 6, RoleId = 1, PermissionId = 6 },
+               new { RP_Id = 7, RoleId = 1, PermissionId = 7 },
+               new { RP_Id = 8, RoleId = 1, PermissionId = 8 },
+               new { RP_Id = 9, RoleId = 1, PermissionId = 9 },
+               new { RP_Id = 10, RoleId = 1, PermissionId = 10 },
+               new { RP_Id = 11, RoleId = 1, PermissionId = 11 },
+               new { RP_Id = 12, RoleId = 1, PermissionId = 12 },
+               new { RP_Id = 13, RoleId = 1, PermissionId = 13 },
+               new { RP_Id = 14, RoleId = 1, PermissionId = 14 },
+               new { RP_Id = 15, RoleId = 1, PermissionId = 15 },
+               new { RP_Id = 16, RoleId = 1, PermissionId = 16 },
+               new { RP_Id = 17, RoleId = 1, PermissionId = 17 },
+               new { RP_Id = 18, RoleId = 1, PermissionId = 18 },
+               new { RP_Id = 19, RoleId = 1, PermissionId = 19 },
+               new { RP_Id = 20, RoleId = 1, PermissionId = 20 },
+               new { RP_Id = 21, RoleId = 1, PermissionId = 21 },
+               new { RP_Id = 22, RoleId = 1, PermissionId = 22 },
+               new { RP_Id = 23, RoleId = 1, PermissionId = 23 },
+               new { RP_Id = 24, RoleId = 1, PermissionId = 24 },
+               new { RP_Id = 25, RoleId = 1, PermissionId = 25 },
+               new { RP_Id = 26, RoleId = 1, PermissionId = 26 },
+               new { RP_Id = 27, RoleId = 1, PermissionId = 27 },
+               new { RP_Id = 28, RoleId = 1, PermissionId = 28 },
+               new { RP_Id = 29, RoleId = 1, PermissionId = 29 },
+               new { RP_Id = 30, RoleId = 1, PermissionId = 30 },
+               new { RP_Id = 31, RoleId = 1, PermissionId = 31 },
+               new { RP_Id = 32, RoleId = 1, PermissionId = 32 },
+               new { RP_Id = 33, RoleId = 1, PermissionId = 33 },
+               new { RP_Id = 34, RoleId = 1, PermissionId = 34 });
+            #endregion
 
-
+            #region Permissions
             modelBuilder.Entity<Permission>()
-                .HasData(new { PermissionId = 1, PermissionTitle = "مدیریت " },
-                         new { PermissionId = 2, PermissionTitle = "مدیریت کاربران ", ParentId = 1 },
-                         new { PermissionId = 3, PermissionTitle = "مدیریت نقش ها ", ParentId = 1 },
-                         new { PermissionId = 4, PermissionTitle = "افزودن کاربر ", ParentId = 2 },
-                         new { PermissionId = 5, PermissionTitle = "ویرایش کاربر ", ParentId = 2 },
-                         new { PermissionId = 6, PermissionTitle = "حذف کاربر ", ParentId = 2 },
-                         new { PermissionId = 7, PermissionTitle = "افزودن نقش ", ParentId = 3 },
-                         new { PermissionId = 8, PermissionTitle = "ویرایش نقش ", ParentId = 3 },
-                         new { PermissionId = 9, PermissionTitle = "حذف نقش ", ParentId = 3 },
-                         new { PermissionId = 10, PermissionTitle = "لیست کاربران حذف شده ", ParentId = 2 },
-                         new { PermissionId = 11, PermissionTitle = "بازگردانی کاربر ", ParentId = 2 },
-                         new { PermissionId = 12, PermissionTitle = "مدیریت محصولات ", ParentId = 1 },
-                         new { PermissionId = 13, PermissionTitle = "افزودن محصول", ParentId = 12 });
+               .HasData(new { PermissionId = 1, PermissionTitle = "مدیریت " },
+                        new { PermissionId = 2, PermissionTitle = "مدیریت کاربران ", ParentId = 1 },
+                        new { PermissionId = 3, PermissionTitle = "مدیریت نقش ها ", ParentId = 1 },
+                        new { PermissionId = 4, PermissionTitle = "افزودن کاربر ", ParentId = 2 },
+                        new { PermissionId = 5, PermissionTitle = "ویرایش کاربر ", ParentId = 2 },
+                        new { PermissionId = 6, PermissionTitle = "حذف کاربر ", ParentId = 2 },
+                        new { PermissionId = 7, PermissionTitle = "افزودن نقش ", ParentId = 3 },
+                        new { PermissionId = 8, PermissionTitle = "ویرایش نقش ", ParentId = 3 },
+                        new { PermissionId = 9, PermissionTitle = "حذف نقش ", ParentId = 3 },
+                        new { PermissionId = 10, PermissionTitle = "لیست کاربران حذف شده ", ParentId = 2 },
+                        new { PermissionId = 11, PermissionTitle = "بازگردانی کاربر ", ParentId = 2 },
+                        new { PermissionId = 12, PermissionTitle = "مدیریت محصولات ", ParentId = 1 },
+                        new { PermissionId = 13, PermissionTitle = "افزودن محصول", ParentId = 12 },
+                        new { PermissionId = 14, PermissionTitle = "ویرایش محصول", ParentId = 12 },
+                        new { PermissionId = 15, PermissionTitle = "حذف محصول", ParentId = 12 },
+                        new { PermissionId = 16, PermissionTitle = "مدیریت گروه ها", ParentId = 1 },
+                        new { PermissionId = 17, PermissionTitle = "افزودن گروه", ParentId = 16 },
+                        new { PermissionId = 18, PermissionTitle = "ویرایش گروه", ParentId = 16 },
+                        new { PermissionId = 19, PermissionTitle = "حذف گروه", ParentId = 16 },
+                        new { PermissionId = 20, PermissionTitle = "افزودن زیرگروه", ParentId = 16 },
+                        new { PermissionId = 21, PermissionTitle = "ویرایش زیرگروه", ParentId = 16 },
+                        new { PermissionId = 22, PermissionTitle = "حذف زیرگروه", ParentId = 16 },
+                        new { PermissionId = 23, PermissionTitle = "مدیریت سفارشات", ParentId = 1 },
+                        new { PermissionId = 24, PermissionTitle = "در حال پردازش", ParentId = 23 },
+                        new { PermissionId = 25, PermissionTitle = "آماده ارسال", ParentId = 23 },
+                        new { PermissionId = 26, PermissionTitle = "ارسال شده", ParentId = 23 },
+                        new { PermissionId = 27, PermissionTitle = "لغو شده", ParentId = 23 },
+                        new { PermissionId = 28, PermissionTitle = "مدیریت تخفیف ها", ParentId = 1 },
+                        new { PermissionId = 29, PermissionTitle = "لیست تخفیف ها", ParentId = 28 },
+                        new { PermissionId = 30, PermissionTitle = "افزودن تخفیف ", ParentId = 28 },
+                        new { PermissionId = 31, PermissionTitle = "ویرایش تخفیف ", ParentId = 28 },
+                        new { PermissionId = 32, PermissionTitle = "مدیریت مالیات ", ParentId = 1 },
+                        new { PermissionId = 33, PermissionTitle = "افزودن مالیات ", ParentId = 32 },
+                        new { PermissionId = 34, PermissionTitle = "ویرایش مالیات ", ParentId = 32 });
+            #endregion
 
-
+            #region Wallet Type
             modelBuilder.Entity<WalletType>()
                 .HasData(new { TypeId = 1, TypeTitle = "واریز" },
                          new { TypeId = 2, TypeTitle = "برداشت" });
+            #endregion
 
+            #region Product Level
             modelBuilder.Entity<Level>()
-               .HasData(new { PL_Id = 1, PL_Title = "موجود" },
-                        new { PL_Id = 2, PL_Title = "ناموجود" },
-                        new { PL_Id = 3, PL_Title = "به زودی" });
+             .HasData(new { PL_Id = 1, PL_Title = "موجود" },
+                      new { PL_Id = 2, PL_Title = "ناموجود" },
+                      new { PL_Id = 3, PL_Title = "به زودی" });
+            #endregion
 
+            #region Product Size
             modelBuilder.Entity<Size>()
-                .HasData(new { PS_Id = 1, SizeTitle = "FreeSize" },
-                         new { PS_Id = 2, SizeTitle = "Medium" },
-                         new { PS_Id = 3, SizeTitle = "Large" },
-                         new { PS_Id = 4, SizeTitle = "Small" },
-                         new { PS_Id = 5, SizeTitle = "XXLarge" });
-            
+               .HasData(new { PS_Id = 1, SizeTitle = "FreeSize" },
+                        new { PS_Id = 2, SizeTitle = "Medium" },
+                        new { PS_Id = 3, SizeTitle = "Large" },
+                        new { PS_Id = 4, SizeTitle = "Small" },
+                        new { PS_Id = 5, SizeTitle = "XXLarge" });
+            #endregion
+
         }
 
     }

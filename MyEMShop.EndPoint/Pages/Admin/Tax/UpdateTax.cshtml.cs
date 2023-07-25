@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Tax
 {
+    [PermissionChecker(34)]
     public class UpdateTaxModel : PageModel
     {
         private readonly ITaxService _taxService;
