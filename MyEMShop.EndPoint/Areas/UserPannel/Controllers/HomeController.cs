@@ -19,8 +19,8 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
         #endregion
 
         #region Index
-        [Route("/UserPannel/Index")]
-        public IActionResult Index()
+        [Route("/UserPannel/Index/{id?}")]
+        public IActionResult Index(int? id)
         {
             return View(_userPannel.GetUserInfo(User.Identity.Name));
         }

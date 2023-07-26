@@ -91,5 +91,11 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
             return Redirect("/Admin/Index");
         }
 
+        public IActionResult ShowOrderForAdmin(int orderId , int userId)
+        {
+            var order = _orderService.ShowOrderForAdmin(orderId, userId);
+            return View("ShowOrder",order);
+        }
+
     }
 }

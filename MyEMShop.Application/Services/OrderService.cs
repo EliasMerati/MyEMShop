@@ -215,6 +215,7 @@ namespace MyEMShop.Application.Services
         {
             return _db.Orders
                 .Include(o => o.OrderDetails)
+                .Include(u=>u.User)
                 .Where(os => os.OrderState == orderState)
                 .OrderBy(o => o.OrderDate)
                 .Select(o => new OrdersDto
@@ -224,7 +225,7 @@ namespace MyEMShop.Application.Services
                     InsertTime = o.OrderDate,
                     ProductCount = o.OrderDetails.Count,
                     UserId = o.UserId,
-                    OrderAddress = o.OrderAddress,
+                    OrderAddress =o.OrderOstan +"-"+ o.OrderCity +"-"+ o.OrderAddress +"-"+"کد پستی :"+ o.OrderPostalCode +"-"+"به نام:" + o.User.Name + " "+ o.User.Family ,
                 }).ToList();
         }
 
@@ -262,6 +263,14 @@ namespace MyEMShop.Application.Services
             {
             }
            
+        }
+
+        public Order ShowOrderForAdmin(int orderId, int userId)
+        {
+            return _db.Orders
+                .Include(o=> o.OrderDetails)
+                .ThenInclude(p=>p.Product)
+                .FirstOrDefault(o=>o.UserId== userId && o.OrderId==orderId);
         }
 
         public void UpdateOrder(Order order)

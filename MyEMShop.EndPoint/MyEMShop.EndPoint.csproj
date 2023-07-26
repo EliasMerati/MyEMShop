@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Areas\UserPannel\Controllers\HomeController.cs~RF97af360.TMP" />
     <None Remove="Views\Home\Index.cshtml~RF25db509.TMP" />
   </ItemGroup>
 
