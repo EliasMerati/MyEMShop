@@ -1,4 +1,6 @@
-﻿<div class="navbar-default navbar-static-side" role="navigation">
+﻿@using MyEMShop.Data.Dtos.OrderState
+
+<div class="navbar-default navbar-static-side" role="navigation">
     <div class="sidebar-collapse">
         <ul class="nav" id="side-menu">
             <li class="sidebar-search">
@@ -40,16 +42,16 @@
                 <a href="/Admin/Orders/"><i class="fa fa-bar-chart-o fa-fw"></i> مدیریت سفارشات<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <li>
-                        <a href="/Admin/Orders?orderState = InProgress"> در حال پردازش</a>
+                        <a href="/Admin/Orders?orderState=InProgress"> در حال پردازش</a>
                     </li>
                     <li>
-                        <a href="/Admin/Orders?orderState = IsDone"> آماده ارسال</a>
+                        <a href="/Admin/Orders?orderState=IsDone"> آماده ارسال</a>
                     </li>
                     <li>
-                        <a href="/Admin/Orders?orderState = IsSend"> ارسال شده</a>
+                        <a href="/Admin/Orders?orderState=IsSend"> ارسال شده</a>
                     </li>
                     <li>
-                        <a href="/Admin/Orders?orderState = IsCanceled"> لغو شده</a>
+                        <a href="/Admin/Orders?orderState=IsCanceled"> لغو شده</a>
                     </li>
                     
 
