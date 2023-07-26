@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyEMShop.Data.Dtos.IsRead;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace MyEMShop.Data.Entities.Product
@@ -18,7 +19,7 @@ namespace MyEMShop.Data.Entities.Product
         public string Comment { get; set; }
         public DateTime CreateDate { get; set; }
         public bool IsDelete { get; set; }
-        public bool IsAdminRead { get; set; }
+        public IsAdminRead AdminRead { get; set; }
 
         #region Relations
         public Product Product { get; set; }

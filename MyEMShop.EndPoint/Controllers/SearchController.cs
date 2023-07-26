@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using MyEMShop.Application.Interfaces;
+using MyEMShop.Data.Dtos.IsRead;
 using MyEMShop.Data.Entities.Product;
 using System;
 using System.Collections.Generic;
@@ -64,6 +65,7 @@ namespace MyEMShop.EndPoint.Controllers
         public IActionResult AddComment(ProductComment productComment)
         {
             productComment.IsDelete = false;
+            productComment.AdminRead = IsAdminRead.IsFalse;
             productComment.CreateDate = DateTime.Now;
             productComment.UserId = _userPannel.GetUserIdByUserName(User.Identity.Name);
             _commentService.AddProductComment(productComment);
@@ -73,6 +75,12 @@ namespace MyEMShop.EndPoint.Controllers
         public IActionResult ShowComment(int id, int pageId = 1)
         {
             return View(_commentService.GetAllComments(id, pageId));
+        }
+
+        public IActionResult AccessComment(int productId , int commentId) 
+        {
+            _commentService.AccessComment(productId,commentId);
+            return Redirect("/Admin/Comments");
         }
     }
 

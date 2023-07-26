@@ -1,0 +1,74 @@
+﻿@page
+@model MyEMShop.EndPoint.Pages.Admin.Comments.IndexModel
+@{
+    ViewData["Title"] = "لیست نظرات";
+}
+
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">نظرات</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    مدیریت نظرات 
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                            <div class="row">
+                            </div>
+                            <table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" aria-describedby="dataTables-example_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" aria-sort="ascending" style="width: 30px;">
+                                            تاریخ نظر دهی
+                                        </th>
+                                        <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" aria-sort="ascending" style="width: 250px;">
+                                            متن نظر
+                                        </th>
+                                        <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" aria-sort="ascending" style="width: 30px;">
+                                            دستورات
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.productComments)
+                                    {
+                                        <tr class="gradeA">
+                                            <td class="center">@item.CreateDate.ToShamsi()</td>
+                                            <td class="center">@item.Comment</td>
+                                            <td class="center">
+                                                @if (item.AdminRead == MyEMShop.Data.Dtos.IsRead.IsAdminRead.IsTrue)
+                                                {
+                                                    <a disabled class="btn btn-sm btn-success">تایید نظر</a>
+                                                }
+                                                else
+                                                {
+                                                       <a asp-controller="Search" asp-action="AccessComment" asp-route-commentId="@item.Id" asp-route-productId ="@item.ProductId" class="btn btn-sm btn-success">تایید نظر</a> 
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <!-- /.row -->
+</div>
