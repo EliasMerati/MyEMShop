@@ -61,25 +61,24 @@
                                             </td>
                                             <td class="center">@item.OrderAddress</td>
                                             <td class="center">
-                                                <a href="/UserPannel/Index/@item.UserId" class="btn btn-sm btn-info">مشخصات خریدار</a>
-                                                <a asp-area="UserPannel" asp-controller="Order" asp-action="ShowOrderForAdmin" asp-route-orderId="@item.OrderId" asp-route-userId="@item.UserId" class="btn btn-sm btn-info"> مشاهده ی فاکتور</a>
+                                                <a href="/UserPannel/Index/@item.UserId" class="btn btn-sm btn-primary">مشخصات خریدار</a>
+                                                <a asp-area="UserPannel" asp-controller="Order" asp-action="ShowOrderForAdmin" asp-route-orderId="@item.OrderId" asp-route-userId="@item.UserId" class="btn btn-sm btn-default"> مشاهده ی فاکتور</a>
+                                                @if (item.OrderState == OrderState.IsDone)
+                                                {
+                                                    <a disabled class="btn btn-sm btn-warning">آماده ارسال</a>
+                                                    <a asp-area="UserPannel" asp-controller="Order" asp-action="ChangeToIsDone" asp-route-orderId="@item.OrderId" class="btn btn-sm btn-success">ارسال شده</a>
+                                                }
                                                 @if (item.OrderState == OrderState.IsSend)
                                                 {
                                                     <a disabled class="btn btn-sm btn-warning">آماده ارسال</a>
-                                                }
-                                                else
-                                                {
-                                                    <a asp-area="UserPannel" asp-controller="Order" asp-action="ChangeToIsSend" asp-route-orderId="@item.OrderId" class="btn btn-sm btn-warning">آماده ارسال</a>
-                                                }
-                                                @if (item.OrderState == OrderState.IsDone)
-                                                {
                                                     <a disabled class="btn btn-sm btn-success">ارسال شده</a>
                                                 }
-                                                else
+                                                @if (item.OrderState == OrderState.InProgress)
                                                 {
-                                                      <a asp-area="UserPannel" asp-controller="Order" asp-action="ChangeToIsDone" asp-route-orderId="@item.OrderId" class="btn btn-sm btn-success">ارسال شده</a>  
+                                                    <a asp-area="UserPannel" asp-controller="Order" asp-action="ChangeToIsDone" asp-route-orderId="@item.OrderId" class="btn btn-sm btn-success">ارسال شده</a>
+                                                    <a asp-area="UserPannel" asp-controller="Order" asp-action="ChangeToIsSend" asp-route-orderId="@item.OrderId" class="btn btn-sm btn-warning">آماده ارسال</a>
                                                 }
-                                                
+
                                             </td>
                                         </tr>
                                     }
