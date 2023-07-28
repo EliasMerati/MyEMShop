@@ -13,5 +13,6 @@ namespace MyEMShop.Application.Interfaces
         int GetAllProductComments(int productId);
         List<ProductComment> ShowAllCommentsForAdmin(IsAdminRead adminRead);
         void AccessComment(int productId,int commentId);
+        void DeleteComment(int productId,int commentId);
     }
 }

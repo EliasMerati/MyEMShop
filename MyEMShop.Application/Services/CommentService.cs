@@ -30,10 +30,10 @@ namespace MyEMShop.Application.Services
             int take = 5;
             int skip = (pageId - 1) * take;
 
-            int pageCount = _db.ProductComments.Where(pc => pc.ProductId == productId && !pc.IsDelete && pc.AdminRead == IsAdminRead.IsTrue).Count() / take;
+            int pageCount = _db.ProductComments.Where(pc => pc.ProductId == productId  && pc.AdminRead == IsAdminRead.IsTrue).Count() / take;
 
             var commentsList = _db.ProductComments.Include(u => u.User)
-                .Where(pc => pc.ProductId == productId && !pc.IsDelete && pc.AdminRead == IsAdminRead.IsTrue)
+                .Where(pc => pc.ProductId == productId  && pc.AdminRead == IsAdminRead.IsTrue)
                 .Skip(skip).Take(take)
                 .OrderByDescending(pc => pc.CreateDate)
                 .ToList();
@@ -46,12 +46,12 @@ namespace MyEMShop.Application.Services
 
         public int GetAllProductComments(int productId)
         {
-            return _db.ProductComments.Where(p => p.ProductId == productId).Count();
+            return _db.ProductComments.Where(p => p.ProductId == productId && p.AdminRead == IsAdminRead.IsTrue).Count();
         }
 
         public List<ProductComment> ShowAllCommentsForAdmin(IsAdminRead adminRead)
         {
-            return _db.ProductComments.Where(c => c.AdminRead == adminRead).ToList();
+            return _db.ProductComments.Where(c => c.AdminRead == adminRead ).ToList();
         }
 
         public void AccessComment(int productId , int commentId)
@@ -61,6 +61,22 @@ namespace MyEMShop.Application.Services
                 var comment = _db.ProductComments.First(p => p.ProductId == productId && p.Id == commentId);
 
                 comment.AdminRead = IsAdminRead.IsTrue;
+                _db.Update(comment);
+                _db.SaveChanges();
+
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        public void DeleteComment(int productId, int commentId)
+        {
+            try
+            {
+                var comment = _db.ProductComments.First(p => p.ProductId == productId && p.Id == commentId);
+
+                comment.IsDelete = true;
                 _db.Update(comment);
                 _db.SaveChanges();
 

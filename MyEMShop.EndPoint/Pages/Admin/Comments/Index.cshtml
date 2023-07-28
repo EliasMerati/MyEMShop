@@ -52,7 +52,8 @@
                                                 }
                                                 else
                                                 {
-                                                       <a asp-controller="Search" asp-action="AccessComment" asp-route-commentId="@item.Id" asp-route-productId ="@item.ProductId" class="btn btn-sm btn-success">تایید نظر</a> 
+                                                    <a asp-controller="Search" asp-action="AccessComment" asp-route-commentId="@item.Id" asp-route-productId ="@item.ProductId" class="btn btn-sm btn-success">تایید نظر</a>
+                                                    <a asp-controller="Search" asp-action="DeleteComment" asp-route-commentId="@item.Id" asp-route-productId="@item.ProductId" class="btn btn-sm btn-danger">حذف نظر</a>
                                                 }
                                             </td>
                                         </tr>

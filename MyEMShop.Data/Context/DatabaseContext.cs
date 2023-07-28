@@ -87,10 +87,13 @@ namespace MyEMShop.Data.Context
                 .HasQueryFilter(r => !r.IsDelete);
 
             modelBuilder.Entity<ProductGroup>()
-                .HasQueryFilter(g => !g.IsDelete);
+                .HasQueryFilter(pg => !pg.IsDelete);
 
             modelBuilder.Entity<Product>()
                 .HasQueryFilter(p => !p.IsDelete);
+
+            modelBuilder.Entity<ProductComment>()
+                .HasQueryFilter(pc => !pc.IsDelete);
             #endregion
 
             base.OnModelCreating(modelBuilder);

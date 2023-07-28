@@ -82,6 +82,12 @@ namespace MyEMShop.EndPoint.Controllers
             _commentService.AccessComment(productId,commentId);
             return Redirect("/Admin/Comments");
         }
+
+        public IActionResult DeleteComment(int productId, int commentId)
+        {
+            _commentService.DeleteComment(productId, commentId);
+            return Redirect("/Admin/Comments");
+        }
     }
 
 }
