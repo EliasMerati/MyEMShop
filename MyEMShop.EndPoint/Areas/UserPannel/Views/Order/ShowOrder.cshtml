@@ -6,6 +6,14 @@
     int SumOrder = Model.OrderSum;
     //int Percent = (Model.OrderSum * discount.DiscountPercent) / 100;
     string TypeDiscount = ViewBag.TypeDiscount;
+    int sum = 0;
+    foreach (var item in Model.OrderDetails)
+    {
+        sum = item.Price * item.Count; 
+    }
+    int tax = ViewBag.tax;
+    int taxvalue = sum * tax / 100;
+    int total = sum + taxvalue;
 }
 
 
@@ -44,6 +52,7 @@
                         <tbody>
                             @foreach (var item in Model.OrderDetails)
                             {
+                                sum = item.Count * item.Price;
                                 <tr>
                                     <td class="text-center"><a href="product.html"><img src="/Template/image/Product/MiniPic/@item.Product.MainImageProduct" alt="@item.Product.ProductTitle" title="@item.Product.ProductTitle" class="img-thumbnail"></a></td>
                                     <td class="text-left">
@@ -207,7 +216,7 @@
                             <tbody>
                                 <tr>
                                     <td class="text-right"><strong>جمع کل:</strong></td>
-                                    <td class="text-right">@SumOrder.ToString("N0") تومان</td>
+                                    <td class="text-right">@(sum.ToString("N0")) تومان</td>
                                 </tr>
                                 <tr>
                                     <td class="text-right"><strong> تخفیف:</strong></td>
@@ -215,11 +224,11 @@
                                 </tr>
                                 <tr>
                                     <td class="text-right"><strong>مالیات:</strong></td>
-                                    <td class="text-right">11880 تومان</td>
+                                    <td class="text-right">@taxvalue.ToString("N0") تومان</td>
                                 </tr>
                                 <tr>
                                     <td class="text-right"><strong>کل :</strong></td>
-                                    <td class="text-right"><strong class="text-success">@SumOrder.ToString("N0")</strong> @*- @Percent*@ تومان</td>
+                                    <td class="text-right"><strong class="text-success">@total.ToString("N0")</strong> @*- @Percent*@ تومان</td>
                                 </tr>
                             </tbody>
                         </table>

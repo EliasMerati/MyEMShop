@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Caching.Distributed;
 using MyEMShop.Application.Interfaces;
-using MyEMShop.Common;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Slider
 {
@@ -27,12 +26,7 @@ namespace MyEMShop.EndPoint.Pages.Admin.Slider
         }
         public IActionResult OnPost(IFormFile MainimgSlider)
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
             _sliderService.AddSlider(Slider, MainimgSlider);
-            _cache.RemoveAsync(CatchHelper.GenerateShowProductCacheKey());
             return RedirectToPage("Index");
         }
     }

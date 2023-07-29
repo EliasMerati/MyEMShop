@@ -24,6 +24,11 @@ namespace MyEMShop.Application.Services
             _db.SaveChanges();
         }
 
+        public Tax GetTax()
+        {
+            return _db.Taxes.FirstOrDefault();
+        }
+
         public Tax GetTaxById(int id)
         {
             return _db.Taxes.Find(id);

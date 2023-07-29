@@ -12,10 +12,12 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
         #region Injection
         private readonly IOrderService _orderService;
         private readonly IDiscountService _discountService;
-        public OrderController(IOrderService orderService, IDiscountService discountService)
+        private readonly ITaxService _taxService;
+        public OrderController(IOrderService orderService, IDiscountService discountService,ITaxService taxService)
         {
             _orderService = orderService;
             _discountService = discountService;
+            _taxService = taxService;
         }
         #endregion
 
@@ -27,6 +29,8 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
 
         public IActionResult ShowOrder(int id,bool finall=false , string type ="")
         {
+            int tax =(int)_taxService.GetTax().TaxValue;
+            ViewBag.tax = tax;
             var order = _orderService.GetOrderForUserPannel(User.Identity.Name, id);
             if (order is null)
             {

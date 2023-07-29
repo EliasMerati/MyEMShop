@@ -23,7 +23,8 @@ namespace MyEMShop.Application.Services
         public void AddSlider(Slider slider, IFormFile ImgFile)
         {
             SetImageForSlider(slider, ImgFile);
-            _db.SaveChanges();
+            _db.Add(slider);
+            _db.SaveChangesAsync();
         }
 
         public List<Slider> GetAllSliders()
@@ -51,7 +52,6 @@ namespace MyEMShop.Application.Services
                 }
 
             }
-
         }
 
         public void UpdateSlider(Slider slider)

@@ -13,12 +13,14 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
         private readonly IUserWalletService _userWalletService;
         private readonly IOrderService _orderService;
         private readonly IUserPannelService _userPannel;
+        private readonly ITaxService _taxService;
 
-        public WalletController(IUserWalletService userWalletService,IOrderService orderService,IUserPannelService userPannel)
+        public WalletController(IUserWalletService userWalletService,IOrderService orderService, IUserPannelService userPannel, ITaxService taxService)
         {
             _userWalletService = userWalletService;
             _orderService = orderService;
             _userPannel = userPannel;
+            _taxService = taxService;
         }
         #endregion
 
@@ -42,6 +44,7 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
            int walletid = _userWalletService.ChargeWallet(User.Identity.Name,"واریز" , charge.Amount);
             var user = _userPannel.GetUserByUserName(User.Identity.Name);
             #region Online Payment With Wallet
+
             var payment = new Zarinpal.Payment("",charge.Amount);
             var response = payment.PaymentRequest("واریز به حساب", $"https://localhost:44346/OnlineWalletPayment/{walletid}", user.Email, (user.PhoneNumber is not null) ? user.PhoneNumber : "");
             if (response.Result.Status is 100)
@@ -58,13 +61,22 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
         #region Online Pay
         public IActionResult OnlinePayment()
         {
+            int sum = 0;
             var order = _orderService.OrderNotPayment();
+            foreach (var item in order.OrderDetails)
+            {
+                sum = item.Price * item.Count;
+            }
+            int tax = (int)_taxService.GetTax().TaxValue;
+            int taxvalue = sum * tax / 100;
+            int total = sum + taxvalue;
+          
             var user = _userPannel.GetUserByUserName(User.Identity.Name);
             if (order is null)
             {
                 return Redirect("NotFound");
             }
-            var payment = new Zarinpal.Payment("", order.OrderSum);
+            var payment = new Zarinpal.Payment("", total);
             var result = payment.PaymentRequest($"پرداخت فاکتور شماره ی {order.OrderId}", $"https://localhost:44346/OnlinePayment/{order.OrderId}", user.Email, (user.PhoneNumber is not null) ? user.PhoneNumber : "");
             if (result.Result.Status is 100)
             {

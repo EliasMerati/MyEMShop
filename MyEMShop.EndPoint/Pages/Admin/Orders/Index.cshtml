@@ -75,8 +75,8 @@
                                                 }
                                                 @if (item.OrderState == OrderState.InProgress)
                                                 {
-                                                    <a asp-area="UserPannel" asp-controller="Order" asp-action="ChangeToIsDone" asp-route-orderId="@item.OrderId" class="btn btn-sm btn-success">ارسال شده</a>
-                                                    <a asp-area="UserPannel" asp-controller="Order" asp-action="ChangeToIsSend" asp-route-orderId="@item.OrderId" class="btn btn-sm btn-warning">آماده ارسال</a>
+                                                    <a asp-area="UserPannel" asp-controller="Order" asp-action="ChangeToIsSend" asp-route-orderId="@item.OrderId" class="btn btn-sm btn-success">ارسال شده</a>
+                                                    <a asp-area="UserPannel" asp-controller="Order" asp-action="ChangeToIsDone" asp-route-orderId="@item.OrderId" class="btn btn-sm btn-warning">آماده ارسال</a>
                                                 }
 
                                             </td>

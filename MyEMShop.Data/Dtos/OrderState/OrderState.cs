@@ -11,7 +11,7 @@ namespace MyEMShop.Data.Dtos.OrderState
         IsCanceled = 1,
 
         [Display(Name = "آماده ارسال")]
-        IsDone =2,
+        IsDone = 2,
 
         [Display(Name = "ارسال شده")]
         IsSend = 3

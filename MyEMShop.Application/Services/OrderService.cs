@@ -18,15 +18,18 @@ namespace MyEMShop.Application.Services
         private readonly IUserPannelService _userPannel;
         private readonly IProductService _productService;
         private readonly IUserWalletService _userWallet;
+        private readonly ITaxService _taxService;
         public OrderService(DatabaseContext db
             , IUserPannelService userPannel
             , IProductService productService
-            , IUserWalletService userWallet)
+            , IUserWalletService userWallet
+            , ITaxService taxService)
         {
             _db = db;
             _userPannel = userPannel;
             _productService = productService;
             _userWallet = userWallet;
+            _taxService = taxService;
         }
         #endregion
 
@@ -36,7 +39,9 @@ namespace MyEMShop.Application.Services
         {
             var user = _userPannel.GetUserByUserName(userName);
             Order order = _db.Orders.FirstOrDefault(o => o.UserId == user.UserId && !o.IsFinally);
+
             var product = _productService.GetProductById(productId);
+
             if (order is null)
             {
                 order = new Order()
@@ -153,7 +158,7 @@ namespace MyEMShop.Application.Services
             {
 
             }
-      
+
 
         }
 
@@ -176,14 +181,23 @@ namespace MyEMShop.Application.Services
 
             var order = _db.Orders.Include(o => o.OrderDetails).ThenInclude(od => od.Product)
                 .FirstOrDefault(o => o.UserId == userId && o.OrderId == orderId);
-
+            int sum = 0;
+            foreach (var item in order.OrderDetails)
+            {
+                sum = item.Price * item.Count;
+            }
+            int tax = (int)_taxService.GetTax().TaxValue;
+            int taxvalue = sum * tax / 100;
+            int total = sum + taxvalue;
+            
             if (order is null || order.IsFinally) { return false; }
 
             if (_userPannel.BalanceWallet(userName) >= order.OrderSum)
             {
                 order.IsFinally = true;
+                order.OrderSum = total;
                 _userWallet.AddWallet(new Wallet()
-                {
+                {  
                     Amount = order.OrderSum,
                     CreateDate = DateTime.Now,
                     Description = "فاکتور شماره ی #" + order.OrderId,
@@ -215,7 +229,7 @@ namespace MyEMShop.Application.Services
         {
             return _db.Orders
                 .Include(o => o.OrderDetails)
-                .Include(u=>u.User)
+                .Include(u => u.User)
                 .Where(os => os.OrderState == orderState)
                 .OrderBy(o => o.OrderDate)
                 .Select(o => new OrdersDto
@@ -225,7 +239,7 @@ namespace MyEMShop.Application.Services
                     InsertTime = o.OrderDate,
                     ProductCount = o.OrderDetails.Count,
                     UserId = o.UserId,
-                    OrderAddress =o.OrderOstan +"-"+ o.OrderCity +"-"+ o.OrderAddress +"-"+"کد پستی :"+ o.OrderPostalCode +"-"+"به نام:" + o.User.Name + " "+ o.User.Family ,
+                    OrderAddress = o.OrderOstan + "-" + o.OrderCity + "-" + o.OrderAddress + "-" + "کد پستی :" + o.OrderPostalCode + "-" + "به نام:" + o.User.Name + " " + o.User.Family,
                 }).ToList();
         }
 
@@ -256,21 +270,21 @@ namespace MyEMShop.Application.Services
                     _db.Update(item);
                     _db.SaveChanges();
                 }
-                
+
                 UpdatePriceOrder(orderId);
             }
             catch (Exception)
             {
             }
-           
+
         }
 
         public Order ShowOrderForAdmin(int orderId, int userId)
         {
             return _db.Orders
-                .Include(o=> o.OrderDetails)
-                .ThenInclude(p=>p.Product)
-                .FirstOrDefault(o=>o.UserId== userId && o.OrderId==orderId);
+                .Include(o => o.OrderDetails)
+                .ThenInclude(p => p.Product)
+                .FirstOrDefault(o => o.UserId == userId && o.OrderId == orderId);
         }
 
         public void UpdateOrder(Order order)
@@ -282,7 +296,10 @@ namespace MyEMShop.Application.Services
         public void UpdatePriceOrder(int orderId)
         {
             var order = _db.Orders.Find(orderId);
+            int tax = (int)_taxService.GetTax().TaxValue;
+            int taxvalue = order.OrderSum * tax / 100;
             order.OrderSum = _db.OrderDetails.Where(o => o.OrderId == order.OrderId).Sum(d => d.Price * d.Count);
+            order.OrderSum += taxvalue;
             _db.Update(order);
             _db.SaveChanges();
         }
