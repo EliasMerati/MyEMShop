@@ -22,6 +22,7 @@ namespace MyEMShop.Application.Interfaces
         void Refresh(int quantity, int orderId, int productId);
         void ChangeStateToIsSend(int orderId);
         void ChangeStateToIsDone(int orderId);
+        void ChangeStateToIsCancelled(int orderId);
         Order ShowOrderForAdmin(int orderId ,int userId);
     }
 }

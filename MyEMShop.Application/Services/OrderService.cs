@@ -126,6 +126,20 @@ namespace MyEMShop.Application.Services
 
         }
 
+        public void ChangeStateToIsCancelled(int orderId)
+        {
+            try
+            {
+                var order = GetOrderById(orderId);
+                order.OrderState = OrderState.IsCanceled;
+                _db.SaveChanges();
+            }
+            catch (Exception)
+            {
+            }
+
+        }
+
         public void DeleteFromOrder(int orderId, int productid)
         {
             try

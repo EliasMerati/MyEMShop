@@ -86,13 +86,19 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
         public IActionResult ChangeToIsSend(int orderId)
         {
             _orderService.ChangeStateToIsSend(orderId);
-            return Redirect("/Admin/Index");
+            return Redirect("/Admin/Orders/Index");
         }
 
         public IActionResult ChangeToIsDone(int orderId)
         {
             _orderService.ChangeStateToIsDone(orderId);
-            return Redirect("/Admin/Index");
+            return Redirect("/Admin/Orders/Index");
+        }
+
+        public IActionResult ChangeToIsCancelled(int orderId)
+        {
+            _orderService.ChangeStateToIsCancelled(orderId);
+            return Redirect("/Admin/Orders/Index");
         }
 
         public IActionResult ShowOrderForAdmin(int orderId , int userId)
