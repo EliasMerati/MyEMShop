@@ -29,8 +29,8 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
 
         public IActionResult ShowOrder(int id,bool finall=false , string type ="")
         {
-            int tax =(int)_taxService.GetTax().TaxValue;
-            ViewBag.tax = tax;
+            //int tax =(int)_taxService.GetTax().TaxValue;
+            //ViewBag.tax = tax;
             var order = _orderService.GetOrderForUserPannel(User.Identity.Name, id);
             if (order is null)
             {
@@ -86,19 +86,19 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
         public IActionResult ChangeToIsSend(int orderId)
         {
             _orderService.ChangeStateToIsSend(orderId);
-            return Redirect("/Admin/Orders/Index");
+            return Redirect("/Admin/Orders/Index?orderState=IsReady");
         }
 
-        public IActionResult ChangeToIsDone(int orderId)
+        public IActionResult ChangeToIsReady(int orderId)
         {
-            _orderService.ChangeStateToIsDone(orderId);
-            return Redirect("/Admin/Orders/Index");
+           _orderService.ChangeStateToIsReady(orderId);
+            return Redirect("/Admin/Orders/Index?orderState=IsProgress");
         }
 
         public IActionResult ChangeToIsCancelled(int orderId)
         {
             _orderService.ChangeStateToIsCancelled(orderId);
-            return Redirect("/Admin/Orders/Index");
+            return Redirect("/Admin/Orders/Index?orderState=IsProgress");
         }
 
         public IActionResult ShowOrderForAdmin(int orderId , int userId)
