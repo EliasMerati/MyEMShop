@@ -54,7 +54,7 @@
                                     <td>
                                         @switch (item.OrderState)
                                         {
-                                            case OrderState.InProgress:
+                                            case OrderState.IsProgress:
                                                 {
                                                     <div class="alert-warning">در حال آماده سازی</div>
                                                     break;
@@ -64,12 +64,12 @@
                                                     <div class="alert-danger">لغو شده</div>
                                                     break;
                                                 }
-                                            case OrderState.IsSend:
+                                            case OrderState.IsReady:
                                                 {
                                                     <div class="alert-info">آماده ارسال</div>
                                                     break;
                                                 }
-                                            case OrderState.IsDone:
+                                            case OrderState.IsSend:
                                                 {
                                                     <div class="alert-success">ارسال شده</div>
                                                     break;

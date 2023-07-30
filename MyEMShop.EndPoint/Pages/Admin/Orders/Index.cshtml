@@ -62,20 +62,20 @@
                                             <td class="center">@item.OrderAddress</td>
                                             <td class="center">
                                                 <a asp-area="UserPannel" asp-controller="Order" asp-action="ShowOrderForAdmin" asp-route-orderId="@item.OrderId" asp-route-userId="@item.UserId" class="btn btn-sm btn-default"> مشاهده ی فاکتور</a>
-                                                @if (item.OrderState == OrderState.IsDone)
+                                                @if (item.OrderState == OrderState.IsReady)
                                                 {
                                                     <a disabled class="btn btn-sm btn-warning">آماده ارسال</a>
-                                                    <a asp-area="UserPannel" asp-controller="Order" asp-action="ChangeToIsDone" asp-route-orderId="@item.OrderId" class="btn btn-sm btn-success">ارسال شده</a>
+                                                    <a asp-area="UserPannel" asp-controller="Order" asp-action="ChangeToIsSend" asp-route-orderId="@item.OrderId" class="btn btn-sm btn-success">ارسال شده</a>
                                                 }
                                                 @if (item.OrderState == OrderState.IsSend)
                                                 {
                                                     <a disabled class="btn btn-sm btn-warning">آماده ارسال</a>
                                                     <a disabled class="btn btn-sm btn-success">ارسال شده</a>
                                                 }
-                                                @if (item.OrderState == OrderState.InProgress)
+                                                @if (item.OrderState == OrderState.IsProgress)
                                                 {
                                                     <a asp-area="UserPannel" asp-controller="Order" asp-action="ChangeToIsSend" asp-route-orderId="@item.OrderId" class="btn btn-sm btn-success">ارسال شده</a>
-                                                    <a asp-area="UserPannel" asp-controller="Order" asp-action="ChangeToIsDone" asp-route-orderId="@item.OrderId" class="btn btn-sm btn-warning">آماده ارسال</a>
+                                                    <a asp-area="UserPannel" asp-controller="Order" asp-action="ChangeToIsReady" asp-route-orderId="@item.OrderId" class="btn btn-sm btn-warning">آماده ارسال</a>
                                                     <a asp-area="UserPannel" asp-controller="Order" asp-action="ChangeToIsCancelled" asp-route-orderId="@item.OrderId" class="btn btn-sm btn-danger">لغو فاکتور</a>
                                                 }
 

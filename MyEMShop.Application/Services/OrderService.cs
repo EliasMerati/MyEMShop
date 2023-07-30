@@ -55,7 +55,7 @@ namespace MyEMShop.Application.Services
                     UserId = user.UserId,
                     IsFinally = false,
                     OrderSum = product.ProductPrice,
-                    OrderState = OrderState.InProgress,
+                    OrderState = OrderState.IsProgress,
                     OrderDetails = new List<OrderDetail>()
                     {
                         new OrderDetail()
@@ -99,12 +99,12 @@ namespace MyEMShop.Application.Services
             return order.OrderId;
         }
 
-        public void ChangeStateToIsDone(int orderId)
+        public void ChangeStateToIsReady(int orderId)
         {
             try
             {
                 var order = GetOrderById(orderId);
-                order.OrderState = OrderState.IsDone;
+                order.OrderState = OrderState.IsReady;
                 _db.SaveChanges();
             }
             catch (Exception)
