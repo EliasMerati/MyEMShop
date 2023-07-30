@@ -4,6 +4,7 @@ using MyEMShop.Data.Context;
 using MyEMShop.Data.Dtos.Order;
 using MyEMShop.Data.Dtos.OrderState;
 using MyEMShop.Data.Entities.Order;
+using MyEMShop.Data.Entities.User;
 using MyEMShop.Data.Entities.Wallet;
 using System;
 using System.Collections.Generic;
@@ -192,9 +193,9 @@ namespace MyEMShop.Application.Services
         public bool FinallyOrder(string userName, int orderId)
         {
             int userId = _userPannel.GetUserIdByUserName(userName);
-
             var order = _db.Orders.Include(o => o.OrderDetails).ThenInclude(od => od.Product)
                 .FirstOrDefault(o => o.UserId == userId && o.OrderId == orderId);
+
             int sum = 0;
             foreach (var item in order.OrderDetails)
             {
@@ -203,7 +204,7 @@ namespace MyEMShop.Application.Services
             int tax = (int)_taxService.GetTax().TaxValue;
             int taxvalue = sum * tax / 100;
             int total = sum + taxvalue;
-            
+
             if (order is null || order.IsFinally) { return false; }
 
             if (_userPannel.BalanceWallet(userName) >= order.OrderSum)
