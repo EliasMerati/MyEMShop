@@ -138,7 +138,7 @@ namespace MyEMShop.Application.Services
                             ProductId = productId,
                         };
                     }
-                  
+
                     _db.Add(detail);
 
                 }
@@ -247,17 +247,7 @@ namespace MyEMShop.Application.Services
             int sum = 0;
             foreach (var item in order.OrderDetails)
             {
-                var product = _db.OrderDetails.Find(item.Product.ProductId);
-                if (product.Save != 0)
-                {
-                    item.Price = product.ProductPrice - (product.ProductPrice * product.Save / 100);
-                    sum = item.Price * item.Count;
-                }
-                else
-                {
-                    sum = item.Price * item.Count;
-                }
-                
+                sum = item.Price * item.Count;
             }
             int tax = (int)_taxService.GetTax().TaxValue;
             int taxvalue = sum * tax / 100;

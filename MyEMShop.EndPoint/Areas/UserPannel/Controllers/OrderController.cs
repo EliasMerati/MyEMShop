@@ -41,7 +41,7 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
 
         public IActionResult FinalOrder(int id, int productid)
         {
-            if (_orderService.FinallyOrder(User.Identity.Name , id , productid))
+            if (_orderService.FinallyOrder(User.Identity.Name , id ))
             {
                 return Redirect("/UserPannel/Order/ShowOrder/" + id + "?finall = true");
             }

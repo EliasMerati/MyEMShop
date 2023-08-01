@@ -430,9 +430,8 @@ namespace MyEMShop.Application.Services
         public List<Product> GetAllProductLikeName(int productId)
         {
             var productName = _db.Products.Single(p => p.ProductId == productId && !p.IsDelete).ProductTitle;
-
-            return _db.Products.Where(p => p.ProductTitle.Contains(productName)).ToList();
-
+            string[] Split = productName.Split(new Char[] { ' ' });
+            return _db.Products.Where(p => p.ProductTitle.Contains(Split[0])).ToList();
         }
 
         public void DeleteProduct(Product product)

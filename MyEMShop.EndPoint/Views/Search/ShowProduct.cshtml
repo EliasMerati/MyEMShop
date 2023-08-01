@@ -172,8 +172,8 @@
                         </div>
                         @if (!string.IsNullOrEmpty(Model.ProductDemo))
                         {
-                            <video style="width:60%" controls poster="/Template/image/product/MainPic/@Model.MainImageProduct">
-                                <source src="/Template//image/product//Demos/@Model.ProductDemo"/>
+                            <video style="max-width:70% ;max-height:50%; margin:40px 80px" controls poster="/Template/image/product/MainPic/@Model.MainImageProduct">
+                                <source src="/Template/image/product/Demos/@Model.ProductDemo"/>
                             </video>
                         }
                     </div>
