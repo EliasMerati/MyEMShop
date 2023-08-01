@@ -1,6 +1,8 @@
 ﻿using MyEMShop.Data.Dtos.Order;
 using MyEMShop.Data.Dtos.OrderState;
 using MyEMShop.Data.Entities.Order;
+using MyEMShop.Data.Entities.Product;
+using System;
 using System.Collections.Generic;
 
 namespace MyEMShop.Application.Interfaces
@@ -13,7 +15,7 @@ namespace MyEMShop.Application.Interfaces
         Order GetOrderById(int orderId);
         void UpdateOrder(Order order);
         bool FinallyOrder(string userName, int orderId);
-        IList<Order> GetUserOrders(string userName);
+        List<Order> GetUserOrders(string userName);
         Order OrderNotPayment();
         List<OrdersDto> GetOrdersForAdmin(OrderState orderState);
         void DeleteFromOrder(int orderId ,int productid);

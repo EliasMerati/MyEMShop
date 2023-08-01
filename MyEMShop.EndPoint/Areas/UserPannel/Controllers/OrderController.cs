@@ -29,8 +29,6 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
 
         public IActionResult ShowOrder(int id,bool finall=false , string type ="")
         {
-            //int tax =(int)_taxService.GetTax().TaxValue;
-            //ViewBag.tax = tax;
             var order = _orderService.GetOrderForUserPannel(User.Identity.Name, id);
             if (order is null)
             {
@@ -41,9 +39,9 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
             return View(order);
         }
 
-        public IActionResult FinalOrder(int id)
+        public IActionResult FinalOrder(int id, int productid)
         {
-            if (_orderService.FinallyOrder(User.Identity.Name , id))
+            if (_orderService.FinallyOrder(User.Identity.Name , id , productid))
             {
                 return Redirect("/UserPannel/Order/ShowOrder/" + id + "?finall = true");
             }

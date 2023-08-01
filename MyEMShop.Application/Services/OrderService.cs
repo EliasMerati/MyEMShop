@@ -4,6 +4,7 @@ using MyEMShop.Data.Context;
 using MyEMShop.Data.Dtos.Order;
 using MyEMShop.Data.Dtos.OrderState;
 using MyEMShop.Data.Entities.Order;
+using MyEMShop.Data.Entities.Product;
 using MyEMShop.Data.Entities.User;
 using MyEMShop.Data.Entities.Wallet;
 using System;
@@ -44,19 +45,51 @@ namespace MyEMShop.Application.Services
 
             if (order is null)
             {
-                order = new Order()
+                if (product.Save != 0)
                 {
-                    OrderDate = DateTime.Now,
-                    OrderAddress = user.Address,
-                    OrderCity = user.City,
-                    OrderOstan = user.Ostan,
-                    OrderPhoneNumber = user.PhoneNumber,
-                    OrderPostalCode = user.PostalCode,
-                    UserId = user.UserId,
-                    IsFinally = false,
-                    OrderSum = product.ProductPrice,
-                    OrderState = OrderState.IsProgress,
-                    OrderDetails = new List<OrderDetail>()
+                    order = new Order()
+                    {
+                        OrderDate = DateTime.Now,
+                        OrderAddress = user.Address,
+                        OrderCity = user.City,
+                        OrderOstan = user.Ostan,
+                        OrderSum = product.ProductPrice - (product.ProductPrice * product.Save / 100),
+                        OrderPhoneNumber = user.PhoneNumber,
+                        OrderPostalCode = user.PostalCode,
+                        UserId = user.UserId,
+                        IsFinally = false,
+
+
+                        OrderState = OrderState.IsProgress,
+                        OrderDetails = new List<OrderDetail>()
+                    {
+                        new OrderDetail()
+                        {
+                            Count = 1,
+                            Price= product.ProductPrice - (product.ProductPrice * product.Save / 100),
+                            ProductId= productId,
+                        }
+                    }
+                    };
+
+                }
+                else
+                {
+                    order = new Order()
+                    {
+                        OrderDate = DateTime.Now,
+                        OrderAddress = user.Address,
+                        OrderCity = user.City,
+                        OrderOstan = user.Ostan,
+                        OrderSum = product.ProductPrice,
+                        OrderPhoneNumber = user.PhoneNumber,
+                        OrderPostalCode = user.PostalCode,
+                        UserId = user.UserId,
+                        IsFinally = false,
+
+
+                        OrderState = OrderState.IsProgress,
+                        OrderDetails = new List<OrderDetail>()
                     {
                         new OrderDetail()
                         {
@@ -65,7 +98,10 @@ namespace MyEMShop.Application.Services
                             ProductId= productId,
                         }
                     }
-                };
+                    };
+
+                }
+
                 _db.Add(order);
                 _db.SaveChanges();
             }
@@ -82,13 +118,27 @@ namespace MyEMShop.Application.Services
                 }
                 else
                 {
-                    detail = new OrderDetail()
+                    if (product.Save != 0)
                     {
-                        OrderId = order.OrderId,
-                        Count = 1,
-                        Price = product.ProductPrice,
-                        ProductId = productId,
-                    };
+                        detail = new OrderDetail()
+                        {
+                            OrderId = order.OrderId,
+                            Count = 1,
+                            Price = product.ProductPrice - (product.ProductPrice * product.Save / 100),
+                            ProductId = productId,
+                        };
+                    }
+                    else
+                    {
+                        detail = new OrderDetail()
+                        {
+                            OrderId = order.OrderId,
+                            Count = 1,
+                            Price = product.ProductPrice - (product.ProductPrice * product.Save / 100),
+                            ProductId = productId,
+                        };
+                    }
+                  
                     _db.Add(detail);
 
                 }
@@ -194,11 +244,20 @@ namespace MyEMShop.Application.Services
             int userId = _userPannel.GetUserIdByUserName(userName);
             var order = _db.Orders.Include(o => o.OrderDetails).ThenInclude(od => od.Product)
                 .FirstOrDefault(o => o.UserId == userId && o.OrderId == orderId);
-
             int sum = 0;
             foreach (var item in order.OrderDetails)
             {
-                sum = item.Price * item.Count;
+                var product = _db.OrderDetails.Find(item.Product.ProductId);
+                if (product.Save != 0)
+                {
+                    item.Price = product.ProductPrice - (product.ProductPrice * product.Save / 100);
+                    sum = item.Price * item.Count;
+                }
+                else
+                {
+                    sum = item.Price * item.Count;
+                }
+                
             }
             int tax = (int)_taxService.GetTax().TaxValue;
             int taxvalue = sum * tax / 100;
@@ -211,7 +270,7 @@ namespace MyEMShop.Application.Services
                 order.IsFinally = true;
                 order.OrderSum = total;
                 _userWallet.AddWallet(new Wallet()
-                {  
+                {
                     Amount = order.OrderSum,
                     CreateDate = DateTime.Now,
                     Description = "فاکتور شماره ی #" + order.OrderId,
@@ -257,10 +316,13 @@ namespace MyEMShop.Application.Services
                 }).ToList();
         }
 
-        public IList<Order> GetUserOrders(string userName)
+        public List<Order> GetUserOrders(string userName)
         {
             int userId = _userPannel.GetUserIdByUserName(userName);
+
             return _db.Orders.Where(o => o.UserId == userId).ToList();
+
+
         }
 
         public bool IsOrderExist(int orderId)
@@ -312,7 +374,6 @@ namespace MyEMShop.Application.Services
             var order = _db.Orders.Find(orderId);
             int tax = (int)_taxService.GetTax().TaxValue;
             int taxvalue = order.OrderSum * tax / 100;
-            order.OrderSum = _db.OrderDetails.Where(o => o.OrderId == order.OrderId).Sum(d => d.Price * d.Count);
             order.OrderSum += taxvalue;
             _db.Update(order);
             _db.SaveChanges();

@@ -1,6 +1,7 @@
-﻿@model MyEMShop.Data.Entities.Order.Order
+﻿@model  MyEMShop.Data.Entities.Order.Order
 @inject MyEMShop.Application.Interfaces.IUserPannelService _UserPannelService
 @inject MyEMShop.Application.Interfaces.ITaxService _taxservice
+@inject MyEMShop.Application.Interfaces.IOrderService _order
 @{
     ViewData["Title"] = "مشاهده ی فاکتور";
     //var discount = ViewBag.discount;
@@ -54,9 +55,9 @@
                             @foreach (var item in Model.OrderDetails)
                             { 
                                 <tr>
-                                    <td class="text-center"><a href="product.html"><img src="/Template/image/Product/MiniPic/@item.Product.MainImageProduct" alt="@item.Product.ProductTitle" title="@item.Product.ProductTitle" class="img-thumbnail"></a></td>
+                                    <td class="text-center"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/Product/MiniPic/@item.Product.MainImageProduct" alt="@item.Product.ProductTitle" title="@item.Product.ProductTitle" class="img-thumbnail"></a></td>
                                     <td class="text-left">
-                                        <a href="/ShowProduct/@item.Product">@item.Product.ProductTitle</a><br>
+                                        <a href="/ShowProduct/@item.ProductId">@item.Product.ProductTitle</a><br>
                                     </td>
                                     <td class="text-left">
                                         <div class="input-group btn-block quantity">
@@ -262,6 +263,7 @@
                 </div>
             </div>
             <!--Middle Part End -->
+
         </div>
     </div>
 </div>
