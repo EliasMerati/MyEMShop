@@ -305,15 +305,19 @@ namespace MyEMShop.Application.Services
                 }).ToList();
         }
 
-        public List<Order> GetUserOrders(string userName, int pageid = 1)
+        public Tuple<List<Order>, int> GetUserOrders(string userName, int pageid = 1)
         {
             int userId = _userPannel.GetUserIdByUserName(userName);
-            int rowscount = 0;
-            return _db.Orders
+            int skip = (pageid - 1) * 10;
+            int rowsCount = _db.Orders
+                .Where(o => o.UserId == userId).Count()/10;
+            var result = _db.Orders
                 .Where(o => o.UserId == userId)
                 .OrderByDescending(o=>o.OrderDate)
-                .ToPaged(pageid, 10, out rowscount)
+                .Skip(skip)
+                .Take(10)
                 .ToList();
+            return Tuple.Create(result, rowsCount);
         }
 
         public bool IsOrderExist(int orderId)

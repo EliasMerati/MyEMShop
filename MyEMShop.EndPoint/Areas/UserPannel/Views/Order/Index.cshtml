@@ -1,6 +1,6 @@
 ﻿@using MyEMShop.Data.Dtos.OrderState
 @using MyEMShop.Data.Entities.Order
-@model IEnumerable<Order>
+@model Tuple<List<Order>, int>
 @{
     ViewData["Title"] = "فاکتور های من";
 }
@@ -30,7 +30,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model)
+                            @foreach (var item in Model.Item1)
                             {
                                 <tr>
                                     <td class="text-center text-warning">@item.OrderId</td>
@@ -99,10 +99,15 @@
             <partial name="_SideBar" />
             <!--Right Part End -->
         </div>
-        <paging page-no="2"
-                    page-size="10"
-                total-records="15"
-             >
-            </paging>
+        <nav aria-label="...">
+            <ul class="pagination">
+                <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                @for (int i = 1; i <= (Model.Item2 +1) ; i++)
+                {
+                    <li class="@((ViewBag.pageid == i)?"active": "")"><a href="/UserPannel/Order/Index?pageId=@i">@i<span class="sr-only">(current)</span></a></li>
+                }
+                <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+            </ul>
+        </nav>
     </div>
 </div>

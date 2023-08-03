@@ -24,7 +24,6 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
 
         public IActionResult Index(int pageid = 1, int rowscount = 0)
         {
-            ViewBag.count = rowscount;
             ViewBag.pageid = pageid;
             return View(_orderService.GetUserOrders(User.Identity.Name,pageid));
         }
