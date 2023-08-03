@@ -18,8 +18,9 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
         }
         #endregion
 
-        public IActionResult Index()
+        public IActionResult Index(int pageId =1)
         {
+            ViewBag.pageId = pageId;
             int userId = _userService.GetUserIdByUserName(User.Identity.Name);
             return View(_favoriteProduct.ShowMyFavorite(userId));
         }

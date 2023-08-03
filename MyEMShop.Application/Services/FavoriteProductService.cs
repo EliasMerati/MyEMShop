@@ -3,6 +3,7 @@ using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Context;
 using MyEMShop.Data.Dtos.ProductDto;
 using MyEMShop.Data.Entities.Product;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -41,9 +42,23 @@ namespace MyEMShop.Application.Services
             _db.SaveChanges();
         }
 
-        public List<ShowMyFavoriteProductDto> ShowMyFavorite(int userId)
+        public Tuple<List<ShowMyFavoriteProductDto>,int> ShowMyFavorite(int userId , int pageId =1)
         {
-            return _db.Products.
+            int skip = (pageId - 1) * 5;
+            int rowsCount = _db.Products.
+                Include(p => p.FavoriteProducts)
+                .Where(p => p.FavoriteProducts.Any(p => p.UserId == userId))
+                .OrderByDescending(p => p.ProductId)
+                .Select(p => new ShowMyFavoriteProductDto
+                {
+                    ProductId = p.ProductId,
+                    MainImageProduct = p.MainImageProduct,
+                    ProductPrice = p.ProductPrice,
+                    ProductTitle = p.ProductTitle,
+                    Save = p.Save,
+                }).Count() / 5;
+
+            var result = _db.Products.
                 Include(p => p.FavoriteProducts)
                 .Where(p => p.FavoriteProducts.Any(p => p.UserId == userId))
                 .OrderByDescending(p => p.ProductId)
@@ -55,7 +70,11 @@ namespace MyEMShop.Application.Services
                     ProductTitle = p.ProductTitle,
                     Save= p.Save,
                 })
+                .Skip(skip)
+                .Take(5)
                 .ToList();
+
+            return Tuple.Create(result,rowsCount);
         }
     }
 }
