@@ -18,10 +18,10 @@ namespace MyEMShop.Application.Services
         }
         #endregion
 
-        public Tuple<List<ShowWalletDto>, int> GetWallet(string userName, int pageId = 1, int take = 0)
+        public Tuple<List<ShowWalletDto>, int> GetWallet(string userName, int pageId = 1)
         {
             
-            int skip = (pageId - 1) * take;
+            int skip = (pageId - 1) * 8;
 
             int userid = _db.Users.Single(u => u.UserName == userName).UserId;
             int totalcount = _db.Wallets.Where(w => w.UserId == userid && w.IsPay)
@@ -32,11 +32,7 @@ namespace MyEMShop.Application.Services
                     Description = w.Description,
                     TypeId = w.TypeId,
                 })
-                .Count();
-            if (totalcount % 2 != 0)
-            {
-                totalcount += 1;
-            }
+                .Count()/8;
             var walletList = _db.Wallets.Where(w => w.UserId == userid && w.IsPay)
                 .Select(w => new ShowWalletDto
                 {
@@ -47,7 +43,7 @@ namespace MyEMShop.Application.Services
                 })
                 .OrderByDescending(w => w.CreateDate)
                 .Skip(skip)
-                .Take(take)
+                .Take(8)
                 .ToList();
 
             return Tuple.Create(walletList, totalcount);
