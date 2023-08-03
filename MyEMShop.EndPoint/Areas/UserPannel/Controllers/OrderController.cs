@@ -22,9 +22,11 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
         #endregion
 
 
-        public IActionResult Index()
+        public IActionResult Index(int pageid = 1, int rowscount = 0)
         {
-            return View(_orderService.GetUserOrders(User.Identity.Name));
+            ViewBag.count = rowscount;
+            ViewBag.pageid = pageid;
+            return View(_orderService.GetUserOrders(User.Identity.Name,pageid));
         }
 
         public IActionResult ShowOrder(int id,bool finall=false , string type ="")

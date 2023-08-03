@@ -1,11 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyEMShop.Application.Interfaces;
+using MyEMShop.Common;
 using MyEMShop.Data.Context;
 using MyEMShop.Data.Dtos.Order;
 using MyEMShop.Data.Dtos.OrderState;
 using MyEMShop.Data.Entities.Order;
-using MyEMShop.Data.Entities.Product;
-using MyEMShop.Data.Entities.User;
 using MyEMShop.Data.Entities.Wallet;
 using System;
 using System.Collections.Generic;
@@ -306,13 +305,15 @@ namespace MyEMShop.Application.Services
                 }).ToList();
         }
 
-        public List<Order> GetUserOrders(string userName)
+        public List<Order> GetUserOrders(string userName, int pageid = 1)
         {
             int userId = _userPannel.GetUserIdByUserName(userName);
-
-            return _db.Orders.Where(o => o.UserId == userId).ToList();
-
-
+            int rowscount = 0;
+            return _db.Orders
+                .Where(o => o.UserId == userId)
+                .OrderByDescending(o=>o.OrderDate)
+                .ToPaged(pageid, 10, out rowscount)
+                .ToList();
         }
 
         public bool IsOrderExist(int orderId)

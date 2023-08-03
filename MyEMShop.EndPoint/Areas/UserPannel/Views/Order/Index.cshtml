@@ -26,7 +26,7 @@
                                 <td class="text-left">جمع</td>
                                 <td class="text-right">وضعیت پرداخت</td>
                                 <td class="text-right">وضعیت سفارش</td>
-                                <td class="text-right">دستورات</td>
+                                <td class="text-right">عملیات</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -77,8 +77,16 @@
                                         }
                                     </td>
                                     <td class="text-right">
-                                        <a href="/UserPannel/Order/ShowOrder/@item.OrderId" class="btn btn-primary"> نمایش فاکتور</a>
-                                        <a asp-area="UserPannel" asp-controller="Order" asp-action="DeleteOrder" asp-route-orderId="@item.OrderId" class="btn btn-info"> حذف فاکتور</a>
+                                        <a asp-area="UserPannel" asp-controller="Order" asp-action="ShowOrder" asp-route-id="@item.OrderId" class="btn btn-primary"> نمایش فاکتور</a>
+                                        @if (item.IsFinally)
+                                        {
+                                            <a disabled class="btn btn-info"> حذف فاکتور</a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-area="UserPannel" asp-controller="Order" asp-action="DeleteOrder" asp-route-orderId="@item.OrderId" class="btn btn-info"> حذف فاکتور</a>
+                                        }
+                                        
                                     </td>
                                 </tr>
                             }
@@ -91,5 +99,10 @@
             <partial name="_SideBar" />
             <!--Right Part End -->
         </div>
+        <paging page-no="2"
+                    page-size="10"
+                total-records="15"
+             >
+            </paging>
     </div>
 </div>
