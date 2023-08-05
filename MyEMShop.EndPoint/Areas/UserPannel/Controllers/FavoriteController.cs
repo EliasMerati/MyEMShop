@@ -22,7 +22,7 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
         {
             ViewBag.pageId = pageId;
             int userId = _userService.GetUserIdByUserName(User.Identity.Name);
-            return View(_favoriteProduct.ShowMyFavorite(userId));
+            return View(_favoriteProduct.ShowMyFavorite(userId,pageId));
         }
 
         public IActionResult AddToFavorite(int productId)

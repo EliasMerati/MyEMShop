@@ -1,4 +1,5 @@
-﻿@model Tuple<List<MyEMShop.Data.Dtos.ProductDto.ShowMyFavoriteProductDto>,int>
+﻿@using MyEMShop.Data.Dtos.ProductDto
+@model Tuple<List<ShowMyFavoriteProductDto>,int>
 @{
     ViewData["Title"] = "لیست علاقه مندی ها";
 }
@@ -70,7 +71,7 @@
                 <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
                 @for (int i = 1; i <= (Model.Item2 + 1); i++)
                 {
-                    <li class="@((ViewBag.pageId == i)?"active": "")"><a href="/UserPannel/Favorite?pageId=@i">@i<span class="sr-only">(current)</span></a></li>
+                    <li class="@((ViewBag.pageId == i)?"active":"")"><a href="/UserPannel/Favorite?pageId=@i">@i<span class="sr-only">(current)</span></a></li>
                 }
                 <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
             </ul>
