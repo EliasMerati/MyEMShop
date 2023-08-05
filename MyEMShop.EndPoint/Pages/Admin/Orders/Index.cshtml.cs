@@ -19,9 +19,11 @@ namespace MyEMShop.EndPoint.Pages.Admin.Orders
         #endregion
 
         public  List<OrdersDto> Orders { get; set; }
-        public void OnGet(OrderState orderState)
+        public void OnGet(OrderState orderState , int pageId = 1)
         {
-            Orders = _orderService.GetOrdersForAdmin(orderState);
+            Orders = _orderService.GetOrdersForAdmin(orderState,pageId).Item1;
+            ViewData["rowsCount"] = _orderService.GetOrdersForAdmin(orderState).Item2;
+            ViewData["state"] = orderState;
         }
     }
 }

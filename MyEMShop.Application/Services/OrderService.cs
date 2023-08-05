@@ -287,9 +287,11 @@ namespace MyEMShop.Application.Services
                 .FirstOrDefault(o => o.UserId == userId && o.OrderId == orderId);
         }
 
-        public List<OrdersDto> GetOrdersForAdmin(OrderState orderState)
+        public Tuple<List<OrdersDto>, int> GetOrdersForAdmin(OrderState orderState, int pageId = 1)
         {
-            return _db.Orders
+            int skip = (pageId - 1) * 10;
+
+            int rowsCount = _db.Orders
                 .Include(o => o.OrderDetails)
                 .Include(u => u.User)
                 .Where(os => os.OrderState == orderState)
@@ -302,7 +304,25 @@ namespace MyEMShop.Application.Services
                     ProductCount = o.OrderDetails.Count,
                     UserId = o.UserId,
                     OrderAddress = o.OrderOstan + "-" + o.OrderCity + "-" + o.OrderAddress + "-" + "کد پستی :" + o.OrderPostalCode + "-" + "به نام:" + o.User.Name + " " + o.User.Family,
-                }).ToList();
+                }).Count() / 10;
+
+            var result = _db.Orders
+                .Include(o => o.OrderDetails)
+                .Include(u => u.User)
+                .Where(os => os.OrderState == orderState)
+                .OrderBy(o => o.OrderDate)
+                .Select(o => new OrdersDto
+                {
+                    OrderId = o.OrderId,
+                    OrderState = o.OrderState,
+                    InsertTime = o.OrderDate,
+                    ProductCount = o.OrderDetails.Count,
+                    UserId = o.UserId,
+                    OrderAddress = o.OrderOstan + "-" + o.OrderCity + "-" + o.OrderAddress + "-" + "کد پستی :" + o.OrderPostalCode + "-" + "به نام:" + o.User.Name + " " + o.User.Family,
+                })
+                .Skip(skip).Take(10).ToList();
+
+            return Tuple.Create(result,rowsCount);
         }
 
         public Tuple<List<Order>, int> GetUserOrders(string userName, int pageid = 1)
