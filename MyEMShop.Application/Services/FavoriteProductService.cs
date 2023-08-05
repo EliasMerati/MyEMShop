@@ -44,7 +44,7 @@ namespace MyEMShop.Application.Services
 
         public Tuple<List<ShowMyFavoriteProductDto>,int> ShowMyFavorite(int userId , int pageId =1)
         {
-            int skip = (pageId - 1) * 5;
+            int skip = (pageId - 1) * 4;
             int rowsCount = _db.Products.
                 Include(p => p.FavoriteProducts)
                 .Where(p => p.FavoriteProducts.Any(p => p.UserId == userId))
@@ -56,7 +56,7 @@ namespace MyEMShop.Application.Services
                     ProductPrice = p.ProductPrice,
                     ProductTitle = p.ProductTitle,
                     Save = p.Save,
-                }).Count() / 5;
+                }).Count() / 4;
 
             var result = _db.Products.
                 Include(p => p.FavoriteProducts)
@@ -71,7 +71,7 @@ namespace MyEMShop.Application.Services
                     Save= p.Save,
                 })
                 .Skip(skip)
-                .Take(5)
+                .Take(4)
                 .ToList();
 
             return Tuple.Create(result,rowsCount);

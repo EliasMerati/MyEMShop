@@ -30,8 +30,8 @@
                             @foreach (var item in Model.Item1)
                             {
                                 <tr>
-                                    <td class="text-center"><a href="product.html"><img src="/Template/image/product/MiniPic/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle"></a></td>
-                                    <td class="text-left"><a href="product.html">@item.ProductTitle</a></td>
+                                    <td class="text-center"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MiniPic/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle"></a></td>
+                                    <td class="text-left"><a href="/ShowProduct/@item.ProductId">@item.ProductTitle</a></td>
                                     <td class="text-right">
                                         <div class="price">
                                             @{
@@ -51,7 +51,7 @@
                                     </td>
                                     <td class="text-right">
                                         <a href="/Search/BuyProduct/@item.ProductId" class="btn btn-primary" title="" data-toggle="tooltip" onclick="cart.add('48');" type="button" data-original-title="افزودن به سبد"><i class="fa fa-shopping-cart"></i></a>
-                                        <a asp-area="UserPannel" asp-controller="Favorite" asp-action="DeleteFromFavorite" asp-route-productid="@item.ProductId" class="btn btn-danger" title="" data-toggle="tooltip"  data-original-title="حذف"><i class="fa fa-times"></i></a>
+                                        <a asp-area="UserPannel" asp-controller="Favorite" asp-action="DeleteFromFavorite" asp-route-productid="@item.ProductId" class="btn btn-danger" title="" data-toggle="tooltip" data-original-title="حذف"><i class="fa fa-times"></i></a>
                                     </td>
                                 </tr>
                             }
@@ -65,7 +65,7 @@
             <partial name="_SideBar" />
             <!--Right Part End -->
         </div>
-            <nav aria-label="...">
+        <nav aria-label="...">
             <ul class="pagination">
                 <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
                 @for (int i = 1; i <= (Model.Item2 + 1); i++)
