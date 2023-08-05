@@ -73,9 +73,16 @@ namespace MyEMShop.Application.Services
             return _db.Discounts.Find(discountId);
         }
 
-        public List<Discount> GetDiscounts()
+        public Tuple<List<Discount>, int> GetDiscounts(int pageId = 1)
         {
-            return _db.Discounts.ToList();
+            int skip = (pageId - 1) * 10;
+            int rowsCount = _db.Discounts.Count() / 10;
+            var result = _db.Discounts
+                .OrderByDescending(d=>d.DiscountId)
+                .Skip(skip)
+                .Take(10)
+                .ToList();
+            return Tuple.Create(result, rowsCount);
         }
 
         public bool IsExistCode(string code)

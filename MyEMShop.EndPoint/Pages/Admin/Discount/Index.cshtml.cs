@@ -20,9 +20,11 @@ namespace MyEMShop.EndPoint.Pages.Admin.Discount
 
 
         public List<MyEMShop.Data.Entities.Order.Discount> Discounts { get; set; }
-        public void OnGet()
+        public void OnGet(int pageId = 1)
         {
-            Discounts = _discountService.GetDiscounts();
+            Discounts = _discountService.GetDiscounts(pageId).Item1;
+            ViewData["rowsCount"]= _discountService.GetDiscounts().Item2;
+            ViewData["pageId"] = pageId;
         }
     }
 }

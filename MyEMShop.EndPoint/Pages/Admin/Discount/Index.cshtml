@@ -33,7 +33,7 @@
                                         <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" aria-sort="ascending" style="width: 201.4px;">
                                             کد تخفیف
                                         </th>
-                                         <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" aria-sort="ascending" style="width: 201.4px;">
+                                        <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" aria-sort="ascending" style="width: 201.4px;">
                                             درصد تخفیف
                                         </th>
                                         <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" aria-sort="ascending" style="width: 201.4px;">
@@ -57,7 +57,7 @@
                                             <td class="center">@item.DiscountCode</td>
                                             <td class="center">@item.DiscountPercent</td>
                                             <td class="center">@item.UsableCount</td>
-                                            <td class="center">@((item.StartDate is not null) ? item.StartDate.Value.ToShamsi() : "" )</td>
+                                            <td class="center">@((item.StartDate is not null) ? item.StartDate.Value.ToShamsi() : "")</td>
                                             <td class="center">@((item.EndDate is not null) ? item.EndDate.Value.ToShamsi() : "")</td>
                                             <td class="center">
                                                 <a href="/Admin/Discount/EditDiscount/@item.DiscountId" class="btn btn-sm btn-warning">ویرایش</a>
@@ -73,6 +73,14 @@
                 <!-- /.panel-body -->
             </div>
             <!-- /.panel -->
+            <nav class="text-center" aria-label="...">
+                <ul class="pagination">
+                    @for (int i = 1; i <= ((int)ViewData["rowsCount"] + 1); i++)
+                    {
+                        <li class="@(((int)ViewData["pageId"] == i)?"active": "")"><a href="/Admin/Comments?pageId=@i">@i<span class="sr-only">(current)</span></a></li>
+                    }
+                </ul>
+            </nav>
         </div>
         <!-- /.col-lg-12 -->
     </div>

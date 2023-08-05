@@ -23,6 +23,7 @@ namespace MyEMShop.EndPoint.Pages.Admin.Orders
         {
             Orders = _orderService.GetOrdersForAdmin(orderState,pageId).Item1;
             ViewData["rowsCount"] = _orderService.GetOrdersForAdmin(orderState).Item2;
+            ViewData["pageId"] = pageId;
             ViewData["state"] = orderState;
         }
     }

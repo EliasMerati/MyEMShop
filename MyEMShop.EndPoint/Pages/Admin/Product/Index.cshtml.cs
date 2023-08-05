@@ -19,7 +19,8 @@ namespace MyEMShop.EndPoint.Pages.Admin.Product
         public void OnGet(int pageId = 1)
         {
             products = _productService.GetProducts(pageId).Item1;
-            ViewData["rowsCount"] = _productService.GetProducts().Item2;   
+            ViewData["rowsCount"] = _productService.GetProducts().Item2;
+            ViewData["pageId"] = pageId;
         }
     }
 }

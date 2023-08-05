@@ -92,15 +92,14 @@
             </div>
             <!-- /.panel -->
 
-            <nav aria-label="...">
+            <nav class="text-center" aria-label="...">
                 <ul class="pagination">
-                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
                     @for (int i = 1; i <= ((int)ViewData["rowsCount"] + 1); i++)
                     {
-                        <li class="@(((int)ViewData["rowsCount"] == i)?"active": "")"><a href="/Admin/Orders?pageId=@i&&orderState=@ViewData["state"]">@i<span class="sr-only">(current)</span></a></li>
+                        <li class="@(((int)ViewData["pageId"] == i)?"active":"")"><a href="/Admin/Orders?pageId=@i&&orderState=@ViewData["state"]">@i<span class="sr-only">(current)</span></a></li>
                     }
-                    <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
                 </ul>
+                
             </nav>
         </div>
         <!-- /.col-lg-12 -->
