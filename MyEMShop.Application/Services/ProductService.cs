@@ -126,7 +126,7 @@ namespace MyEMShop.Application.Services
 
         public Tuple<List<GetProductForAdminDto>,int> GetProducts(int pageId =1)
         {
-            int skip = (pageId - 1) * 10;
+            int skip = (pageId - 1) * 8;
 
             int rowsCount = _db.Products
                 .Select(p => new GetProductForAdminDto
@@ -136,7 +136,7 @@ namespace MyEMShop.Application.Services
                     ProductPrice = p.ProductPrice,
                     ProductTitle = p.ProductTitle,
                     MainImageProduct = p.MainImageProduct,
-                }).Count() / 10;
+                }).Count() / 8;
 
             var result = _db.Products
                 .OrderByDescending(p => p.ProductId)
@@ -149,7 +149,7 @@ namespace MyEMShop.Application.Services
                     MainImageProduct = p.MainImageProduct,
                 })
                 .Skip(skip)
-                .Take(10)
+                .Take(8)
                 .ToList();
 
             return Tuple.Create(result, rowsCount);
