@@ -124,9 +124,11 @@ namespace MyEMShop.Application.Services
             }
         }
 
-        public IEnumerable<GetProductForAdminDto> GetProducts()
+        public Tuple<List<GetProductForAdminDto>,int> GetProducts(int pageId =1)
         {
-            return _db.Products
+            int skip = (pageId - 1) * 6;
+
+            int rowsCount = _db.Products
                 .Select(p => new GetProductForAdminDto
                 {
                     ProductId = p.ProductId,
@@ -134,7 +136,23 @@ namespace MyEMShop.Application.Services
                     ProductPrice = p.ProductPrice,
                     ProductTitle = p.ProductTitle,
                     MainImageProduct = p.MainImageProduct,
-                }).ToList();
+                }).Count() / 6;
+
+            var result = _db.Products
+                .OrderBy(p => p.ProductId)
+                .Select(p => new GetProductForAdminDto
+                {
+                    ProductId = p.ProductId,
+                    Productmark = p.Productmark,
+                    ProductPrice = p.ProductPrice,
+                    ProductTitle = p.ProductTitle,
+                    MainImageProduct = p.MainImageProduct,
+                })
+                .Skip(skip)
+                .Take(6)
+                .ToList();
+
+            return Tuple.Create(result, rowsCount);
         }
 
         public Product GetProductById(int productId)

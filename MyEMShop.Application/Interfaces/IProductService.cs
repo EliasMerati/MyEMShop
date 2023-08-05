@@ -11,7 +11,7 @@ namespace MyEMShop.Application.Interfaces
     {
 
         #region Product
-        IEnumerable<GetProductForAdminDto> GetProducts();
+        Tuple<List<GetProductForAdminDto>, int> GetProducts(int pageId = 1);
         int AddProduct(Product product);
         IList<SelectListItem> GetProductLevel();
         IList<SelectListItem> GetProductSize();
