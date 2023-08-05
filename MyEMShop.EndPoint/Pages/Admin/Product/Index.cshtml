@@ -43,7 +43,7 @@
                                         <tbody>
                                             @foreach (var item in Model.products)
                                             {
-                                                 <tr>
+                                                <tr>
                                                     <td>
                                                         <img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" class="thumbnail" style="max-height:100px;" />
                                                     </td>
@@ -70,16 +70,16 @@
             </div>
             <!-- /.panel -->
 
-                <nav aria-label="...">
-            <ul class="pagination">
-                <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+            <nav aria-label="...">
+                <ul class="pagination">
+                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
                     @for (int i = 1; i <= ((int)ViewData["rowsCount"] + 1); i++)
                     {
                         <li class="@(((int)ViewData["rowsCount"] == i)?"active": "")"><a href="/Admin/Product?pageId=@i">@i<span class="sr-only">(current)</span></a></li>
                     }
-                <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-            </ul>
-        </nav>
+                    <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                </ul>
+            </nav>
         </div>
         <!-- /.col-lg-12 -->
     </div>

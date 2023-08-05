@@ -132,7 +132,7 @@
                                 <div class="col-sm-6">
                                     <div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
                                         <ul class="pagination">
-                                            @for (int i = 1; i <= Model.User.PageCount ; i++)
+                                            @for (int i = 1; i <= Model.User.PageCount +1 ; i++)
                                             {
                                                 <li class="paginate_button @((i == Model.User.CurrentPage) ? "active" : "")" aria-controls="dataTables-example" tabindex="0">
                                                     <a href="/Admin/Users?PageId = @i">

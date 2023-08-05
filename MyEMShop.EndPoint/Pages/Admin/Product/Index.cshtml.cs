@@ -1,9 +1,7 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Dtos.ProductDto;
-using System;
 using System.Collections.Generic;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Product
@@ -18,10 +16,10 @@ namespace MyEMShop.EndPoint.Pages.Admin.Product
         }
 
         public List<GetProductForAdminDto> products { get; set; }
-        public void OnGet(int pageId =1)
+        public void OnGet(int pageId = 1)
         {
-            products = _productService.GetProducts().Item1;
-            ViewData["rowsCount"]= _productService.GetProducts(pageId).Item2;
+            products = _productService.GetProducts(pageId).Item1;
+            ViewData["rowsCount"] = _productService.GetProducts().Item2;   
         }
     }
 }

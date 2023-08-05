@@ -17,9 +17,10 @@ namespace MyEMShop.EndPoint.Pages.Admin.Comments
         #endregion
 
         public List<ProductComment> productComments { get; set; }
-        public void OnGet(IsAdminRead adminRead)
+        public void OnGet(IsAdminRead adminRead , int pageId =1)
         {
-            productComments = _commentService.ShowAllCommentsForAdmin(adminRead);
+            productComments = _commentService.ShowAllCommentsForAdmin(adminRead, pageId).Item1;
+            ViewData["rowsCount"] = _commentService.ShowAllCommentsForAdmin(adminRead, pageId).Item2;
         }
     }
 }

@@ -49,9 +49,19 @@ namespace MyEMShop.Application.Services
             return _db.ProductComments.Where(p => p.ProductId == productId && p.AdminRead == IsAdminRead.IsTrue).Count();
         }
 
-        public List<ProductComment> ShowAllCommentsForAdmin(IsAdminRead adminRead)
+        public Tuple<List<ProductComment>,int> ShowAllCommentsForAdmin(IsAdminRead adminRead , int pageId =1)
         {
-            return _db.ProductComments.Where(c => c.AdminRead == adminRead ).ToList();
+            int skip = (pageId - 1) * 10;
+
+            int rowsCount = _db.ProductComments.Where(c => c.AdminRead == adminRead).Count() / 10;
+            var result = _db.ProductComments
+                .OrderBy(c=>c.Id)
+                .Where(c => c.AdminRead == adminRead )
+                .Skip(skip)
+                .Take(10)
+                .ToList();
+
+            return Tuple.Create(result, rowsCount);
         }
 
         public void AccessComment(int productId , int commentId)
