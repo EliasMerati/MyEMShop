@@ -21,7 +21,6 @@ namespace MyEMShop.EndPoint.Controllers
         private readonly IOrderService _orderService;
         private readonly IGroupService _groupService;
         private readonly IProductService _productService;
-        private readonly IWebHostEnvironment _hosting;
 
 
         public HomeController(ILogger<HomeController> logger
@@ -29,7 +28,6 @@ namespace MyEMShop.EndPoint.Controllers
             , IOrderService orderService
             , IGroupService groupService
             , IProductService productService
-            , IWebHostEnvironment hosting
             )
         {
             var stimulKey = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Reports/license.key");
@@ -42,7 +40,6 @@ namespace MyEMShop.EndPoint.Controllers
             _orderService = orderService;
             _groupService = groupService;
             _productService = productService;
-            _hosting = hosting;
 
         }
         #endregion
