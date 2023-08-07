@@ -4,9 +4,12 @@
 @inject MyEMShop.Application.Interfaces.IOrderService _order
 @{
     ViewData["Title"] = "مشاهده ی فاکتور";
-    //var discount = ViewBag.discount;
     int SumOrder = Model.OrderSum;
-    //int Percent = (Model.OrderSum * discount.DiscountPercent) / 100;
+    int percent = 0;
+    if (ViewBag.discount != null)
+    {
+        percent = (SumOrder * ViewBag.discount) / 100;
+    }
     string TypeDiscount = ViewBag.TypeDiscount;
     int sum = 0;
     foreach (var item in Model.OrderDetails)
@@ -206,7 +209,7 @@
 
 
 
-                            @*  <input type="button" value="دریافت پیش فاکتور" id="button-quote" data-loading-text="بارگذاری ..." class="btn btn-primary">*@
+                           @* <button type="submit"  asp-action="PrintPage" asp-route-id="@Model.OrderId" value="دریافت پیش فاکتور"  class="btn btn-primary"/>*@
 
                         </div>
                     </div>
@@ -221,7 +224,7 @@
                                 </tr>
                                 <tr>
                                     <td class="text-right"><strong> تخفیف:</strong></td>
-                                    <td class="text-right">@*@Percent.ToString("N0")*@ تومان</td>
+                                    <td class="text-right">@percent.ToString("N0") تومان</td>
                                 </tr>
                                 <tr>
                                     <td class="text-right"><strong>مالیات:</strong></td>
@@ -256,7 +259,7 @@
                     }
                     else
                     {
-                        <div class="pull-left"><a disabled asp-controller="Wallet" asp-action="OnlinePayment" class="btn btn-primary">پرداخت آنلاین</a></div>
+                        <div class="pull-left"><a disabled class="btn btn-primary">پرداخت آنلاین</a></div>
                     }
 
 

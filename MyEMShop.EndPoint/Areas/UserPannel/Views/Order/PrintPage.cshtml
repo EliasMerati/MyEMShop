@@ -1,0 +1,13 @@
+﻿@using Stimulsoft.Report.Mvc
+@{
+    ViewData["Title"] = "چاپ فاکتور";
+    Layout = null;
+}
+
+@Html.StiNetCoreViewer( new StiNetCoreViewerOptions(){
+Actions = {
+ GetReport = "PrintOrder",
+ViewerEvent = "ViewerEvent"
+}
+})
+

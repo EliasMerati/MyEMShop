@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Dtos.Order;
+using Stimulsoft.Base;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Mvc;
 
 namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
 {
@@ -18,6 +21,7 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
             _orderService = orderService;
             _discountService = discountService;
             _taxService = taxService;
+            
         }
         #endregion
 
@@ -28,6 +32,23 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
             return View(_orderService.GetUserOrders(User.Identity.Name,pageid));
         }
 
+        public IActionResult PrintOrder(int id)
+        {
+            StiReport report = new StiReport();
+            report.Load(StiNetCoreHelper.MapPath(this,"wwwroot/Reports/Report.mrt"));
+            var order = _orderService.GetOrderForUserPannel(User.Identity.Name, id);
+            report.RegData("dt", order);
+            return StiNetCoreViewer.GetReportResult(this, report);
+        }
+
+        public IActionResult PrintPage()
+        {
+            return View("PrintPage");
+        }
+        public IActionResult ViewerEvent()
+        {
+            return StiNetCoreViewer.ViewerEventResult(this);
+        }
         public IActionResult ShowOrder(int id,bool finall=false , string type ="")
         {
             var order = _orderService.GetOrderForUserPannel(User.Identity.Name, id);
@@ -51,7 +72,7 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
 
         public IActionResult UseDiscount(int orderId , string code)
         {
-            ViewBag.discount = _discountService.GetDiscount(code);
+            ViewBag.discount = _discountService.GetDiscount(code).DiscountPercent;
             DiscountUseType type = _discountService.UseDiscount(orderId, code);
             return Redirect("/UserPannel/Order/ShowOrder/"+ orderId +"?Type =" + type.ToString());
         }

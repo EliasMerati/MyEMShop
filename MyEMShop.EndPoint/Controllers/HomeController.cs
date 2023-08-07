@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.EndPoint.Models;
+using Stimulsoft.Base;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -19,6 +21,7 @@ namespace MyEMShop.EndPoint.Controllers
         private readonly IOrderService _orderService;
         private readonly IGroupService _groupService;
         private readonly IProductService _productService;
+        private readonly IWebHostEnvironment _hosting;
 
 
         public HomeController(ILogger<HomeController> logger
@@ -26,13 +29,20 @@ namespace MyEMShop.EndPoint.Controllers
             , IOrderService orderService
             , IGroupService groupService
             , IProductService productService
+            , IWebHostEnvironment hosting
             )
         {
+            var stimulKey = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Reports/license.key");
+            if (System.IO.File.Exists(stimulKey))
+            {
+                StiLicense.LoadFromFile(stimulKey);
+            }
             _logger = logger;
             _userWalletService = userWalletService;
             _orderService = orderService;
             _groupService = groupService;
             _productService = productService;
+            _hosting = hosting;
 
         }
         #endregion
