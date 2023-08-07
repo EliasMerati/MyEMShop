@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
@@ -66,7 +65,7 @@ namespace MyEMShop.EndPoint.Controllers
             {
                 string authority = HttpContext.Request.Query["Authority"];
                 var wallet = _userWalletService.GetWalletByWalletId(id);
-                var payment = new Zarinpal.Payment("",wallet.Amount);
+                var payment = new Zarinpal.Payment("", wallet.Amount);
                 var res = payment.Verification(authority).Result;
                 if (res.Status == 100)
                 {
