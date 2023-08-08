@@ -129,6 +129,40 @@ namespace MyEMShop.Application.Services
             int skip = (pageId - 1) * 8;
 
             int rowsCount = _db.Products
+                .Where(p => !p.IsDelete)
+                .Select(p => new GetProductForAdminDto
+                {
+                    ProductId = p.ProductId,
+                    Productmark = p.Productmark,
+                    ProductPrice = p.ProductPrice,
+                    ProductTitle = p.ProductTitle,
+                    MainImageProduct = p.MainImageProduct,
+                }).Count() / 8;
+
+            var result = _db.Products
+                .Where(p => !p.IsDelete)
+                .OrderByDescending(p => p.ProductId)
+                .Select(p => new GetProductForAdminDto
+                {
+                    ProductId = p.ProductId,
+                    Productmark = p.Productmark,
+                    ProductPrice = p.ProductPrice,
+                    ProductTitle = p.ProductTitle,
+                    MainImageProduct = p.MainImageProduct,
+                })
+                .Skip(skip)
+                .Take(8)
+                .ToList();
+
+            return Tuple.Create(result, rowsCount);
+        }
+
+        public Tuple<List<GetProductForAdminDto>, int> GetDeletedProducts(int pageId = 1)
+        {
+            int skip = (pageId - 1) * 8;
+
+            int rowsCount = _db.Products
+                .Where(p=>p.IsDelete)
                 .Select(p => new GetProductForAdminDto
                 {
                     ProductId = p.ProductId,
@@ -140,6 +174,7 @@ namespace MyEMShop.Application.Services
 
             var result = _db.Products
                 .OrderByDescending(p => p.ProductId)
+                .Where(p=>p.IsDelete)
                 .Select(p => new GetProductForAdminDto
                 {
                     ProductId = p.ProductId,
@@ -472,6 +507,24 @@ namespace MyEMShop.Application.Services
             return _db.Products.Where(p => !p.IsDelete && p.Isspecial == true)
                 .Take(20)
                 .ToList();
+        }
+
+        public void RefreshProduct(int productId)
+        {
+            var product = _db.Products.Find(productId);
+            product.IsDelete = false;
+            _db.Update(product);
+            _db.SaveChanges();
+        }
+
+        public ShowProductForRefresh GetForRefresh(int productId)
+        {
+            var product = _db.Products.Single(p=> p.ProductId == productId && p.IsDelete);
+            ShowProductForRefresh refresh = new ShowProductForRefresh();
+            refresh.ProductId = product.ProductId;
+            refresh.ProductPrice = product.ProductPrice;
+            refresh.ProductTitle= product.ProductTitle;
+            return refresh;
         }
     }
 }

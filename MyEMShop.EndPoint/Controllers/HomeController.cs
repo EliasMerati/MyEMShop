@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.EndPoint.Models;
-using Stimulsoft.Base;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -29,11 +28,11 @@ namespace MyEMShop.EndPoint.Controllers
             , IProductService productService
             )
         {
-            var stimulKey = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Reports/license.key");
-            if (System.IO.File.Exists(stimulKey))
-            {
-                StiLicense.LoadFromFile(stimulKey);
-            }
+            //var stimulKey = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Reports/license.key");
+            //if (System.IO.File.Exists(stimulKey))
+            //{
+            //    StiLicense.LoadFromFile(stimulKey);
+            //}
             _logger = logger;
             _userWalletService = userWalletService;
             _orderService = orderService;

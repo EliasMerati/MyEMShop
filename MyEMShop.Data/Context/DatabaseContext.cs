@@ -90,8 +90,8 @@ namespace MyEMShop.Data.Context
             modelBuilder.Entity<ProductGroup>()
                 .HasQueryFilter(pg => !pg.IsDelete);
 
-            modelBuilder.Entity<Product>()
-                .HasQueryFilter(p => !p.IsDelete);
+            //modelBuilder.Entity<Product>()
+            //    .HasQueryFilter(p => !p.IsDelete);
 
             modelBuilder.Entity<ProductComment>()
                 .HasQueryFilter(pc => !pc.IsDelete);
@@ -111,11 +111,6 @@ namespace MyEMShop.Data.Context
                    RegisterDate = DateTime.Now,
                    Name = "بهناز",
                    Family = "اعتضادی فر",
-                   PhoneNumber = "09156158212",
-                   City = "نیشابور",
-                   Ostan = "خراسان رضوی",
-                   Address = "خیابان امیر کبیر - امیر کبیر 9/5 - پلاک 141",
-                   PostalCode = "9314814588",
                    Email = "Behnaz.Etezadi8212@gmail.com",
                    Password = "20-2C-B9-62-AC-59-07-5B-96-4B-07-15-2D-23-4B-70",
                    IsActive = true,

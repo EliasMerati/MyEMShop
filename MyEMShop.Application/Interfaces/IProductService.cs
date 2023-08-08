@@ -12,6 +12,7 @@ namespace MyEMShop.Application.Interfaces
 
         #region Product
         Tuple<List<GetProductForAdminDto>, int> GetProducts(int pageId = 1);
+        void RefreshProduct(int productId);
         int AddProduct(Product product);
         IList<SelectListItem> GetProductLevel();
         IList<SelectListItem> GetProductSize();
@@ -25,6 +26,7 @@ namespace MyEMShop.Application.Interfaces
         Product GetProductById(int productId);
         void UpdateProduct(Product product, IFormFile Demo, IFormFile Image);
         Tuple<List<ShowProductForIndex>,int> ShowProduct(int pageid =1 , string Filter = "",List<int> selectedgroup = null , string orderbytype = "all",int take = 0);
+        Tuple<List<GetProductForAdminDto>, int> GetDeletedProducts(int pageId = 1);
         Product GetProductForShow(int productId);
         void DeleteProduct(Product product);
         List<Product> GetPopularProduct();
@@ -33,6 +35,7 @@ namespace MyEMShop.Application.Interfaces
         List<Product> GetPopularProductForIndex();
         List<Product> GetSpecialProductForIndex();
         List<Product> GetAllProductLikeName(int productId);
+        ShowProductForRefresh GetForRefresh(int productId);
         #endregion
 
     }
