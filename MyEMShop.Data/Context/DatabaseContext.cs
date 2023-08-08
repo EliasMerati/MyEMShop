@@ -6,6 +6,7 @@ using MyEMShop.Data.Entities.Slider;
 using MyEMShop.Data.Entities.Tax;
 using MyEMShop.Data.Entities.User;
 using MyEMShop.Data.Entities.Wallet;
+using System;
 using System.Linq;
 
 namespace MyEMShop.Data.Context
@@ -101,6 +102,27 @@ namespace MyEMShop.Data.Context
 
         private void SeedData(ModelBuilder modelBuilder)
         {
+            #region Admin
+            modelBuilder.Entity<User>()
+               .HasData(new
+               {
+                   UserId = 1,
+                   UserName = "BehDokhtAdmin",
+                   RegisterDate = DateTime.Now,
+                   Name = "بهناز",
+                   Family = "اعتضادی فر",
+                   PhoneNumber = "09156158212",
+                   City = "نیشابور",
+                   Ostan = "خراسان رضوی",
+                   Address = "خیابان امیر کبیر - امیر کبیر 9/5 - پلاک 141",
+                   PostalCode = "9314814588",
+                   Email = "Behnaz.Etezadi8212@gmail.com",
+                   Password = "20-2C-B9-62-AC-59-07-5B-96-4B-07-15-2D-23-4B-70",
+                   IsActive = true,
+                   IsDelete = false
+               });
+            #endregion
+
             #region Role
             modelBuilder.Entity<Role>()
                 .HasData(new { RoleId = 1, RoleTitle = "مدیر کل سیستم", IsDelete = false },
@@ -181,6 +203,11 @@ namespace MyEMShop.Data.Context
                         new { PermissionId = 32, PermissionTitle = "مدیریت مالیات ", ParentId = 1 },
                         new { PermissionId = 33, PermissionTitle = "افزودن مالیات ", ParentId = 32 },
                         new { PermissionId = 34, PermissionTitle = "ویرایش مالیات ", ParentId = 32 });
+            #endregion
+
+            #region AdminRole
+            modelBuilder.Entity<UserRole>()
+               .HasData(new { U_RId = 1, UserId = 1, RoleId = 1 });
             #endregion
 
             #region Wallet Type
