@@ -35,7 +35,7 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
         public IActionResult PrintOrder(int id)
         {
             StiReport report = new StiReport();
-            report.Load(StiNetCoreHelper.MapPath(this,"wwwroot/Reports/Report.mrt"));
+            report.Load(StiNetCoreHelper.MapPath(this, "wwwroot/Reports/Report.mrt"));
             var order = _orderService.GetOrderForUserPannel(User.Identity.Name, id);
             report.RegData("dt", order);
             return StiNetCoreViewer.GetReportResult(this, report);
