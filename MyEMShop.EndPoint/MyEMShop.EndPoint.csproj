@@ -2,11 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Areas\UserPannel\Controllers\HomeController.cs~RF97af360.TMP" />
     <None Remove="Views\Home\Index.cshtml~RF25db509.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Packages\Stimulsoft.Base.dll" />
+    <Content Include="Packages\Stimulsoft.Report.dll" />
+    <Content Include="Packages\Stimulsoft.Report.Web.dll" />
+    <Content Include="Packages\Stimulsoft.Report.Win.dll" />
   </ItemGroup>
 
   <ItemGroup>
@@ -83,6 +91,9 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /y /d &quot;$(ProjectDir)Packages\*.*&quot; &quot;$(ProjectDir)$(OutDir)&quot;" />
+  </Target>
 
 
 </Project>

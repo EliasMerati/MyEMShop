@@ -32,6 +32,7 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
             return View(_orderService.GetUserOrders(User.Identity.Name,pageid));
         }
 
+        #region  Print Order
         public IActionResult PrintOrder(int id)
         {
             StiReport report = new StiReport();
@@ -49,6 +50,8 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
         {
             return StiNetCoreViewer.ViewerEventResult(this);
         }
+        #endregion
+
         public IActionResult ShowOrder(int id,bool finall=false , string type ="")
         {
             var order = _orderService.GetOrderForUserPannel(User.Identity.Name, id);

@@ -13,8 +13,11 @@ using MyEMShop.Application.Services;
 using MyEMShop.Common;
 using MyEMShop.Data.Context;
 using System;
+using System.ComponentModel;
+using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using static Stimulsoft.Report.StiOptions.Viewer.Windows;
 
 namespace MyEMShop.EndPoint
 {
@@ -95,6 +98,12 @@ namespace MyEMShop.EndPoint
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            #region Stimulsoft key
+            var contentRoot = Directory.GetCurrentDirectory();
+            var licenseFile = Path.Combine(contentRoot, "wwwroot/Reports", "license.key");
+            Stimulsoft.Base.StiLicense.LoadFromFile(licenseFile);
+            #endregion
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
