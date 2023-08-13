@@ -30,7 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\Template\image\flags\" />
     <Folder Include="wwwroot\Template\image\patterns\" />
     <Folder Include="wwwroot\Template\image\payment\" />
     <Folder Include="wwwroot\Template\image\product\Demos\" />
