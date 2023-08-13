@@ -15,7 +15,9 @@ namespace MyEMShop.Application.Interfaces
         string HashPassword(string password);
         int BalanceWallet(string userName);
         int GetUserIdByUserName(string userName);
+        User GetUserByUserId(int userId);
         User GetUserByUserName(string userName);
         UserAddressDto GetUserAddressForOrder(string userName);
+
     }
 }

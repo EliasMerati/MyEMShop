@@ -71,6 +71,7 @@ namespace MyEMShop.Application.Services
         {
             return _db.Users.SingleOrDefault(u => u.UserName == userName).UserId;
         }
+
         public int BalanceWallet(string userName)
         {
             int userid = GetUserIdByUserName(userName);
@@ -149,6 +150,11 @@ namespace MyEMShop.Application.Services
                     Ostan= u.Ostan,
                     PostalCode = u.PostalCode,
                 }).SingleOrDefault();
+        }
+
+        public User GetUserByUserId(int userId)
+        {
+            return _db.Users.Find(userId);
         }
     }
 }

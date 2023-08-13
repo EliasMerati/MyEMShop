@@ -11,13 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Packages\Stimulsoft.Base.dll" />
-    <Content Include="Packages\Stimulsoft.Report.dll" />
-    <Content Include="Packages\Stimulsoft.Report.Web.dll" />
-    <Content Include="Packages\Stimulsoft.Report.Win.dll" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.4.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.17">
       <PrivateAssets>all</PrivateAssets>

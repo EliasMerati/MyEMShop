@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = Model.ProductTitle;
     int newprice = Model.ProductPrice - (Model.ProductPrice * Model.Save / 100);
-    
+
 }
 
 @section MetaTag
@@ -12,7 +12,7 @@
     <meta name=robots content=noodp,noydir>
     <meta property=og:site_name value="فروشگاه پوشاک زنانه به دخت - مشاهده ی محصول">
     <meta property=og:title content=@ViewData["Title"]>
-                    @*    <meta property=og:url content="https://toplearn.com/ShowCourse/@Model.CourseTitle" />*@
+  @*<meta property=og:url content="https://toplearn.com/ShowCourse/@Model.CourseTitle" />*@
     <meta property=og:image content="/course/image/@Model.MainImageProduct">
     <meta property=og:image:url content="/course/image/@Model.MainImageProduct" />
     <meta property=og:image:width content="700">
@@ -97,18 +97,18 @@
                                 </div>*@
                                 <div class="cart">
                                     <div>
-@*                                        <div class="qty">
-                                            <label class="control-label" for="input-quantity">تعداد</label>
-                                            <input type="text" name="quantity" value="1" size="2" id="input-quantity" class="form-control">
-                                            <a class="qtyBtn plus" href="javascript:void(0);">+</a><br>
-                                            <a class="qtyBtn mines" href="javascript:void(0);">-</a>
-                                            <div class="clear"></div>
+                                        @*                                        <div class="qty">
+                                        <label class="control-label" for="input-quantity">تعداد</label>
+                                        <input type="text" name="quantity" value="1" size="2" id="input-quantity" class="form-control">
+                                        <a class="qtyBtn plus" href="javascript:void(0);">+</a><br>
+                                        <a class="qtyBtn mines" href="javascript:void(0);">-</a>
+                                        <div class="clear"></div>
                                         </div>*@
                                         <a href="/Search/BuyProduct/@Model.ProductId" id="button-cart" class="btn btn-primary btn-lg">افزودن به سبد</a>
                                     </div>
                                     <div>
-                                        <a asp-area="UserPannel" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-productId ="@Model.ProductId" type="button" class="wishlist" onClick=""><i class="fa fa-heart"></i> افزودن به علاقه مندی ها</a>
-                                       @* <br />
+                                        <a asp-area="UserPannel" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-productId="@Model.ProductId" type="button" class="wishlist" onClick=""><i class="fa fa-heart"></i> افزودن به علاقه مندی ها</a>
+                                        @* <br />
                                         <button type="button" class="wishlist" onClick=""><i class="fa fa-exchange"></i> مقایسه این محصول</button>*@
                                     </div>
                                 </div>
@@ -173,7 +173,7 @@
                         @if (!string.IsNullOrEmpty(Model.ProductDemo))
                         {
                             <video style="max-width:70% ;max-height:50%; margin:40px 80px" controls poster="/Template/image/product/MainPic/@Model.MainImageProduct">
-                                <source src="/Template/image/product/Demos/@Model.ProductDemo"/>
+                                <source src="/Template/image/product/Demos/@Model.ProductDemo" />
                             </video>
                         }
                     </div>
@@ -375,7 +375,7 @@
             lensFadeOut: 500,
             loadingIcon: 'image/progress.gif'
         });
-        //////pass the images to swipebox
+            // pass the images to swipebox
         $("#zoom_01").bind("click", function (e) {
             var ez = $('#zoom_01').data('elevateZoom');
             $.swipebox(ez.getGalleryList());
@@ -396,16 +396,5 @@
         });
     </script>
     @*// =================================================== AJAX*@
-
-    <script>
-        function AddCount(orderDetailId)
-        {
-            window.location.replace("/UserPannel/Order/AddCount?orderDetailId =" + orderDetailId);
-        }
-
-        function MinusCount(orderDetailId) {
-            window.location.replace("/UserPannel/Order/MinusCount?orderDetailId =" + orderDetailId);
-        }
-    </script>
 }
 

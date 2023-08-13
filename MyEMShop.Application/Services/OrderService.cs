@@ -322,7 +322,7 @@ namespace MyEMShop.Application.Services
                 })
                 .Skip(skip).Take(10).ToList();
 
-            return Tuple.Create(result,rowsCount);
+            return Tuple.Create(result, rowsCount);
         }
 
         public Tuple<List<Order>, int> GetUserOrders(string userName, int pageid = 1)
@@ -330,10 +330,10 @@ namespace MyEMShop.Application.Services
             int userId = _userPannel.GetUserIdByUserName(userName);
             int skip = (pageid - 1) * 10;
             int rowsCount = _db.Orders
-                .Where(o => o.UserId == userId).Count()/10;
+                .Where(o => o.UserId == userId).Count() / 10;
             var result = _db.Orders
                 .Where(o => o.UserId == userId)
-                .OrderByDescending(o=>o.OrderDate)
+                .OrderByDescending(o => o.OrderDate)
                 .Skip(skip)
                 .Take(10)
                 .ToList();

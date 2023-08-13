@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Dtos.Order;
+using MyEMShop.Data.Entities.Product;
 using Stimulsoft.Base;
 using Stimulsoft.Report;
 using Stimulsoft.Report.Mvc;
@@ -16,12 +17,13 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
         private readonly IOrderService _orderService;
         private readonly IDiscountService _discountService;
         private readonly ITaxService _taxService;
-        public OrderController(IOrderService orderService, IDiscountService discountService,ITaxService taxService)
+        private readonly IUserPannelService _userPannel;
+        public OrderController(IOrderService orderService, IDiscountService discountService,ITaxService taxService, IUserPannelService userPannel)
         {
             _orderService = orderService;
             _discountService = discountService;
             _taxService = taxService;
-            
+            _userPannel = userPannel;
         }
         #endregion
 
@@ -33,12 +35,12 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
         }
 
         #region  Print Order
-        public IActionResult PrintOrder(int id)
+        public IActionResult PrintOrder(int id , int userId)
         {
             StiReport report = new StiReport();
             report.Load(StiNetCoreHelper.MapPath(this, "wwwroot/Reports/Report.mrt"));
-            var order = _orderService.GetOrderForUserPannel(User.Identity.Name, id);
-            report.RegData("dt", order);
+            var order = _orderService.ShowOrderForAdmin(id,userId);
+            report.RegData("MS SQL(MS SQL)", order);
             return StiNetCoreViewer.GetReportResult(this, report);
         }
 
