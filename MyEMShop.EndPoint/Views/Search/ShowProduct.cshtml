@@ -43,8 +43,8 @@
                             <div class="image-additional" id="gallery_01">
                                 @foreach (var item in Model.ProductImages)
                                 {
-                                    <a class="thumbnail" style="height:60px;width:90px;" href="#" data-zoom-image="/Template/image/product/Image/@item.PI_ImageName" data-image="/Template/image/product/Image/@item.PI_ImageName" title="@item.PI_ImageName">
-                                        <img src="/Template/image/product/Image/@item.PI_ImageName" title="@item.PI_ImageName" alt="@item.PI_ImageName" />
+                                    <a  class="thumbnail" style="height:60px;width:90px;" href="#" data-zoom-image="/Template/image/product/Image/@item.PI_ImageName" data-image="/Template/image/product/Image/@item.PI_ImageName" title="@item.PI_ImageName">
+                                        <img id="zoom_01" src="/Template/image/product/Image/@item.PI_ImageName" title="@item.PI_ImageName" alt="@item.PI_ImageName" />
                                     </a>
                                 }
                             </div>
