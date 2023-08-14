@@ -26,6 +26,11 @@ namespace MyEMShop.Application.Services
             return _db.Sliders.ToList();
         }
 
+        public Slider GetSliderById(int sliderId)
+        {
+            return _db.Sliders.Find(sliderId);
+        }
+
         public void RemoveSlider(int sliderId)
         {
             var slider = _db.Sliders.Find(sliderId);

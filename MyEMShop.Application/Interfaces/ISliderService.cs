@@ -9,5 +9,6 @@ namespace MyEMShop.Application.Interfaces
         List<Slider> GetAllSliders();
         void RemoveSlider(int sliderId);
         void SetImageForSlider(Slider slider, IFormFile ImageFile);
+        Slider GetSliderById(int sliderId);
     }
 }
