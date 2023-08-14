@@ -34,6 +34,11 @@ namespace MyEMShop.Application.Services
         public void RemoveSlider(int sliderId)
         {
             var slider = _db.Sliders.Find(sliderId);
+            var sliderImage = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/slider/", slider.SliderImageName);
+            if (File.Exists(sliderImage))
+            {
+                File.Delete(sliderImage);
+            } 
             _db.Remove(slider);
             _db.SaveChanges();
         }

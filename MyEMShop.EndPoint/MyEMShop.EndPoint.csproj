@@ -30,11 +30,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\Template\image\patterns\" />
-    <Folder Include="wwwroot\Template\image\payment\" />
     <Folder Include="wwwroot\Template\image\product\Demos\" />
     <Folder Include="wwwroot\Template\image\product\CkEditors Image\" />
     <Folder Include="wwwroot\Template\image\product\MiniPic\" />
+    <Folder Include="wwwroot\Template\image\slider\" />
   </ItemGroup>
 
   <ItemGroup>
