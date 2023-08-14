@@ -371,7 +371,7 @@ namespace MyEMShop.Application.Services
             //============================================================== Filter
             if (Filter is not null)
             {
-                result = result.Where(p => p.ProductTitle.Contains(Filter) || p.Tags.Contains(Filter));
+                result = result.Where(p => p.ProductTitle.Contains(Filter) && !p.IsDelete || p.Tags.Contains(Filter) && !p.IsDelete);
             }
             //=============================================================Groups
 
@@ -379,7 +379,7 @@ namespace MyEMShop.Application.Services
             {
                 foreach (var groupid in selectedgroup)
                 {
-                    result = result.Where(p => p.SubGroup == groupid || p.GroupId == groupid);
+                    result = result.Where(p => p.SubGroup == groupid && !p.IsDelete || p.GroupId == groupid && !p.IsDelete);
                 }
             }
             //============================================================== OrderBy
@@ -389,17 +389,17 @@ namespace MyEMShop.Application.Services
                     break;
                 case "latest":
                     {
-                        result = result.OrderByDescending(p => p.InsertDate);
+                        result = result.Where(p=>!p.IsDelete).OrderByDescending(p => p.InsertDate );
                         break;
                     }
                 case "special":
                     {
-                        result = result.Where(p => p.Isspecial == true);
+                        result = result.Where(p => p.Isspecial == true && !p.IsDelete);
                         break;
                     }
                 case "Popular":
                     {
-                        result = result.Where(od => od.OrderDetails.Any())
+                        result = result.Where(od => od.OrderDetails.Any() && !od.IsDelete)
                         .OrderByDescending(o => o.OrderDetails.Count);
                         break;
                     }
@@ -458,7 +458,7 @@ namespace MyEMShop.Application.Services
         public List<Product> GetPopularProduct()
         {
             return _db.Products.Include(p => p.OrderDetails)
-                .Where(od => od.OrderDetails.Any())
+                .Where(od => od.OrderDetails.Any() && !od.IsDelete)
                 .OrderByDescending(o => o.OrderDetails.Count)
                 .Take(5)
                 .ToList();
@@ -467,6 +467,7 @@ namespace MyEMShop.Application.Services
         public List<Product> GetSpecialProduct()
         {
             return _db.Products.Where(p => !p.IsDelete && p.Isspecial == true)
+                .Where(p => !p.IsDelete)
                 .OrderByDescending(p => p.InsertDate)
                 .Take(5)
                 .ToList();
@@ -475,6 +476,7 @@ namespace MyEMShop.Application.Services
         public List<Product> GetLatestProduct()
         {
             return _db.Products
+                .Where(p=>!p.IsDelete)
                 .OrderByDescending(p => p.InsertDate)
                 .Take(5)
                 .ToList();
@@ -484,7 +486,7 @@ namespace MyEMShop.Application.Services
         {
             var productName = _db.Products.Single(p => p.ProductId == productId && !p.IsDelete).ProductTitle;
             string[] Split = productName.Split(new Char[] { ' ' });
-            return _db.Products.Where(p => p.ProductTitle.Contains(Split[0])).ToList();
+            return _db.Products.Where(p => p.ProductTitle.Contains(Split[0]) && !p.IsDelete).ToList();
         }
 
         public void DeleteProduct(Product product)
@@ -497,7 +499,7 @@ namespace MyEMShop.Application.Services
         public List<Product> GetPopularProductForIndex()
         {
             return _db.Products.Include(p => p.OrderDetails)
-               .Where(od => od.OrderDetails.Any())
+               .Where(od => od.OrderDetails.Any() && !od.IsDelete)
                .Take(20)
                .ToList();
         }
