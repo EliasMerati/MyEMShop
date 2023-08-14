@@ -26,7 +26,7 @@ namespace MyEMShop.EndPoint.Pages.Admin.Slider
         }
         public IActionResult OnPost(IFormFile MainimgSlider)
         {
-            _sliderService.AddSlider(Slider, MainimgSlider);
+            _sliderService.SetImageForSlider(Slider, MainimgSlider);
             return RedirectToPage("Index");
         }
     }

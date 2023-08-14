@@ -28,12 +28,12 @@
 .owl-backSlide-out {
   -webkit-animation: backSlideOut 1s both ease;
   -moz-animation: backSlideOut 1s both ease;
-  animation: backSlideOut 1s both ease;
+  animation: backSlideOut 3s both ease;
 }
 .owl-backSlide-in {
   -webkit-animation: backSlideIn 1s both ease;
   -moz-animation: backSlideIn 1s both ease;
-  animation: backSlideIn 1s both ease;
+  animation: backSlideIn 3s both ease;
 }
 /* goDown */
 .owl-goDown-out {
