@@ -15,8 +15,12 @@ namespace MyEMShop.EndPoint.Pages.Admin.Slider
 
         #endregion
 
-        public void OnGet()
+        [BindProperty]
+        public MyEMShop.Data.Entities.Slider.Slider Slider { get; set; }
+        public void OnGet(int id)
         {
+           Slider = _sliderService.GetSliderById(id);
+            ViewData["id"] = id;
         }
 
         public IActionResult OnPost(int id)
