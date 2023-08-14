@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Slider
 {
+    [PermissionChecker(37)]
     public class DeleteSliderModel : PageModel
     {
         #region Injection

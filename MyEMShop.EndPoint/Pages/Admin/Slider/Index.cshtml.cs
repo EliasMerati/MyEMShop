@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
 using System.Collections.Generic;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Slider
 {
-
+    [PermissionChecker(35)]
     public class IndexModel : PageModel
     {
         #region Injection
