@@ -159,7 +159,9 @@ namespace MyEMShop.Data.Context
                new { RP_Id = 31, RoleId = 1, PermissionId = 31 },
                new { RP_Id = 32, RoleId = 1, PermissionId = 32 },
                new { RP_Id = 33, RoleId = 1, PermissionId = 33 },
-               new { RP_Id = 34, RoleId = 1, PermissionId = 34 });
+               new { RP_Id = 34, RoleId = 1, PermissionId = 34 },
+               new { RP_Id = 35, RoleId = 1, PermissionId = 35 },
+               new { RP_Id = 36, RoleId = 1, PermissionId = 36 });
             #endregion
 
             #region Permissions
@@ -197,7 +199,10 @@ namespace MyEMShop.Data.Context
                         new { PermissionId = 31, PermissionTitle = "ویرایش تخفیف ", ParentId = 28 },
                         new { PermissionId = 32, PermissionTitle = "مدیریت مالیات ", ParentId = 1 },
                         new { PermissionId = 33, PermissionTitle = "افزودن مالیات ", ParentId = 32 },
-                        new { PermissionId = 34, PermissionTitle = "ویرایش مالیات ", ParentId = 32 });
+                        new { PermissionId = 34, PermissionTitle = "ویرایش مالیات ", ParentId = 32 },
+                        new { PermissionId = 35, PermissionTitle = "مدیریت اسلایدر ها", ParentId = 1 },
+                        new { PermissionId = 36, PermissionTitle = "افزودن اسلایدر ", ParentId = 35 },
+                        new { PermissionId = 37, PermissionTitle = "حذف اسلایدر ", ParentId = 35 });
             #endregion
 
             #region AdminRole
