@@ -1,4 +1,5 @@
-﻿using MyEMShop.Data.Entities.Banners;
+﻿using Microsoft.AspNetCore.Http;
+using MyEMShop.Data.Entities.Banners;
 using System.Collections.Generic;
 
 namespace MyEMShop.Application.Interfaces
@@ -6,17 +7,15 @@ namespace MyEMShop.Application.Interfaces
     public interface IBannerService
     {
         List<Banner> GetAllBanners();
-        void AddRightBanner(Banner banner);
-        void RemoveRightBanner(Banner banner);
-        void AddLeftBanner(Banner banner);
-        void RemoveLeftBanner(Banner banner);
-        void AddMiddleLeftBanner(Banner banner);
-        void RemoveMiddleLeftBanner(Banner banner);
-        void AddMiddleRightBanner(Banner banner);
-        void RemoveMiddleRightBanner(Banner banner);
-        void AddLargeRightBanner(Banner banner);
-        void RemoveLargeRightBanner(Banner banner);
-        void AddLargeLeftBanner(Banner banner);
-        void RemoveLargeLeftBanner(Banner banner);
+        Banner GetBannerById(int BannerId);
+        void AddRightBanner(Banner banner, IFormFile ImgFile);
+        void RemoveRightBanner(int BannerId);
+        void AddLeftBanner(Banner banner, IFormFile ImgFile);
+        void RemoveLeftBanner(int BannerId);
+        void AddMiddleLeftBanner(Banner banner, IFormFile ImgFile);
+        void RemoveMiddleLeftBanner(int BannerId);
+        void AddMiddleRightBanner(Banner banner, IFormFile ImgFile);
+        void RemoveMiddleRightBanner(int BannerId);
+
     }
 }

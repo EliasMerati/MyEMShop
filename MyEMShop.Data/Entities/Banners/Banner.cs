@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MyEMShop.Data.Dtos.BannerType;
+using System.ComponentModel.DataAnnotations;
 
 namespace MyEMShop.Data.Entities.Banners
 {
@@ -18,5 +19,7 @@ namespace MyEMShop.Data.Entities.Banners
         [Display(Name = "لینک بنر")]
         [MaxLength(100)] 
         public string BannerLink { get; set; }
+
+        public BannerType BannerType { get; set; }
     }
 }

@@ -13,11 +13,9 @@ using MyEMShop.Application.Services;
 using MyEMShop.Common;
 using MyEMShop.Data.Context;
 using System;
-using System.ComponentModel;
 using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using static Stimulsoft.Report.StiOptions.Viewer.Windows;
 
 namespace MyEMShop.EndPoint
 {
@@ -78,6 +76,8 @@ namespace MyEMShop.EndPoint
             services.AddScoped<ICommentService, CommentService>();
             services.AddScoped<IFavoriteProductService, FavoriteProductService>();
             services.AddScoped<ITaxService, TaxService>();
+            services.AddScoped<IBannerService, BannerService>();
+            services.AddScoped<IBigBannerService, BigBannerService>();
             #endregion
 
             #region Authentication

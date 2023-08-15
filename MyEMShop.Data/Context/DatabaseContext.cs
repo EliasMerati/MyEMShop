@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyEMShop.Data.Entities.Banners;
 using MyEMShop.Data.Entities.Order;
 using MyEMShop.Data.Entities.Permission;
 using MyEMShop.Data.Entities.Product;
@@ -57,6 +58,10 @@ namespace MyEMShop.Data.Context
 
         #region Tax
         public DbSet<Tax> Taxes { get; set; }
+        #endregion
+
+        #region Banner
+        public DbSet<Banner> Banners { get; set; }
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -161,7 +166,8 @@ namespace MyEMShop.Data.Context
                new { RP_Id = 33, RoleId = 1, PermissionId = 33 },
                new { RP_Id = 34, RoleId = 1, PermissionId = 34 },
                new { RP_Id = 35, RoleId = 1, PermissionId = 35 },
-               new { RP_Id = 36, RoleId = 1, PermissionId = 36 });
+               new { RP_Id = 36, RoleId = 1, PermissionId = 36 },
+               new { RP_Id = 37, RoleId = 1, PermissionId = 37 });
             #endregion
 
             #region Permissions

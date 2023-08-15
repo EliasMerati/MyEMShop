@@ -30,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\Template\image\banner\BigLeft\" />
     <Folder Include="wwwroot\Template\image\product\Demos\" />
     <Folder Include="wwwroot\Template\image\product\CkEditors Image\" />
     <Folder Include="wwwroot\Template\image\product\MiniPic\" />
@@ -73,6 +74,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\Template\image\banner\BigLeft\sample-banner-5-600X250.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
