@@ -31,12 +31,12 @@ namespace MyEMShop.Application.Services
                 {
                     ImgFile.CopyTo(stream);
                 }
-                _db.Banners.Add(new Banner { BannerImage = banner.BannerImage, BannerName = banner.BannerName, BannerLink = banner.BannerLink });
+                _db.Banners.Add(new Banner { BannerImage = banner.BannerImage, BannerName = banner.BannerName, BannerLink = banner.BannerLink, BannerType = Data.Dtos.BannerType.BannerType.BigBanner });
                 _db.SaveChanges();
             }
             else
             {
-                _db.Banners.Add(new Banner { BannerImage = "sample-banner-5-600X250.jpg", BannerName = "", BannerLink = "" });
+                _db.Banners.Add(new Banner { BannerImage = "sample-banner-5-600X250.jpg", BannerName = "", BannerLink = "", BannerType = Data.Dtos.BannerType.BannerType.BigBanner });
                 _db.SaveChanges();
             }
         }
@@ -52,19 +52,19 @@ namespace MyEMShop.Application.Services
                 {
                     ImgFile.CopyTo(stream);
                 }
-                _db.Banners.Add(new Banner { BannerImage = banner.BannerImage, BannerName = banner.BannerName, BannerLink = banner.BannerLink });
+                _db.Banners.Add(new Banner { BannerImage = banner.BannerImage, BannerName = banner.BannerName, BannerLink = banner.BannerLink, BannerType = Data.Dtos.BannerType.BannerType.BigBanner });
                 _db.SaveChanges();
             }
             else
             {
-                _db.Banners.Add(new Banner { BannerImage = "sample-banner-5-600X250.jpg", BannerName = "", BannerLink = "" });
+                _db.Banners.Add(new Banner { BannerImage = "sample-banner-5-600X250.jpg", BannerName = "", BannerLink = "", BannerType = Data.Dtos.BannerType.BannerType.BigBanner });
                 _db.SaveChanges();
             }
         }
 
         public List<Banner> GetAllBigBanners()
         {
-            return _db.Banners.ToList();
+            return _db.Banners.Where(b=> b.BannerType == Data.Dtos.BannerType.BannerType.BigBanner).ToList();
         }
 
         public Banner GetBannerById(int BannerId)

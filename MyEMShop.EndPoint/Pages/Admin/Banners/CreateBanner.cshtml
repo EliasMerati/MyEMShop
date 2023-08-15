@@ -1,0 +1,137 @@
+﻿@page
+@model MyEMShop.EndPoint.Pages.Admin.Banners.CreateBannerModel
+@{
+    ViewData["Title"] = "افزودن بنر";
+}
+
+<div id="page-wrapper">
+    <div class="row">
+        <form method="post" enctype="multipart/form-data">
+            <div class="col-lg-8">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                         عکس  بنر چپ
+                    </div>
+                    <div class="panel-body">
+                        <img id="ImgBanner" class="thumbnail" src="/Template/image/banner/" />
+                        <div class="form-group">
+                            <lable>تصویر بنر چپ</lable>
+                            <input type="file" id="MainimgBannerUp" name="MainimgBanner" asp-for="Banner.BannerImage" />
+                        </div>
+                        <div class="form-group">
+                            <label>عنوان بنر</label>
+                            <input type="text" asp-for="Banner.BannerName" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>لینک بنر</label>
+                            <input type="text" asp-for="Banner.BannerLink" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-success">ثبت بنر </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <form asp-page-handler="MiddleLeft" method="post" enctype="multipart/form-data">
+            <div class="col-lg-8">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                         عکس  بنر وسط چپ
+                    </div>
+                    <div class="panel-body">
+                        <img id="ImgBanner" class="thumbnail" src="/Template/image/banner/" />
+                        <div class="form-group">
+                            <lable>تصویر بنر وسط چپ</lable>
+                            <input type="file" id="MainimgBannerUp" name="MainimgBanner" asp-for="Banner.BannerImage" />
+                        </div>
+                        <div class="form-group">
+                            <label>عنوان بنر</label>
+                            <input type="text" asp-for="Banner.BannerName" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>لینک بنر</label>
+                            <input type="text" asp-for="Banner.BannerLink" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-success">ثبت بنر </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <form asp-page-handler="MiddleRight" method="post" enctype="multipart/form-data">
+            <div class="col-lg-8">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        عکس  بنر وسط راست
+                    </div>
+                    <div class="panel-body">
+                        <img id="ImgBanner" class="thumbnail" src="/Template/image/banner/" />
+                        <div class="form-group">
+                            <lable>تصویر بنر وسط راست</lable>
+                            <input type="file" id="MainimgBannerUp" name="MainimgBanner" asp-for="Banner.BannerImage" />
+                        </div>
+                        <div class="form-group">
+                            <label>عنوان بنر</label>
+                            <input type="text" asp-for="Banner.BannerName" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>لینک بنر</label>
+                            <input type="text" asp-for="Banner.BannerLink" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-success">ثبت بنر </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <form asp-page-handler="Right" method="post" enctype="multipart/form-data">
+            <div class="col-lg-8">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        عکس  بنر راست
+                    </div>
+                    <div class="panel-body">
+                        <img id="ImgBanner" class="thumbnail" src="/Template/image/banner/" />
+                        <div class="form-group">
+                            <lable>تصویر بنر راست</lable>
+                            <input type="file" id="MainimgBannerUp" name="MainimgBanner" asp-for="Banner.BannerImage" />
+                        </div>
+                        <div class="form-group">
+                            <label>عنوان بنر</label>
+                            <input type="text" asp-for="Banner.BannerName" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>لینک بنر</label>
+                            <input type="text" asp-for="Banner.BannerLink" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-success">ثبت بنر </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts
+    {
+    <script>
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#ImgBanner').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#MainimgBannerUp").change(function () {
+            readURL(this);
+        });
+    </script>
+}
