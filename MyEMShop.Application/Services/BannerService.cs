@@ -3,6 +3,7 @@ using MyEMShop.Application.Interfaces;
 using MyEMShop.Common;
 using MyEMShop.Data.Context;
 using MyEMShop.Data.Entities.Banners;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -116,8 +117,9 @@ namespace MyEMShop.Application.Services
         public void RemoveLeftBanner(int BannerId)
         {
             var banner = _db.Banners.Find(BannerId);
-            var bannerImage = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/SmallLeft/", banner.BannerImage);
-            if (File.Exists(bannerImage))
+            var bannerImage = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/", banner.BannerImage);
+            string[] Split = bannerImage.Split(new Char[] { '-' });
+            if (Split[1] == "SmallLeft")
             {
                 File.Delete(bannerImage);
             }
@@ -128,8 +130,9 @@ namespace MyEMShop.Application.Services
         public void RemoveMiddleLeftBanner(int BannerId)
         {
             var banner = _db.Banners.Find(BannerId);
-            var bannerImage = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/SmallMLeft/", banner.BannerImage);
-            if (File.Exists(bannerImage))
+            var bannerImage = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/", banner.BannerImage);
+            string[] Split = bannerImage.Split(new Char[] { '-' });
+            if (Split[1] == "SmallMiddleLeft")
             {
                 File.Delete(bannerImage);
             }
@@ -140,8 +143,9 @@ namespace MyEMShop.Application.Services
         public void RemoveMiddleRightBanner(int BannerId)
         {
             var banner = _db.Banners.Find(BannerId);
-            var bannerImage = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/SmallMRight/", banner.BannerImage);
-            if (File.Exists(bannerImage))
+            var bannerImage = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/", banner.BannerImage);
+            string[] Split = bannerImage.Split(new Char[] { '-' });
+            if (Split[1] == "SmallMiddleRight")
             {
                 File.Delete(bannerImage);
             }
@@ -152,8 +156,9 @@ namespace MyEMShop.Application.Services
         public void RemoveRightBanner(int BannerId)
         {
             var banner = _db.Banners.Find(BannerId);
-            var bannerImage = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/SmallRight/", banner.BannerImage);
-            if (File.Exists(bannerImage))
+            var bannerImage = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/", banner.BannerImage);
+            string[] Split = bannerImage.Split(new Char[] { '-' });
+            if (Split[1] == "SmallRight")
             {
                 File.Delete(bannerImage);
             }

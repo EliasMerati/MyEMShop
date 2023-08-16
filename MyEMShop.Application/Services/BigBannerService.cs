@@ -3,6 +3,7 @@ using MyEMShop.Application.Interfaces;
 using MyEMShop.Common;
 using MyEMShop.Data.Context;
 using MyEMShop.Data.Entities.Banners;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace MyEMShop.Application.Services
             if (ImgFile is not null)
             {
                 banner.BannerImage = GenerateCode.GenerateUniqueCode() + "-BigLeft" + Path.GetExtension(ImgFile.FileName);
-                string Imagepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/BigLeft/", banner.BannerImage);
+                string Imagepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/", banner.BannerImage);
 
                 using (var stream = new FileStream(Imagepath, FileMode.CreateNew))
                 {
@@ -46,7 +47,7 @@ namespace MyEMShop.Application.Services
             if (ImgFile is not null)
             {
                 banner.BannerImage = GenerateCode.GenerateUniqueCode() + "-BigRight" + Path.GetExtension(ImgFile.FileName);
-                string Imagepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/BigRight/", banner.BannerImage);
+                string Imagepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/", banner.BannerImage);
 
                 using (var stream = new FileStream(Imagepath, FileMode.CreateNew))
                 {
@@ -75,8 +76,9 @@ namespace MyEMShop.Application.Services
         public void RemoveLargeLeftBanner(int BannerId)
         {
             var banner = _db.Banners.Find(BannerId);
-            var bannerImage = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/BigLeft/", banner.BannerImage);
-            if (File.Exists(bannerImage))
+            var bannerImage = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/", banner.BannerImage);
+            string[] Split = bannerImage.Split(new Char[] { '-' });
+            if (Split[1] == "BigLeft")
             {
                 File.Delete(bannerImage);
             }
@@ -87,8 +89,9 @@ namespace MyEMShop.Application.Services
         public void RemoveLargeRightBanner(int BannerId)
         {
             var banner = _db.Banners.Find(BannerId);
-            var bannerImage = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/BigRight/", banner.BannerImage);
-            if (File.Exists(bannerImage))
+            var bannerImage = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/", banner.BannerImage);
+            string[] Split = bannerImage.Split(new Char[] { '-' });
+            if (Split[1] == "BigRight")
             {
                 File.Delete(bannerImage);
             }
