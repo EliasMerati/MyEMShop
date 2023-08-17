@@ -104,6 +104,97 @@ namespace MyEMShop.Application.Services
             }
         }
 
+        public void EditLeftBanner(Banner banner, IFormFile ImgFile)
+        {
+            if (ImgFile is not null)
+            {
+                var bannerImage = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/", banner.BannerImage);
+                string[] Split = bannerImage.Split(new Char[] { '-' });
+                if (Split[1] == "SmallLeft" + Path.GetExtension(Split[1]))
+                {
+                    File.Delete(bannerImage);
+                }
+                banner.BannerImage = GenerateCode.GenerateUniqueCode() + "-SmallLeft" + Path.GetExtension(ImgFile.FileName);
+                string Imagepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/", banner.BannerImage);
+
+                using (var stream = new FileStream(Imagepath, FileMode.CreateNew))
+                {
+                    ImgFile.CopyTo(stream);
+                }
+                
+            }
+            _db.Update(banner);
+            _db.SaveChanges();
+        }
+
+        public void EditMiddleLeftBanner(Banner banner, IFormFile ImgFile)
+        {
+            if (ImgFile is not null)
+            {
+                var bannerImage = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/", banner.BannerImage);
+                string[] Split = bannerImage.Split(new Char[] { '-' });
+                if (Split[1] == "SmallMiddleLeft" + Path.GetExtension(Split[1]))
+                {
+                    File.Delete(bannerImage);
+                }
+                banner.BannerImage = GenerateCode.GenerateUniqueCode() + "-SmallMiddleLeft" + Path.GetExtension(ImgFile.FileName);
+                string Imagepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/", banner.BannerImage);
+
+                using (var stream = new FileStream(Imagepath, FileMode.CreateNew))
+                {
+                    ImgFile.CopyTo(stream);
+                }
+               
+            }
+            _db.Update(banner);
+            _db.SaveChanges();
+        }
+
+        public void EditMiddleRightBanner(Banner banner, IFormFile ImgFile)
+        {
+            if (ImgFile is not null)
+            {
+                var bannerImage = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/", banner.BannerImage);
+                string[] Split = bannerImage.Split(new Char[] { '-' });
+                if (Split[1] == "SmallMiddleRight" + Path.GetExtension(Split[1]))
+                {
+                    File.Delete(bannerImage);
+                }
+                banner.BannerImage = GenerateCode.GenerateUniqueCode() + "-SmallMiddleRight" + Path.GetExtension(ImgFile.FileName);
+                string Imagepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/", banner.BannerImage);
+
+                using (var stream = new FileStream(Imagepath, FileMode.CreateNew))
+                {
+                    ImgFile.CopyTo(stream);
+                }
+                
+            }
+            _db.Update(banner);
+            _db.SaveChanges();
+        }
+
+        public void EditRightBanner(Banner banner, IFormFile ImgFile)
+        {
+            if (ImgFile is not null)
+            {
+                var bannerImage = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/", banner.BannerImage);
+                string[] Split = bannerImage.Split(new Char[] { '-' });
+                if (Split[1] == "SmallRight" + Path.GetExtension(Split[1]))
+                {
+                    File.Delete(bannerImage);
+                }
+                banner.BannerImage = GenerateCode.GenerateUniqueCode() + "-SmallRight" + Path.GetExtension(ImgFile.FileName);
+                string Imagepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/", banner.BannerImage);
+
+                using (var stream = new FileStream(Imagepath, FileMode.CreateNew))
+                {
+                    ImgFile.CopyTo(stream);
+                }
+            }
+            _db.Update(banner);
+            _db.SaveChanges();
+        }
+
         public List<Banner> GetAllBanners()
         {
             return _db.Banners.Where(b=>b.BannerType == Data.Dtos.BannerType.BannerType.SmallBanner).ToList();
@@ -119,7 +210,7 @@ namespace MyEMShop.Application.Services
             var banner = _db.Banners.Find(BannerId);
             var bannerImage = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/", banner.BannerImage);
             string[] Split = bannerImage.Split(new Char[] { '-' });
-            if (Split[1] == "SmallLeft")
+            if (Split[1] == "SmallLeft" + Path.GetExtension(Split[1]))
             {
                 File.Delete(bannerImage);
             }
@@ -132,7 +223,7 @@ namespace MyEMShop.Application.Services
             var banner = _db.Banners.Find(BannerId);
             var bannerImage = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/", banner.BannerImage);
             string[] Split = bannerImage.Split(new Char[] { '-' });
-            if (Split[1] == "SmallMiddleLeft")
+            if (Split[1] == "SmallMiddleLeft" + Path.GetExtension(Split[1]))
             {
                 File.Delete(bannerImage);
             }
@@ -145,7 +236,7 @@ namespace MyEMShop.Application.Services
             var banner = _db.Banners.Find(BannerId);
             var bannerImage = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/", banner.BannerImage);
             string[] Split = bannerImage.Split(new Char[] { '-' });
-            if (Split[1] == "SmallMiddleRight")
+            if (Split[1] == "SmallMiddleRight" + Path.GetExtension(Split[1]))
             {
                 File.Delete(bannerImage);
             }
@@ -158,7 +249,7 @@ namespace MyEMShop.Application.Services
             var banner = _db.Banners.Find(BannerId);
             var bannerImage = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/", banner.BannerImage);
             string[] Split = bannerImage.Split(new Char[] { '-' });
-            if (Split[1] == "SmallRight")
+            if (Split[1] == "SmallRight" + Path.GetExtension(Split[1]))
             {
                 File.Delete(bannerImage);
             }

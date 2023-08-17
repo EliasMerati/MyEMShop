@@ -1,7 +1,7 @@
-﻿@page "{id}"
-@model MyEMShop.EndPoint.Pages.Admin.Banners.EditBannerModel
+﻿@page
+@model MyEMShop.EndPoint.Pages.Admin.Banners.EditRightBannerModel
 @{
-    ViewData["Title"] = "ویرایش بنر چپ";
+    ViewData["Title"] = "ویرایش بنر راست";
 }
 
 <div id="page-wrapper">
@@ -12,12 +12,12 @@
             <div class="col-lg-8">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        عکس  بنر چپ
+                        عکس  بنر وسط چپ
                     </div>
                     <div class="panel-body">
                         <img id="ImgBanner" style="max-height:150px;" class="thumbnail" src="/Template/image/banner/@Model.Banner.BannerImage" />
                         <div class="form-group">
-                            <lable>تصویر بنر چپ</lable>
+                            <lable>تصویر بنر راست</lable>
                             <input type="file" id="MainimgBannerUp" name="MainimgBanner" asp-for="Banner.BannerImage" />
                         </div>
                         <div class="form-group">

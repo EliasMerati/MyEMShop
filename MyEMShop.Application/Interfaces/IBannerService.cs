@@ -9,12 +9,16 @@ namespace MyEMShop.Application.Interfaces
         List<Banner> GetAllBanners();
         Banner GetBannerById(int BannerId);
         void AddRightBanner(Banner banner, IFormFile ImgFile);
+        void EditRightBanner(Banner banner, IFormFile ImgFile);
         void RemoveRightBanner(int BannerId);
         void AddLeftBanner(Banner banner, IFormFile ImgFile);
+        void EditLeftBanner(Banner banner, IFormFile ImgFile);
         void RemoveLeftBanner(int BannerId);
         void AddMiddleLeftBanner(Banner banner, IFormFile ImgFile);
+        void EditMiddleLeftBanner(Banner banner, IFormFile ImgFile);
         void RemoveMiddleLeftBanner(int BannerId);
         void AddMiddleRightBanner(Banner banner, IFormFile ImgFile);
+        void EditMiddleRightBanner(Banner banner, IFormFile ImgFile);
         void RemoveMiddleRightBanner(int BannerId);
 
     }

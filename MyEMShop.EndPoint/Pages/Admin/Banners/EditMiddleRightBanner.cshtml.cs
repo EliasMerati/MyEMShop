@@ -6,11 +6,11 @@ using MyEMShop.Data.Entities.Banners;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Banners
 {
-    public class EditBannerModel : PageModel
+    public class EditMiddleRightBannerModel : PageModel
     {
         #region Inject
         private readonly IBannerService _bannerService;
-        public EditBannerModel(IBannerService bannerService)
+        public EditMiddleRightBannerModel(IBannerService bannerService)
         {
             _bannerService = bannerService;
         }
@@ -26,7 +26,7 @@ namespace MyEMShop.EndPoint.Pages.Admin.Banners
 
         public IActionResult OnPost(IFormFile MainimgBanner)
         {
-            _bannerService.EditLeftBanner(Banner, MainimgBanner);
+            _bannerService.EditRightBanner(Banner, MainimgBanner);
             return RedirectToPage("Index");
         }
     }
