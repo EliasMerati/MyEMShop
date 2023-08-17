@@ -36,7 +36,7 @@ namespace MyEMShop.Application.Services
             }
             else
             {
-                _db.Banners.Add(new Banner { BannerImage = "sample-banner-2-400x200.jpg", BannerName = "", BannerLink = "", BannerType = Data.Dtos.BannerType.BannerType.SmallBanner });
+                _db.Banners.Add(new Banner { BannerImage = "sample-banner-2-400x200.jpg", BannerName = "SampleBanner", BannerLink = "", BannerType = Data.Dtos.BannerType.BannerType.SmallBanner });
                 _db.SaveChanges();
             }
         }
@@ -57,7 +57,7 @@ namespace MyEMShop.Application.Services
             }
             else
             {
-                _db.Banners.Add(new Banner { BannerImage = "sample-banner-1-400x200.jpg", BannerName = "", BannerLink = "", BannerType = Data.Dtos.BannerType.BannerType.SmallBanner });
+                _db.Banners.Add(new Banner { BannerImage = "sample-banner-1-400x200.jpg", BannerName = "SampleBanner", BannerLink = "", BannerType = Data.Dtos.BannerType.BannerType.SmallBanner });
                 _db.SaveChanges();
             }
         }
@@ -78,7 +78,7 @@ namespace MyEMShop.Application.Services
             }
             else
             {
-                _db.Banners.Add(new Banner { BannerImage = "sample-banner-1-400x200.jpg", BannerName = "", BannerLink = "", BannerType = Data.Dtos.BannerType.BannerType.SmallBanner });
+                _db.Banners.Add(new Banner { BannerImage = "sample-banner-1-400x200.jpg", BannerName = "SampleBanner", BannerLink = "", BannerType = Data.Dtos.BannerType.BannerType.SmallBanner });
                 _db.SaveChanges();
             }
         }
@@ -99,7 +99,7 @@ namespace MyEMShop.Application.Services
             }
             else
             {
-                _db.Banners.Add(new Banner { BannerImage = "sample-banner-2-400x200.jpg", BannerName = "", BannerLink = "", BannerType = Data.Dtos.BannerType.BannerType.SmallBanner });
+                _db.Banners.Add(new Banner { BannerImage = "sample-banner-2-400x200.jpg", BannerName = "SampleBanner", BannerLink = "", BannerType = Data.Dtos.BannerType.BannerType.SmallBanner });
                 _db.SaveChanges();
             }
         }
