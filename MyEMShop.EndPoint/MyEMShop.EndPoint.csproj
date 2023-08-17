@@ -76,7 +76,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="wwwroot\Template\image\banner\sample-banner-5-600X250.jpg">
+    <Content Update="wwwroot\Template\image\banner\samplebanner5-BigLeft.jpg">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>

@@ -39,6 +39,9 @@
                                         <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" aria-sort="ascending" style="width: 80px;">
                                             عکس بنر
                                         </th>
+                                        <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" aria-sort="ascending" style="width: 120px;">
+                                            نام عکس بنر
+                                        </th>
                                         <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" aria-sort="ascending" style="width: 150px;">
                                             لینک بنر
                                         </th>
@@ -55,6 +58,7 @@
                                             <td class="center">
                                                 <img src="/Template/image/banner/@item.BannerImage" class="thumbnail" style="height:100px;" />
                                             </td>
+                                            <td>@item.BannerImage</td>
                                             <td>@item.BannerLink</td>
                                             <td class="center">
                                                 <a asp-page="EditBanner" class="btn btn-warning btn-sm" asp-route-id="@item.BannerId">ویرایش</a>
