@@ -1,5 +1,5 @@
 ﻿@page "{id}"
-@model MyEMShop.EndPoint.Pages.Admin.Banners.EditBannerModel
+@model MyEMShop.EndPoint.Pages.Admin.Banners.EditLeftBannerModel
 @{
     ViewData["Title"] = "ویرایش بنر چپ";
 }
@@ -7,7 +7,7 @@
 <div id="page-wrapper">
     <div class="row">
         <form method="post" enctype="multipart/form-data">
-            <input type="hidden" value="@ViewData["id"].ToString()" />
+            <input type="hidden" asp-for="@Model.Banner.BannerId" />
             <input type="hidden" asp-for="@Model.Banner.BannerImage" />
             <div class="col-lg-8">
                 <div class="panel panel-primary">
@@ -22,11 +22,11 @@
                         </div>
                         <div class="form-group">
                             <label>عنوان بنر</label>
-                            <input type="text" asp-for="Banner.BannerName" class="form-control">
+                            <input type="text" name="Name" asp-for="Banner.BannerName" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>لینک بنر</label>
-                            <input type="text" asp-for="Banner.BannerLink" class="form-control">
+                            <input type="text" name="Link" asp-for="Banner.BannerLink" class="form-control">
                         </div>
                         <button type="submit" class="btn btn-warning">ویرایش بنر </button>
                     </div>

@@ -7,7 +7,7 @@
 <div id="page-wrapper">
     <div class="row">
         <form method="post" enctype="multipart/form-data">
-            <input type="hidden" value="@ViewData["id"].ToString()" />
+            <input type="hidden" asp-for="@Model.Banner.BannerId" />
             <input type="hidden" asp-for="@Model.Banner.BannerImage" />
             <div class="col-lg-8">
                 <div class="panel panel-primary">

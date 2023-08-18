@@ -123,6 +123,7 @@ namespace MyEMShop.Application.Services
                 }
                 
             }
+            banner.BannerType = Data.Dtos.BannerType.BannerType.SmallBanner;
             _db.Update(banner);
             _db.SaveChanges();
         }
@@ -146,6 +147,7 @@ namespace MyEMShop.Application.Services
                 }
                
             }
+            banner.BannerType = Data.Dtos.BannerType.BannerType.SmallBanner;
             _db.Update(banner);
             _db.SaveChanges();
         }
@@ -169,6 +171,7 @@ namespace MyEMShop.Application.Services
                 }
                 
             }
+            banner.BannerType = Data.Dtos.BannerType.BannerType.SmallBanner;
             _db.Update(banner);
             _db.SaveChanges();
         }
@@ -191,18 +194,22 @@ namespace MyEMShop.Application.Services
                     ImgFile.CopyTo(stream);
                 }
             }
+            banner.BannerType = Data.Dtos.BannerType.BannerType.SmallBanner;
             _db.Update(banner);
             _db.SaveChanges();
         }
 
         public List<Banner> GetAllBanners()
         {
-            return _db.Banners.Where(b=>b.BannerType == Data.Dtos.BannerType.BannerType.SmallBanner).ToList();
+            return _db.Banners
+                .Where(b=>b.BannerType == Data.Dtos.BannerType.BannerType.SmallBanner)
+                .OrderByDescending(b=> b.BannerId)
+                .ToList();
         }
 
         public Banner GetBannerById(int BannerId)
         {
-            return _db.Banners.Find(BannerId);
+            return _db.Banners.Single(b=>b.BannerId == BannerId && b.BannerType == Data.Dtos.BannerType.BannerType.SmallBanner);
         }
 
         public void RemoveLeftBanner(int BannerId)

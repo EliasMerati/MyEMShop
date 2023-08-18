@@ -6,11 +6,11 @@ using MyEMShop.Data.Entities.Banners;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Banners
 {
-    public class EditBannerModel : PageModel
+    public class EditLeftBannerModel : PageModel
     {
         #region Inject
         private readonly IBannerService _bannerService;
-        public EditBannerModel(IBannerService bannerService)
+        public EditLeftBannerModel(IBannerService bannerService)
         {
             _bannerService = bannerService;
         }
@@ -20,7 +20,6 @@ namespace MyEMShop.EndPoint.Pages.Admin.Banners
         public Banner Banner { get; set; }
         public void OnGet(int id)
         {
-            ViewData["id"] = id;
             Banner = _bannerService.GetBannerById(id);
         }
 

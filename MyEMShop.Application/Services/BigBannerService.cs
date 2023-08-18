@@ -70,7 +70,7 @@ namespace MyEMShop.Application.Services
 
         public Banner GetBannerById(int BannerId)
         {
-            return _db.Banners.Find(BannerId);
+            return _db.Banners.Single(b => b.BannerId == BannerId && b.BannerType == Data.Dtos.BannerType.BannerType.BigBanner);
         }
 
         public void RemoveLargeLeftBanner(int BannerId)

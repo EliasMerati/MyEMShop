@@ -20,13 +20,12 @@ namespace MyEMShop.EndPoint.Pages.Admin.Banners
         public Banner Banner { get; set; }
         public void OnGet(int id)
         {
-            ViewData["id"] = id;
             Banner = _bannerService.GetBannerById(id);
         }
 
         public IActionResult OnPost(IFormFile MainimgBanner)
         {
-            _bannerService.EditMiddleRightBanner(Banner, MainimgBanner);
+            _bannerService.EditRightBanner(Banner, MainimgBanner);
             return RedirectToPage("Index");
         }
     }

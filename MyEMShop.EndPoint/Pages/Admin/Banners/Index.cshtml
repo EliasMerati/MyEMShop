@@ -63,10 +63,10 @@
                                             <td>@item.BannerLink</td>
                                             <td class="center">
                                                 @{
-                                                    string[] Split = @item.BannerImage.Split(new Char[] { '-' });
+                                                    string[] Split = item.BannerImage.Split(new Char[] { '-' });
                                                     if (Split[1] == "SmallLeft" + System.IO.Path.GetExtension(Split[1]))
                                                     {
-                                                        <a asp-page="EditBanner" class="btn btn-warning btn-sm" asp-route-id="@item.BannerId">ویرایش</a>
+                                                        <a asp-page="EditLeftBanner" class="btn btn-warning btn-sm" asp-route-id="@item.BannerId">ویرایش</a>
                                                     }
                                                     else if (Split[1] == "SmallMiddleLeft" + System.IO.Path.GetExtension(Split[1]))
                                                     {

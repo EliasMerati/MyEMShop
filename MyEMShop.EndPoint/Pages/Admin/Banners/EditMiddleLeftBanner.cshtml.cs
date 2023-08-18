@@ -20,7 +20,6 @@ namespace MyEMShop.EndPoint.Pages.Admin.Banners
         public Banner Banner { get; set; }
         public void OnGet(int id)
         {
-            ViewData["id"] = id;
             Banner = _bannerService.GetBannerById(id);
         }
 
