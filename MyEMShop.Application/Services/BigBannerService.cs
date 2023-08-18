@@ -37,7 +37,7 @@ namespace MyEMShop.Application.Services
             }
             else
             {
-                _db.Banners.Add(new Banner { BannerImage = "samplebanner5-BigLeft.jpg", BannerName = "SampleBigBanner", BannerLink = "", BannerType = Data.Dtos.BannerType.BannerType.BigBanner });
+                _db.Banners.Add(new Banner { BannerImage = "samplebanner5-Big.jpg", BannerName = "SampleBigBanner", BannerLink = "", BannerType = Data.Dtos.BannerType.BannerType.BigBanner });
                 _db.SaveChanges();
             }
         }
@@ -58,7 +58,8 @@ namespace MyEMShop.Application.Services
             }
             else
             {
-                _db.Banners.Add(new Banner { BannerImage = "samplebanner5-BigRight.jpg", BannerName = "SampleBigBanner", BannerLink = "", BannerType = Data.Dtos.BannerType.BannerType.BigBanner });
+                
+                _db.Banners.Add(new Banner { BannerImage = "samplebanner5-Big.jpg", BannerName = "SampleBigBanner", BannerLink = "", BannerType = Data.Dtos.BannerType.BannerType.BigBanner });
                 _db.SaveChanges();
             }
         }

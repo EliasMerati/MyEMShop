@@ -31,12 +31,13 @@ namespace MyEMShop.Application.Services
                 {
                     ImgFile.CopyTo(stream);
                 }
-                _db.Banners.Add(new Banner { BannerImage = banner.BannerImage, BannerName = banner.BannerName, BannerLink = banner.BannerLink,BannerType = Data.Dtos.BannerType.BannerType.SmallBanner });
+                _db.Banners.Add(new Banner { BannerImage = banner.BannerImage, BannerName = banner.BannerName, BannerLink = banner.BannerLink, BannerType = Data.Dtos.BannerType.BannerType.SmallBanner });
                 _db.SaveChanges();
             }
             else
             {
-                _db.Banners.Add(new Banner { BannerImage = "samplebanner2-SmallLeft.jpg", BannerName = "SampleBanner", BannerLink = "", BannerType = Data.Dtos.BannerType.BannerType.SmallBanner });
+                
+                _db.Banners.Add(new Banner { BannerImage = "samplebanner1-Small.jpg", BannerName = "SampleBanner", BannerLink = "", BannerType = Data.Dtos.BannerType.BannerType.SmallBanner });
                 _db.SaveChanges();
             }
         }
@@ -57,7 +58,7 @@ namespace MyEMShop.Application.Services
             }
             else
             {
-                _db.Banners.Add(new Banner { BannerImage = "samplebanner1-SmallMiddleLeft.jpg", BannerName = "SampleBanner", BannerLink = "", BannerType = Data.Dtos.BannerType.BannerType.SmallBanner });
+                _db.Banners.Add(new Banner { BannerImage = "samplebanner1-Small.jpg", BannerName = "SampleBanner", BannerLink = "", BannerType = Data.Dtos.BannerType.BannerType.SmallBanner });
                 _db.SaveChanges();
             }
         }
@@ -78,7 +79,7 @@ namespace MyEMShop.Application.Services
             }
             else
             {
-                _db.Banners.Add(new Banner { BannerImage = "samplebanner1-SmallMiddleRight.jpg", BannerName = "SampleBanner", BannerLink = "", BannerType = Data.Dtos.BannerType.BannerType.SmallBanner });
+                _db.Banners.Add(new Banner { BannerImage = "samplebanner1-Small.jpg", BannerName = "SampleBanner", BannerLink = "", BannerType = Data.Dtos.BannerType.BannerType.SmallBanner });
                 _db.SaveChanges();
             }
         }
@@ -99,7 +100,7 @@ namespace MyEMShop.Application.Services
             }
             else
             {
-                _db.Banners.Add(new Banner { BannerImage = "samplebanner2-SmallRight.jpg", BannerName = "SampleBanner", BannerLink = "", BannerType = Data.Dtos.BannerType.BannerType.SmallBanner });
+                _db.Banners.Add(new Banner { BannerImage = "samplebanner1-Small.jpg", BannerName = "SampleBanner", BannerLink = "", BannerType = Data.Dtos.BannerType.BannerType.SmallBanner });
                 _db.SaveChanges();
             }
         }
@@ -121,7 +122,7 @@ namespace MyEMShop.Application.Services
                 {
                     ImgFile.CopyTo(stream);
                 }
-                
+
             }
             banner.BannerType = Data.Dtos.BannerType.BannerType.SmallBanner;
             _db.Update(banner);
@@ -145,7 +146,7 @@ namespace MyEMShop.Application.Services
                 {
                     ImgFile.CopyTo(stream);
                 }
-               
+
             }
             banner.BannerType = Data.Dtos.BannerType.BannerType.SmallBanner;
             _db.Update(banner);
@@ -169,7 +170,7 @@ namespace MyEMShop.Application.Services
                 {
                     ImgFile.CopyTo(stream);
                 }
-                
+
             }
             banner.BannerType = Data.Dtos.BannerType.BannerType.SmallBanner;
             _db.Update(banner);
@@ -202,14 +203,14 @@ namespace MyEMShop.Application.Services
         public List<Banner> GetAllBanners()
         {
             return _db.Banners
-                .Where(b=>b.BannerType == Data.Dtos.BannerType.BannerType.SmallBanner)
-                .OrderByDescending(b=> b.BannerId)
+                .Where(b => b.BannerType == Data.Dtos.BannerType.BannerType.SmallBanner)
+                .OrderByDescending(b => b.BannerId)
                 .ToList();
         }
 
         public Banner GetBannerById(int BannerId)
         {
-            return _db.Banners.Single(b=>b.BannerId == BannerId && b.BannerType == Data.Dtos.BannerType.BannerType.SmallBanner);
+            return _db.Banners.Single(b => b.BannerId == BannerId && b.BannerType == Data.Dtos.BannerType.BannerType.SmallBanner);
         }
 
         public void RemoveLeftBanner(int BannerId)

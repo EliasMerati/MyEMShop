@@ -67,22 +67,26 @@
                                                     if (Split[1] == "SmallLeft" + System.IO.Path.GetExtension(Split[1]))
                                                     {
                                                         <a asp-page="EditLeftBanner" class="btn btn-warning btn-sm" asp-route-id="@item.BannerId">ویرایش</a>
+                                                        <a asp-page="RemoveLeftBanner" class="btn btn-danger btn-sm" asp-route-id="@item.BannerId">حذف</a>
                                                     }
                                                     else if (Split[1] == "SmallMiddleLeft" + System.IO.Path.GetExtension(Split[1]))
                                                     {
                                                         <a asp-page="EditMiddleLeftBanner" class="btn btn-warning btn-sm" asp-route-id="@item.BannerId">ویرایش</a>
+                                                        <a asp-page="RemoveMiddleLeftBanner" class="btn btn-danger btn-sm" asp-route-id="@item.BannerId">حذف</a>
                                                     }
                                                     else if (Split[1] == "SmallMiddleRight" + System.IO.Path.GetExtension(Split[1]))
                                                     {
                                                         <a asp-page="EditMiddleRightBanner" class="btn btn-warning btn-sm" asp-route-id="@item.BannerId">ویرایش</a>
+                                                        <a asp-page="RemoveMiddleRightBanner" class="btn btn-danger btn-sm" asp-route-id="@item.BannerId">حذف</a>
                                                     }
                                                     else
                                                     {
                                                         <a asp-page="EditRightBanner" class="btn btn-warning btn-sm" asp-route-id="@item.BannerId">ویرایش</a>
+                                                        <a asp-page="RemoveRightBanner" class="btn btn-danger btn-sm" asp-route-id="@item.BannerId">حذف</a>
                                                     }
                                                 }
                                                
-                                                <a asp-page="DeleteBanner" class="btn btn-danger btn-sm" asp-route-id="@item.BannerId">حذف</a>
+                                                
                                             </td>
                                         </tr>
                                     }
