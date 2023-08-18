@@ -63,9 +63,58 @@ namespace MyEMShop.Application.Services
             }
         }
 
+        public void EditBigLeftBanner(Banner banner, IFormFile ImgFile)
+        {
+            if (ImgFile is not null)
+            {
+                var bannerImage = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/", banner.BannerImage);
+                string[] Split = bannerImage.Split(new Char[] { '-' });
+                if (Split[1] == "BigLeft" + Path.GetExtension(Split[1]))
+                {
+                    File.Delete(bannerImage);
+                }
+                banner.BannerImage = GenerateCode.GenerateUniqueCode() + "-BigLeft" + Path.GetExtension(ImgFile.FileName);
+                string Imagepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/", banner.BannerImage);
+
+                using (var stream = new FileStream(Imagepath, FileMode.CreateNew))
+                {
+                    ImgFile.CopyTo(stream);
+                }
+            }
+            banner.BannerType = Data.Dtos.BannerType.BannerType.BigBanner;
+            _db.Update(banner);
+            _db.SaveChanges();
+        }
+
+        public void EditBigRightBanner(Banner banner, IFormFile ImgFile)
+        {
+            if (ImgFile is not null)
+            {
+                var bannerImage = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/", banner.BannerImage);
+                string[] Split = bannerImage.Split(new Char[] { '-' });
+                if (Split[1] == "BigRight" + Path.GetExtension(Split[1]))
+                {
+                    File.Delete(bannerImage);
+                }
+                banner.BannerImage = GenerateCode.GenerateUniqueCode() + "-BigRight" + Path.GetExtension(ImgFile.FileName);
+                string Imagepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/banner/", banner.BannerImage);
+
+                using (var stream = new FileStream(Imagepath, FileMode.CreateNew))
+                {
+                    ImgFile.CopyTo(stream);
+                }
+            }
+            banner.BannerType = Data.Dtos.BannerType.BannerType.BigBanner;
+            _db.Update(banner);
+            _db.SaveChanges();
+        }
+
         public List<Banner> GetAllBigBanners()
         {
-            return _db.Banners.Where(b=> b.BannerType == Data.Dtos.BannerType.BannerType.BigBanner).ToList();
+            return _db.Banners
+                .Where(b => b.BannerType == Data.Dtos.BannerType.BannerType.BigBanner)
+                .OrderByDescending(b => b.BannerId)
+                .ToList();
         }
 
         public Banner GetBannerById(int BannerId)

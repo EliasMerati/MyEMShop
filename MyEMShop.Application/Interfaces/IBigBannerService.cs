@@ -12,5 +12,7 @@ namespace MyEMShop.Application.Interfaces
         void RemoveLargeRightBanner(int BannerId);
         void AddLargeLeftBanner(Banner banner, IFormFile ImgFile);
         void RemoveLargeLeftBanner(int BannerId);
+        void EditBigRightBanner(Banner banner, IFormFile ImgFile);
+        void EditBigLeftBanner(Banner banner, IFormFile ImgFile);
     }
 }
