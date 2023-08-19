@@ -167,7 +167,25 @@ namespace MyEMShop.Data.Context
                new { RP_Id = 34, RoleId = 1, PermissionId = 34 },
                new { RP_Id = 35, RoleId = 1, PermissionId = 35 },
                new { RP_Id = 36, RoleId = 1, PermissionId = 36 },
-               new { RP_Id = 37, RoleId = 1, PermissionId = 37 });
+               new { RP_Id = 37, RoleId = 1, PermissionId = 37 },
+               new { RP_Id = 38, RoleId = 1, PermissionId = 38 },
+               new { RP_Id = 39, RoleId = 1, PermissionId = 39 },
+               new { RP_Id = 40, RoleId = 1, PermissionId = 40 },
+               new { RP_Id = 41, RoleId = 1, PermissionId = 41 },
+               new { RP_Id = 42, RoleId = 1, PermissionId = 42 },
+               new { RP_Id = 43, RoleId = 1, PermissionId = 43 },
+               new { RP_Id = 44, RoleId = 1, PermissionId = 44 },
+               new { RP_Id = 45, RoleId = 1, PermissionId = 45 },
+               new { RP_Id = 46, RoleId = 1, PermissionId = 46 },
+               new { RP_Id = 47, RoleId = 1, PermissionId = 47 },
+               new { RP_Id = 48, RoleId = 1, PermissionId = 48 },
+               new { RP_Id = 49, RoleId = 1, PermissionId = 49 },
+               new { RP_Id = 50, RoleId = 1, PermissionId = 50 },
+               new { RP_Id = 51, RoleId = 1, PermissionId = 51 },
+               new { RP_Id = 52, RoleId = 1, PermissionId = 52 },
+               new { RP_Id = 53, RoleId = 1, PermissionId = 53 },
+               new { RP_Id = 54, RoleId = 1, PermissionId = 54 },
+               new { RP_Id = 55, RoleId = 1, PermissionId = 55 });
             #endregion
 
             #region Permissions
@@ -208,7 +226,25 @@ namespace MyEMShop.Data.Context
                         new { PermissionId = 34, PermissionTitle = "ویرایش مالیات ", ParentId = 32 },
                         new { PermissionId = 35, PermissionTitle = "مدیریت اسلایدر ها", ParentId = 1 },
                         new { PermissionId = 36, PermissionTitle = "افزودن اسلایدر ", ParentId = 35 },
-                        new { PermissionId = 37, PermissionTitle = "حذف اسلایدر ", ParentId = 35 });
+                        new { PermissionId = 37, PermissionTitle = "حذف اسلایدر ", ParentId = 35 },
+                        new { PermissionId = 38, PermissionTitle = "مدیریت بنر ها ", ParentId = 1 },
+                        new { PermissionId = 39, PermissionTitle = "مدیریت بنر های کوچک ", ParentId = 38 },
+                        new { PermissionId = 40, PermissionTitle = "مدیریت بنر های بزرگ ", ParentId = 38 },
+                        new { PermissionId = 41, PermissionTitle = "افزودن بنر کوچک ", ParentId = 39 },
+                        new { PermissionId = 42, PermissionTitle = "افزودن بنر بزرگ ", ParentId = 40 },
+                        new { PermissionId = 43, PermissionTitle = "ویرایش بنر کوچک چپ", ParentId = 38 },
+                        new { PermissionId = 44, PermissionTitle = "ویرایش بنر کوچک وسط چپ ", ParentId = 38 },
+                        new { PermissionId = 45, PermissionTitle = "ویرایش بنر کوچک وسط راست ", ParentId = 38 },
+                        new { PermissionId = 46, PermissionTitle = "ویرایش بنر کوچک راست ", ParentId = 38 },
+                        new { PermissionId = 47, PermissionTitle = "حذف بنر کوچک چپ ", ParentId = 38 },
+                        new { PermissionId = 48, PermissionTitle = "حذف بنر کوچک وسط چپ ", ParentId = 38 },
+                        new { PermissionId = 49, PermissionTitle = "حذف بنر کوچک وسط راست ", ParentId = 38 },
+                        new { PermissionId = 50, PermissionTitle = "ویرایش بنر کوچک راست ", ParentId = 38 },
+                        new { PermissionId = 51, PermissionTitle = "ویرایش بنر بزرگ چپ ", ParentId = 38 },
+                        new { PermissionId = 52, PermissionTitle = "ویرایش بنر بزرگ راست ", ParentId = 38 },
+                        new { PermissionId = 53, PermissionTitle = "حذف بنر بزرگ چپ ", ParentId = 38 },
+                        new { PermissionId = 54, PermissionTitle = "حذف بنر بزرگ راست ", ParentId = 38 },
+                        new { PermissionId = 55, PermissionTitle = "مدیریت کامنت ها ", ParentId = 1 });
             #endregion
 
             #region AdminRole

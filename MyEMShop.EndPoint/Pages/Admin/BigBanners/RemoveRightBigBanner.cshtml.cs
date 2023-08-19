@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Entities.Banners;
 
 namespace MyEMShop.EndPoint.Pages.Admin.BigBanners
 {
+    [PermissionChecker(54)]
     public class RemoveRightBigBannerModel : PageModel
     {
         #region Injection

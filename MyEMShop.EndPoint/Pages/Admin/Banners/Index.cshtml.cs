@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Entities.Banners;
 using System.Collections.Generic;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Banners
 {
+    [PermissionChecker(39)]
     public class IndexModel : PageModel
     {
         #region Injection

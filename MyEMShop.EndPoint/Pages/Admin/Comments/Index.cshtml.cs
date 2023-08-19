@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Dtos.IsRead;
 using MyEMShop.Data.Entities.Product;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Comments
 {
+    [PermissionChecker(55)]
     public class IndexModel : PageModel
     {
         private readonly ICommentService _commentService;

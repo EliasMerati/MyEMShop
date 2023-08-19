@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Entities.Banners;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Banners
 {
+    [PermissionChecker(46)]
     public class EditRightBannerModel : PageModel
     {
         #region Inject
