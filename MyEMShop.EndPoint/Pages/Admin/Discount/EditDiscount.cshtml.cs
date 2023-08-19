@@ -1,9 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Caching.Distributed;
 using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
-using MyEMShop.Common;
 using System.Globalization;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Discount
@@ -14,12 +12,10 @@ namespace MyEMShop.EndPoint.Pages.Admin.Discount
         #region Inject
         private readonly IOrderService _orderService;
         private readonly IDiscountService _discountService;
-        private readonly IDistributedCache _cache;
-        public EditDiscountModel(IOrderService orderService, IDiscountService discountService, IDistributedCache cache)
+        public EditDiscountModel(IOrderService orderService, IDiscountService discountService)
         {
             _orderService = orderService;
             _discountService = discountService;
-            _cache = cache;
         }
         #endregion
 
@@ -27,7 +23,7 @@ namespace MyEMShop.EndPoint.Pages.Admin.Discount
         public MyEMShop.Data.Entities.Order.Discount Discount { get; set; }
         public void OnGet(int id)
         {
-           Discount = _discountService.GetDiscountById(id);
+            Discount = _discountService.GetDiscountById(id);
         }
 
         public IActionResult OnPost(string StDate = "", string EdDate = "")
@@ -51,7 +47,6 @@ namespace MyEMShop.EndPoint.Pages.Admin.Discount
 
             if (!ModelState.IsValid) { return Page(); }
             _discountService.UpdateDiscount(Discount);
-            _cache.RemoveAsync(CatchHelper.GenerateShowProductCacheKey());
             return RedirectToPage("Index");
         }
     }

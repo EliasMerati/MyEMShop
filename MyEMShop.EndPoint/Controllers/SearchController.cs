@@ -2,10 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using MyEMShop.Application.Interfaces;
+using MyEMShop.Common;
 using MyEMShop.Data.Dtos.IsRead;
 using MyEMShop.Data.Entities.Product;
 using System;
 using System.Collections.Generic;
+using System.Text;
+using System.Text.Json;
 
 namespace MyEMShop.EndPoint.Controllers
 {
@@ -17,19 +20,17 @@ namespace MyEMShop.EndPoint.Controllers
         private readonly IGroupService _groupService;
         private readonly IOrderService _orderService;
         private readonly IUserPannelService _userPannel;
-        private readonly IDistributedCache _cache;
         public SearchController(IProductService productService, ICommentService commentService
             , IOrderService orderService
             , IUserPannelService userPannel,
-              IGroupService groupService,
-              IDistributedCache cache)
+              IGroupService groupService
+)
         {
             _productService = productService;
             _commentService = commentService;
             _orderService = orderService;
             _userPannel = userPannel;
             _groupService = groupService;
-            _cache = cache;
         }
         #endregion
 

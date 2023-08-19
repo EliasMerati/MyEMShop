@@ -31,15 +31,9 @@ namespace MyEMShop.EndPoint
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             #region Solve Circle For JSON
-            services.AddControllersWithViews(options =>
-            {
-                options.OutputFormatters.RemoveType<SystemTextJsonOutputFormatter>();
-                options.OutputFormatters.Add(new SystemTextJsonOutputFormatter(new JsonSerializerOptions(JsonSerializerDefaults.Web)
-                {
-                    ReferenceHandler = ReferenceHandler.Preserve,
-                }));
-            });
+            services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
             #endregion
 
             services.AddRazorPages();

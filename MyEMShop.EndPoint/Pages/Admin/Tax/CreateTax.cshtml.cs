@@ -8,8 +8,8 @@ namespace MyEMShop.EndPoint.Pages.Admin.Tax
     [PermissionChecker(33)]
     public class CreateTaxModel : PageModel
     {
-        private readonly ITaxService _taxService;
         #region Inject
+        private readonly ITaxService _taxService;
         public CreateTaxModel(ITaxService taxService)
         {
             _taxService = taxService;

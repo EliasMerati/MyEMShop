@@ -1,9 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Caching.Distributed;
 using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
-using MyEMShop.Common;
 using System.Globalization;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Discount
@@ -12,12 +10,10 @@ namespace MyEMShop.EndPoint.Pages.Admin.Discount
     public class CreateDiscountModel : PageModel
     {
         #region Inject
-        private readonly IDistributedCache _cache;
         private readonly IDiscountService _discountService;
-        public CreateDiscountModel( IDiscountService discountService, IDistributedCache cache)
+        public CreateDiscountModel(IDiscountService discountService)
         {
             _discountService = discountService;
-            _cache = cache;
         }
 
         #endregion
@@ -28,14 +24,14 @@ namespace MyEMShop.EndPoint.Pages.Admin.Discount
         {
         }
 
-        public IActionResult OnPost(string StDate = "",string EdDate = "") 
+        public IActionResult OnPost(string StDate = "", string EdDate = "")
         {
             if (StDate is not null)
             {
                 string[] std = StDate.Split('/');
                 Discount.StartDate = new System.DateTime(int.Parse(std[0])
                     , int.Parse(std[1])
-                    , int.Parse(std[2]) 
+                    , int.Parse(std[2])
                     , new PersianCalendar());
             }
             if (EdDate is not null)
@@ -49,8 +45,7 @@ namespace MyEMShop.EndPoint.Pages.Admin.Discount
 
             if (!ModelState.IsValid && _discountService.IsExistCode(Discount.DiscountCode)) { return Page(); }
             _discountService.AddDiscount(Discount);
-            _cache.RemoveAsync(CatchHelper.GenerateShowProductCacheKey());
-            
+
             return RedirectToPage("Index");
         }
 

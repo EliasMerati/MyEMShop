@@ -2,10 +2,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Extensions.Caching.Distributed;
 using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
-using MyEMShop.Common;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,12 +15,11 @@ namespace MyEMShop.EndPoint.Pages.Admin.Product
         #region Inject Service
         private readonly IProductService _productService;
         private readonly IGroupService _groupService;
-        private readonly IDistributedCache _cache;
-        public CreateProductModel(IProductService productService, IGroupService groupService, IDistributedCache cache)
+
+        public CreateProductModel(IProductService productService, IGroupService groupService)
         {
             _productService = productService;
             _groupService = groupService;
-            _cache = cache;
         }
         #endregion
 
@@ -30,7 +27,7 @@ namespace MyEMShop.EndPoint.Pages.Admin.Product
         public Data.Entities.Product.Product product { get; set; }
         public void OnGet()
         {
-            
+
             var groups = _groupService.GetGroupsForManageProduct();
             ViewData["Groups"] = new SelectList(groups, "Value", "Text");
 
@@ -44,15 +41,14 @@ namespace MyEMShop.EndPoint.Pages.Admin.Product
             ViewData["ProductSize"] = new SelectList(size, "Value", "Text");
         }
 
-        public IActionResult OnPost(List<IFormFile> imgProduct, IFormFile DemoProduct,IFormFile MainimgProduct , string Pcolor)
+        public IActionResult OnPost(List<IFormFile> imgProduct, IFormFile DemoProduct, IFormFile MainimgProduct, string Pcolor)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _productService.CreateProduct(imgProduct,product, DemoProduct, MainimgProduct, Pcolor);
-            _cache.RemoveAsync(CatchHelper.GenerateShowProductCacheKey());
+            _productService.CreateProduct(imgProduct, product, DemoProduct, MainimgProduct, Pcolor);
             return RedirectToPage("Index");
         }
 

@@ -1,9 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Caching.Distributed;
 using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
-using MyEMShop.Common;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Product
 {
@@ -12,11 +10,9 @@ namespace MyEMShop.EndPoint.Pages.Admin.Product
     {
         #region Injection
         private readonly IProductService _productService;
-        private readonly IDistributedCache _cache;
-        public DeleteProductModel(IProductService productService, IDistributedCache cache)
+        public DeleteProductModel(IProductService productService)
         {
             _productService = productService;
-            _cache= cache;
         }
 
         #endregion
@@ -33,7 +29,6 @@ namespace MyEMShop.EndPoint.Pages.Admin.Product
         {
             var product = _productService.GetProductById(id);
             _productService.DeleteProduct(product);
-            _cache.RemoveAsync(CatchHelper.GenerateShowProductCacheKey());
             return RedirectToPage("Index");
         }
     }

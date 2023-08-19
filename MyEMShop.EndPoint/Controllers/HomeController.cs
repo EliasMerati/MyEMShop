@@ -21,6 +21,7 @@ namespace MyEMShop.EndPoint.Controllers
         private readonly IProductService _productService;
 
 
+
         public HomeController(ILogger<HomeController> logger
             , IUserWalletService userWalletService
             , IOrderService orderService
@@ -34,7 +35,6 @@ namespace MyEMShop.EndPoint.Controllers
             _orderService = orderService;
             _groupService = groupService;
             _productService = productService;
-
         }
         #endregion
 

@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Caching.Distributed;
 using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
 
@@ -12,11 +11,10 @@ namespace MyEMShop.EndPoint.Pages.Admin.Slider
     {
         #region Injection
         private readonly ISliderService _sliderService;
-        private readonly IDistributedCache _cache;
-        public CreateSliderModel(ISliderService sliderService, IDistributedCache cache)
+
+        public CreateSliderModel(ISliderService sliderService)
         {
             _sliderService = sliderService;
-            _cache = cache;
         }
 
         #endregion

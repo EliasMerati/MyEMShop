@@ -2,10 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Extensions.Caching.Distributed;
 using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
-using MyEMShop.Common;
 using System.Collections.Generic;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Product
@@ -16,12 +14,10 @@ namespace MyEMShop.EndPoint.Pages.Admin.Product
         #region Inject Service
         private readonly IProductService _productService;
         private readonly IGroupService _groupService;
-        private readonly IDistributedCache _cache;
-        public EditProductModel(IProductService productService, IDistributedCache cache, IGroupService groupService)
+        public EditProductModel(IProductService productService, IGroupService groupService)
         {
             _productService = productService;
             _groupService = groupService;
-            _cache = cache;
         }
         #endregion
 
@@ -62,7 +58,6 @@ namespace MyEMShop.EndPoint.Pages.Admin.Product
                 return Page();
             }
             _productService.UpdateProduct(product, DemoProduct, MainimgProduct);
-            _cache.RemoveAsync(CatchHelper.GenerateShowProductCacheKey());
             return RedirectToPage("Index");
         }
     }
