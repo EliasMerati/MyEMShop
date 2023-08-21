@@ -2,6 +2,7 @@
 using MyEMShop.Data.Entities.Banners;
 using MyEMShop.Data.Entities.Order;
 using MyEMShop.Data.Entities.Permission;
+using MyEMShop.Data.Entities.PrivacyPolicy;
 using MyEMShop.Data.Entities.Product;
 using MyEMShop.Data.Entities.Slider;
 using MyEMShop.Data.Entities.Tax;
@@ -62,6 +63,10 @@ namespace MyEMShop.Data.Context
 
         #region Banner
         public DbSet<Banner> Banners { get; set; }
+        #endregion
+
+        #region Privacy Policy
+        public DbSet<Privacy> Privacies { get; set; }
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
