@@ -70,6 +70,7 @@ namespace MyEMShop.EndPoint
             services.AddScoped<ITaxService, TaxService>();
             services.AddScoped<IBannerService, BannerService>();
             services.AddScoped<IBigBannerService, BigBannerService>();
+            services.AddScoped<IPrivacyService, PrivacyService>();
             #endregion
 
             #region Authentication

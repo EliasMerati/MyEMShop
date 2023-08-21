@@ -19,6 +19,7 @@ namespace MyEMShop.EndPoint.Controllers
         private readonly IOrderService _orderService;
         private readonly IGroupService _groupService;
         private readonly IProductService _productService;
+        private readonly IPrivacyService _privacyService;
 
 
 
@@ -27,6 +28,7 @@ namespace MyEMShop.EndPoint.Controllers
             , IOrderService orderService
             , IGroupService groupService
             , IProductService productService
+            , IPrivacyService privacyService
             )
         {
 
@@ -35,6 +37,7 @@ namespace MyEMShop.EndPoint.Controllers
             _orderService = orderService;
             _groupService = groupService;
             _productService = productService;
+            _privacyService = privacyService;
         }
         #endregion
 
@@ -137,6 +140,13 @@ namespace MyEMShop.EndPoint.Controllers
             var url = $"{"/Template/image/product/CkEditors Image/"}{fileName}";
 
             return Json(new { uploaded = true, url });
+        }
+
+        [Route("/Privacypolicy")]
+        public IActionResult PrivacyPolicy()
+        {
+            var privacy = _privacyService.GetPrivacy();
+            return View("PrivacyPolicy",privacy);
         }
     }
 }

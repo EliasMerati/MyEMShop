@@ -30,6 +30,11 @@ namespace MyEMShop.Application.Services
             return _db.Privacies.Find(privacyId);
         }
 
+        public bool IsExistPrivacy()
+        {
+            return _db.Privacies.Any();
+        }
+
         public void UpdatePrivacy(Privacy privacy)
         {
             _db.Update(privacy);

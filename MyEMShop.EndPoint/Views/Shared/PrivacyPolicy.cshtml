@@ -1,0 +1,28 @@
+﻿@model MyEMShop.Data.Entities.PrivacyPolicy.Privacy
+@{
+    ViewData["Title"] = "اطلاعات حریم شخصی";
+
+}
+
+<div id="container">
+    <div class="container">
+        <!-- Breadcrumb Start-->
+        <ul class="breadcrumb">
+            <li><a href="/"><i class="fa fa-home"></i></a></li>
+            <li><a href="/PrivacyPolicy">حریم شخصی</a></li>
+        </ul>
+        <!-- Breadcrumb End-->
+        <div class="row">
+            <!--Middle Part Start-->
+            <div id="content" class="col-sm-12">
+                <h1 class="title">سیاست حریم شخصی</h1>
+                <div class="row">
+                    <div class="col-sm-12">
+                        @Html.Raw(Model.PrivacyText)
+                    </div>
+                </div>
+            </div>
+            <!--Middle Part End -->
+        </div>
+    </div>
+</div>
