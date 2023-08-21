@@ -10,7 +10,7 @@ namespace MyEMShop.Application.Interfaces
     public interface IOrderService
     {
         int AddOrder(string userName, int productId);
-        void UpdatePriceOrder(int orderId);
+        void UpdatePriceOrder(int orderId,int productId);
         Order GetOrderForUserPannel(string userName, int orderId);
         Order GetOrderById(int orderId);
         void UpdateOrder(Order order);

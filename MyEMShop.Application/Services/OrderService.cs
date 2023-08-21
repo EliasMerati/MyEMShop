@@ -8,6 +8,7 @@ using MyEMShop.Data.Entities.Order;
 using MyEMShop.Data.Entities.Wallet;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace MyEMShop.Application.Services
@@ -46,6 +47,7 @@ namespace MyEMShop.Application.Services
             {
                 if (product.Save != 0)
                 {
+                    
                     order = new Order()
                     {
                         OrderDate = DateTime.Now,
@@ -70,6 +72,7 @@ namespace MyEMShop.Application.Services
                         }
                     }
                     };
+                    
 
                 }
                 else
@@ -100,7 +103,9 @@ namespace MyEMShop.Application.Services
                     };
 
                 }
-
+                int tax = (int)_taxService.GetTax().TaxValue;
+                int taxvalue = order.OrderSum * tax / 100;
+                order.OrderSum += taxvalue;
                 _db.Add(order);
                 _db.SaveChanges();
             }
@@ -113,7 +118,6 @@ namespace MyEMShop.Application.Services
                 {
                     detail.Count += 1;
                     _db.OrderDetails.Update(detail);
-
                 }
                 else
                 {
@@ -133,7 +137,7 @@ namespace MyEMShop.Application.Services
                         {
                             OrderId = order.OrderId,
                             Count = 1,
-                            Price = product.ProductPrice - (product.ProductPrice * product.Save / 100),
+                            Price = product.ProductPrice,
                             ProductId = productId,
                         };
                     }
@@ -141,8 +145,11 @@ namespace MyEMShop.Application.Services
                     _db.Add(detail);
 
                 }
+                //int tax = (int)_taxService.GetTax().TaxValue;
+                //int taxvalue = order.OrderSum * tax / 100;
+                //order.OrderSum += taxvalue;
                 _db.SaveChanges();
-                UpdatePriceOrder(order.OrderId);
+                UpdatePriceOrder(order.OrderId, productId);
             }
 
             return order.OrderId;
@@ -215,7 +222,7 @@ namespace MyEMShop.Application.Services
                     _db.Orders.Update(order);
                     _db.SaveChanges();
                 }
-                UpdatePriceOrder(orderId);
+                UpdatePriceOrder(orderId, productid);
             }
             catch (Exception)
             {
@@ -362,7 +369,7 @@ namespace MyEMShop.Application.Services
                     _db.SaveChanges();
                 }
 
-                UpdatePriceOrder(orderId);
+                UpdatePriceOrder(orderId, productId);
             }
             catch (Exception)
             {
@@ -384,14 +391,46 @@ namespace MyEMShop.Application.Services
             _db.SaveChanges();
         }
 
-        public void UpdatePriceOrder(int orderId)
+        public void UpdatePriceOrder(int orderId, int productId)
         {
-            var order = _db.Orders.Find(orderId);
-            int tax = (int)_taxService.GetTax().TaxValue;
-            int taxvalue = order.OrderSum * tax / 100;
-            order.OrderSum += taxvalue;
-            _db.Update(order);
-            _db.SaveChanges();
+            //var productinorder = _db.OrderDetails
+            //    .Include(p => p.Product)
+            //    .Where(p => p.ProductId == productId).ToList();
+            //int newPrice = 0;
+            //foreach (var item in productinorder)
+            //{
+            //    if (item.Product.Save != 0)
+            //    {
+            //        newPrice = item.Product.ProductPrice * item.Product.Save / 100;
+            //    }
+            //}
+            //if (newPrice == 0)
+            //{
+            try
+            {
+                var order = _db.Orders.Find(orderId);
+                int tax = (int)_taxService.GetTax().TaxValue;
+                int taxvalue = order.OrderSum * tax / 100;
+                order.OrderSum += taxvalue;
+                _db.Update(order);
+                _db.SaveChanges();
+            }
+            catch (Exception)
+            {
+            }
+            //}
+            //else
+            //{
+            //    var order = _db.Orders.Find(orderId);
+            //    int tax = (int)_taxService.GetTax().TaxValue;
+            //    int taxvalue = order.OrderSum * tax / 100;
+            //    order.OrderSum += taxvalue;
+            //    order.OrderSum -= newPrice;
+            //    _db.Update(order);
+            //    _db.SaveChanges();
+            //}
+
+
         }
 
     }
