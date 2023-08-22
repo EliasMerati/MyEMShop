@@ -1,4 +1,30 @@
 ﻿@page
 @model MyEMShop.EndPoint.Pages.Admin.FaqGroups.AddFaqGroupModel
 @{
+    ViewData["Title"] = "افزودن گروه سوال";
 }
+
+<div id="page-wrapper">
+    <div class="row">
+        <form method="post">
+            <div class="col-lg-8">
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        اطلاعات گروه سوال
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label>گروه سوال</label>
+                            <input type="text" asp-for="@Model.FaqGroup.FaqGroupTitle" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-success">ثبت گروه سوال </button>
+
+                    </div>
+                    <div class="panel-footer">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -14,12 +14,10 @@ namespace MyEMShop.Data.Entities.Faq
         public int FaqGroupId { get; set; }
 
         [Display(Name ="سوال")]
-        [Required]
         [MaxLength(300)]
         public string FaqQuestion { get; set;}
 
         [Display(Name = "جواب")]
-        [Required]
         [MaxLength(500)]
         public string FaqAnswer { get; set;}
 

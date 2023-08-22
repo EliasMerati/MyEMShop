@@ -10,7 +10,6 @@ namespace MyEMShop.Data.Entities.Faq
 
         [Display(Name = "گروه سوالات")]
         [MaxLength(100)]
-        [Required]
         public string FaqGroupTitle { get; set; }
 
         #region Relation
