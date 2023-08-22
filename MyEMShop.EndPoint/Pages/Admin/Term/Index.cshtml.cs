@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Term
 {
+    [PermissionChecker(56)]
     public class IndexModel : PageModel
     {
         #region Inject Service

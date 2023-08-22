@@ -20,6 +20,7 @@ namespace MyEMShop.EndPoint.Controllers
         private readonly IGroupService _groupService;
         private readonly IProductService _productService;
         private readonly IPrivacyService _privacyService;
+        private readonly ITermsService _termsService;
 
 
 
@@ -29,6 +30,7 @@ namespace MyEMShop.EndPoint.Controllers
             , IGroupService groupService
             , IProductService productService
             , IPrivacyService privacyService
+            , ITermsService termsService
             )
         {
 
@@ -38,6 +40,7 @@ namespace MyEMShop.EndPoint.Controllers
             _groupService = groupService;
             _productService = productService;
             _privacyService = privacyService;
+            _termsService = termsService;
         }
         #endregion
 
@@ -147,6 +150,13 @@ namespace MyEMShop.EndPoint.Controllers
         {
             var privacy = _privacyService.GetPrivacy();
             return View("PrivacyPolicy", privacy);
+        }
+
+        [Route("/Terms")]
+        public IActionResult Terms()
+        {
+            var Term = _termsService.GetTerm();
+            return View("Terms", Term);
         }
     }
 }

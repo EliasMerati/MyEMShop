@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Term
 {
+    [PermissionChecker(57)]
     public class UpdateTermModel : PageModel
     {
         #region Inject Service
