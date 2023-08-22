@@ -71,6 +71,7 @@ namespace MyEMShop.EndPoint
             services.AddScoped<IBannerService, BannerService>();
             services.AddScoped<IBigBannerService, BigBannerService>();
             services.AddScoped<IPrivacyService, PrivacyService>();
+            services.AddScoped<ITermsService, TermsService>();
             #endregion
 
             #region Authentication

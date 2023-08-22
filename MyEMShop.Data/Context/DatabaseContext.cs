@@ -6,6 +6,7 @@ using MyEMShop.Data.Entities.PrivacyPolicy;
 using MyEMShop.Data.Entities.Product;
 using MyEMShop.Data.Entities.Slider;
 using MyEMShop.Data.Entities.Tax;
+using MyEMShop.Data.Entities.Terms;
 using MyEMShop.Data.Entities.User;
 using MyEMShop.Data.Entities.Wallet;
 using System;
@@ -67,6 +68,10 @@ namespace MyEMShop.Data.Context
 
         #region Privacy Policy
         public DbSet<Privacy> Privacies { get; set; }
+        #endregion
+
+        #region Terms
+        public DbSet<Term> Terms { get; set; }
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
