@@ -6,8 +6,6 @@ namespace MyEMShop.Application.Interfaces
     {
         Privacy GetPrivacy();
         Privacy GetPrivacyById(int privacyId);
-        void AddPrivacy(Privacy privacy);
         void UpdatePrivacy(Privacy privacy);
-        bool IsExistPrivacy();
     }
 }

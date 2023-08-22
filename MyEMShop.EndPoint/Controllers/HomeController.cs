@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using MyEMShop.Application.Interfaces;
+using MyEMShop.Common;
 using MyEMShop.EndPoint.Models;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -125,7 +125,7 @@ namespace MyEMShop.EndPoint.Controllers
         {
             if (upload.Length <= 0) return null;
 
-            var fileName = Guid.NewGuid() + Path.GetExtension(upload.FileName).ToLower();
+            var fileName = GenerateCode.GenerateUniqueCode() + Path.GetExtension(upload.FileName).ToLower();
 
             var path = Path.Combine(
                 Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/CkEditors Image",
@@ -146,7 +146,7 @@ namespace MyEMShop.EndPoint.Controllers
         public IActionResult PrivacyPolicy()
         {
             var privacy = _privacyService.GetPrivacy();
-            return View("PrivacyPolicy",privacy);
+            return View("PrivacyPolicy", privacy);
         }
     }
 }

@@ -14,11 +14,7 @@ namespace MyEMShop.Application.Services
             _db = db;
         }
         #endregion
-        public void AddPrivacy(Privacy privacy)
-        {
-            _db.Privacies.Add(privacy);
-            _db.SaveChanges();
-        }
+
 
         public Privacy GetPrivacy()
         {
@@ -28,11 +24,6 @@ namespace MyEMShop.Application.Services
         public Privacy GetPrivacyById(int privacyId)
         {
             return _db.Privacies.Find(privacyId);
-        }
-
-        public bool IsExistPrivacy()
-        {
-            return _db.Privacies.Any();
         }
 
         public void UpdatePrivacy(Privacy privacy)
