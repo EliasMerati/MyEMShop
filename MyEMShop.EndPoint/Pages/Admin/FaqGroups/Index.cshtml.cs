@@ -19,7 +19,7 @@ namespace MyEMShop.EndPoint.Pages.Admin.FaqGroups
         public List<FaqGroup> FaqGroup { get; set; }
         public void OnGet()
         {
-            FaqGroup = _faqGroupService.GetAllFaqGroup();
+            FaqGroup = _faqGroupService.GetFaqGroups();
         }
     }
 }

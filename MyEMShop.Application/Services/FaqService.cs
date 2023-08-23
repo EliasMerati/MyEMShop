@@ -51,11 +51,11 @@ namespace MyEMShop.Application.Services
             return _db.Faqs.Find(faqId);
         }
 
-        public List<Faq> GetFaqList(int faqGroupId)
+        public List<Faq> GetFaqList()
         {
             return _db.Faqs
                 .Include(f => f.FaqGroup)
-                .Where(f => f.FaqGroupId == faqGroupId).ToList();
+                .ToList();
         }
 
         public void UpdateFaq(Faq faq)

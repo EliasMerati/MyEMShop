@@ -5,7 +5,7 @@ namespace MyEMShop.Application.Interfaces
 {
     public interface IFaqService
     {
-        List<Faq> GetFaqList(int faqGroupId);
+        List<Faq> GetFaqList();
         Faq GetFaqById(int faqId);
         void AddFaq(Faq faq);
         void UpdateFaq(Faq faq);
