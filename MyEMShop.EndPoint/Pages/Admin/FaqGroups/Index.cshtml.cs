@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Entities.Faq;
 using System.Collections.Generic;
 
 namespace MyEMShop.EndPoint.Pages.Admin.FaqGroups
 {
+    [PermissionChecker(61)]
     public class IndexModel : PageModel
     {
 

@@ -205,7 +205,16 @@ namespace MyEMShop.Data.Context
                new { RP_Id = 56, RoleId = 1, PermissionId = 56 },
                new { RP_Id = 57, RoleId = 1, PermissionId = 57 },
                new { RP_Id = 58, RoleId = 1, PermissionId = 58 },
-               new { RP_Id = 59, RoleId = 1, PermissionId = 59 });
+               new { RP_Id = 59, RoleId = 1, PermissionId = 59 },
+               new { RP_Id = 60, RoleId = 1, PermissionId = 60 },
+               new { RP_Id = 61, RoleId = 1, PermissionId = 61 },
+               new { RP_Id = 62, RoleId = 1, PermissionId = 62 },
+               new { RP_Id = 63, RoleId = 1, PermissionId = 63 },
+               new { RP_Id = 64, RoleId = 1, PermissionId = 64 },
+               new { RP_Id = 65, RoleId = 1, PermissionId = 65 },
+               new { RP_Id = 66, RoleId = 1, PermissionId = 66 },
+               new { RP_Id = 67, RoleId = 1, PermissionId = 67 },
+               new { RP_Id = 68, RoleId = 1, PermissionId = 68 });
             #endregion
 
             #region Permissions
@@ -252,23 +261,32 @@ namespace MyEMShop.Data.Context
                         new { PermissionId = 40, PermissionTitle = "مدیریت بنر های بزرگ ", ParentId = 38 },
                         new { PermissionId = 41, PermissionTitle = "افزودن بنر کوچک ", ParentId = 39 },
                         new { PermissionId = 42, PermissionTitle = "افزودن بنر بزرگ ", ParentId = 40 },
-                        new { PermissionId = 43, PermissionTitle = "ویرایش بنر کوچک چپ", ParentId = 38 },
-                        new { PermissionId = 44, PermissionTitle = "ویرایش بنر کوچک وسط چپ ", ParentId = 38 },
-                        new { PermissionId = 45, PermissionTitle = "ویرایش بنر کوچک وسط راست ", ParentId = 38 },
-                        new { PermissionId = 46, PermissionTitle = "ویرایش بنر کوچک راست ", ParentId = 38 },
-                        new { PermissionId = 47, PermissionTitle = "حذف بنر کوچک چپ ", ParentId = 38 },
-                        new { PermissionId = 48, PermissionTitle = "حذف بنر کوچک وسط چپ ", ParentId = 38 },
-                        new { PermissionId = 49, PermissionTitle = "حذف بنر کوچک وسط راست ", ParentId = 38 },
-                        new { PermissionId = 50, PermissionTitle = "ویرایش بنر کوچک راست ", ParentId = 38 },
-                        new { PermissionId = 51, PermissionTitle = "ویرایش بنر بزرگ چپ ", ParentId = 38 },
-                        new { PermissionId = 52, PermissionTitle = "ویرایش بنر بزرگ راست ", ParentId = 38 },
-                        new { PermissionId = 53, PermissionTitle = "حذف بنر بزرگ چپ ", ParentId = 38 },
-                        new { PermissionId = 54, PermissionTitle = "حذف بنر بزرگ راست ", ParentId = 38 },
+                        new { PermissionId = 43, PermissionTitle = "ویرایش بنر کوچک چپ", ParentId = 39 },
+                        new { PermissionId = 44, PermissionTitle = "ویرایش بنر کوچک وسط چپ ", ParentId = 39 },
+                        new { PermissionId = 45, PermissionTitle = "ویرایش بنر کوچک وسط راست ", ParentId = 39 },
+                        new { PermissionId = 46, PermissionTitle = "ویرایش بنر کوچک راست ", ParentId = 389 },
+                        new { PermissionId = 47, PermissionTitle = "حذف بنر کوچک چپ ", ParentId = 39 },
+                        new { PermissionId = 48, PermissionTitle = "حذف بنر کوچک وسط چپ ", ParentId = 39 },
+                        new { PermissionId = 49, PermissionTitle = "حذف بنر کوچک وسط راست ", ParentId = 39 },
+                        new { PermissionId = 50, PermissionTitle = "ویرایش بنر کوچک راست ", ParentId = 39 },
+                        new { PermissionId = 51, PermissionTitle = "ویرایش بنر بزرگ چپ ", ParentId = 40 },
+                        new { PermissionId = 52, PermissionTitle = "ویرایش بنر بزرگ راست ", ParentId = 40 },
+                        new { PermissionId = 53, PermissionTitle = "حذف بنر بزرگ چپ ", ParentId = 40 },
+                        new { PermissionId = 54, PermissionTitle = "حذف بنر بزرگ راست ", ParentId = 40 },
                         new { PermissionId = 55, PermissionTitle = "مدیریت کامنت ها", ParentId = 1 },
                         new { PermissionId = 56, PermissionTitle = " شرایط و قوانین ", ParentId = 1 },
                         new { PermissionId = 57, PermissionTitle = "ویرایش شرایط و قوانین ", ParentId = 56 },
                         new { PermissionId = 58, PermissionTitle = "سیاست حریم خصوصی ", ParentId = 1 },
-                        new { PermissionId = 59, PermissionTitle = "ویرایش سیاست حریم خصوصی", ParentId = 58 });
+                        new { PermissionId = 59, PermissionTitle = "ویرایش سیاست حریم خصوصی", ParentId = 58 },
+                        new { PermissionId = 60, PermissionTitle = "مدیریت سوالات متداول", ParentId = 1 },
+                        new { PermissionId = 61, PermissionTitle = "مدیریت گروه سوال", ParentId = 60 },
+                        new { PermissionId = 62, PermissionTitle = "مدیریت سوالات", ParentId = 60 },
+                        new { PermissionId = 63, PermissionTitle = "افزودن گروه سوال", ParentId = 61 },
+                        new { PermissionId = 64, PermissionTitle = "ویرایش گروه سوال", ParentId = 61 },
+                        new { PermissionId = 65, PermissionTitle = "حذف گروه سوال", ParentId = 61 },
+                        new { PermissionId = 66, PermissionTitle = "افزودن سوال", ParentId = 62 },
+                        new { PermissionId = 67, PermissionTitle = "ویرایش سوال", ParentId = 62 },
+                        new { PermissionId = 68, PermissionTitle = "حذف سوال", ParentId = 62 });
             #endregion
 
             #region AdminRole

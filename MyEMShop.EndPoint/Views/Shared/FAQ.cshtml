@@ -1,37 +1,53 @@
-﻿@{
+﻿@using MyEMShop.Application.Interfaces;
+@using MyEMShop.Data.Entities.Faq
+@model List<Faq>
+@inject IFaqGroupService _faqgroup
+@{
     ViewData["Title"] = "سوالات متداول";
+    List<FaqGroup> faqgroup = _faqgroup.GetFaqGroups();
 }
 <div id="container">
     <div class="container">
         <!-- Breadcrumb Start-->
         <ul class="breadcrumb">
-            <li><a href="index.html"><i class="fa fa-home"></i></a></li>
-            <li><a href="faq.html">سوالات متداول</a></li>
+            <li><a href="/"><i class="fa fa-home"></i></a></li>
+            <li><a href="/FAQ">سوالات متداول</a></li>
         </ul>
         <!-- Breadcrumb End-->
         <div class="row">
             <!--Middle Part Start-->
             <div id="content" class="col-sm-12">
                 <h1 class="title">راهنما و سوالات متداول</h1>
-                <hr>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <h3>حساب کاربری و سفارشات من</h3>
-                    </div>
-                    <div class="col-sm-9">
-                        <div class="faq">
+
+                @foreach (var item in faqgroup)
+                {
+                    <div class="col-sm-12">
+                        <div class="row">
                             <div>
-                                <a href="#faq1" data-parent="#accordion" data-toggle="collapse" class="panel-title">ثبت حساب کاربری به چه منظور صورت میگیرد؟<i class="fa fa-caret-down"></i></a>
-                                <div id="faq1" class="panel-collapse collapse">
-                                    <div class="panel-body">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.</div>
-                                </div>
+                                <h3><strong>@item.FaqGroupTitle</strong></h3>
                             </div>
+                            <hr>
+                            @foreach (var item1 in Model.Where(p => p.FaqGroup.FaqGroupTitle == item.FaqGroupTitle))
+                            {
+                                <div>
+                                    <div class="faq">
+                                        <a href="#faq" data-parent="#accordion" data-toggle="collapse" class="panel-title">@item1.FaqQuestion <i class="fa fa-caret-down"></i></a>
+                                        <div id="faq" class="panel-collapse collapse">
+                                            <div class="panel-body">@item1.FaqAnswer</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
                         </div>
                     </div>
-                </div>
-                <hr>
+                }
             </div>
             <!--Middle Part End -->
         </div>
     </div>
 </div>
+
+
+
+
+

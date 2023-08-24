@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Entities.Faq;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Faqs
 {
+    [PermissionChecker(67)]
     public class UpdateFaqModel : PageModel
     {
         #region Inject Service

@@ -8,6 +8,7 @@ using MyEMShop.EndPoint.Models;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 
 namespace MyEMShop.EndPoint.Controllers
 {
@@ -21,6 +22,7 @@ namespace MyEMShop.EndPoint.Controllers
         private readonly IProductService _productService;
         private readonly IPrivacyService _privacyService;
         private readonly ITermsService _termsService;
+        private readonly IFaqService _faqservice;
 
 
 
@@ -31,6 +33,9 @@ namespace MyEMShop.EndPoint.Controllers
             , IProductService productService
             , IPrivacyService privacyService
             , ITermsService termsService
+            , IFaqService faqservice
+
+
             )
         {
 
@@ -41,6 +46,7 @@ namespace MyEMShop.EndPoint.Controllers
             _productService = productService;
             _privacyService = privacyService;
             _termsService = termsService;
+            _faqservice = faqservice;
         }
         #endregion
 
@@ -157,6 +163,26 @@ namespace MyEMShop.EndPoint.Controllers
         {
             var Term = _termsService.GetTerm();
             return View("Terms", Term);
+        }
+
+        [Route("/FAQ")]
+        public IActionResult FAQ()
+        {
+            var faq = _faqservice.GetFaqList();
+            return View("FAQ", faq);
+        }
+
+
+        [Route("/ContactUs")]
+        public IActionResult ContactUs()
+        {
+            return View("ContactUs");
+        }
+
+        [Route("/AboutUs")]
+        public IActionResult AboutUs()
+        {
+            return View("AboutUs");
         }
     }
 }

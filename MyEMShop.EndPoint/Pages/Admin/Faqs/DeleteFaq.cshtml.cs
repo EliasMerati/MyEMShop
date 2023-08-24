@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Entities.Faq;
 
 namespace MyEMShop.EndPoint.Pages.Admin.Faqs
 {
+    [PermissionChecker(68)]
     public class DeleteFaqModel : PageModel
     {
         #region Inject Service

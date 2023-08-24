@@ -53,8 +53,8 @@ namespace MyEMShop.Application.Services
 
         public List<Faq> GetFaqList()
         {
-            return _db.Faqs
-                .Include(f => f.FaqGroup)
+            return _db.Faqs 
+                .Include(fg=>fg.FaqGroup)
                 .ToList();
         }
 
