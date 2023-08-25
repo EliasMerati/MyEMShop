@@ -29,6 +29,11 @@ namespace MyEMShop.Application.Services
             }
         }
 
+        public ContactUsConection GetById(int CUC_Id)
+        {
+            return _db.contactUsConections.Find(CUC_Id);
+        }
+
         public List<ContactUsConection> GetContactUsConnections()
         {
             return _db.contactUsConections.ToList();

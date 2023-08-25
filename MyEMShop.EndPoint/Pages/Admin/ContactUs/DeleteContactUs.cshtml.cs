@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace MyEMShop.EndPoint.Pages.Admin.ContactUs
 {
-    public class AddContactUsModel : PageModel
+    public class DeleteContactUsModel : PageModel
     {
         public void OnGet()
         {
