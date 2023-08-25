@@ -1,11 +1,8 @@
 ﻿using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Context;
 using MyEMShop.Data.Entities.Tax;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyEMShop.Application.Services
 {

@@ -1,0 +1,34 @@
+﻿@model MyEMShop.Data.Entities.ContactUs.ContactUsConection
+
+@if (ViewData["IsSuccess"] is true)
+{
+    <div class="alert alert-success"><i class="fa fa-check-circle"></i> پیام شما با موفقیت برای ادمین ارسال شد. با تشکر از شما به زودی جواب پیام خدمت شما ارسال خواهد شد. با تشکر  <strong>به دخت</strong></div>
+}
+<form method="post" asp-controller="ContactUs" asp-action="AddContactUsConnection" class="form-horizontal">
+    <fieldset>
+        <h3 class="subtitle">ارتباط با ما</h3>
+        <div class="form-group required">
+            <label class="col-md-2 col-sm-3 control-label" asp-for="@Model.name">نام شما</label>
+            <div class="col-md-10 col-sm-9">
+                <input type="text" name="name" asp-for="@Model.name" id="input-name" class="form-control">
+            </div>
+        </div>
+        <div class="form-group required">
+            <label class="col-md-2 col-sm-3 control-label" asp-for="@Model.Email" for="input-email">آدرس ایمیل</label>
+            <div class="col-md-10 col-sm-9">
+                <input type="text" name="email" asp-for="@Model.Email" id="input-email" class="form-control">
+            </div>
+        </div>
+        <div class="form-group required">
+            <label class="col-md-2 col-sm-3 control-label" asp-for="@Model.Question" for="input-enquiry">پرسش</label>
+            <div class="col-md-10 col-sm-9">
+                <textarea name="question" rows="10" asp-for="@Model.Question" id="input-enquiry" class="form-control"></textarea>
+            </div>
+        </div>
+    </fieldset>
+    <div class="buttons">
+        <div class="pull-right">
+            <input class="btn btn-primary" type="submit" value="ارسال">
+        </div>
+    </div>
+</form>

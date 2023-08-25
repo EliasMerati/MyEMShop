@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyEMShop.Data.Entities.Banners;
+using MyEMShop.Data.Entities.ContactUs;
 using MyEMShop.Data.Entities.Faq;
 using MyEMShop.Data.Entities.Order;
 using MyEMShop.Data.Entities.Permission;
@@ -73,6 +74,11 @@ namespace MyEMShop.Data.Context
 
         #region Terms
         public DbSet<Term> Terms { get; set; }
+        #endregion
+
+        #region Contact Us
+        public DbSet<ContactUsConection> contactUsConections { get; set; }
+        public DbSet<ContactUsInfo> ContactUsInfos { get; set; }
         #endregion
 
         #region Faq
