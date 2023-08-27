@@ -12,11 +12,9 @@ namespace MyEMShop.Application.Services
     {
         #region Inject Database
         private readonly DatabaseContext _db;
-        private readonly IViewRenderService _viewRender;
-        public ContactUsConnectionService(DatabaseContext db, IViewRenderService viewRender)
+        public ContactUsConnectionService(DatabaseContext db)
         {
             _db = db;
-            _viewRender = viewRender;
         }
         #endregion
 
