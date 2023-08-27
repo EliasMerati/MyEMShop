@@ -2,7 +2,6 @@
 using MyEMShop.Common;
 using MyEMShop.Data.Context;
 using MyEMShop.Data.Entities.ContactUs;
-using MyEMShop.Data.Entities.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,7 +42,7 @@ namespace MyEMShop.Application.Services
             catch (Exception)
             {
             }
-           
+
         }
 
         public ContactUsConection GetById(int CUC_Id)
@@ -51,9 +50,15 @@ namespace MyEMShop.Application.Services
             return _db.contactUsConections.Find(CUC_Id);
         }
 
-        public List<ContactUsConection> GetContactUsConnections()
+        public Tuple<List<ContactUsConection>, int> GetContactUsConnections(int pageId = 1)
         {
-            return _db.contactUsConections.ToList();
+            int skip = (pageId - 1) * 10;
+            int rowscount = _db.contactUsConections.Count() / 10;
+            var result = _db.contactUsConections
+                .Skip(skip)
+                .Take(10)
+                .ToList();
+            return Tuple.Create(result, rowscount);
         }
 
         public void RemoveContactUsConnection(int CUC_Id)
