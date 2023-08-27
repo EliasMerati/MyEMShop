@@ -1,6 +1,8 @@
 ﻿using MyEMShop.Application.Interfaces;
+using MyEMShop.Common;
 using MyEMShop.Data.Context;
 using MyEMShop.Data.Entities.ContactUs;
+using MyEMShop.Data.Entities.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +13,11 @@ namespace MyEMShop.Application.Services
     {
         #region Inject Database
         private readonly DatabaseContext _db;
-        public ContactUsConnectionService(DatabaseContext db)
+        private readonly IViewRenderService _viewRender;
+        public ContactUsConnectionService(DatabaseContext db, IViewRenderService viewRender)
         {
             _db = db;
+            _viewRender = viewRender;
         }
         #endregion
 
@@ -27,6 +31,19 @@ namespace MyEMShop.Application.Services
             catch (Exception)
             {
             }
+        }
+
+        public void AnswerQuestion(string answer, string Email)
+        {
+            try
+            {
+                var body = answer;
+                SendEmail.Send(Email, "پاسخ ایمیل ارسالی", body);
+            }
+            catch (Exception)
+            {
+            }
+           
         }
 
         public ContactUsConection GetById(int CUC_Id)

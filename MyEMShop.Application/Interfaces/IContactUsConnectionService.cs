@@ -9,5 +9,7 @@ namespace MyEMShop.Application.Interfaces
         void AddContactUsConnection(ContactUsConection contactUsConection);
         void RemoveContactUsConnection(int CUC_Id);
         ContactUsConection GetById(int CUC_Id);
+        void AnswerQuestion( string answer , string Email);
+
     }
 }

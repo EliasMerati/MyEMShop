@@ -52,6 +52,7 @@
                                             <td class="center">@item.Question</td>
                                             <td class="center">
                                                 <a asp-page="DeleteContactUs" asp-route-id="@item.CUC_Id" class="btn btn-sm btn-danger">حذف</a>
+                                                <a asp-page="Answer" asp-route-id="@item.CUC_Id" asp-route-Email ="@item.Email" class="btn btn-sm btn-info">پاسخ</a>
                                             </td>
                                         </tr>
                                     }
