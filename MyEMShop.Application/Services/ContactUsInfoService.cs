@@ -42,8 +42,6 @@ namespace MyEMShop.Application.Services
                 {
                     ImgFile.CopyTo(stream);
                 }
-                _db.ContactUsInfos.Add(new ContactUsInfo { ContactUsImage = contactUsInfo.ContactUsImage });
-                _db.SaveChanges();
             }
         }
 
