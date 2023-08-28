@@ -19,7 +19,7 @@ namespace MyEMShop.Data.Entities.ContactUs
         [MaxLength(50)]
         public string ContactUsPhone { get; set; }
 
-        [MaxLength(30)]
+        [MaxLength(100)]
         public string ContactUsWorkTime { get; set; }
 
         [MaxLength(200)]
