@@ -47,7 +47,7 @@ namespace MyEMShop.Application.Services
             {
                 if (product.Save != 0)
                 {
-                    
+
                     order = new Order()
                     {
                         OrderDate = DateTime.Now,
@@ -72,7 +72,7 @@ namespace MyEMShop.Application.Services
                         }
                     }
                     };
-                    
+
 
                 }
                 else
@@ -140,6 +140,7 @@ namespace MyEMShop.Application.Services
                             Price = product.ProductPrice,
                             ProductId = productId,
                         };
+                       
                     }
 
                     _db.Add(detail);
@@ -147,7 +148,6 @@ namespace MyEMShop.Application.Services
                 }
                 //int tax = (int)_taxService.GetTax().TaxValue;
                 //int taxvalue = order.OrderSum * tax / 100;
-                //order.OrderSum += taxvalue;
                 _db.SaveChanges();
                 UpdatePriceOrder(order.OrderId, productId);
             }
@@ -393,22 +393,30 @@ namespace MyEMShop.Application.Services
 
         public void UpdatePriceOrder(int orderId, int productId)
         {
-            //var productinorder = _db.OrderDetails
-            //    .Include(p => p.Product)
-            //    .Where(p => p.ProductId == productId).ToList();
-            //int newPrice = 0;
-            //foreach (var item in productinorder)
-            //{
-            //    if (item.Product.Save != 0)
-            //    {
-            //        newPrice = item.Product.ProductPrice * item.Product.Save / 100;
-            //    }
-            //}
+
             //if (newPrice == 0)
             //{
             try
             {
                 var order = _db.Orders.Find(orderId);
+                var productinorder = _db.OrderDetails
+                    .Include(o => o.Product)
+                .Where(p => p.OrderId == order.OrderId).ToList();
+                int newPrice = 0;
+                foreach (var item in productinorder)
+                {
+                    if (item.Product.Save != 0)
+                    {
+                        newPrice = item.Product.ProductPrice * item.Product.Save / 100 * item.Count;
+                    }
+                    else
+                    {
+                        newPrice = item.Price * item.Count;
+                    }
+                    
+
+                }
+                order.OrderSum += newPrice;
                 int tax = (int)_taxService.GetTax().TaxValue;
                 int taxvalue = order.OrderSum * tax / 100;
                 order.OrderSum += taxvalue;

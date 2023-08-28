@@ -75,6 +75,7 @@ namespace MyEMShop.EndPoint
             services.AddScoped<IFaqGroupService, FaqGroupService>();
             services.AddScoped<IFaqService, FaqService>();
             services.AddScoped<IContactUsConnectionService, ContactUsConnectionService>();
+            services.AddScoped<IContactUsInfoService, ContactUsInfoService>();
             #endregion
 
             #region Authentication
