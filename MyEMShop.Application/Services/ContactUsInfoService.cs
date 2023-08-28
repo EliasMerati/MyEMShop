@@ -60,7 +60,7 @@ namespace MyEMShop.Application.Services
 
         public void EditImageForContactUsInfo(ContactUsInfo contactUsInfo, IFormFile ImgFile)
         {
-            if (ImgFile is not null && ImgFile.IsImage())
+            if (ImgFile is not null)
             {
                 string DeleteImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/ContactUsInfo/", contactUsInfo.ContactUsImage);
                 if (File.Exists(DeleteImagePath))
