@@ -87,5 +87,10 @@ namespace MyEMShop.Application.Services
         {
             return _db.ContactUsInfos.Find(contactUsInfoId);
         }
+
+        public bool IsExistContactUsInfo()
+        {
+            return _db.ContactUsInfos.Any();
+        }
     }
 }

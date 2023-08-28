@@ -11,5 +11,6 @@ namespace MyEMShop.Application.Interfaces
         void EditContactUsInfo(ContactUsInfo contactUsInfo, IFormFile ImgFile);
         void AddImageForContactUsInfo(ContactUsInfo contactUsInfo, IFormFile ImgFile);
         void EditImageForContactUsInfo(ContactUsInfo contactUsInfo, IFormFile ImgFile);
+        bool IsExistContactUsInfo();
     }
 }
