@@ -8,7 +8,7 @@ namespace MyEMShop.Common
         {
             using (MailMessage mail = new MailMessage())
             {
-                mail.From = new MailAddress("behdoozshop2022@gmail.com", " فروشگاه به دخت");
+                mail.From = new MailAddress("behdokhtcollection@gmail.com", " فروشگاه به دخت");
                 mail.To.Add(to);
                 mail.Subject = subject;
                 mail.Body = body;
@@ -17,7 +17,7 @@ namespace MyEMShop.Common
                 using (SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com", 587))
                 {
                     SmtpServer.UseDefaultCredentials = false;
-                    SmtpServer.Credentials = new System.Net.NetworkCredential("behdoozshop2022@gmail.com", "rrch gnuz lkhk bohd");
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("behdokhtcollection@gmail.com", "duxn zxxq liru tufh");
                     SmtpServer.EnableSsl = true;
                     SmtpServer.Send(mail);
                 }

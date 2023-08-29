@@ -35,7 +35,7 @@ namespace MyEMShop.Application.Services
             try
             {
                 var body = answer;
-                SendEmail.Send(Email, "پاسخ ایمیل ارسالی", body);
+                SendEmail.Send(Email, "پاسخدهی", body);
             }
             catch (Exception)
             {
