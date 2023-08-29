@@ -27,7 +27,7 @@
                             <div class="row">
                             </div>
                             <div class="col-md-12" style="margin:10px 0;">
-                                 @if (!_Aboutus.IsAboutUsExist())
+                                @if (!_Aboutus.IsAboutUsExist())
                                 {
                                     <a asp-page="AddAboutUs" class="btn btn-success">افزودن اطلاعات درباره ی ما</a>
                                 }
@@ -45,10 +45,14 @@
                                 </thead>
                                 <tbody>
                                     <tr class="gradeA">
-                                        <td class="center">@Model.AboutUs.AboutUsText</td>
-                                        <td class="center">
-                                            <a asp-page="EditPrivacy" asp-route-id="@Model.AboutUs.AboutUsId" class="btn btn-sm btn-warning">ویرایش</a>
-                                        </td>
+                                        @if (_Aboutus.IsAboutUsExist())
+                                        {
+                                            <td class="center">@Model.AboutUs.AboutUsText</td>
+                                            <td class="center">
+                                                <a asp-page="EditAboutUs" asp-route-id="@Model.AboutUs.AboutUsId" class="btn btn-sm btn-warning">ویرایش</a>
+                                            </td>
+                                        }
+
                                     </tr>
                                 </tbody>
                             </table>
