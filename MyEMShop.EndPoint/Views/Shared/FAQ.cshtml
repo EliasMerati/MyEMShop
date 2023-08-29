@@ -24,21 +24,27 @@
                 {
                     <div class="col-sm-12">
                         <div class="row">
-                            <div>
+                            <div class="col-sm-3">
                                 <h3><strong>@item.FaqGroupTitle</strong></h3>
                             </div>
                             <hr>
+
+                            <div class="col-sm-9">
                             @foreach (var item1 in Model.Where(p => p.FaqGroup.FaqGroupTitle == item.FaqGroupTitle))
                             {
-                                <div>
                                     <div class="faq">
-                                        <a href="#faq" data-parent="#accordion" data-toggle="collapse" class="panel-title">@item1.FaqQuestion <i class="fa fa-caret-down"></i></a>
-                                        <div id="faq" class="panel-collapse collapse">
-                                            <div class="panel-body">@item1.FaqAnswer</div>
+                                        <div>
+                                            <a href="#@item1.FaqAnswer" data-parent="#accordion" data-toggle="collapse" class="panel-title">@item1.FaqQuestion <i class="fa fa-caret-down"></i></a>
+                                            <div id="@item1.FaqAnswer" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    @item1.FaqAnswer
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                             }
+                            </div>
+
                         </div>
                     </div>
                 }
