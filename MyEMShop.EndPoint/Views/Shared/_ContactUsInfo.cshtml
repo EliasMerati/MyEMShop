@@ -4,6 +4,16 @@
 @{
     var contactus = _contact.GetContactUsInfo();
 }
+@section MetaTag
+    {
+    <meta name=googlebot content=index,follow>
+    <meta name=robots content=noodp,noydir>
+    <meta property=og:site_name value="فروشگاه پوشاک زنانه به دخت - ارتباط با ما">
+    <meta property=og:title content=@ViewData["Title"]>
+    <meta property=og:description content=" ارتباط با ما فروشگاه پوشاک زنانه به دخت">
+    <meta property=og:price:currency content="IRR">
+    <meta property=og:locale content="ir_FA">
+}
 <div class="row">
     <div class="col-sm-3"><img src="/Template/image/ContactUsInfo/@contactus.ContactUsImage" alt=" به دخت" title="به دخت" class="img-thumbnail"></div>
     <div class="col-sm-3">
