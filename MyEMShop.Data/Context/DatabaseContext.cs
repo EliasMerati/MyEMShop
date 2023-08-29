@@ -220,7 +220,13 @@ namespace MyEMShop.Data.Context
                new { RP_Id = 65, RoleId = 1, PermissionId = 65 },
                new { RP_Id = 66, RoleId = 1, PermissionId = 66 },
                new { RP_Id = 67, RoleId = 1, PermissionId = 67 },
-               new { RP_Id = 68, RoleId = 1, PermissionId = 68 });
+               new { RP_Id = 68, RoleId = 1, PermissionId = 68 },
+               new { RP_Id = 69, RoleId = 1, PermissionId = 69 },
+               new { RP_Id = 70, RoleId = 1, PermissionId = 70 },
+               new { RP_Id = 71, RoleId = 1, PermissionId = 71 },
+               new { RP_Id = 72, RoleId = 1, PermissionId = 72 },
+               new { RP_Id = 73, RoleId = 1, PermissionId = 73 },
+               new { RP_Id = 74, RoleId = 1, PermissionId = 74 });
             #endregion
 
             #region Permissions
@@ -292,7 +298,13 @@ namespace MyEMShop.Data.Context
                         new { PermissionId = 65, PermissionTitle = "حذف گروه سوال", ParentId = 61 },
                         new { PermissionId = 66, PermissionTitle = "افزودن سوال", ParentId = 62 },
                         new { PermissionId = 67, PermissionTitle = "ویرایش سوال", ParentId = 62 },
-                        new { PermissionId = 68, PermissionTitle = "حذف سوال", ParentId = 62 });
+                        new { PermissionId = 68, PermissionTitle = "حذف سوال", ParentId = 62 },
+                        new { PermissionId = 69, PermissionTitle = "مدیریت تماس با ما", ParentId = 1 },
+                        new { PermissionId = 70, PermissionTitle = "حذف سوال تماس با ما", ParentId = 69 },
+                        new { PermissionId = 71, PermissionTitle = "جوابدهی سوال تماس با ما", ParentId = 69 },
+                        new { PermissionId = 72, PermissionTitle = "مدیریت اطلاعات تماس با ما", ParentId = 1 },
+                        new { PermissionId = 73, PermissionTitle = "افزودن اطلاعات تماس با ما ", ParentId = 72 },
+                        new { PermissionId = 74, PermissionTitle = "ویرایش اطلاعات تماس با ما", ParentId = 72 });
             #endregion
 
             #region AdminRole
