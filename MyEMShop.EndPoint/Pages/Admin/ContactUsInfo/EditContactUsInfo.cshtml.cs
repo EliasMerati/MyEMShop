@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
 
 namespace MyEMShop.EndPoint.Pages.Admin.ContactUsInfo
 {
+    [PermissionChecker(74)]
     public class EditContactUsInfoModel : PageModel
     {
         #region Inject Services

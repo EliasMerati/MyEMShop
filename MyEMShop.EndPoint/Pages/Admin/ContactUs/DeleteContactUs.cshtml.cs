@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Entities.ContactUs;
 
 namespace MyEMShop.EndPoint.Pages.Admin.ContactUs
 {
+    [PermissionChecker(70)]
     public class DeleteContactUsModel : PageModel
     {
         #region Inject Service
