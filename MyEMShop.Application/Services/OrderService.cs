@@ -248,7 +248,7 @@ namespace MyEMShop.Application.Services
             int sum = 0;
             foreach (var item in order.OrderDetails)
             {
-                sum = item.Price * item.Count;
+                sum += item.Price * item.Count;
             }
             int tax = (int)_taxService.GetTax().TaxValue;
             int taxvalue = sum * tax / 100;
