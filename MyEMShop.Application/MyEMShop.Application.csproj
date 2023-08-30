@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Services\OrderService.cs~RFd68026b.TMP" />
     <None Remove="Services\PermissionService.cs~RF1a1d99a.TMP" />
   </ItemGroup>
 
