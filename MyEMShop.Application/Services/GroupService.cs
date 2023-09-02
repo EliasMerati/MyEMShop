@@ -36,7 +36,7 @@ namespace MyEMShop.Application.Services
             return _db.ProductGroups.Include(p => p.Groups).ToList();
         }
 
-        public IList<SelectListItem> GetGroupsForManageProduct()
+        public List<SelectListItem> GetGroupsForManageProduct()
         {
             return _db.ProductGroups
                 .Where(p => p.ParentId == null)
@@ -48,7 +48,7 @@ namespace MyEMShop.Application.Services
                 .ToList();
         }
 
-        public IList<SelectListItem> GetSubGroupsForManageProduct(int groupId)
+        public List<SelectListItem> GetSubGroupsForManageProduct(int groupId)
         {
             return _db.ProductGroups
                 .Where(p => p.ParentId == groupId)

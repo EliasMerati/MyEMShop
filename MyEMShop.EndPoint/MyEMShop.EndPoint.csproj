@@ -19,7 +19,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.17" />
     <PackageReference Include="Microsoft.Extensions.Caching.SqlServer" Version="5.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
-    <PackageReference Include="Stimulsoft.Reports.Web.NetCore" Version="2019.2.3" />
+    <PackageReference Include="Stimulsoft.Reports.Web.NetCore" Version="2020.4.2" />
     <PackageReference Include="Zarinpal" Version="2.0.4" />
   </ItemGroup>
 

@@ -37,7 +37,7 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
         #region  Print Order
         public IActionResult PrintOrder(int id , int userId)
         {
-            var report = StiReport.CreateNewReport();
+            var report = new StiReport();
             report.Load(StiNetCoreHelper.MapPath(this, "wwwroot/Reports/Report.mrt"));
             var order = _orderService.ShowOrderForAdmin(id,userId);
             report.RegData("dt", order);

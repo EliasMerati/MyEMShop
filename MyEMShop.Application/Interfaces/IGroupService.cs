@@ -7,8 +7,8 @@ namespace MyEMShop.Application.Interfaces
     public interface IGroupService
     {
         List<ProductGroup> GetGroups();
-        IList<SelectListItem> GetGroupsForManageProduct();
-        IList<SelectListItem> GetSubGroupsForManageProduct(int groupId);
+        List<SelectListItem> GetGroupsForManageProduct();
+        List<SelectListItem> GetSubGroupsForManageProduct(int groupId);
         void AddGroup(ProductGroup group);
         void UpdateGroup(ProductGroup group);
         ProductGroup GetGroupById(int groupId);
