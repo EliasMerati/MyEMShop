@@ -98,9 +98,9 @@ namespace MyEMShop.EndPoint
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             #region Stimulsoft key
-            var contentRoot = Directory.GetCurrentDirectory();
-            var licenseFile = Path.Combine(contentRoot, "wwwroot/Reports", "license.key");
-            Stimulsoft.Base.StiLicense.LoadFromFile(licenseFile);
+            //var contentRoot = Directory.GetCurrentDirectory();
+            //var licenseFile = Path.Combine(contentRoot, "wwwroot/Reports", "license.key");
+            //Stimulsoft.Base.StiLicense.LoadFromFile(licenseFile);
             #endregion
 
             if (env.IsDevelopment())
