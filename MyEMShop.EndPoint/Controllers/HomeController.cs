@@ -8,7 +8,6 @@ using MyEMShop.EndPoint.Models;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 
 namespace MyEMShop.EndPoint.Controllers
 {
