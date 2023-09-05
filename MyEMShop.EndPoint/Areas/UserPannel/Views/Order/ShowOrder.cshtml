@@ -251,12 +251,9 @@
                         }
                         else
                         {
-                            <div class="pull-right">
-                                <a disabled class="btn btn-primary">  تسویه حساب از طریق کیف پول</a>
-                            </div>
                             <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i>موجودی کیف پول شما کافی نیست. لطفا از طریق <a href="/UserPannel/Wallet" class="alert-link"><strong>لینک شارژ حساب</strong></a> اقدام به شارژ آن کنید</div>
                         }
-                        <div class="pull-left"><a asp-controller="Wallet" asp-action="OnlinePayment" class="btn btn-primary">پرداخت آنلاین</a></div>
+                        <div class="pull-left"><a asp-area="UserPannel" asp-controller="Wallet" asp-action="OnlinePay" class="btn btn-primary">پرداخت آنلاین</a></div>
                     }
                 </div>
             </div>

@@ -66,7 +66,7 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
             return View(order);
         }
 
-        public IActionResult FinalOrder(int id, int productid)
+        public IActionResult FinalOrder(int id)
         {
             if (_orderService.FinallyOrder(User.Identity.Name , id ))
             {
@@ -74,6 +74,7 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
             }
             return BadRequest();
         }
+
 
         public IActionResult UseDiscount(int orderId , string code)
         {

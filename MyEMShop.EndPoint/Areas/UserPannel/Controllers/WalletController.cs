@@ -60,24 +60,15 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
         }
 
         #region Online Pay
-        public IActionResult OnlinePayment()
+        public IActionResult OnlinePay()
         {
-            int sum = 0;
             var order = _orderService.OrderNotPayment();
-            foreach (var item in order.OrderDetails)
-            {
-                sum = item.Price * item.Count;
-            }
-            int tax = (int)_taxService.GetTax().TaxValue;
-            int taxvalue = sum * tax / 100;
-            int total = sum + taxvalue;
-          
             var user = _userPannel.GetUserByUserName(User.Identity.Name);
             if (order is null)
             {
                 return Redirect("NotFound");
             }
-            var payment = new Zarinpal.Payment("", total);
+            var payment = new Zarinpal.Payment("", order.OrderSum);
             var result = payment.PaymentRequest($"پرداخت فاکتور شماره ی {order.OrderId}", $"https://localhost:44346/OnlinePayment/{order.OrderId}", user.Email, (user.PhoneNumber is not null) ? user.PhoneNumber : "");
             if (result.Result.Status is 100)
             {

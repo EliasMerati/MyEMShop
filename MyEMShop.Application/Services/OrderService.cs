@@ -273,7 +273,6 @@ namespace MyEMShop.Application.Services
                 _db.SaveChanges();
                 return true;
             }
-
             return false;
         }
 
