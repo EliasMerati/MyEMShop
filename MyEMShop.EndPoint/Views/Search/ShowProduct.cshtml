@@ -12,7 +12,7 @@
     <meta name=robots content=noodp,noydir>
     <meta property=og:site_name value="فروشگاه پوشاک زنانه به دخت - مشاهده ی محصول">
     <meta property=og:title content=@ViewData["Title"]>
-  @*<meta property=og:url content="https://toplearn.com/ShowCourse/@Model.CourseTitle" />*@
+                    @*<meta property=og:url content="https://toplearn.com/ShowCourse/@Model.CourseTitle" />*@
     <meta property=og:image content="/course/image/@Model.MainImageProduct">
     <meta property=og:image:url content="/course/image/@Model.MainImageProduct" />
     <meta property=og:image:width content="700">
@@ -43,7 +43,7 @@
                             <div class="image-additional" id="gallery_01">
                                 @foreach (var item in Model.ProductImages)
                                 {
-                                    <a  class="thumbnail" style="height:60px;width:90px;" href="#" data-zoom-image="/Template/image/product/Image/@item.PI_ImageName" data-image="/Template/image/product/Image/@item.PI_ImageName" title="@item.PI_ImageName">
+                                    <a class="thumbnail" style="height:60px;width:90px;" href="#" data-zoom-image="/Template/image/product/Image/@item.PI_ImageName" data-image="/Template/image/product/Image/@item.PI_ImageName" title="@item.PI_ImageName">
                                         <img src="/Template/image/product/Image/@item.PI_ImageName" title="@item.PI_ImageName" alt="@item.PI_ImageName" />
                                     </a>
                                 }
@@ -317,7 +317,19 @@
                         }
                     </div>
                 }
+                <!--Short Link Start -->
+                <div class="left-side">
+                    <div class="course-shortlink box-shadow">
+                        <span class="title"> لینک کوتاه </span>
+                        <span class="link">https://toplearn.com/c/5984</span>
+                        <a href="javascript:void(0)" class="copy-btn" data-clipboard-text="https://toplearn.com/c/5984">
+                            <i class="zmdi zmdi-copy">
 
+                            </i>
+                        </a>
+                    </div>
+                </div>
+                <!--Short Link End -->
                 <h3 class="subtitle">ویژه</h3>
                 @{
                     List<Product> products = ViewBag.special as List<Product>;
@@ -374,7 +386,7 @@
             lensFadeOut: 500,
             loadingIcon: 'image/progress.gif'
         });
-            // pass the images to swipebox
+        // pass the images to swipebox
         $("#zoom_01").bind("click", function (e) {
             var ez = $('#zoom_01').data('elevateZoom');
             $.swipebox(ez.getGalleryList());

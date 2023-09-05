@@ -63,7 +63,7 @@
                                             <td class="center">@item.OrderAddress</td>
                                             <td class="center">
                                                 <a asp-area="UserPannel" asp-controller="Order" asp-action="ShowOrderForAdmin" asp-route-orderId="@item.OrderId" asp-route-userId="@item.UserId" class="btn btn-sm btn-default"> مشاهده ی فاکتور</a>
-                                                <a asp-area="UserPannel" asp-controller="Order" asp-action="PrintPage" asp-route-id="@item.OrderId" asp-route-userId="@item.UserId" class="btn btn-sm btn-primary"> چاپ فاکتور</a>
+                                                <a asp-area="UserPannel" asp-controller="Order" asp-action="PrintOrder" asp-route-id="@item.OrderId" asp-route-userId="@item.UserId" class="btn btn-sm btn-primary"> چاپ فاکتور</a>
                                                 @if (item.OrderState == OrderState.IsReady)
                                                 {
                                                     <a disabled class="btn btn-sm btn-warning">آماده ارسال</a>

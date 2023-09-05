@@ -182,7 +182,7 @@
                         <div class="panel-body">
                             @if (Model.OrderAddress is null || Model.OrderCity is null || Model.OrderOstan is null || Model.OrderPhoneNumber is null || Model.OrderPostalCode is null)
                             {
-                                <div class="alert alert-warning"><i class="fa fa-warning"></i>لطفا از منوی کاربری آدرس خود را تکمیل کنید و سبد خرید فعلی را پاک کنید و مجددا برای خرید اقدام کنید تا مشکلی بابت ارسال محصول پیش نیاید</div>
+                                <div class="alert alert-warning"><i class="fa fa-warning"></i>لطفا از منوی کاربری آدرس خود را تکمیل کنید <br> سبد خرید فعلی را پاک کنید <br> مجددا برای خرید اقدام کنید تا مشکلی بابت ارسال محصول پیش نیاید</div>
                             }
                             else
                             {
@@ -242,7 +242,7 @@
 
                     @if (!Model.IsFinally)
                     {
-                        <div class="pull-left"><a asp-controller="Wallet" asp-action="OnlinePayment" class="btn btn-primary">پرداخت آنلاین</a></div>
+                        
                         @if (_UserPannelService.BalanceWallet(User.Identity.Name) >= SumOrder)
                         {
                             <div class="pull-right">
@@ -256,6 +256,7 @@
                             </div>
                             <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i>موجودی کیف پول شما کافی نیست. لطفا از طریق <a href="/UserPannel/Wallet" class="alert-link"><strong>لینک شارژ حساب</strong></a> اقدام به شارژ آن کنید</div>
                         }
+                        <div class="pull-left"><a asp-controller="Wallet" asp-action="OnlinePayment" class="btn btn-primary">پرداخت آنلاین</a></div>
                     }
                     else
                     {
