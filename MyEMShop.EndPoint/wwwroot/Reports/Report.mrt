@@ -7,7 +7,10 @@
     <DataSources isList="true" count="1">
       <dt Ref="2" type="DataTableSource" isKey="true">
         <Alias>dt</Alias>
-        <Columns isList="true" count="0" />
+        <Columns isList="true" count="2">
+          <value>total,total,System.Int32,</value>
+          <value>Column,System.String</value>
+        </Columns>
         <Dictionary isRef="1" />
         <Name>dt</Name>
         <NameInSource>dt</NameInSource>
@@ -54,10 +57,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>9/5/2023 12:28:36 PM</ReportChanged>
+  <ReportChanged>9/5/2023 12:40:21 PM</ReportChanged>
   <ReportCreated>9/4/2023 10:27:18 PM</ReportCreated>
   <ReportFile>J:\Projeh .Net Core\MyEMShop\MyEMShop.EndPoint\wwwroot\Reports\Report.mrt</ReportFile>
-  <ReportGuid>236de6b73fd744628c634be09d10d0ed</ReportGuid>
+  <ReportGuid>669ba80792124ff5abd67eafafa7816c</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Inches</ReportUnit>
   <ReportVersion>2019.2.1.0</ReportVersion>

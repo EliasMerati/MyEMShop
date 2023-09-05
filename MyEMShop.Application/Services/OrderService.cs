@@ -296,7 +296,7 @@ namespace MyEMShop.Application.Services
             int rowsCount = _db.Orders
                 .Include(o => o.OrderDetails)
                 .Include(u => u.User)
-                .Where(os => os.OrderState == orderState)
+                .Where(os => os.OrderState == orderState && os.IsFinally)
                 .OrderBy(o => o.OrderDate)
                 .Select(o => new OrdersDto
                 {
@@ -311,7 +311,7 @@ namespace MyEMShop.Application.Services
             var result = _db.Orders
                 .Include(o => o.OrderDetails)
                 .Include(u => u.User)
-                .Where(os => os.OrderState == orderState)
+                .Where(os => os.OrderState == orderState && os.IsFinally)
                 .OrderBy(o => o.OrderDate)
                 .Select(o => new OrdersDto
                 {
