@@ -38,9 +38,12 @@
 
                     <h1 class="title" itemprop="name"><strong>@Model.ProductTitle</strong></h1>
                     <!--Short Link Start -->
+                    @{
+                        string Link = "https://localhost:44346/p/" + Model.ShortKey;
+                    }
                     <div class="tag text-center" style="max-width:320px">
                         <span class="title"><strong>لینک کوتاه  :</strong> </span>
-                            <span class="link">https://toplearn.com/c/5984</span>
+                            <a href="@Link" class="link">@("localhost:44346/p/" + Model.ShortKey)</a>
                     </div>
                     <!--Short Link End -->
                     <div class="row product-info">
@@ -229,7 +232,7 @@
                             {
                                 <div class="product-thumb clearfix">
                                     <input type="hidden" value="@item.ProductId" />
-                                    <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt=" @item.ProductTitle " title=" @item.ProductTitle " class="img-responsive" /></a></div>
+                                    <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt=" @item.ProductTitle " title=" @item.ProductTitle " class="img-responsive" /></a></div>
                                     <div class="caption">
                                         <input type="hidden" value="@item.ProductId" />
                                         <h4><a href="/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
@@ -268,7 +271,7 @@
                         {
                             <div class="product-thumb clearfix">
                                 <input type="hidden" value="@item.ProductId" />
-                                <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MiniPic/@item.MainImageProduct" alt=" @item.ProductTitle " title=" @item.ProductTitle " class="img-responsive" /></a></div>
+                                <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MiniPic/@item.MainImageProduct" alt=" @item.ProductTitle " title=" @item.ProductTitle " class="img-responsive" /></a></div>
                                 <div class="caption">
                                     <input type="hidden" value="@item.ProductId" />
                                     <h4><a href="/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
@@ -313,7 +316,7 @@
                         {
                             <div class="product-thumb clearfix">
                                 <input type="hidden" value="@item.ProductId" />
-                                <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MiniPic/@item.MainImageProduct" alt=" @item.ProductTitle " title=" @item.ProductTitle " class="img-responsive" /></a></div>
+                                <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MiniPic/@item.MainImageProduct" alt=" @item.ProductTitle " title=" @item.ProductTitle " class="img-responsive" /></a></div>
                                 <div class="caption">
                                     <h4><a href="/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
                                     <p class="price">

@@ -54,6 +54,7 @@ namespace MyEMShop.Application.Services
         public void CreateProduct(List<IFormFile> images, Product product, IFormFile Demo, IFormFile Image, string color)
         {
             product.InsertDate = DateTime.Now;
+            product.ShortKey = GenerateShortKey();
 
             SetMainImageForProduct(product, Image);
 
@@ -124,7 +125,7 @@ namespace MyEMShop.Application.Services
             }
         }
 
-        public Tuple<List<GetProductForAdminDto>,int> GetProducts(int pageId =1)
+        public Tuple<List<GetProductForAdminDto>, int> GetProducts(int pageId = 1)
         {
             int skip = (pageId - 1) * 8;
 
@@ -162,7 +163,7 @@ namespace MyEMShop.Application.Services
             int skip = (pageId - 1) * 8;
 
             int rowsCount = _db.Products
-                .Where(p=>p.IsDelete)
+                .Where(p => p.IsDelete)
                 .Select(p => new GetProductForAdminDto
                 {
                     ProductId = p.ProductId,
@@ -174,7 +175,7 @@ namespace MyEMShop.Application.Services
 
             var result = _db.Products
                 .OrderByDescending(p => p.ProductId)
-                .Where(p=>p.IsDelete)
+                .Where(p => p.IsDelete)
                 .Select(p => new GetProductForAdminDto
                 {
                     ProductId = p.ProductId,
@@ -389,7 +390,7 @@ namespace MyEMShop.Application.Services
                     break;
                 case "latest":
                     {
-                        result = result.Where(p=>!p.IsDelete).OrderByDescending(p => p.InsertDate );
+                        result = result.Where(p => !p.IsDelete).OrderByDescending(p => p.InsertDate);
                         break;
                     }
                 case "special":
@@ -476,7 +477,7 @@ namespace MyEMShop.Application.Services
         public List<Product> GetLatestProduct()
         {
             return _db.Products
-                .Where(p=>!p.IsDelete)
+                .Where(p => !p.IsDelete)
                 .OrderByDescending(p => p.InsertDate)
                 .Take(5)
                 .ToList();
@@ -521,12 +522,23 @@ namespace MyEMShop.Application.Services
 
         public ShowProductForRefresh GetForRefresh(int productId)
         {
-            var product = _db.Products.Single(p=> p.ProductId == productId && p.IsDelete);
+            var product = _db.Products.Single(p => p.ProductId == productId && p.IsDelete);
             ShowProductForRefresh refresh = new ShowProductForRefresh();
             refresh.ProductId = product.ProductId;
             refresh.ProductPrice = product.ProductPrice;
-            refresh.ProductTitle= product.ProductTitle;
+            refresh.ProductTitle = product.ProductTitle;
             return refresh;
+        }
+
+        public string GenerateShortKey(int lenght = 4)
+        {
+            string key = Guid.NewGuid().ToString().Replace("-", "").Substring(0, lenght);
+            while (_db.Products.Any(p=>p.ShortKey == key))
+            {
+                key = Guid.NewGuid().ToString().Replace("-", "").Substring(0, lenght);
+            }
+
+            return key;
         }
     }
 }

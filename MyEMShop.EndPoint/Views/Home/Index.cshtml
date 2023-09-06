@@ -39,7 +39,7 @@
                 foreach (var item in Model)
                 {
                     <div class="product-thumb">
-                        <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
+                        <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
                         <div class="caption">
                             <h4><a href="/Search/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
                             <p class="price">
@@ -82,7 +82,7 @@
                 foreach (var item in latest)
                 {
                     <div class="product-thumb">
-                        <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
+                        <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
                         <div class="caption">
                             <h4><a href="/Search/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
                             <p class="price">
@@ -124,7 +124,7 @@
                 foreach (var item in popular)
                 {
                     <div class="product-thumb">
-                        <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
+                        <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
                         <div class="caption">
                             <h4><a href="/Search/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
                             <p class="price">
@@ -165,7 +165,7 @@
                 foreach (var item in special)
                 {
                     <div class="product-thumb clearfix">
-                        <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
+                        <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
                         <div class="caption">
                             <h4><a href="/Search/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
                             <p class="price">
@@ -215,7 +215,7 @@
         foreach (var item in PopularForIndex)
         {
             <div class="product-thumb clearfix">
-                <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
+                <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
                 <div class="caption">
                     <h4><a href="/Search/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
                     <p class="price">
@@ -259,7 +259,7 @@
                     foreach (var item in SpecialForIndex)
                     {
                         <div class="product-thumb clearfix">
-                            <div class="image"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
+                            <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
                             <div class="caption">
                                 <h4><a href="/Search/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
                                 <p class="price">

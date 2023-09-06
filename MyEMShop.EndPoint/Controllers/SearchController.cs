@@ -44,8 +44,8 @@ namespace MyEMShop.EndPoint.Controllers
         }
 
 
-        [Route("/ShowProduct/{id}")]
-        public IActionResult ShowProduct(int id)
+        [Route("/ShowProduct/{id}/{title}")]
+        public IActionResult ShowProduct(int id,string title)
         {
             ViewBag.CommentCount = _commentService.GetAllProductComments(id);
             ViewBag.special = _productService.GetSpecialProduct();

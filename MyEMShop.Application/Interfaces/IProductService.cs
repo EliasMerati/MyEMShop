@@ -12,6 +12,7 @@ namespace MyEMShop.Application.Interfaces
 
         #region Product
         Tuple<List<GetProductForAdminDto>, int> GetProducts(int pageId = 1);
+        string GenerateShortKey(int lenght = 4);
         void RefreshProduct(int productId);
         int AddProduct(Product product);
         IList<SelectListItem> GetProductLevel();

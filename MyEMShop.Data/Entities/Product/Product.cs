@@ -75,6 +75,10 @@ namespace MyEMShop.Data.Entities.Product
         [Display(Name = "پیشنهاد محصول")]
         public bool Isspecial { get; set; }
 
+        [Display(Name = "لینک کوتاه محصول")]
+        [MaxLength(4)]
+        public string ShortKey { get; set; }
+
 
 
 
