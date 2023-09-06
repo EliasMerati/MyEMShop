@@ -55,6 +55,12 @@ namespace MyEMShop.EndPoint.Controllers
             return View(_productService.GetProductForShow(id));
         }
 
+        [Route("p/{key}")]
+        public IActionResult ShortKeyRedirect(string key)
+        {
+
+        }
+
         [Authorize]
         public IActionResult BuyProduct(int id)
         {
