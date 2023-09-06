@@ -58,7 +58,10 @@ namespace MyEMShop.EndPoint.Controllers
         [Route("p/{key}")]
         public IActionResult ShortKeyRedirect(string key)
         {
-
+            var product = _productService.GetByShortKey(key);
+            if (product is null) { return View("NotFound"); }
+            Uri uri = new Uri("https://localhost:44346/"+ "ShowProduct/" + product.ProductId +"/"+ product.ProductTitle.Trim().Replace(" ","-"));
+            return Redirect(uri.AbsoluteUri);
         }
 
         [Authorize]

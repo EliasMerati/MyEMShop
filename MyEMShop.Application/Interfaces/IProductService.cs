@@ -37,6 +37,7 @@ namespace MyEMShop.Application.Interfaces
         List<Product> GetSpecialProductForIndex();
         List<Product> GetAllProductLikeName(int productId);
         ShowProductForRefresh GetForRefresh(int productId);
+        Product GetByShortKey(string shortKey);
         #endregion
 
     }

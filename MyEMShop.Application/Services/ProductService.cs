@@ -540,5 +540,10 @@ namespace MyEMShop.Application.Services
 
             return key;
         }
+
+        public Product GetByShortKey(string shortKey)
+        {
+            return _db.Products.FirstOrDefault(p => p.ShortKey == shortKey);
+        }
     }
 }
