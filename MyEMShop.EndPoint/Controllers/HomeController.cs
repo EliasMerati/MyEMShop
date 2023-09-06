@@ -22,6 +22,7 @@ namespace MyEMShop.EndPoint.Controllers
         private readonly IPrivacyService _privacyService;
         private readonly ITermsService _termsService;
         private readonly IFaqService _faqservice;
+        private readonly IAboutUsService _aboutus;
 
 
 
@@ -33,6 +34,7 @@ namespace MyEMShop.EndPoint.Controllers
             , IPrivacyService privacyService
             , ITermsService termsService
             , IFaqService faqservice
+            , IAboutUsService aboutUs
 
 
             )
@@ -46,6 +48,7 @@ namespace MyEMShop.EndPoint.Controllers
             _privacyService = privacyService;
             _termsService = termsService;
             _faqservice = faqservice;
+            _aboutus= aboutUs;
         }
         #endregion
 
@@ -181,7 +184,8 @@ namespace MyEMShop.EndPoint.Controllers
         [Route("/AboutUs")]
         public IActionResult AboutUs()
         {
-            return View("AboutUs");
+            var aboutus = _aboutus.GetAboutUs();
+            return View("AboutUs",aboutus);
         }
     }
 }
