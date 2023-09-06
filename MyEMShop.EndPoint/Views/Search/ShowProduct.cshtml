@@ -12,9 +12,9 @@
     <meta name=robots content=noodp,noydir>
     <meta property=og:site_name value="فروشگاه پوشاک زنانه به دخت - مشاهده ی محصول">
     <meta property=og:title content=@ViewData["Title"]>
-                    @*<meta property=og:url content="https://toplearn.com/ShowCourse/@Model.CourseTitle" />*@
-    <meta property=og:image content="/course/image/@Model.MainImageProduct">
-    <meta property=og:image:url content="/course/image/@Model.MainImageProduct" />
+    <meta property=og:url content="https://localhost:44346/Template/image/product/@Model.MainImageProduct" />
+    <meta property=og:image content="/Template/image/product/@Model.MainImageProduct">
+    <meta property=og:image:url content="/Template/image/product/@Model.MainImageProduct" />
     <meta property=og:image:width content="700">
     <meta property=og:image:type content="image/jpg">
     <meta property=og:description content=" مشاهده ی محصول فروشگاه پوشاک زنانه به دخت">
@@ -35,7 +35,14 @@
             <!--Middle Part Start-->
             <div id="content" class="col-sm-9">
                 <div itemscope itemtype="http://schema.org/محصولات">
-                    <h1 class="title" itemprop="name">@Model.ProductTitle</h1>
+
+                    <h1 class="title" itemprop="name"><strong>@Model.ProductTitle</strong></h1>
+                    <!--Short Link Start -->
+                    <div class="tag text-center" style="max-width:320px">
+                        <span class="title"><strong>لینک کوتاه  :</strong> </span>
+                            <span class="link">https://toplearn.com/c/5984</span>
+                    </div>
+                    <!--Short Link End -->
                     <div class="row product-info">
                         <div class="col-sm-6">
                             <div class="image"><img class="img-responsive" itemprop="image" id="zoom_01" src="/Template/image/product/MainPic/@Model.MainImageProduct" title="@Model.ProductTitle" alt="@Model.ProductTitle" data-zoom-image="/Template/image/product/MainPic/@Model.MainImageProduct" /> </div>
@@ -51,9 +58,6 @@
                         </div>
                         <div class="col-sm-6">
                             <ul class="list-unstyled description">
-                                @*      <li><b>برند :</b> <a href="#"><span itemprop="brand">اپل</span></a></li>
-                                <li><b>کد محصول :</b> <span itemprop="mpn">محصولات 17</span></li>
-                                <li><b>امتیازات خرید:</b> 700</li>*@
                                 @if (Model.PL_Id == 1)
                                 {
                                     <li><b>وضعیت موجودی : </b> <span class="instock">موجود</span></li>
@@ -317,19 +321,7 @@
                         }
                     </div>
                 }
-                <!--Short Link Start -->
-                <div class="left-side">
-                    <div class="course-shortlink box-shadow">
-                        <span class="title"> لینک کوتاه </span>
-                        <span class="link">https://toplearn.com/c/5984</span>
-                        <a href="javascript:void(0)" class="copy-btn" data-clipboard-text="https://toplearn.com/c/5984">
-                            <i class="zmdi zmdi-copy">
 
-                            </i>
-                        </a>
-                    </div>
-                </div>
-                <!--Short Link End -->
                 <h3 class="subtitle">ویژه</h3>
                 @{
                     List<Product> products = ViewBag.special as List<Product>;
