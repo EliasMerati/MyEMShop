@@ -11,6 +11,7 @@ using MyEMShop.Data.Entities.Slider;
 using MyEMShop.Data.Entities.Tax;
 using MyEMShop.Data.Entities.Terms;
 using MyEMShop.Data.Entities.User;
+using MyEMShop.Data.Entities.Visitors;
 using MyEMShop.Data.Entities.Wallet;
 using System;
 using System.Linq;
@@ -67,6 +68,12 @@ namespace MyEMShop.Data.Context
 
         #region Banner
         public DbSet<Banner> Banners { get; set; }
+        #endregion
+
+        #region Visitors
+        public DbSet<Visitor> Visitors { get; set; }
+        public DbSet<VisitorDevice> VisitorDevices { get; set; }
+        public DbSet<VisitorVersion> VisitorVersions { get; set; }
         #endregion
 
         #region Privacy Policy
