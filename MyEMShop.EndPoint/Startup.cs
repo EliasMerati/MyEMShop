@@ -15,6 +15,7 @@ using MyEMShop.EndPoint.Filters;
 using System;
 using System.IO;
 using System.Text.Json.Serialization;
+using WebMarkupMin.AspNetCore5;
 
 namespace MyEMShop.EndPoint
 {
@@ -30,6 +31,26 @@ namespace MyEMShop.EndPoint
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            #region Minifier For Html & Gzip
+            services.AddWebMarkupMin(opt =>
+            {
+                opt.AllowMinificationInDevelopmentEnvironment = true;
+                opt.AllowCompressionInDevelopmentEnvironment = true;
+            }).AddHtmlMinification(option=>
+            {
+                option.MinificationSettings.RemoveHtmlComments = true;
+                option.MinificationSettings.RemoveHtmlCommentsFromScriptsAndStyles = true;
+                option.MinificationSettings.RemoveHttpProtocolFromAttributes = true;
+                option.MinificationSettings.RemoveHttpsProtocolFromAttributes = true;
+                option.MinificationSettings.RemoveJsProtocolFromAttributes = true;
+                option.MinificationSettings.RemoveJsTypeAttributes = true;
+                option.MinificationSettings.RemoveOptionalEndTags = true;
+                option.MinificationSettings.RemoveTagsWithoutContent = true;
+                option.MinificationSettings.MinifyInlineJsCode = true;
+                option.MinificationSettings.MinifyInlineCssCode = true;
+                
+            }).AddHttpCompression();
+            #endregion
 
             #region Solve Circle For JSON
             services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
@@ -122,7 +143,7 @@ namespace MyEMShop.EndPoint
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseWebMarkupMin();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();

@@ -1,0 +1,22 @@
+[
+  {
+    "outputFileName": "wwwroot/Template/css/AllCssFiles.css",
+    "inputFiles": [
+      "wwwroot/Template/css/stylesheet-skin4.css",
+      "wwwroot/Template/css/owl.carousel.css",
+      "wwwroot/Template/css/owl.transitions.css",
+      "wwwroot/Template/css/responsive.css",
+      "wwwroot/Template/css/responsive-rtl.css",
+      "wwwroot/Template/css/stylesheet.css",
+      "wwwroot/Template/css/stylesheet-rtl.css",
+      "wwwroot/Template/css/stylesheet-skin2.css",
+      "wwwroot/Template/css/stylesheet-skin3.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Template/css/font-awesome/css/font-awesome.min.css",
+    "inputFiles": [
+      "wwwroot/Template/css/font-awesome/css/font-awesome.css"
+    ]
+  }
+]

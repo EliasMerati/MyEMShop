@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="bundleconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Areas\UserPannel\Controllers\HomeController.cs~RF97af360.TMP" />
     <None Remove="Views\Home\Index.cshtml~RF25db509.TMP" />
   </ItemGroup>
@@ -41,6 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="bundleconfig.json" />
     <None Include="wwwroot\Admin\css\Ionicons\fonts\ionicons.svg" />
     <None Include="wwwroot\Admin\css\Ionicons\less\ionicons.less" />
     <None Include="wwwroot\Admin\css\Ionicons\less\_ionicons-font.less" />

@@ -1,6 +1,8 @@
 ﻿<link href="/Template/image/favicon.png" rel="icon" />
 <link rel="stylesheet" type="text/css" href="/Template/js/bootstrap/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="/Template/js/bootstrap/css/bootstrap-rtl.min.css" />
+<link rel="stylesheet" type="text/css" href="/Template/js/swipebox/src/css/swipebox.min.css">
+<environment names="Development">
 <link rel="stylesheet" type="text/css" href="/Template/css/font-awesome/css/font-awesome.min.css" />
 <link rel="stylesheet" type="text/css" href="/Template/css/stylesheet.css" />
 <link rel="stylesheet" type="text/css" href="/Template/css/owl.carousel.css" />
@@ -10,4 +12,8 @@
 <link rel="stylesheet" type="text/css" href="/Template/css/responsive-rtl.css" />
 <link rel="stylesheet" type="text/css" href="/Template/css/stylesheet-skin2.css" />
 <link rel="stylesheet" type="text/css" href="/Template/css/persian-fonts/mystyle.css" />
-<link rel="stylesheet" type="text/css" href="/Template/js/swipebox/src/css/swipebox.min.css">
+</environment>
+<environment names="Staging,Production">
+    <link href="~/template/css/allcssfiles.css" rel="stylesheet" />
+    <link href="~/template/css/allcssfiles.min.css" rel="stylesheet" />
+</environment>
