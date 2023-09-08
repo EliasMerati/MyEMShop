@@ -6,12 +6,14 @@ using MyEMShop.Application.Interfaces;
 using MyEMShop.Common;
 using MyEMShop.Data.Dtos.UserDto;
 using MyEMShop.Data.Entities.User;
+using MyEMShop.EndPoint.Filters;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 
 namespace MyEMShop.EndPoint.Controllers
 {
+    [ServiceFilter(typeof(SaveVisitorsFilter))]
     public class AccountController : Controller
     {
         #region Injection

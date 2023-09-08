@@ -21,12 +21,12 @@ namespace MyEMShop.Application.Services
             {
                 var visitors = new Visitor()
                 {
-                    Browser = new VisitorVersion { Family = visitor.Browser.Family, Version = visitor.Browser.Version },
+                    Browser = new VisitorBrowser { Family = visitor.Browser.Family, Version = visitor.Browser.Version },
                     CurrentLink= visitor.CurrentLink,
                     Ip= visitor.Ip,
                     Method= visitor.Method,
                     VisitorDevice = new VisitorDevice { Brand = visitor.VisitorDevice.Brand,Family = visitor.VisitorDevice.Family , IsSpider = visitor.VisitorDevice.IsSpider,Model = visitor.VisitorDevice.Model },
-                    OperationSystem = new VisitorVersion { Family = visitor.OperationSystem.Family, Version = visitor.OperationSystem.Version },
+                    OperationSystem = new VisitorBrowser { Family = visitor.OperationSystem.Family, Version = visitor.OperationSystem.Version },
                     PhisicalPath= visitor.PhisicalPath,
                     Protocol= visitor.Protocol,
                     ReferrerLink = visitor.ReferrerLink

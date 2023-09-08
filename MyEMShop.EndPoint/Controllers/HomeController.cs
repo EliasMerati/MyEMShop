@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Common;
+using MyEMShop.EndPoint.Filters;
 using MyEMShop.EndPoint.Models;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,6 +12,7 @@ using System.IO;
 
 namespace MyEMShop.EndPoint.Controllers
 {
+    [ServiceFilter(typeof(SaveVisitorsFilter))]
     public class HomeController : Controller
     {
         #region Inject Services

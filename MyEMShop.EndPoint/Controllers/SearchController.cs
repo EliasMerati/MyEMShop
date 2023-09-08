@@ -5,6 +5,7 @@ using MyEMShop.Application.Interfaces;
 using MyEMShop.Common;
 using MyEMShop.Data.Dtos.IsRead;
 using MyEMShop.Data.Entities.Product;
+using MyEMShop.EndPoint.Filters;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Text.Json;
 
 namespace MyEMShop.EndPoint.Controllers
 {
+    [ServiceFilter(typeof(SaveVisitorsFilter))]
     public class SearchController : Controller
     {
         #region Inject Service

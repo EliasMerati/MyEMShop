@@ -2,10 +2,12 @@
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Entities.ContactUs;
+using MyEMShop.EndPoint.Filters;
 using System;
 
 namespace MyEMShop.EndPoint.Controllers
 {
+    [ServiceFilter(typeof(SaveVisitorsFilter))]
     public class ContactUsController : Controller
     {
 

@@ -73,7 +73,8 @@ namespace MyEMShop.Data.Context
         #region Visitors
         public DbSet<Visitor> Visitors { get; set; }
         public DbSet<VisitorDevice> VisitorDevices { get; set; }
-        public DbSet<VisitorVersion> VisitorVersions { get; set; }
+        public DbSet<VisitorBrowser> VisitorVersions { get; set; }
+        public DbSet<VisitorOs> VisitorOs { get; set; }
         #endregion
 
         #region Privacy Policy
@@ -120,17 +121,12 @@ namespace MyEMShop.Data.Context
             SeedData(modelBuilder);
 
             #region Query Filters
-            //modelBuilder.Entity<User>()
-            //    .HasQueryFilter(u => !u.IsDelete);
 
             modelBuilder.Entity<Role>()
                 .HasQueryFilter(r => !r.IsDelete);
 
             modelBuilder.Entity<ProductGroup>()
                 .HasQueryFilter(pg => !pg.IsDelete);
-
-            //modelBuilder.Entity<Product>()
-            //    .HasQueryFilter(p => !p.IsDelete);
 
             modelBuilder.Entity<ProductComment>()
                 .HasQueryFilter(pc => !pc.IsDelete);
@@ -288,7 +284,7 @@ namespace MyEMShop.Data.Context
                         new { PermissionId = 43, PermissionTitle = "ویرایش بنر کوچک چپ", ParentId = 39 },
                         new { PermissionId = 44, PermissionTitle = "ویرایش بنر کوچک وسط چپ ", ParentId = 39 },
                         new { PermissionId = 45, PermissionTitle = "ویرایش بنر کوچک وسط راست ", ParentId = 39 },
-                        new { PermissionId = 46, PermissionTitle = "ویرایش بنر کوچک راست ", ParentId = 389 },
+                        new { PermissionId = 46, PermissionTitle = "ویرایش بنر کوچک راست ", ParentId = 39 },
                         new { PermissionId = 47, PermissionTitle = "حذف بنر کوچک چپ ", ParentId = 39 },
                         new { PermissionId = 48, PermissionTitle = "حذف بنر کوچک وسط چپ ", ParentId = 39 },
                         new { PermissionId = 49, PermissionTitle = "حذف بنر کوچک وسط راست ", ParentId = 39 },
@@ -359,6 +355,11 @@ namespace MyEMShop.Data.Context
                         new { PS_Id = 3, SizeTitle = "Large" },
                         new { PS_Id = 4, SizeTitle = "Small" },
                         new { PS_Id = 5, SizeTitle = "XXLarge" });
+            #endregion
+
+            #region Contact Us
+            modelBuilder.Entity<ContactUsInfo>()
+           .HasData(new { ContactUsInfoId = 1, ContactUsAddress = "خیابان امیر کبیر - امیر کبیر 9/5", ContactUsOstanCity = "خراسان رضوی - نیشابور", ContactUsPelak = "141", ContactUsPhone = "09015519699", ContactUsWorkTime = "شنبه تا پنج شنبه از ساعت 8 الی 18 به استثنای روزهای تعطیل رسمی", ContactUsDesc = "فقط در ساعات کاری جوابگو هستیم , زمان دیگر پاسخگو نخواهیم بود" });
             #endregion
 
         }

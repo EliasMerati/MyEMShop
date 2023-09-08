@@ -11,6 +11,7 @@ using MyEMShop.Application.Interfaces;
 using MyEMShop.Application.Services;
 using MyEMShop.Common;
 using MyEMShop.Data.Context;
+using MyEMShop.EndPoint.Filters;
 using System;
 using System.IO;
 using System.Text.Json.Serialization;
@@ -78,6 +79,7 @@ namespace MyEMShop.EndPoint
             services.AddScoped<IContactUsInfoService, ContactUsInfoService>();
             services.AddScoped<IAboutUsService, AboutUsService>();
             services.AddScoped<IVisitorService, VisitorService>();
+            services.AddScoped<SaveVisitorsFilter>();
             #endregion
 
             #region Authentication
