@@ -32,19 +32,33 @@ namespace MyEMShop.EndPoint.Filters
             var request = context.HttpContext.Request;
             var parser = Parser.GetDefault();
             ClientInfo client = parser.Parse(userAgent);
-
-            _visitorService.AddVisitorInfo(new Visitor
+            var visitor = new Visitor
             {
-                Browser = new VisitorBrowser { Family = client.UA.Family, Version = $"{client.UA.Major}.{client.UA.Minor}.{client.UA.Patch}" },
-                OperationSystem = new VisitorBrowser { Family = client.OS.Family, Version = $"{client.OS.Major}.{client.OS.Minor}.{client.OS.Patch}" },
                 CurrentLink = currentUrl,
                 Ip = ip,
                 ReferrerLink = referer,
-                VisitorDevice = new VisitorDevice { Brand = client.Device.Brand, Family = client.Device.Family, IsSpider = client.Device.IsSpider, Model = client.Device.Model },
                 Method = request.Method,
                 PhisicalPath = $"{controllerName}/{actionName}",
                 Protocol = request.Protocol,
-            });
+                OperationSystem = new VisitorOs
+                {
+                    Family = client.OS.Family,
+                    Version = $"{client.OS.Major}.{client.OS.Minor}.{client.OS.Patch}"
+                },
+                Browser = new VisitorBrowser
+                {
+                    Family = client.UA.Family,
+                    Version = $"{client.UA.Major}.{client.UA.Minor}.{client.UA.Patch}"
+                },
+                VisitorDevice = new VisitorDevice
+                {
+                    Brand = client.Device.Brand,
+                    Family = client.Device.Family,
+                    IsSpider = client.Device.IsSpider,
+                    Model = client.Device.Model
+                },
+            };
+            _visitorService.AddVisitorInfo(visitor);
 
         }
     }

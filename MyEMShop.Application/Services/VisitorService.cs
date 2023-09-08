@@ -26,12 +26,24 @@ namespace MyEMShop.Application.Services
                     Ip= visitor.Ip,
                     Method= visitor.Method,
                     VisitorDevice = new VisitorDevice { Brand = visitor.VisitorDevice.Brand,Family = visitor.VisitorDevice.Family , IsSpider = visitor.VisitorDevice.IsSpider,Model = visitor.VisitorDevice.Model },
-                    OperationSystem = new VisitorBrowser { Family = visitor.OperationSystem.Family, Version = visitor.OperationSystem.Version },
+                    OperationSystem = new VisitorOs { Family = visitor.OperationSystem.Family, Version = visitor.OperationSystem.Version },
                     PhisicalPath= visitor.PhisicalPath,
                     Protocol= visitor.Protocol,
                     ReferrerLink = visitor.ReferrerLink
                 };
                 _db.Add(visitors);
+                _db.SaveChanges();
+            }
+            catch (System.Exception)
+            {
+            }
+        }
+
+        public void UpdateVisitor(Visitor visitor)
+        {
+            try
+            {
+                _db.Update(visitor);
                 _db.SaveChanges();
             }
             catch (System.Exception)

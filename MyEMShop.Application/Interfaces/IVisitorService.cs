@@ -6,5 +6,6 @@ namespace MyEMShop.Application.Interfaces
     public interface IVisitorService
     {
         void AddVisitorInfo(Visitor visitor);
+        void UpdateVisitor(Visitor visitor);
     }
 }
