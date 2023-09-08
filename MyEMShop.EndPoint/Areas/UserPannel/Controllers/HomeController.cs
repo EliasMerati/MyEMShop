@@ -40,7 +40,7 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
         public IActionResult Edit(ShowUserInfoForEditPannelDto edit)
         {
             _userPannel.EditUserPannel(User.Identity.Name, edit);
-            return Redirect("/UserPannel/Index");
+            return LocalRedirect("/UserPannel/Index");
         }
         #endregion
 
@@ -65,7 +65,7 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
             }
 
             _userPannel.ChangeNewPassword(username,change.Password);
-            return Redirect("/LogOut");
+            return LocalRedirect("/LogOut");
         }
         #endregion
 

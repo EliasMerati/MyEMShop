@@ -100,7 +100,7 @@ namespace MyEMShop.EndPoint.Controllers
                     {
                         return Redirect(returnUrl);
                     }
-                    return Redirect("/");
+                    return LocalRedirect("/");
                 }
                 else
                 {
@@ -168,7 +168,7 @@ namespace MyEMShop.EndPoint.Controllers
             string HashPassword = _AccountServices.HashPassword(reset.Password);
             user.Password = HashPassword;
             _AccountServices.UpdateUser(user);
-            return Redirect("/Login");
+            return LocalRedirect("/Login");
         }
         //[HttpPost]
         //[Route("ResetPassword")]
@@ -191,7 +191,7 @@ namespace MyEMShop.EndPoint.Controllers
         public IActionResult LogOut()
         {
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return Redirect(nameof(Login));
+            return LocalRedirect(nameof(Login));
         }
         #endregion
 

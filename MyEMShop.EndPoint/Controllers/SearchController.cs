@@ -1,15 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Distributed;
 using MyEMShop.Application.Interfaces;
-using MyEMShop.Common;
 using MyEMShop.Data.Dtos.IsRead;
 using MyEMShop.Data.Entities.Product;
 using MyEMShop.EndPoint.Filters;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Text.Json;
 
 namespace MyEMShop.EndPoint.Controllers
 {
@@ -47,7 +43,7 @@ namespace MyEMShop.EndPoint.Controllers
 
 
         [Route("/ShowProduct/{id}/{title}")]
-        public IActionResult ShowProduct(int id,string title)
+        public IActionResult ShowProduct(int id, string title)
         {
             ViewBag.CommentCount = _commentService.GetAllProductComments(id);
             ViewBag.special = _productService.GetSpecialProduct();
@@ -62,15 +58,15 @@ namespace MyEMShop.EndPoint.Controllers
         {
             var product = _productService.GetByShortKey(key);
             if (product is null) { return View("NotFound"); }
-            Uri uri = new Uri("https://localhost:44346/"+ "ShowProduct/" + product.ProductId +"/"+ product.ProductTitle.Trim().Replace(" ","-"));
-            return Redirect(uri.AbsoluteUri);
+            Uri uri = new Uri("https://localhost:44346/" + "ShowProduct/" + product.ProductId + "/" + product.ProductTitle.Trim().Replace(" ", "-"));
+            return LocalRedirect(uri.AbsoluteUri);
         }
 
         [Authorize]
         public IActionResult BuyProduct(int id)
         {
             int orderId = _orderService.AddOrder(User.Identity.Name, id);
-            return Redirect("/UserPannel/Order/ShowOrder/" + orderId);
+            return LocalRedirect("/UserPannel/Order/ShowOrder/" + orderId);
         }
 
         [HttpPost]
@@ -89,16 +85,16 @@ namespace MyEMShop.EndPoint.Controllers
             return View(_commentService.GetAllComments(id, pageId));
         }
 
-        public IActionResult AccessComment(int productId , int commentId) 
+        public IActionResult AccessComment(int productId, int commentId)
         {
-            _commentService.AccessComment(productId,commentId);
-            return Redirect("/Admin/Comments");
+            _commentService.AccessComment(productId, commentId);
+            return LocalRedirect("/Admin/Comments");
         }
 
         public IActionResult DeleteComment(int productId, int commentId)
         {
             _commentService.DeleteComment(productId, commentId);
-            return Redirect("/Admin/Comments");
+            return LocalRedirect("/Admin/Comments");
         }
     }
 
