@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Ganss.Xss;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Dtos.IsRead;
@@ -76,6 +77,13 @@ namespace MyEMShop.EndPoint.Controllers
             productComment.AdminRead = IsAdminRead.IsFalse;
             productComment.CreateDate = DateTime.Now;
             productComment.UserId = _userPannel.GetUserIdByUserName(User.Identity.Name);
+
+            #region Sanitize Comment
+            var sanitizer = new HtmlSanitizer();
+            var resault = sanitizer.Sanitize(productComment.Comment);
+            productComment.Comment = resault;
+            #endregion
+
             _commentService.AddProductComment(productComment);
             return View("ShowComment", _commentService.GetAllComments(productComment.ProductId));
         }

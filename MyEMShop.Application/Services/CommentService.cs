@@ -20,7 +20,7 @@ namespace MyEMShop.Application.Services
         #endregion
 
         public void AddProductComment(ProductComment comment)
-        {
+        { 
             _db.ProductComments.Add(comment);
             _db.SaveChanges();
         }
