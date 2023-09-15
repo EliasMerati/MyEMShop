@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace MyEMShop.Data.Entities.Visitors
 {
@@ -12,6 +13,8 @@ namespace MyEMShop.Data.Entities.Visitors
         public string Method { get; set; }
         public string Protocol { get; set; }
         public string PhisicalPath { get; set; }
+        public DateTime Time { get; set; }
+        public string VisitID { get; set; }
 
 
         public VisitorBrowser Browser { get; set; }

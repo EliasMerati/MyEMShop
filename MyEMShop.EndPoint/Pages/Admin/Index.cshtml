@@ -1,5 +1,6 @@
 ﻿@page
 @model MyEMShop.EndPoint.Pages.Admin.IndexModel
+
 @{
     ViewData["Title"] = "صفحه اصلی ";
 }
@@ -12,49 +13,89 @@
             <div class="row">
                 <div class="col-lg-4 col-xs-6">
                     <!-- small box -->
-                    <div class="small-box bg-aqua">
+                    <div class="small-box bg-blue-gradient">
                         <div class="inner">
-                            <h3>150</h3>
+                            <h3>@ViewData["NewOrder"].ToString()</h3>
 
-                            <p>سفارش جدید</p>
+                            <p><strong>سفارش جدید</strong></p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
                     </div>
                 </div>
-                <!-- ./col -->
-                <!-- ./col -->
+
                 <div class="col-lg-4 col-xs-6">
                     <!-- small box -->
-                    <div class="small-box bg-yellow">
+                    <div class="small-box bg-yellow-gradient">
                         <div class="inner">
-                            <h3>44</h3>
+                            <h3>@ViewData["TotalUsers"].ToString()</h3>
 
-                            <p>کاربران ثبت شده</p>
+                            <p><strong>کاربران ثبت شده</strong></p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-person-add"></i>
                         </div>
                     </div>
                 </div>
-                <!-- ./col -->
+
                 <div class="col-lg-4 col-xs-6">
                     <!-- small box -->
-                    <div class="small-box bg-red">
+                    <div class="small-box bg-purple-gradient">
                         <div class="inner">
-                            <h3>65</h3>
+                            <h3>@ViewData["TodayVisits"].ToString()</h3>
 
-                            <p>بازدید جدید</p>
+                            <p><strong>بازدید امروز</strong></p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-pie-graph"></i>
                         </div>
                     </div>
                 </div>
-                <!-- ./col -->
-            </div>
 
+                <div class="col-lg-4 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-green-gradient">
+                        <div class="inner">
+                            <h3>@ViewData["TotalVisits"].ToString()</h3>
+
+                            <p><strong>بازدید کل</strong></p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-ios-eye-outline"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-aqua-gradient">
+                        <div class="inner">
+                            <h3>@ViewData["TodayVisitors"].ToString()</h3>
+
+                            <p><strong>بازدید کنندگان امروز</strong></p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-ios-eye-outline"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-red-gradient">
+                        <div class="inner">
+                            <h3>@ViewData["TotalVisitors"].ToString()</h3>
+
+                            <p><strong>کل بازدید کنندگان</strong></p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-ios-eye-outline"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
         <!-- /.col-lg-12 -->
     </div>

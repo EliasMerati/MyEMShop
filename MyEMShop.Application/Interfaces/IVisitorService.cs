@@ -1,11 +1,16 @@
-﻿using MyEMShop.Data.Dtos.Visitor;
-using MyEMShop.Data.Entities.Visitors;
+﻿using MyEMShop.Data.Entities.Visitors;
+using System.Collections.Generic;
 
 namespace MyEMShop.Application.Interfaces
 {
     public interface IVisitorService
     {
         void AddVisitorInfo(Visitor visitor);
-        void UpdateVisitor(Visitor visitor);
+        long TodayVisits();
+        long TodayVisitors();
+        long TotalVisits();
+        long TotalVisitors();
+        int NewOrder();
+        long TotalUsers();
     }
 }

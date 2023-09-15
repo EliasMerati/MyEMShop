@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
 using MyEMShop.Application.Interfaces;
+using MyEMShop.Common;
 using MyEMShop.Data.Entities.Visitors;
+using System;
 using UAParser;
 
 namespace MyEMShop.EndPoint.Filters
@@ -30,6 +32,17 @@ namespace MyEMShop.EndPoint.Filters
             var referer = context.HttpContext.Request.Headers["Referer"].ToString();
             var currentUrl = context.HttpContext.Request.Path;
             var request = context.HttpContext.Request;
+            string visitid = context.HttpContext.Request.Cookies["VisitID"];
+            if (visitid is null)
+            {
+                visitid = GenerateCode.GenerateUniqueCode();
+                context.HttpContext.Response.Cookies.Append("VisitID", visitid, new Microsoft.AspNetCore.Http.CookieOptions
+                {
+                    Path = "/",
+                    HttpOnly = true,
+                    Expires = DateTime.Now.AddDays(30)
+                });
+            }
             var parser = Parser.GetDefault();
             ClientInfo client = parser.Parse(userAgent);
             var visitor = new Visitor
@@ -37,6 +50,7 @@ namespace MyEMShop.EndPoint.Filters
                 CurrentLink = currentUrl,
                 Ip = ip,
                 ReferrerLink = referer,
+                VisitID = visitid,
                 Method = request.Method,
                 PhisicalPath = $"{controllerName}/{actionName}",
                 Protocol = request.Protocol,

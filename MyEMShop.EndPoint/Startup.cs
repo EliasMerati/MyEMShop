@@ -37,7 +37,7 @@ namespace MyEMShop.EndPoint
             {
                 opt.AllowMinificationInDevelopmentEnvironment = true;
                 opt.AllowCompressionInDevelopmentEnvironment = true;
-            }).AddHtmlMinification(option=>
+            }).AddHtmlMinification(option =>
             {
                 option.MinificationSettings.RemoveHtmlComments = true;
                 option.MinificationSettings.RemoveHtmlCommentsFromScriptsAndStyles = true;
@@ -49,7 +49,7 @@ namespace MyEMShop.EndPoint
                 option.MinificationSettings.RemoveTagsWithoutContent = true;
                 option.MinificationSettings.MinifyInlineJsCode = true;
                 option.MinificationSettings.MinifyInlineCssCode = true;
-                
+
             }).AddHttpCompression();
             #endregion
 
