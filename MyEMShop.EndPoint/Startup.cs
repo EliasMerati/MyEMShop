@@ -12,10 +12,8 @@ using MyEMShop.Application.Services;
 using MyEMShop.Common;
 using MyEMShop.Data.Context;
 using MyEMShop.EndPoint.Filters;
-using MyEMShop.EndPoint.Middlewares;
 using System;
 using System.IO;
-using System.Text.Json.Serialization;
 using WebMarkupMin.AspNetCore5;
 
 namespace MyEMShop.EndPoint
@@ -54,7 +52,7 @@ namespace MyEMShop.EndPoint
             #endregion
 
             #region Solve Circle For JSON
-            services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+            //services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
             #endregion
 
             services.AddRazorPages();
@@ -145,7 +143,7 @@ namespace MyEMShop.EndPoint
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseWebMarkupMin();
-            app.UseCSPMiddleware();
+            //app.UseCSPMiddleware();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();

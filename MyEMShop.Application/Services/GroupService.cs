@@ -58,7 +58,7 @@ namespace MyEMShop.Application.Services
                     Text = p.GroupTitle,
                 })
                 .ToList();
-        }
+         }
 
         public ProductGroup GetGroupById(int groupId)
         {
