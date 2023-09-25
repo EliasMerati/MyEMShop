@@ -14,5 +14,6 @@ namespace MyEMShop.Application.Interfaces
         User LoginUser(LoginDto login);
         string HashPassword(string password);
         bool ActiveAccount(string activeCode);
+        bool IsAdmin();
     }
 }

@@ -77,5 +77,11 @@ namespace MyEMShop.Application.Services
             _db.Users.Update(user);
             _db.SaveChanges();
         }
+
+        public bool IsAdmin()
+        {
+            return _db.UserRoles
+                .Where(u => u.RoleId == 1).Any();
+        }
     }
 }

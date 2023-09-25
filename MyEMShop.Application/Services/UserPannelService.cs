@@ -1,4 +1,5 @@
-﻿using MyEMShop.Application.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using MyEMShop.Application.Interfaces;
 using MyEMShop.Common;
 using MyEMShop.Data.Context;
 using MyEMShop.Data.Dtos.UserDto;
