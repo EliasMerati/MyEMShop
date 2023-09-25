@@ -76,7 +76,7 @@ namespace MyEMShop.EndPoint.Controllers
             {
                 string authority = HttpContext.Request.Query["Authority"];
                 var wallet = _userWalletService.GetWalletByWalletId(id);
-                var payment = new Zarinpal.Payment("", wallet.Amount);
+                var payment = new Zarinpal.Payment("e55a0dbd-7909-4dda-80ee-c8a6781e6aa1", wallet.Amount);
                 var res = payment.Verification(authority).Result;
                 if (res.Status == 100)
                 {
