@@ -78,10 +78,10 @@ namespace MyEMShop.Application.Services
             _db.SaveChanges();
         }
 
-        public bool IsAdmin()
+        public bool IsAdmin(string email)
         {
             return _db.UserRoles
-                .Where(u => u.RoleId == 1).Any();
+                .Any(u => u.User.Email == email && u.RoleId == 1);
         }
     }
 }

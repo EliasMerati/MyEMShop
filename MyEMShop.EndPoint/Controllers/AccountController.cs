@@ -100,11 +100,15 @@ namespace MyEMShop.EndPoint.Controllers
                     {
                         return LocalRedirect(returnUrl);
                     }
-                    if (_AccountServices.IsAdmin())
+                    if (!_AccountServices.IsAdmin(login.Email))
+                    {
+                        return LocalRedirect("/"); 
+                    }
+                    else
                     {
                         return LocalRedirect("/Admin");
                     }
-                    return LocalRedirect("/");
+                    
                 }
                 else
                 {
@@ -195,7 +199,7 @@ namespace MyEMShop.EndPoint.Controllers
         public IActionResult LogOut()
         {
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return LocalRedirect(nameof(Login));
+            return Redirect(nameof(Login));
         }
         #endregion
 
