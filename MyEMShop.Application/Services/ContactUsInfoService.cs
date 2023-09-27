@@ -62,17 +62,30 @@ namespace MyEMShop.Application.Services
         {
             if (ImgFile is not null)
             {
-                string DeleteImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/ContactUsInfo/", contactUsInfo.ContactUsImage);
-                if (File.Exists(DeleteImagePath))
+                if (contactUsInfo.ContactUsImage is not null)
                 {
-                    File.Delete(DeleteImagePath);
+                    string DeleteImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/ContactUsInfo/", contactUsInfo.ContactUsImage);
+                    if (File.Exists(DeleteImagePath))
+                    {
+                        File.Delete(DeleteImagePath);
+                    }
+                    contactUsInfo.ContactUsImage = GenerateCode.GenerateUniqueCode() + Path.GetExtension(ImgFile.FileName);
+                    string Imagepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/ContactUsInfo/", contactUsInfo.ContactUsImage);
+                    using (var stream = new FileStream(Imagepath, FileMode.CreateNew))
+                    {
+                        ImgFile.CopyTo(stream);
+                    }
                 }
-                contactUsInfo.ContactUsImage = GenerateCode.GenerateUniqueCode() + Path.GetExtension(ImgFile.FileName);
-                string Imagepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/ContactUsInfo/", contactUsInfo.ContactUsImage);
-                using (var stream = new FileStream(Imagepath, FileMode.CreateNew))
+                else
                 {
-                    ImgFile.CopyTo(stream);
+                    contactUsInfo.ContactUsImage = GenerateCode.GenerateUniqueCode() + Path.GetExtension(ImgFile.FileName);
+                    string Imagepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/ContactUsInfo/", contactUsInfo.ContactUsImage);
+                    using (var stream = new FileStream(Imagepath, FileMode.CreateNew))
+                    {
+                        ImgFile.CopyTo(stream);
+                    }
                 }
+               
             }
         }
 
