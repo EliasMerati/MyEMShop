@@ -1,4 +1,5 @@
-﻿using MyEMShop.Application.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Context;
 using MyEMShop.Data.Dtos.Order;
 using MyEMShop.Data.Entities.Order;
@@ -81,6 +82,7 @@ namespace MyEMShop.Application.Services
                 .OrderByDescending(d=>d.DiscountId)
                 .Skip(skip)
                 .Take(10)
+                .AsNoTracking()
                 .ToList();
             return Tuple.Create(result, rowsCount);
         }

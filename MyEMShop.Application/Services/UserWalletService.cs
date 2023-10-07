@@ -1,4 +1,5 @@
-﻿using MyEMShop.Application.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Context;
 using MyEMShop.Data.Dtos.UserDto;
 using MyEMShop.Data.Entities.Wallet;
@@ -44,6 +45,7 @@ namespace MyEMShop.Application.Services
                 .OrderByDescending(w => w.CreateDate)
                 .Skip(skip)
                 .Take(10)
+                .AsNoTracking()
                 .ToList();
 
             return Tuple.Create(walletList, totalcount);

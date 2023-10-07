@@ -72,6 +72,7 @@ namespace MyEMShop.Application.Services
                 })
                 .Skip(skip)
                 .Take(4)
+                .AsNoTracking()
                 .ToList();
 
             return Tuple.Create(result,rowsCount);

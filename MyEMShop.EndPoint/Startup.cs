@@ -14,7 +14,7 @@ using MyEMShop.Data.Context;
 using MyEMShop.EndPoint.Filters;
 using System;
 using System.IO;
-using WebMarkupMin.AspNetCore5;
+using WebMarkupMin.AspNetCore7;
 
 namespace MyEMShop.EndPoint
 {

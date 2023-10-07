@@ -33,7 +33,7 @@ namespace MyEMShop.Application.Services
             {
                 Value = l.PL_Id.ToString(),
                 Text = l.PL_Title
-            }).ToList();
+            }).AsNoTracking().ToList();
         }
 
         public IList<SelectListItem> GetProductSize()
@@ -42,7 +42,7 @@ namespace MyEMShop.Application.Services
             {
                 Value = l.PS_Id.ToString(),
                 Text = l.SizeTitle
-            }).ToList();
+            }).AsNoTracking().ToList();
         }
         public int AddProduct(Product product)
         {
@@ -153,6 +153,7 @@ namespace MyEMShop.Application.Services
                 })
                 .Skip(skip)
                 .Take(8)
+                .AsNoTracking()
                 .ToList();
 
             return Tuple.Create(result, rowsCount);
@@ -186,6 +187,7 @@ namespace MyEMShop.Application.Services
                 })
                 .Skip(skip)
                 .Take(8)
+                .AsNoTracking()
                 .ToList();
 
             return Tuple.Create(result, rowsCount);
@@ -433,6 +435,7 @@ namespace MyEMShop.Application.Services
                 }).OrderByDescending(p => p.InsertDate)
                 .Skip(skip)
               .Take(take)
+              .AsNoTracking()
               .ToList();
             //==================================================
             if (pagecount % 2 != 0)
@@ -462,6 +465,7 @@ namespace MyEMShop.Application.Services
                 .Where(od => od.OrderDetails.Any() && !od.IsDelete)
                 .OrderByDescending(o => o.OrderDetails.Count)
                 .Take(5)
+                .AsNoTracking()
                 .ToList();
         }
 
@@ -471,6 +475,7 @@ namespace MyEMShop.Application.Services
                 .Where(p => !p.IsDelete)
                 .OrderByDescending(p => p.InsertDate)
                 .Take(5)
+                .AsNoTracking()
                 .ToList();
         }
 
@@ -480,6 +485,7 @@ namespace MyEMShop.Application.Services
                 .Where(p => !p.IsDelete)
                 .OrderByDescending(p => p.InsertDate)
                 .Take(5)
+                .AsNoTracking()
                 .ToList();
         }
 
@@ -487,7 +493,7 @@ namespace MyEMShop.Application.Services
         {
             var productName = _db.Products.Single(p => p.ProductId == productId && !p.IsDelete).ProductTitle;
             string[] Split = productName.Split(new Char[] { ' ' });
-            return _db.Products.Where(p => p.ProductTitle.Contains(Split[0]) && !p.IsDelete).ToList();
+            return _db.Products.Where(p => p.ProductTitle.Contains(Split[0]) && !p.IsDelete).AsNoTracking().ToList();
         }
 
         public void DeleteProduct(Product product)
@@ -502,6 +508,7 @@ namespace MyEMShop.Application.Services
             return _db.Products.Include(p => p.OrderDetails)
                .Where(od => od.OrderDetails.Any() && !od.IsDelete)
                .Take(20)
+               .AsNoTracking()
                .ToList();
         }
 
@@ -509,6 +516,7 @@ namespace MyEMShop.Application.Services
         {
             return _db.Products.Where(p => !p.IsDelete && p.Isspecial == true)
                 .Take(20)
+                .AsNoTracking()
                 .ToList();
         }
 
