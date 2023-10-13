@@ -1,10 +1,8 @@
 ﻿using Ganss.Xss;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Entities.ContactUs;
 using MyEMShop.EndPoint.Filters;
-using System;
 
 namespace MyEMShop.EndPoint.Controllers
 {
@@ -34,7 +32,7 @@ namespace MyEMShop.EndPoint.Controllers
             #region Sanitize Comment
             var sanitizer = new HtmlSanitizer();
             var resault = sanitizer.Sanitize(contact.Question);
-            contact.Question= resault;
+            contact.Question = resault;
             #endregion
             _contactUsConnectionService.AddContactUsConnection(contact);
             ViewData["IsSuccess"] = true;

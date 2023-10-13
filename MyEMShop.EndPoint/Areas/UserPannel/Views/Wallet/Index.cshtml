@@ -3,10 +3,6 @@
 @model MyEMShop.Data.Dtos.UserDto.ChargeWalletDto
 @{
     ViewData["Title"] = "عملیات کیف پول";
-    int Page;
-    int pageSize;
-    int.TryParse(Context.Request.Query["P"], out Page);
-    int.TryParse(Context.Request.Query["S"], out pageSize);
 }
 
 
