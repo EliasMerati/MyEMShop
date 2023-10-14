@@ -193,6 +193,92 @@ namespace MyEMShop.Data.Migrations
                     b.HasIndex("FaqGroupId");
 
                     b.ToTable("Faqs");
+
+                    b.HasData(
+                        new
+                        {
+                            FaqId = 1,
+                            FaqAnswer = "ثبت حساب کاربری برای خرید و ثبت آدرس و موارد لازم برای ارسال سفارش صورت میگیرد",
+                            FaqGroupId = 1,
+                            FaqQuestion = "ثبت حساب کاربری به چه منظور صورت میگیرد؟"
+                        },
+                        new
+                        {
+                            FaqId = 2,
+                            FaqAnswer = "از طریق پنل کاربری و قسمت فاکتور های من وضعیت سفارش قابل پیگیری است",
+                            FaqGroupId = 1,
+                            FaqQuestion = "چطور وضعیت سفارش خود را دنبال کنم؟"
+                        },
+                        new
+                        {
+                            FaqId = 3,
+                            FaqAnswer = "بله. به این خاطر که محصولی که سفارش داده میشود ، بعد از ثبت سفارش وارد پروسه ی تولید میشود.",
+                            FaqGroupId = 1,
+                            FaqQuestion = "آیا میتوان محصولی که موجود نیست را سفارش داد؟ "
+                        },
+                        new
+                        {
+                            FaqId = 4,
+                            FaqAnswer = "بله. برای خرید محصول از فروشگاه به دخت نیاز به ساخت اکانت کاربری است.",
+                            FaqGroupId = 2,
+                            FaqQuestion = "برای خرید از فروشگاه شما نیاز به اکانت دارم؟ "
+                        },
+                        new
+                        {
+                            FaqId = 5,
+                            FaqAnswer = "جنس عالی ، دوخت عالی و حرفه ای ",
+                            FaqGroupId = 2,
+                            FaqQuestion = "مزیت خرید از شما چیست؟ "
+                        },
+                        new
+                        {
+                            FaqId = 6,
+                            FaqAnswer = " هزینه ی کالای خریداری شده را به دو صورت میتوان پرداخت کرد : 1- از طریق شارژ کیف پول که در قسمت پنل کاربری و قسمت کیف پول قابل دسترسی است . 2- از طریق درگاه پرداخت مستقیم",
+                            FaqGroupId = 3,
+                            FaqQuestion = "چطور هزینه ی کالای خود را بپردازم؟ "
+                        },
+                        new
+                        {
+                            FaqId = 7,
+                            FaqAnswer = "بله. مالیات بر ارزش افزوده هم به قیمت کالا اضافه و در قیمت نهایی محاسبه میشود.",
+                            FaqGroupId = 3,
+                            FaqQuestion = "آیا مالیات هم به قیمت خرید افزوده میشود؟ "
+                        },
+                        new
+                        {
+                            FaqId = 8,
+                            FaqAnswer = "در قسمت پنل کاربری ، فاکتور های من قابل مشاهده است",
+                            FaqGroupId = 4,
+                            FaqQuestion = "چطور وضعیت سفارش خود را مشاهده کنم؟"
+                        },
+                        new
+                        {
+                            FaqId = 9,
+                            FaqAnswer = "فقط تا 12 ساعت بعد از ثبت سفارش امکان لغو سفارش وجود دارد و در غیراین صورت لغو سفارش انجام نخواهد شد.",
+                            FaqGroupId = 4,
+                            FaqQuestion = "چطور و چه زمانی میتوانم سفارش خود را لغو کنم؟ "
+                        },
+                        new
+                        {
+                            FaqId = 10,
+                            FaqAnswer = "زمانی که وضعیت سفارش به ارسال شده تغییر پیدا کند یعنی سفارش مشتری تحویل اداره ی پست شده است. و زمان رسیدن سفارش به دست مشتری بستگی به اداره ی پست دارد.",
+                            FaqGroupId = 5,
+                            FaqQuestion = "کالا چه زمانی به دست من میرسد؟ "
+                        },
+                        new
+                        {
+                            FaqId = 11,
+                            FaqAnswer = "بستگی به اداره ی پست دارد. ",
+                            FaqGroupId = 5,
+                            FaqQuestion = "چرا کالا به موقع به من تحویل نشده؟ "
+                        },
+                        new
+                        {
+                            FaqId = 12,
+                            FaqAnswer = "کالایی که خریداری شده ، قابل بازگشت نیست و فقط میتوان تا 12 ساعت بعد از ثبت فاکتور ،با هماهنگی با واحد پشتیبانی سایت به دخت آن را لغو کرد",
+                            FaqGroupId = 5,
+                            FaqQuestion = "نیاز به بازگشت یه کالا دارم، چطور باید اقدام کنم؟ "
+                        });
                 });
 
             modelBuilder.Entity("MyEMShop.Data.Entities.Faq.FaqGroup", b =>
@@ -210,6 +296,33 @@ namespace MyEMShop.Data.Migrations
                     b.HasKey("FaqGroupId");
 
                     b.ToTable("FaqGroups");
+
+                    b.HasData(
+                        new
+                        {
+                            FaqGroupId = 1,
+                            FaqGroupTitle = "حساب کاربری و سفارشات من"
+                        },
+                        new
+                        {
+                            FaqGroupId = 2,
+                            FaqGroupTitle = "خرید"
+                        },
+                        new
+                        {
+                            FaqGroupId = 3,
+                            FaqGroupTitle = "پرداخت ها"
+                        },
+                        new
+                        {
+                            FaqGroupId = 4,
+                            FaqGroupTitle = "وضعیت سفارش"
+                        },
+                        new
+                        {
+                            FaqGroupId = 5,
+                            FaqGroupTitle = "حمل و نقل"
+                        });
                 });
 
             modelBuilder.Entity("MyEMShop.Data.Entities.Order.Discount", b =>
@@ -1787,7 +1900,7 @@ namespace MyEMShop.Data.Migrations
                             IsDelete = false,
                             Name = "بهناز",
                             Password = "20-2C-B9-62-AC-59-07-5B-96-4B-07-15-2D-23-4B-70",
-                            RegisterDate = new DateTime(2023, 10, 5, 14, 20, 4, 720, DateTimeKind.Local).AddTicks(3289),
+                            RegisterDate = new DateTime(2023, 10, 14, 1, 13, 59, 34, DateTimeKind.Local).AddTicks(8004),
                             UserName = "BehDokhtAdmin"
                         });
                 });
