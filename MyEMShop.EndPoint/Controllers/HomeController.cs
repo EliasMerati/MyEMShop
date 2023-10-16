@@ -54,7 +54,6 @@ namespace MyEMShop.EndPoint.Controllers
         }
         #endregion
 
-
         public IActionResult Index()
         {
             ViewBag.popularproduct = _productService.GetPopularProduct();

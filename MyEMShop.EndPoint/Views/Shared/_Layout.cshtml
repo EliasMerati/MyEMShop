@@ -2,7 +2,7 @@
 <html dir="rtl">
 <head>
     <partial name="_Meta" />
-    <title>@ViewData["Title"] | فروشگاه به دخت </title>
+    <title>@*@ViewData["Title"] | فروشگاه به دخت *@470034</title>
     @RenderSection("MetaTag",false)
     <!-- CSS Part Start-->
     <partial name="_Styles" />
@@ -83,7 +83,6 @@
                         <!-- Slideshow Start-->
                         @RenderSection("Slider",false)
                         @RenderSection("Banner",false)
-                        @*@RenderSection("Banner2",false)*@
                         <!-- Slideshow End-->
                         @RenderBody()
                     </div>
@@ -97,7 +96,6 @@
         <!--Footer Start-->
         <partial name="_Footer" />
         <!--Footer End-->
-        @*<partial name="_Twitter-Facebook" />*@
     </div>
     <!-- JS Part Start-->
     <partial name="_Script" />

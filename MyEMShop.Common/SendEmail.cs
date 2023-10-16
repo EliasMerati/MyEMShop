@@ -13,7 +13,6 @@ namespace MyEMShop.Common
                 mail.Subject = subject;
                 mail.Body = body;
                 mail.IsBodyHtml = true;
-                //mail.Attachments.Add(new Attachment("c:/textfile.txt"));
                 using (SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com", 587))
                 {
                     SmtpServer.UseDefaultCredentials = false;

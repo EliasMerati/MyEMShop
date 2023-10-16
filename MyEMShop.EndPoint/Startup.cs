@@ -31,43 +31,20 @@ namespace MyEMShop.EndPoint
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            #region Minifier For Html & Gzip
-            services.AddWebMarkupMin(opt =>
-            {
-                opt.AllowMinificationInDevelopmentEnvironment = true;
-                opt.AllowCompressionInDevelopmentEnvironment = true;
-            }).AddHtmlMinification(option =>
-            {
-                option.MinificationSettings.RemoveHtmlComments = true;
-                option.MinificationSettings.RemoveHtmlCommentsFromScriptsAndStyles = true;
-                option.MinificationSettings.RemoveHttpProtocolFromAttributes = true;
-                option.MinificationSettings.RemoveHttpsProtocolFromAttributes = true;
-                option.MinificationSettings.RemoveJsProtocolFromAttributes = true;
-                option.MinificationSettings.RemoveJsTypeAttributes = true;
-                option.MinificationSettings.RemoveOptionalEndTags = true;
-                option.MinificationSettings.RemoveTagsWithoutContent = true;
-                option.MinificationSettings.MinifyInlineJsCode = true;
-                option.MinificationSettings.MinifyInlineCssCode = true;
 
-            }).AddHttpCompression();
-            #endregion
-
-            #region Solve Circle For JSON
-            //services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
-            #endregion
-            
             services.AddRazorPages();
 
-            #region Configure Limit File For Mac & Linux
-            services.Configure<FormOptions>(opt => opt.MultipartBodyLengthLimit = 52428800);
-            #endregion
-
-            #region Caching With SqlServer
-            services.AddDistributedSqlServerCache(opt =>
+            #region Authentication
+            services.AddAuthentication(option =>
             {
-                opt.SchemaName = "dbo";
-                opt.TableName = "CatchData";
-                opt.ConnectionString = Configuration.GetConnectionString("BehDokhtConnectionString");
+                option.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                option.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                option.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddCookie(opt =>
+            {
+                opt.LoginPath = "/Login";
+                opt.LogoutPath = "/LogOut";
+                opt.ExpireTimeSpan = TimeSpan.FromMinutes(43200);
             });
             #endregion
 
@@ -103,19 +80,44 @@ namespace MyEMShop.EndPoint
             services.AddScoped<SaveVisitorsFilter>();
             #endregion
 
-            #region Authentication
-            services.AddAuthentication(option =>
+            #region Minifier For Html & Gzip
+            services.AddWebMarkupMin(opt =>
             {
-                option.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                option.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                option.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            }).AddCookie(opt =>
+                opt.AllowMinificationInDevelopmentEnvironment = true;
+                opt.AllowCompressionInDevelopmentEnvironment = true;
+            }).AddHtmlMinification(option =>
             {
-                opt.LoginPath = "/Login";
-                opt.LogoutPath = "/LogOut";
-                opt.ExpireTimeSpan = TimeSpan.FromMinutes(43200);
+                option.MinificationSettings.RemoveHtmlComments = true;
+                option.MinificationSettings.RemoveHtmlCommentsFromScriptsAndStyles = true;
+                option.MinificationSettings.RemoveHttpProtocolFromAttributes = true;
+                option.MinificationSettings.RemoveHttpsProtocolFromAttributes = true;
+                option.MinificationSettings.RemoveJsProtocolFromAttributes = true;
+                option.MinificationSettings.RemoveJsTypeAttributes = true;
+                option.MinificationSettings.RemoveOptionalEndTags = true;
+                option.MinificationSettings.RemoveTagsWithoutContent = true;
+                option.MinificationSettings.MinifyInlineJsCode = true;
+                option.MinificationSettings.MinifyInlineCssCode = true;
+
+            }).AddHttpCompression();
+            #endregion
+
+            #region Solve Circle For JSON
+            //services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+            #endregion
+
+            #region Configure Limit File For Mac & Linux
+            services.Configure<FormOptions>(opt => opt.MultipartBodyLengthLimit = 52428800);
+            #endregion
+
+            #region Caching With SqlServer
+            services.AddDistributedSqlServerCache(opt =>
+            {
+                opt.SchemaName = "dbo";
+                opt.TableName = "CatchData";
+                opt.ConnectionString = Configuration.GetConnectionString("BehDokhtConnectionString");
             });
             #endregion
+ 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -144,19 +146,20 @@ namespace MyEMShop.EndPoint
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseWebMarkupMin();
-            //app.UseCSPMiddleware();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
                 //----------------------------------------------------------------------------
                 endpoints.MapControllerRoute(
                     name: "areas",
-                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                    );
                 //----------------------------------------------------------------------------
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+            
         }
     }
 }
