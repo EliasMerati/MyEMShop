@@ -20,7 +20,6 @@ namespace MyEMShop.EndPoint.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Route("/AddContactUsConnection")]
         public IActionResult AddContactUsConnection(ContactUsConection conection)
         {
             ContactUsConection contact = new ContactUsConection()
@@ -31,8 +30,8 @@ namespace MyEMShop.EndPoint.Controllers
             };
             #region Sanitize Comment
             var sanitizer = new HtmlSanitizer();
-            var resault = sanitizer.Sanitize(contact.Question);
-            contact.Question = resault;
+            var result = sanitizer.Sanitize(contact.Question);
+            contact.Question = result;
             #endregion
             _contactUsConnectionService.AddContactUsConnection(contact);
             ViewData["IsSuccess"] = true;
