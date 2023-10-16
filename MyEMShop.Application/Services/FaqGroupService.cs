@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Context;
 using MyEMShop.Data.Entities.Faq;
@@ -51,7 +52,8 @@ namespace MyEMShop.Application.Services
                  {
                      Value = p.FaqGroupId.ToString(),
                      Text = p.FaqGroupTitle,
-                 }).ToList();
+                 })
+                 .AsNoTracking().ToList();
         }
 
         public FaqGroup GetFaqGroupById(int faqGroupId)
@@ -62,6 +64,7 @@ namespace MyEMShop.Application.Services
         public List<FaqGroup> GetFaqGroups()
         {
             return _db.FaqGroups
+                .AsNoTracking()
                 .ToList();
         }
 

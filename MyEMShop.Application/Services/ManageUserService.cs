@@ -50,7 +50,7 @@ namespace MyEMShop.Application.Services
 
             UserListForAdminDto userList = new UserListForAdminDto();
             userList.CurrentPage = pageId;
-            userList.Users = Result.OrderBy(u => u.RegisterDate).Skip(skip).Take(take).ToList();
+            userList.Users = Result.OrderBy(u => u.RegisterDate).Skip(skip).Take(take).AsNoTracking().ToList();
             userList.PageCount = Result.Count() / take;
             return userList;
         }

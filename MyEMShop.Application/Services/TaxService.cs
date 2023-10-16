@@ -1,4 +1,5 @@
-﻿using MyEMShop.Application.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Context;
 using MyEMShop.Data.Entities.Tax;
 using System.Collections.Generic;
@@ -38,7 +39,7 @@ namespace MyEMShop.Application.Services
 
         public List<Tax> ShowTax()
         {
-            return _db.Taxes.ToList();
+            return _db.Taxes.AsNoTracking().ToList();
         }
 
         public void UpdateTax(Tax tax)

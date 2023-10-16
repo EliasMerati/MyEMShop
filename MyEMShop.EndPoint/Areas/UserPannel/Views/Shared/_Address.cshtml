@@ -1,6 +1,0 @@
-﻿@using MyEMShop.Application.Interfaces
-@inject IUserPannelService _userService
-@{
-    var address = _userService.GetUserAddressForOrder(User.Identity.Name);
-}
-

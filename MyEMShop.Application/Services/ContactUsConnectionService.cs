@@ -1,4 +1,5 @@
-﻿using MyEMShop.Application.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using MyEMShop.Application.Interfaces;
 using MyEMShop.Common;
 using MyEMShop.Data.Context;
 using MyEMShop.Data.Entities.ContactUs;
@@ -55,6 +56,7 @@ namespace MyEMShop.Application.Services
             var result = _db.contactUsConections
                 .Skip(skip)
                 .Take(10)
+                .AsNoTracking()
                 .ToList();
             return Tuple.Create(result, rowscount);
         }

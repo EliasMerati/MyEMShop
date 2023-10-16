@@ -14,7 +14,7 @@ using MyEMShop.Data.Context;
 using MyEMShop.EndPoint.Filters;
 using System;
 using System.IO;
-using WebMarkupMin.AspNetCore5;
+using WebMarkupMin.AspNetCore7;
 
 namespace MyEMShop.EndPoint
 {
@@ -30,6 +30,7 @@ namespace MyEMShop.EndPoint
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllersWithViews();
             #region Minifier For Html & Gzip
             services.AddWebMarkupMin(opt =>
             {
@@ -54,7 +55,7 @@ namespace MyEMShop.EndPoint
             #region Solve Circle For JSON
             //services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
             #endregion
-
+            
             services.AddRazorPages();
 
             #region Configure Limit File For Mac & Linux

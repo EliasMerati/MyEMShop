@@ -178,20 +178,6 @@ namespace MyEMShop.EndPoint.Controllers
             _AccountServices.UpdateUser(user);
             return LocalRedirect("/Login");
         }
-        //[HttpPost]
-        //[Route("ResetPassword")]
-        //public IActionResult ResetPassword(ChangePasswordDto change)
-        //{
-        //    string CurrentUserName = User.Identity.Name;
-        //    if (!ModelState.IsValid) { return View(change); }
-        //    if (!_AccountServices.CompareOldPassword(change.OldPassword, CurrentUserName))
-        //    {
-        //        ModelState.AddModelError("OldPassword", "کلمه ی عبور فعلی صحیح نمیباشد ");
-        //        return View(change);
-        //    }
-        //    _AccountServices.ChangeNewPassword(CurrentUserName, change.Password);
-        //    return Redirect(nameof(LogOut));
-        //}
         #endregion
 
         #region LogOut

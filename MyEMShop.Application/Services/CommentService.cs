@@ -36,6 +36,7 @@ namespace MyEMShop.Application.Services
                 .Where(pc => pc.ProductId == productId  && pc.AdminRead == IsAdminRead.IsTrue)
                 .Skip(skip).Take(take)
                 .OrderByDescending(pc => pc.CreateDate)
+                .AsNoTracking()
                 .ToList();
             if (pageCount % 2 != 0)
             {
@@ -59,6 +60,7 @@ namespace MyEMShop.Application.Services
                 .Where(c => c.AdminRead == adminRead )
                 .Skip(skip)
                 .Take(10)
+                .AsNoTracking()
                 .ToList();
 
             return Tuple.Create(result, rowsCount);

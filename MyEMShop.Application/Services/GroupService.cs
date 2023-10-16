@@ -33,7 +33,10 @@ namespace MyEMShop.Application.Services
 
         public List<ProductGroup> GetGroups()
         {
-            return _db.ProductGroups.Include(p => p.Groups).ToList();
+            return _db.ProductGroups
+                .Include(p => p.Groups)
+                .AsNoTracking()
+                .ToList();
         }
 
         public List<SelectListItem> GetGroupsForManageProduct()
@@ -45,6 +48,7 @@ namespace MyEMShop.Application.Services
                     Value = p.GroupId.ToString(),
                     Text = p.GroupTitle,
                 })
+                .AsNoTracking()
                 .ToList();
         }
 
@@ -57,6 +61,7 @@ namespace MyEMShop.Application.Services
                     Value = p.GroupId.ToString(),
                     Text = p.GroupTitle,
                 })
+                .AsNoTracking()
                 .ToList();
          }
 

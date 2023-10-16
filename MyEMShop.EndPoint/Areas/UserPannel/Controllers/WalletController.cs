@@ -47,7 +47,7 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
             #region Online Payment With Wallet
 
             var payment = new Zarinpal.Payment("e55a0dbd-7909-4dda-80ee-c8a6781e6aa1", charge.Amount);
-            var response = payment.PaymentRequest("واریز به حساب", $"https://localhost:44346/OnlineWalletPayment/{walletid}", user.Email, (user.PhoneNumber is not null) ? user.PhoneNumber : "");
+            var response = payment.PaymentRequest("واریز به حساب", $"https://behdokhtcollection.ir/OnlineWalletPayment/{walletid}", user.Email, (user.PhoneNumber is not null) ? user.PhoneNumber : "");
             if (response.Result.Status is 100)
             {
                 return Redirect($"https://zarinpal.com/pg/StartPay/{response.Result.Authority}");
@@ -69,7 +69,7 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
                 return Redirect("NotFound");
             }
             var payment = new Zarinpal.Payment("e55a0dbd-7909-4dda-80ee-c8a6781e6aa1", order.OrderSum);
-            var result = payment.PaymentRequest($"پرداخت فاکتور شماره ی {order.OrderId}", $"https://localhost:44346/OnlinePayment/{order.OrderId}", user.Email, (user.PhoneNumber is not null) ? user.PhoneNumber : "");
+            var result = payment.PaymentRequest($"پرداخت فاکتور شماره ی {order.OrderId}", $"https://behdokhtcollection.ir/OnlinePayment/{order.OrderId}", user.Email, (user.PhoneNumber is not null) ? user.PhoneNumber : "");
             if (result.Result.Status is 100)
             {
                 return Redirect($"https://zarinpal.com/pg/StartPay/{result.Result.Authority}");

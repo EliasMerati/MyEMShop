@@ -207,10 +207,6 @@
                                 </div>
                             }
 
-
-
-                           @* <button type="submit"  asp-action="PrintPage" asp-route-id="@Model.OrderId" value="دریافت پیش فاکتور"  class="btn btn-primary"/>*@
-
                         </div>
                     </div>
                 </div>
@@ -232,7 +228,7 @@
                                 </tr>
                                 <tr>
                                     <td class="text-right"><strong>کل :</strong></td>
-                                    <td class="text-right"><strong class="text-success">@total.ToString("N0")</strong> @*- @Percent*@ تومان</td>
+                                    <td class="text-right"><strong class="text-success">@total.ToString("N0")</strong> تومان</td>
                                 </tr>
                             </tbody>
                         </table>

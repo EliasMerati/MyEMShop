@@ -55,6 +55,7 @@ namespace MyEMShop.Application.Services
         {
             return _db.Faqs 
                 .Include(fg=>fg.FaqGroup)
+                .AsNoTracking()
                 .ToList();
         }
 

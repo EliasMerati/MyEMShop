@@ -1,4 +1,5 @@
-﻿using MyEMShop.Application.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using MyEMShop.Application.Interfaces;
 using MyEMShop.Data.Context;
 using MyEMShop.Data.Entities.Permission;
 using MyEMShop.Data.Entities.User;
@@ -45,7 +46,7 @@ namespace MyEMShop.Application.Services
 
         public IList<Permission> GetAllPermissions()
         {
-            return _db.Permission.ToList();
+            return _db.Permission.AsNoTracking().ToList();
         }
 
         public Role GetRoleById(int roleId)
@@ -55,7 +56,7 @@ namespace MyEMShop.Application.Services
 
         public IList<Role> GetRoles()
         {
-            return _db.Roles.ToList();
+            return _db.Roles.AsNoTracking().ToList();
         }
 
         public void SetRoles(IList<int> roleIds, int userId)

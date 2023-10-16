@@ -321,7 +321,7 @@ namespace MyEMShop.Application.Services
                     UserId = o.UserId,
                     OrderAddress = o.OrderOstan + "-" + o.OrderCity + "-" + o.OrderAddress + "-" + "کد پستی :" + o.OrderPostalCode + "-" + "به نام:" + o.User.Name + " " + o.User.Family,
                 })
-                .Skip(skip).Take(10).ToList();
+                .Skip(skip).Take(10).AsNoTracking().ToList();
 
             return Tuple.Create(result, rowsCount);
         }
@@ -337,6 +337,7 @@ namespace MyEMShop.Application.Services
                 .OrderByDescending(o => o.OrderDate)
                 .Skip(skip)
                 .Take(10)
+                .AsNoTracking()
                 .ToList();
             return Tuple.Create(result, rowsCount);
         }

@@ -8,17 +8,17 @@
 
 @section MetaTag
     {
-    <link rel="canonical" href="https://localhost:44346/ShowProduct/@Model.ProductId/@Model.ProductTitle.Trim().Replace(" ","-")" />
+    <link rel="canonical" href="https://behdokhtcollection.ir/ShowProduct/@Model.ProductId/@Model.ProductTitle.Trim().Replace(" ","-")" />
     <meta name=googlebot content=index,follow>
     <meta name=robots content=noodp,noydir>
     <meta property=og:site_name value="فروشگاه پوشاک زنانه به دخت - مشاهده ی محصول">
     <meta property=og:title content=@ViewData["Title"]>
-    <meta property=og:url content="https://localhost:44346/Template/image/product/@Model.MainImageProduct" />
+    <meta property=og:url content="https://behdokhtcollection.ir/Template/image/product/@Model.MainImageProduct" />
     <meta property=og:image content="/Template/image/product/@Model.MainImageProduct">
     <meta property=og:image:url content="/Template/image/product/@Model.MainImageProduct" />
     <meta property=og:image:width content="700">
     <meta property=og:image:type content="image/jpg">
-    <meta property=og:description content=" مشاهده ی محصول فروشگاه پوشاک زنانه به دخت">
+    <meta property=og:description content=" مشاهده ی جزییات محصول فروشگاه پوشاک زنانه به دخت">
     <meta property=og:price:currency content="IRR">
     <meta property=og:locale content="ir_FA">
 }
@@ -40,11 +40,11 @@
                     <h1 class="title" itemprop="name">@Model.ProductTitle</h1>
                     <!--Short Link Start -->
                     @{
-                        string Link = "https://localhost:44346/p/" + Model.ShortKey;
+                        string Link = "https://behdokhtcollection.ir/p/" + Model.ShortKey;
                     }
                     <div class="tag text-center" style="max-width:320px;background-color:beige">
                         <span  class="title"><strong>لینک کوتاه  :</strong> </span>
-                        <a style="font-family:sans-serif " href="@Link" class="link">@("localhost:44346/p/" + Model.ShortKey)</a>
+                        <a style="font-family:sans-serif " href="@Link" class="link">@("behdokhtcollection.ir/p/" + Model.ShortKey)</a>
                     </div>
                     <!--Short Link End -->
                     <div class="row product-info">

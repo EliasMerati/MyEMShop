@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Common;
 using MyEMShop.Data.Context;
@@ -23,7 +24,7 @@ namespace MyEMShop.Application.Services
 
         public List<Slider> GetAllSliders()
         {
-            return _db.Sliders.ToList();
+            return _db.Sliders.AsNoTracking().ToList();
         }
 
         public Slider GetSliderById(int sliderId)

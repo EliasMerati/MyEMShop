@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using MyEMShop.Application.Interfaces;
 using MyEMShop.Common;
 using MyEMShop.Data.Context;
@@ -115,6 +116,7 @@ namespace MyEMShop.Application.Services
             return _db.Banners
                 .Where(b => b.BannerType == Data.Dtos.BannerType.BannerType.BigBanner)
                 .OrderByDescending(b => b.BannerId)
+                .AsNoTracking()
                 .ToList();
         }
 
