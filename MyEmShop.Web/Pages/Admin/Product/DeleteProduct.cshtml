@@ -1,0 +1,32 @@
+﻿@page
+@model MyEMShop.EndPoint.Pages.Admin.Product.DeleteProductModel
+@{
+    ViewData["Title"] = "حذف محصول";
+}
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    حذف محصول
+                </div>
+                <div class="panel-body">
+                    <form method="post">
+                        <input type="hidden" name="ProductId" value="@ViewData["id"].ToString()" />
+                        <dl class="dl-horizontal">
+                            <dt>نام محصول :</dt>
+                            <dd>@Model.product.ProductTitle</dd>
+                            <dt></dt>
+                            <dd>
+                                <input type="submit" value="حذف محصول" class="btn btn-danger" />
+                            </dd>
+                        </dl>
+                    </form>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+    </div>
+</div>

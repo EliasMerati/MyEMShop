@@ -14,7 +14,9 @@ using MyEMShop.Data.Context;
 using MyEMShop.EndPoint.Filters;
 using System;
 using System.IO;
-using WebMarkupMin.AspNetCore7;
+using System.Text.Json.Serialization;
+using System.Web.Mvc;
+using WebMarkupMin.AspNetCore5;
 
 namespace MyEMShop.EndPoint
 {
@@ -31,7 +33,7 @@ namespace MyEMShop.EndPoint
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
+            services.AddMvc(option => option.EnableEndpointRouting = true);
             services.AddRazorPages();
 
             #region Authentication
@@ -110,14 +112,14 @@ namespace MyEMShop.EndPoint
             #endregion
 
             #region Caching With SqlServer
-            services.AddDistributedSqlServerCache(opt =>
-            {
-                opt.SchemaName = "dbo";
-                opt.TableName = "CatchData";
-                opt.ConnectionString = Configuration.GetConnectionString("BehDokhtConnectionString");
-            });
+            //services.AddDistributedSqlServerCache(opt =>
+            //{
+            //    opt.SchemaName = "dbo";
+            //    opt.TableName = "CatchData";
+            //    opt.ConnectionString = Configuration.GetConnectionString("BehDokhtConnectionString");
+            //});
             #endregion
- 
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -141,14 +143,15 @@ namespace MyEMShop.EndPoint
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseWebMarkupMin();
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+
                 //----------------------------------------------------------------------------
                 endpoints.MapControllerRoute(
                     name: "areas",
@@ -157,9 +160,10 @@ namespace MyEMShop.EndPoint
                 //----------------------------------------------------------------------------
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}"
+                    );
             });
-            
+
         }
     }
 }

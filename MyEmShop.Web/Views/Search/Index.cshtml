@@ -1,0 +1,152 @@
+﻿@using MyEMShop.Data.Entities.Product;
+@model Tuple<List<MyEMShop.Data.Dtos.ProductDto.ShowProductForIndex>,int>
+@{
+    ViewData["Title"] = "جستجو";
+}
+@section MetaTag
+    {
+    <meta name=googlebot content=index,follow>
+    <meta name=robots content=noodp,noydir>
+    <meta property=og:site_name value="فروشگاه پوشاک زنانه به دخت - جستجو ی محصول">
+    <meta property=og:title content=@ViewData["Title"]>
+    <meta property=og:description content=" جستجو ی محصول فروشگاه پوشاک زنانه به دخت">
+    <meta property=og:price:currency content="IRR">
+    <meta property=og:locale content="ir_FA">
+}
+<div class="container">
+    <form action="/Search" id="FormSubmit" method="get">
+        <input type="hidden" id="pageid" name="pageid" value="@ViewBag.pageid.ToString()" />
+
+        <!-- Breadcrumb Start-->
+        <ul class="breadcrumb">
+            <li><a href="index.html"><i class="fa fa-home"></i></a></li>
+            <li><a href="search.html">جستجو</a></li>
+        </ul>
+        <!-- Breadcrumb End-->
+        <div class="row">
+            <!--Middle Part Start-->
+            <div id="content" class="col-sm-12">
+                <h1 class="title">جستجو </h1>
+                <label>شاخص جستجو</label>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <input type="text" onchange="Change()" class="form-control" placeholder="نام کالا ..." value="" name="Filter">
+                    </div>
+                    @{
+                        IList<ProductGroup> Groups = ViewBag.Groups as IList<ProductGroup>;
+                        IList<int> selected = ViewBag.SelectedGroup as IList<int>;
+                    }
+                    <div class="col-sm-4">
+                        <select onchange="Change()" class="form-control" name="selectedgroup">
+                            @foreach (var item in Groups.Where(g => g.ParentId is null))
+                            {
+                                <option value="@item.GroupId">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@item.GroupTitle
+                                    @if (Groups.Any(p => p.ParentId == item.GroupId))
+                                    {
+                                        @foreach (var item2 in Groups.Where(g => g.ParentId == item.GroupId))
+                                        {
+                                        <option value="@item2.GroupId">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @item2.GroupTitle
+
+                                                @if (Groups.Any(p => p.ParentId == item2.GroupId))
+                                                {
+                                                    @foreach (var item3 in Groups.Where(g => g.ParentId == item2.GroupId))
+                                                    {
+                                                <option value="@item3.GroupId">
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @item3.GroupTitle
+
+                                                            @if (Groups.Any(p => p.ParentId == item3.GroupId))
+                                                            {
+                                                                @foreach (var item4 in Groups.Where(g => g.ParentId == item3.GroupId))
+                                                                {
+                                                        <option value="@item4.GroupId">
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @item4.GroupTitle
+                                                        </option>
+                                                                }
+                                                            }
+                                                </option>
+                                                    }
+                                                }
+                                        </option>
+                                        }
+                                    }
+                                </option>
+                            }
+
+
+
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="submit" class="btn btn-primary" id="button-search" value="جستجو">
+                    </div>
+                </div>
+                <br>
+                <div class="product-filter">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-5">
+                            <div class="btn-group">
+                                <button type="button" id="list-view" class="btn btn-default" data-toggle="tooltip" title="" data-original-title="List"><i class="fa fa-th-list"></i></button>
+                                <button type="button" id="grid-view" class="btn btn-default selected" data-toggle="tooltip" title="" data-original-title="Grid"><i class="fa fa-th"></i></button>
+                            </div>
+                            <a href="compare.html" id="compare-total">محصولات مقایسه (0)</a>
+                        </div>
+                        <div class="col-sm-2 text-right">
+                            <label class="control-label" for="input-sort">مرتب سازی :</label>
+                        </div>
+                        <div class="col-md-5 col-sm-5 text-right">
+                            <select onchange="Change()" name="orderbytype" id="input-sort" class="form-control col-sm-5">
+                                <option  selected>انتخاب کنید</option>
+                                <option  value="featured">همه</option>
+                                <option value="latest">جدیدترین</option>
+                                <option value="special">پیشنهادی</option>
+                                <option value="Popular">پر فروش</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row products-category">
+
+                    @foreach (var item in Model.Item1)
+                    {
+                        <partial name="_ProductBox" model="@item" />
+                    }
+
+                </div>
+            </div>
+            <div class="row">
+                @if (Model.Item2 > 1)
+                {
+                    <div class="col-sm-6 text-center">
+                        <ul class="pagination">
+                            @for (int i = 1; i <= Model.Item2; i++)
+                            {
+                                <li onclick="ChangePage(@i)"><a href="#">@i</a></li>
+                            }
+
+                        </ul>
+                    </div>
+                }
+            </div>
+        </div>
+        <!--Middle Part End -->
+    </form>
+</div>
+
+@section Scripts{
+    <script>
+        function ChangePage(pageid) {
+            $("#pageid").val(pageid);
+            $("#FormSubmit").submit();
+        }
+        //=======================================
+        function Change() {
+            $("#FormSubmit").submit();
+        }
+    </script>
+}
+
+
+

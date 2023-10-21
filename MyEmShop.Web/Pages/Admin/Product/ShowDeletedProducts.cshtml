@@ -1,0 +1,78 @@
+﻿@page
+@model MyEMShop.EndPoint.Pages.Admin.Product.ShowDeletedProductsModel
+@{
+    ViewData["Title"] = "لیست محصولات حذف شده";
+}
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">محصولات حذف شده</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                     مدیریت محصولات حذف شده
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default col-md-12">
+                            <div class="panel-heading">
+                                نمایش محصولات حذف شده
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="table-responsive ">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>عکس محصول</th>
+                                                <th>نام محصول</th>
+                                                <th>جنس محصول</th>
+                                                <th>قیمت</th>
+                                                <th>عملیات</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.products)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" class="thumbnail" style="max-height:100px;" />
+                                                    </td>
+                                                    <td>@item.ProductTitle</td>
+                                                    <td>@item.Productmark</td>
+                                                    <td>@item.ProductPrice</td>
+                                                    <td>
+                                                        <a asp-page="RefreshProduct" class="btn btn-warning btn-sm" asp-route-id="@item.ProductId">بازگردانی</a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+
+            <nav aria-label="...">
+                <ul class="pagination">
+                    @for (int i = 1; i <= ((int)ViewData["rowsCount"] + 1); i++)
+                    {
+                        <li class="@(((int)ViewData["pageId"] == i)?"active": "")"><a href="/Admin/Product?pageId=@i">@i<span class="sr-only">(current)</span></a></li>
+                    }
+                </ul>
+            </nav>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+</div>

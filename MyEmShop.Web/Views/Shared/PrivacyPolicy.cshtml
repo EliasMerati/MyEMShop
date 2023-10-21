@@ -1,0 +1,37 @@
+﻿@model MyEMShop.Data.Entities.PrivacyPolicy.Privacy
+@{
+    ViewData["Title"] = "اطلاعات حریم شخصی";
+
+}
+@section MetaTag
+    {
+    <meta name=googlebot content=index,follow>
+    <meta name=robots content=noodp,noydir>
+    <meta property=og:site_name value="فروشگاه پوشاک زنانه به دخت - اطلاعات حریم شخصی">
+    <meta property=og:title content=@ViewData["Title"]>
+    <meta property=og:description content=" اطلاعات حریم شخصی فروشگاه پوشاک زنانه به دخت">
+    <meta property=og:price:currency content="IRR">
+    <meta property=og:locale content="ir_FA">
+}
+<div id="container">
+    <div class="container">
+        <!-- Breadcrumb Start-->
+        <ul class="breadcrumb">
+            <li><a href="/"><i class="fa fa-home"></i></a></li>
+            <li><a href="/PrivacyPolicy">حریم شخصی</a></li>
+        </ul>
+        <!-- Breadcrumb End-->
+        <div class="row">
+            <!--Middle Part Start-->
+            <div id="content" class="col-sm-12">
+                <h1 class="title">سیاست حریم شخصی</h1>
+                <div class="row">
+                    <div class="col-sm-12">
+                        @Html.Raw(Model.PrivacyText)
+                    </div>
+                </div>
+            </div>
+            <!--Middle Part End -->
+        </div>
+    </div>
+</div>

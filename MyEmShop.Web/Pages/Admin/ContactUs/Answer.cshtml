@@ -1,0 +1,31 @@
+﻿@page "{id}"
+@model MyEMShop.EndPoint.Pages.Admin.ContactUs.AnswerModel
+@{
+    ViewData["Title"] = "ارسال جواب ایمیل به کاربر";
+}
+
+<div id="page-wrapper">
+    <div class="row">
+        <form method="post">
+            <input type="hidden" asp-for="@Model.contact.CUC_Id" />
+            <input type="hidden" asp-for="@Model.contact.Email" />
+            <div class="col-lg-8">
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        اطلاعات ارسال جواب به "@Model.contact.name"
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label> ارسال جواب به "@Model.contact.name"</label>
+                            <textarea name="answere" class="form-control"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success">ارسال جواب </button>
+
+                    </div>
+                    <div class="panel-footer">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

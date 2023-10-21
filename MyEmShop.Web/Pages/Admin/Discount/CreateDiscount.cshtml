@@ -1,0 +1,88 @@
+﻿@page "{handler?}"
+@model MyEMShop.EndPoint.Pages.Admin.Discount.CreateDiscountModel
+@{
+    ViewData["Title"] = "افزودن تخفیف";
+}
+
+<div id="page-wrapper">
+    <div class="row">
+        <form method="post">
+            <div class="col-lg-8">
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        اطلاعات تخفیف
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label>کد تخفیف</label>
+                            <input type="text" asp-for="Discount.DiscountCode" class="form-control">
+                            <div id="AlertCode" class="alert alert-danger" style="display:none">
+                                <i class="fa fa-exclamation-circle">
+                                </i><strong>کد وارد شده تکراری است</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>درصد تخفیف</label>
+                            <input type="number" asp-for="Discount.DiscountPercent" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>تعداد کد تخفیف</label>
+                            <input type="number" asp-for="Discount.UsableCount" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>تاریخ شروع کد تخفیف</label>
+                            <input id="StDate" name="StDate" style="width:150px;" />
+                        </div>
+                        <div class="form-group">
+                            <label>تاریخ پایان کد تخفیف</label>
+                            <input id="EdDate" name="EdDate" style="width:150px;" />
+                        </div>
+                        <button type="submit" class="btn btn-success">ثبت تخفیف جدید</button>
+
+                    </div>
+                    <div class="panel-footer">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts
+    {
+    <script>
+        $("#Discount_DiscountCode").blur(function(){
+            $.ajax({
+                type: "get",
+                url: "/Admin/Discount/CreateDiscount/CheckCode?code=" + $("#Discount_DiscountCode").val()
+            }).done(function (res) {
+                if (res === 'True') {
+                    $("#AlertCode").show();
+                }
+                else {
+                    $("#AlertCode").hide();
+                }
+            });
+        });
+    </script>
+
+
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+    <script src="/KendoJs/JalaliDate.js"></script>
+    <script src="/KendoJs/kendo.web.js"></script>
+    <script src="/KendoJs/fa-IR.js"></script>
+    <script src="/KendoJs/kendo.calendar.fa.js"></script>
+    <script src="/KendoJs/kendo.datepicker.fa.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#StDate").kendoDatePickerShamsi({ culture: "fa-IR" });
+            $("#EdDate").kendoDatePickerShamsi({ culture: "fa-IR" });
+        });
+    </script>
+  }
+
+
+

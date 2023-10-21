@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html dir="rtl">
+<head>
+    <partial name="_Meta" />
+    <title>@*@ViewData["Title"] | فروشگاه به دخت *@470034</title>
+    @RenderSection("MetaTag",false)
+    <!-- CSS Part Start-->
+    <partial name="_Styles" />
+    <!-- CSS Part End-->
+</head>
+<body>
+    <div class="wrapper-wide">
+        <div id="header">
+            <!-- Top Bar Start-->
+            <nav id="top" class="htop">
+                <div class="container">
+                    <div class="row">
+                        <span class="drop-icon visible-sm visible-xs"><i class="fa fa-align-justify"></i></span>
+                        <div class="pull-left flip left-top">
+                            <div class="links">
+                                <ul>
+                                    <li class="email"><a href="mailto:behdokhtcollection@gmail.com"><i class="fa fa-envelope"></i><strong>BehdokhtCollection@gmail.com</strong></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="top-links" class="nav pull-right flip">
+                            <ul>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li><a href="/LogOut">خروج</a></li>
+                                    <li><a href="/UserPannel/Index"> "@User.Identity.Name" عزیز ، خوش آمدید</a></li>
+                                    
+                                }
+                                else
+                                {
+                                    <li><a href="/Login">ورود</a></li>
+                                    <li><a href="/Register">ثبت نام</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- Top Bar End-->
+            <!-- Header Start-->
+            <header class="header-row">
+                <div class="container">
+                    <div class="table-container">
+                        <!-- Logo Start -->
+                        <div class="col-table-cell col-lg-6 col-md-6 col-sm-12 col-xs-12 inner">
+                            <div id="logo"><a href="/"><img class="img-responsive" src="/Template/image/Logo/1111.png" title="BehDokht" alt="BehDokht" /></a></div>
+                        </div>
+                        <!-- Logo End -->
+                        <!-- Mini Cart Start-->
+                        
+                        <!-- Mini Cart End-->
+                        <!-- جستجو Start-->
+                        <div class="col-table-cell col-lg-12 col-md-12 col-sm-12 col-xs-12 inner">
+                            <form action="/Search" method="get">
+                                <div id="search" class="input-group">
+                                    <input id="filter_name" type="text" name="Filter" value="" placeholder="جستجو" class="form-control input-lg" />
+                                    <button type="button" class="button-search"><i class="fa fa-search"></i></button>
+                                </div>
+                            </form>
+                            
+                        </div>
+                        <!-- جستجو End-->
+                    </div>
+                </div>
+            </header>
+            <!-- Header End-->
+            <!-- Main آقایانu Start-->
+            @await Component.InvokeAsync("NavbarComponent")
+
+            <!-- Main آقایانu End-->
+        </div>
+        <div id="container">
+
+            <div class="container">
+                <div class="row">
+                    <!--Middle Part Start-->
+                    <div id="content" class="col-xs-12">
+                        <!-- Slideshow Start-->
+                        @RenderSection("Slider",false)
+                        @RenderSection("Banner",false)
+                        <!-- Slideshow End-->
+                        @RenderBody()
+                    </div>
+                    <!--Middle Part End-->
+                </div>
+            </div>
+        </div>
+        <!-- Feature Box Start-->
+        <partial name="_FeatureBox" />
+        <!-- Feature Box End-->
+        <!--Footer Start-->
+        <partial name="_Footer" />
+        <!--Footer End-->
+    </div>
+    <!-- JS Part Start-->
+    <partial name="_Script" />
+    @RenderSection("Scripts",false)
+    <!-- JS Part End-->
+</body>
+</html>

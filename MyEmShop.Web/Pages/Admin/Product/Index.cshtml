@@ -1,0 +1,84 @@
+﻿@page
+@model MyEMShop.EndPoint.Pages.Admin.Product.IndexModel
+@{
+    ViewData["Title"] = "مدیریت محصولات";
+}
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">محصولات</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    مدیریت محصولات
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="col-md-12" style="margin:10px 0;">
+                        <a asp-page="CreateProduct" class="btn btn-success">افزودن محصول جدید</a>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="panel panel-default col-md-12">
+                            <div class="panel-heading">
+                                نمایش محصولات
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="table-responsive ">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>عکس محصول</th>
+                                                <th>نام محصول</th>
+                                                <th>جنس محصول</th>
+                                                <th>قیمت</th>
+                                                <th>عملیات</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.products)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" class="thumbnail" style="max-height:100px;" />
+                                                    </td>
+                                                    <td>@item.ProductTitle</td>
+                                                    <td>@item.Productmark</td>
+                                                    <td>@item.ProductPrice</td>
+                                                    <td>
+                                                        <a asp-page="EditProduct" class="btn btn-warning btn-sm" asp-route-id="@item.ProductId">ویرایش</a>
+                                                        <a asp-page="DeleteProduct" class="btn btn-danger btn-sm" asp-route-id="@item.ProductId">حذف</a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+
+            <nav aria-label="...">
+                <ul class="pagination">
+                    @for (int i = 1; i <= ((int)ViewData["rowsCount"] + 1); i++)
+                    {
+                        <li class="@(((int)ViewData["pageId"] == i)?"active": "")"><a href="/Admin/Product?pageId=@i">@i<span class="sr-only">(current)</span></a></li>
+                    }
+                </ul>
+            </nav>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+</div>

@@ -37,8 +37,6 @@ namespace MyEMShop.EndPoint.Controllers
             , ITermsService termsService
             , IFaqService faqservice
             , IAboutUsService aboutUs
-
-
             )
         {
 

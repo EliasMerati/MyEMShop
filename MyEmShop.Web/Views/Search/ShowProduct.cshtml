@@ -1,0 +1,387 @@
+﻿@using MyEMShop.Data.Entities.Product
+@model Product
+@{
+    ViewData["Title"] = Model.ProductTitle;
+    int newprice = Model.ProductPrice - (Model.ProductPrice * Model.Save / 100);
+
+}
+
+@section MetaTag
+    {
+    <link rel="canonical" href="https://behdokhtcollection.ir/ShowProduct/@Model.ProductId/@Model.ProductTitle.Trim().Replace(" ","-")" />
+    <meta name=googlebot content=index,follow>
+    <meta name=robots content=noodp,noydir>
+    <meta property=og:site_name value="فروشگاه پوشاک زنانه به دخت - مشاهده ی محصول">
+    <meta property=og:title content=@ViewData["Title"]>
+    <meta property=og:url content="https://behdokhtcollection.ir/Template/image/product/@Model.MainImageProduct" />
+    <meta property=og:image content="/Template/image/product/@Model.MainImageProduct">
+    <meta property=og:image:url content="/Template/image/product/@Model.MainImageProduct" />
+    <meta property=og:image:width content="700">
+    <meta property=og:image:type content="image/jpg">
+    <meta property=og:description content=" مشاهده ی جزییات محصول فروشگاه پوشاک زنانه به دخت">
+    <meta property=og:price:currency content="IRR">
+    <meta property=og:locale content="ir_FA">
+}
+
+<div id="container">
+    <div class="container">
+        <!-- Breadcrumb Start-->
+        <ul class="breadcrumb">
+            <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/" itemprop="url"><span itemprop="title"><i class="fa fa-home"></i></span></a></li>
+            <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="" itemprop="url"><span itemprop="title">@Model.ProductTitle</span></a></li>
+        </ul>
+
+
+        <div class="row">
+            <!--Middle Part Start-->
+            <div id="content" class="col-sm-9">
+                <div itemscope itemtype="http://schema.org/محصولات">
+
+                    <h1 class="title" itemprop="name">@Model.ProductTitle</h1>
+                    <!--Short Link Start -->
+                    @{
+                        string Link = "https://behdokhtcollection.ir/p/" + Model.ShortKey;
+                    }
+                    <div class="tag text-center" style="max-width:320px;background-color:beige">
+                        <span  class="title"><strong>لینک کوتاه  :</strong> </span>
+                        <a style="font-family:sans-serif " href="@Link" class="link">@("behdokhtcollection.ir/p/" + Model.ShortKey)</a>
+                    </div>
+                    <!--Short Link End -->
+                    <div class="row product-info">
+                        <div class="col-sm-6">
+                            <div class="image"><img class="img-responsive" itemprop="image" id="zoom_01" src="/Template/image/product/MainPic/@Model.MainImageProduct" title="@Model.ProductTitle" alt="@Model.ProductTitle" data-zoom-image="/Template/image/product/MainPic/@Model.MainImageProduct" /> </div>
+                            <div class="center-block text-center"><span class="zoom-gallery"><i class="fa fa-search"></i> برای مشاهده گالری روی تصویر کلیک کنید</span></div>
+                            <div class="image-additional" id="gallery_01">
+                                @foreach (var item in Model.ProductImages)
+                                {
+                                    <a class="thumbnail" style="height:60px;width:90px;" href="#" data-zoom-image="/Template/image/product/Image/@item.PI_ImageName" data-image="/Template/image/product/Image/@item.PI_ImageName" title="@item.PI_ImageName">
+                                        <img src="/Template/image/product/Image/@item.PI_ImageName" title="@item.PI_ImageName" alt="@item.PI_ImageName" />
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <ul class="list-unstyled description">
+                                @if (Model.PL_Id == 1)
+                                {
+                                    <li><b>وضعیت موجودی : </b> <span class="instock">موجود</span></li>
+                                }
+                                else if (Model.PL_Id == 2)
+                                {
+                                    <li><b>وضعیت موجودی : </b> <span class="nostock">ناموجود</span></li>
+                                }
+                                else if (Model.PL_Id == 3)
+                                {
+                                    <li><b>وضعیت موجودی : </b> <div class="alert alert-warning">به زودی</div></li>
+                                }
+                            </ul>
+                            <ul class="price-box" style="text-align:center">
+                                <li class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                    @if (Model.Save != 0)
+                                    {
+                                        <span class="price-old"> @Model.ProductPrice.ToString("N0")  تومان</span>
+                                    }
+
+
+                                    <span itemprop="price">
+                                        @newprice.ToString("N0") تومان
+                                        <span itemprop="availability" content="موجود">
+
+                                        </span>
+                                    </span>
+                                </li>
+                            </ul>
+                            <div id="product">
+                                <div class="cart">
+                                    <div>
+                                        <a href="/Search/BuyProduct/@Model.ProductId" id="button-cart" class="btn btn-primary btn-lg">افزودن به سبد</a>
+                                    </div>
+                                    <div>
+                                        <a asp-area="UserPannel" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-productId="@Model.ProductId" type="button" class="wishlist" onClick=""><i class="fa fa-heart"></i> افزودن به علاقه مندی ها</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rating" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                                <meta itemprop="ratingValue" content="0" />
+                                <p>
+                                    <span class="fa fa-stack">
+                                        <i class="fa fa-star fa-stack-1x">
+
+                                        </i>
+                                        <i class="fa fa-star-o fa-stack-1x">
+
+                                        </i>
+                                    </span>
+                                    <span class="fa fa-stack">
+                                        <i class="fa fa-star fa-stack-1x">
+
+                                        </i>
+                                        <i class="fa fa-star-o fa-stack-1x">
+
+                                        </i>
+                                    </span>
+                                    <span class="fa fa-stack">
+                                        <i class="fa fa-star fa-stack-1x">
+
+                                        </i>
+                                        <i class="fa fa-star-o fa-stack-1x">
+
+                                        </i>
+                                    </span> <span class="fa fa-stack">
+                                        <i class="fa fa-star fa-stack-1x">
+
+                                        </i>
+                                        <i class="fa fa-star-o fa-stack-1x">
+
+                                        </i>
+                                    </span>
+                                    <span class="fa fa-stack">
+                                        <i class="fa fa-star-o fa-stack-1x">
+
+                                        </i>
+                                    </span>
+                                    @{
+                                        int comments = ViewBag.CommentCount;
+                                    }
+                                    <a onClick="$('a[href=\'#tab-review\']').trigger('click'); return false;" href="/search/AddComment/">
+                                        <span itemprop="reviewCount">
+                                            @comments بررسی
+                                        </span>
+                                    </a>
+                                    /
+                                    <a onClick="$('a[href=\'#tab-review\']').trigger('click'); return false;" href="/search/AddComment/">یک بررسی بنویسید</a>
+                                </p>
+                            </div>
+                            <hr>
+                            <!-- AddThis Button BEGIN -->
+                            <div class="addthis_toolbox addthis_default_style"> <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a> <a class="addthis_button_tweet"></a> <a class="addthis_button_google_plusone" g:plusone:size="medium"></a> <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal" pi:pinit:url="http://www.addthis.com/features/pinterest" pi:pinit:media="http://www.addthis.com/cms-content/images/features/pinterest-lg.png"></a> <a class="addthis_counter addthis_pill_style"></a> </div>
+                            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-514863386b357649"></script>
+                            <!-- AddThis Button END -->
+                        </div>
+                        @if (!string.IsNullOrEmpty(Model.ProductDemo))
+                        {
+                            <video style="max-width:70% ;max-height:50%; margin:40px 80px" controls poster="/Template/image/product/MainPic/@Model.MainImageProduct">
+                                <source src="/Template/image/product/Demos/@Model.ProductDemo" />
+                            </video>
+                        }
+                    </div>
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab-description" data-toggle="tab">توضیحات</a></li>
+                        <li><a href="#tab-specification" data-toggle="tab">بررسی محصول</a></li>
+                        <li><a href="#tab-review" data-toggle="tab">نظرات کاربران</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div itemprop="description" id="tab-description" class="tab-pane active">
+                            <div>
+                                @Html.Raw(Model.ProductDescription)
+                            </div>
+                        </div>
+                        <div id="tab-specification" class="tab-pane ">
+                            <div>
+                                @Html.Raw(Model.ProductCheck)
+                            </div>
+                        </div>
+                        <div id="tab-review" class="tab-pane">
+                            <div id="review">
+
+                                <div id="ListComment">
+                                </div>
+                                <div class="text-right"></div>
+                            </div>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <form class="form-horizontal" asp-controller="Search" asp-action="AddComment"
+                                  data-ajax="true"
+                                  data-ajax-method="post"
+                                  data-ajax-mode="replace"
+                                  data-ajax-update="#ListComment"
+                                  data-ajax-success="success">
+                                    <input type="hidden" name="productComment.ProductId" value="@Model.ProductId" />
+
+                                    <h2>یک بررسی بنویسید</h2>
+                                    <div class="form-group required">
+                                    </div>
+                                    <div class="form-group required">
+                                        <div class="col-sm-12">
+                                            <label for="input-review" class="control-label">بررسی شما</label>
+                                            <textarea class="form-control" id="productComment_Comment" rows="5" name="productComment.Comment"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="buttons">
+                                        <div class="pull-right">
+                                            <button type="submit" class="btn btn-primary" id="button-review">ثبت نظر</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            }
+                            else
+                            {
+                                <div class="alert alert-warning">
+                                    جهت درج نظر باید وارد سایت شوید
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <h3 class="subtitle">محصولات مرتبط</h3>
+                    @{
+                        List<Product> liked = ViewBag.product as List<Product>;
+                    }
+                    <div class="owl-carousel related_pro">
+                        @if (liked is not null)
+                        {
+                            foreach (var item in liked)
+                            {
+                                <div class="product-thumb clearfix">
+                                    <input type="hidden" value="@item.ProductId" />
+                                    <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt=" @item.ProductTitle " title=" @item.ProductTitle " class="img-responsive" /></a></div>
+                                    <div class="caption">
+                                        <input type="hidden" value="@item.ProductId" />
+                                        <h4><a href="/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
+                                        <p class="price">
+
+                                            @if (item.Save != 0)
+                                            {
+                                                <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
+                                                <span class="price-new">@newprice.ToString("N0") تومان</span>
+                                                <span class="saving">@item.Save %</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="price-new">@item.ProductPrice.ToString("N0") تومان</span>
+                                            }
+                                        </p>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <!--Middle Part End -->
+            <!--Right Part Start -->
+            <aside id="column-right" class="col-sm-3 hidden-xs">
+                <h3 class="subtitle">پرفروش ها</h3>
+                @{
+                    List<Product> popular = ViewBag.popular as List<Product>;
+                }
+                <div class="side-item">
+                    @if (popular is not null)
+                    {
+                        foreach (var item in popular)
+                        {
+                            <div class="product-thumb clearfix">
+                                <input type="hidden" value="@item.ProductId" />
+                                <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MiniPic/@item.MainImageProduct" alt=" @item.ProductTitle " title=" @item.ProductTitle " class="img-responsive" /></a></div>
+                                <div class="caption">
+                                    <input type="hidden" value="@item.ProductId" />
+                                    <h4><a href="/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
+                                    <p class="price">
+
+                                        @if (item.Save != 0)
+                                        {
+                                            <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
+                                            <span class="price-new">@newprice.ToString("N0") تومان</span>
+                                            <span class="saving">@item.Save %</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="price-new">@item.ProductPrice.ToString("N0") تومان</span>
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                </div>
+
+                @if (Model.Tags != null)
+                {
+                    <div class="tag">
+                        @foreach (string tag in Model.Tags.Split('-', StringSplitOptions.RemoveEmptyEntries))
+                        {
+                            <a href="/Search?filter=@tag">@tag</a>
+                        }
+                    </div>
+                }
+
+                <h3 class="subtitle">ویژه</h3>
+                @{
+                    List<Product> products = ViewBag.special as List<Product>;
+                }
+                <div class="side-item">
+                    @if (products is not null)
+                    {
+                        foreach (var item in products)
+                        {
+                            <div class="product-thumb clearfix">
+                                <input type="hidden" value="@item.ProductId" />
+                                <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MiniPic/@item.MainImageProduct" alt=" @item.ProductTitle " title=" @item.ProductTitle " class="img-responsive" /></a></div>
+                                <div class="caption">
+                                    <h4><a href="/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
+                                    <p class="price">
+
+                                        @if (item.Save != 0)
+                                        {
+                                            <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
+                                            <span class="price-new">@newprice.ToString("N0") تومان</span>
+                                            <span class="saving">@item.Save %</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="price-new">@item.ProductPrice.ToString("N0") تومان</span>
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                </div>
+            </aside>
+            <!--Right Part End -->
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+    {
+    <script type="text/javascript">
+        // Elevate Zoom for Product Page image
+        $("#zoom_01").elevateZoom({
+            gallery: 'gallery_01',
+            cursor: 'pointer',
+            galleryActiveClass: 'active',
+            imageCrossfade: true,
+            zoomWindowFadeIn: 500,
+            zoomWindowFadeOut: 500,
+            zoomWindowPosition: 11,
+            lensFadeIn: 500,
+            lensFadeOut: 500,
+            loadingIcon: 'image/progress.gif'
+        });
+        // pass the images to swipebox
+        $("#zoom_01").bind("click", function (e) {
+            var ez = $('#zoom_01').data('elevateZoom');
+            $.swipebox(ez.getGalleryList());
+            return false;
+        });
+    </script>
+
+    @*// =================================================== AJAX*@
+
+    <script type="text/javascript" src="/js/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript">
+        function success() {
+            $("#productComment_Comment").val("");
+        }
+
+        $(function () {
+            $("#ListComment").load("/Search/ShowComment/" + @Model.ProductId);
+        });
+    </script>
+    @*// =================================================== AJAX*@
+}
+

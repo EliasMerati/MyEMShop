@@ -1,0 +1,148 @@
+﻿@using MyEMShop.Data.Dtos.OrderState
+
+<div class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="side-menu">
+            <li class="sidebar-search">
+                <div class="input-group custom-search-form">
+                    <input type="text" class="form-control" placeholder="Search...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+                <!-- /input-group -->
+            </li>
+            <li>
+                <a href="/Admin"><i class="fa fa-dashboard fa-fw"></i> پنل ادمین</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> مدیریت کاربران<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li>
+                        <a href="/Admin/Roles/">دسترسی ها</a>
+                    </li>
+                    <li>
+                        <a href="/Admin/Users/">کاربران</a>
+                    </li>
+                    <li>
+                        <a href="/Admin/Users/ListDeletedUsers">کاربران حذف شده</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="/Admin/Group/"><i class="fa fa-dashboard fa-fw"></i> مدیریت گروه ها</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> مدیریت محصولات<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li>
+                        <a href="/Admin/Product/">لیست محصولات</a>
+                    </li>
+                    <li>
+                        <a href="/Admin/Product/ShowDeletedProducts">محصولات حذف شده</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="/Admin/Slider/"><i class="fa fa-dashboard fa-fw"></i> مدیریت اسلایدر ها</a>
+            </li>
+            <li>
+                <a href="/Admin/comments/"><i class="fa fa-bar-chart-o fa-fw"></i> مدیریت نظرات<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li>
+                        <a href="/Admin/comments?adminRead=IsFalse"> تایید نشده</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="/Admin/Orders/"><i class="fa fa-bar-chart-o fa-fw"></i> مدیریت سفارشات<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li>
+                        <a href="/Admin/Orders?orderState=IsProgress"> در حال پردازش</a>
+                    </li>
+                    <li>
+                        <a href="/Admin/Orders?orderState=IsReady"> آماده ارسال</a>
+                    </li>
+                    <li>
+                        <a href="/Admin/Orders?orderState=IsSend"> ارسال شده</a>
+                    </li>
+                    <li>
+                        <a href="/Admin/Orders?orderState=IsCanceled"> لغو شده</a>
+                    </li>
+                    
+
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> مدیریت تخفیف ها<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li>
+                        <a href="/admin/discount/">لیست تخفیف ها</a>
+                    </li>
+                    <li>
+                        <a href="/admin/discount/creatediscount/">افزودن تخفیف</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="/Admin/Tax/"><i class="fa fa-dashboard fa-fw"></i> مدیریت مالیات</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> مدیریت بنر ها<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li>
+                        <a href="/Admin/Banners/">بنر های کوچک</a>
+                    </li>
+                    <li>
+                        <a href="/Admin/BigBanners/">بنر های بزرگ</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> مدیریت سوالات متداول<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li>
+                        <a href="/Admin/FaqGroups/">گروه سوال ها</a>
+                    </li>
+                    <li>
+                        <a href="/Admin/Faqs/">سوال ها</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="/Admin/AboutUs"><i class="fa fa-dashboard fa-fw"></i> مدیریت درباره ی ما</a>
+            </li>
+            <li>
+                <a href="/Admin/ContactUsInfo"><i class="fa fa-dashboard fa-fw"></i> مدیریت اطلاعات درباره ی ما</a>
+            </li>
+            <li>
+                <a href="/Admin/ContactUs"><i class="fa fa-dashboard fa-fw"></i> مدیریت تماس با ما</a>
+            </li>
+            <li>
+                <a href="/Admin/Term"><i class="fa fa-dashboard fa-fw"></i>شرایط و قوانین</a>
+            </li>
+            <li>
+                <a href="/Admin/Privacy policy"><i class="fa fa-dashboard fa-fw"></i>سیاست حریم خصوصی</a>
+            </li>
+         
+
+            <!-- /#side-menu -->
+    </div>
+    <!-- /.sidebar-collapse -->
+</div>
+
+
+
+
+
+
+

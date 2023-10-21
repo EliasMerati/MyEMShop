@@ -1,0 +1,34 @@
+﻿@page "{id}"
+@model MyEMShop.EndPoint.Pages.Admin.ContactUs.DeleteContactUsModel
+@{
+    ViewData["Title"] = "حذف پیام ارتباط با ما ";
+}
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    حذف پیام ارتباط با ما
+                </div>
+                <div class="panel-body">
+                    <form method="post">
+                        <input type="hidden" asp-for="@Model.contact.CUC_Id" />
+                        <dl class="dl-horizontal">
+                            <dt> پیام ارتباط با ما :</dt>
+                            <dd>
+                                <input type="text" class="form-control" asp-for="@Model.contact.Question"/>
+                            </dd>
+                            <dt></dt>
+                            <dd>
+                                <input type="submit" value="حذف پیام ارتباط با ما" class="btn btn-danger" />
+                            </dd>
+                        </dl>
+                    </form>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+    </div>
+</div>

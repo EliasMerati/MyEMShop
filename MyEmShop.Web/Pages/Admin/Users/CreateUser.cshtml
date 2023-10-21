@@ -1,0 +1,73 @@
+﻿@page
+@using MyEMShop.Data.Entities.User;
+@model MyEMShop.EndPoint.Pages.Admin.Users.CreateUserModel
+@{
+    ViewData["Title"] = "افزودن کاربران";
+    IList<Role> roles = ViewData["Roles"] as IList<Role>;
+}
+<div id="page-wrapper">
+    <div class="row">
+        <form method="post">
+            <div class="col-lg-8">
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        اطلاعات کاربر
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label>نام</label>
+                            <input type="text" asp-for="createUser.Name" class="form-control">
+                            <span asp-validation-for="createUser.Name"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>نام خانوادگی</label>
+                            <input type="text" asp-for="createUser.Family" class="form-control">
+                            <span asp-validation-for="createUser.Family"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>نام کاربری</label>
+                            <input type="text" asp-for="createUser.UserName" class="form-control">
+                            <span asp-validation-for="createUser.UserName"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>ایمیل</label>
+                            <input type="text" asp-for="createUser.Email" class="form-control">
+                            <span asp-validation-for="createUser.Email"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>کلمه ی عبور</label>
+                            <input type="text" asp-for="createUser.Password" class="form-control">
+                            <span asp-validation-for="createUser.Password"></span>
+                        </div>
+                        <button type="submit" class="btn btn-success">ثبت کاربر جدید</button>
+
+                    </div>
+                    <div class="panel-footer">
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        نقش های کاربر
+                    </div>
+                    <div class="panel-body">
+                        @foreach (var item in roles)
+                        {
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="SelectedRoles" value="@item.RoleId">@item.RoleTitle
+                                </label>
+                            </div>
+                        }
+                    </div>
+                    <div class="panel-footer">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

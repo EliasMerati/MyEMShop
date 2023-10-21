@@ -1,0 +1,16 @@
+﻿@using MyEMShop.Application.Interfaces;
+@using MyEMShop.Data.Entities.Slider
+@inject ISliderService _slider
+@{
+    List<Slider> slider = _slider.GetAllSliders();
+}
+<div class="slideshow single-slider owl-carousel">
+    
+    @foreach (var item in slider)
+    {
+        <div class="item">
+         <a><img class="img-responsive" src="/Template/image/slider/@item.SliderImageName" alt="@item.SliderImageName" style="height:420px ;width:1140px"/></a>
+        </div>
+    }
+    
+</div>

@@ -1,0 +1,61 @@
+﻿@page
+@model MyEMShop.EndPoint.Pages.Admin.Banners.EditMiddleRightBannerModel
+@{
+    ViewData["Title"] = "ویرایش بنر وسط راست";
+}
+
+<div id="page-wrapper">
+    <div class="row">
+        <form method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="@Model.Banner.BannerId" />
+            <input type="hidden" asp-for="@Model.Banner.BannerImage" />
+            <div class="col-lg-8">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        عکس  بنر وسط راست
+                    </div>
+                    <div class="panel-body">
+                        <img id="ImgBanner" style="max-height:150px;" class="thumbnail" src="/Template/image/banner/@Model.Banner.BannerImage" />
+                        <div class="form-group">
+                            <lable>تصویر بنر وسط چپ</lable>
+                            <input type="file" id="MainimgBannerUp" name="MainimgBanner" asp-for="Banner.BannerImage" />
+                        </div>
+                        <div class="form-group">
+                            <label>عنوان بنر</label>
+                            <input type="text" asp-for="Banner.BannerName" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>لینک بنر</label>
+                            <input type="text" asp-for="Banner.BannerLink" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-warning">ویرایش بنر </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts
+    {
+    <script>
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#ImgBanner').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#MainimgBannerUp").change(function () {
+            readURL(this);
+        });
+    </script>
+}
