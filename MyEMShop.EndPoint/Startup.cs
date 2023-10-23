@@ -33,7 +33,7 @@ namespace MyEMShop.EndPoint
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddMvc(option => option.EnableEndpointRouting = true);
+            //services.AddMvc(option => option.EnableEndpointRouting = true);
             services.AddRazorPages();
 
             #region Authentication
