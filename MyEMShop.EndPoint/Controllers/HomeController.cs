@@ -169,8 +169,8 @@ namespace MyEMShop.EndPoint.Controllers
         [Route("/FAQ")]
         public IActionResult FAQ()
         {
-            var faq = _faqservice.GetFaqList();
-            return View("FAQ", faq);
+            var faqgroup = _faqservice.GetFaqList();           
+            return View("FAQ",faqgroup);
         }
 
 

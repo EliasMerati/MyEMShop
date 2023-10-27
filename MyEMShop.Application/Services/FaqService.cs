@@ -53,11 +53,11 @@ namespace MyEMShop.Application.Services
 
         public List<Faq> GetFaqList()
         {
-            return _db.Faqs 
-                .Include(fg=>fg.FaqGroup)
-                .AsNoTracking()
-                .ToList();
+           return _db.Faqs
+               .Include(f => f.FaqGroup)
+               .ToList();
         }
+
 
         public void UpdateFaq(Faq faq)
         {
