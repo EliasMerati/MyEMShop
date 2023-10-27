@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MyEMShop.Application.Attribute;
 using MyEMShop.Application.Interfaces;
+using MyEMShop.Data.Dtos.VisitorDto;
+using System.Collections.Generic;
 
 namespace MyEMShop.EndPoint.Pages.Admin
 {
@@ -16,8 +18,10 @@ namespace MyEMShop.EndPoint.Pages.Admin
         }
         #endregion
 
+        public List<VisitorsDto> Top10 { get; set; }
         public void OnGet()
         {
+            Top10 = _visitorService.GetLast10Visitors();
             ViewData["TotalUsers"] = _visitorService.TotalUsers();
             ViewData["TotalVisitors"] = _visitorService.TotalVisitors();
             ViewData["TodayVisitors"] = _visitorService.TodayVisitors();

@@ -96,6 +96,81 @@
                 </div>
 
             </div>
+            <br />
+            <hr />
+            <div class="table-responsive ">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>آی پی</th>
+                            <th>مرورگر</th>
+                            <th>نوع بازدید</th>
+                            <th>سیستم عامل</th>
+                            <th>لینک کنونی</th>
+                            <th>لینک قبل</th>
+                            <th>تاریخ بازدید</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Top10)
+                        {
+                            <tr>
+                                <td>@item.Ip</td>
+                                <td>
+                                    @if (item.Browser.Contains("Chrome"))
+                                    {
+                                        <img height="30" width="30" src="/BrowserIcon/Google-chrome-icon.png" />
+                                    }
+                                    else if (item.Browser.Contains("Firefox"))
+                                    {
+                                        <img height="30" width="30" src="/BrowserIcon/firefox-icon.png" />
+                                    }
+                                    else if (item.Browser.Contains("Edge"))
+                                    {
+                                        <img height="30" width="30" src="/BrowserIcon/Edge-icon.png" />
+                                    }
+                                    else if (item.Browser.Contains("Safari"))
+                                    {
+                                        <img height="30" width="30" src="/BrowserIcon/safari-logo.png" />
+                                    }
+                                    else
+                                    {
+                                        <img height="30" width="30" src="/BrowserIcon/opera icon.png" />
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.IsSpider)
+                                    {
+                                        <img height="30" width="30" src="/BrowserIcon/spider-icon.png" />
+                                    }
+                                    else
+                                    {
+                                        <img height="30" width="30" src="/BrowserIcon/Human Icon.png" />
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.OperationSystem.Contains("Windows"))
+                                    {
+                                        <img height="30" width="30" src="/BrowserIcon/windows-icon.png" />
+                                    }
+                                    else if (item.OperationSystem.Contains("Linux"))
+                                    {
+                                        <img height="30" width="30" src="/BrowserIcon/linux icon.png" />
+                                    }
+                                    else
+                                    {
+                                        <img height="30" width="30" src="/BrowserIcon/mac os.png" />
+                                    }
+                                </td>
+                                <td>@item.CurrentLink</td>
+                                <td>@item.ReferrerLink</td>
+                                <td>@item.Time.ToShamsi()</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.table-responsive -->
         </div>
         <!-- /.col-lg-12 -->
     </div>

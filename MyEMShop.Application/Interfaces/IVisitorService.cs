@@ -1,4 +1,5 @@
-﻿using MyEMShop.Data.Entities.Visitors;
+﻿using MyEMShop.Data.Dtos.VisitorDto;
+using MyEMShop.Data.Entities.Visitors;
 using System.Collections.Generic;
 
 namespace MyEMShop.Application.Interfaces
@@ -12,5 +13,6 @@ namespace MyEMShop.Application.Interfaces
         long TotalVisitors();
         int NewOrder();
         long TotalUsers();
+        List<VisitorsDto> GetLast10Visitors();
     }
 }
