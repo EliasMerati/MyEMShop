@@ -49,7 +49,6 @@ namespace MyEMShop.Application.Services
         {
             return _db.Visitors
                 .OrderByDescending(v => v.Time)
-                .Take(10)
                 .Select(v => new VisitorsDto
                 {
                     Browser = v.Browser.Family,
@@ -59,7 +58,7 @@ namespace MyEMShop.Application.Services
                     IsSpider = v.VisitorDevice.IsSpider,
                     OperationSystem= v.OperationSystem.Family,
                     ReferrerLink = v.ReferrerLink
-                }).ToList();
+                }).Take(10).ToList();
         }
 
         public int NewOrder()
@@ -92,7 +91,7 @@ namespace MyEMShop.Application.Services
 
         public long TotalVisitors()
         {
-            return _db.Visitors.GroupBy(v => v.VisitorId).LongCount();
+            return _db.Visitors.GroupBy(v => v.VisitID).LongCount();
         }
 
         public long TotalVisits()
