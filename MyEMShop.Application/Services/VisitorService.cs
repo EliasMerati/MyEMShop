@@ -73,7 +73,7 @@ namespace MyEMShop.Application.Services
             var start = DateTime.Now.Date;
             var end = DateTime.Now.AddDays(1);
 
-            return _db.Visitors.Where(v => v.Time >= start && v.Time < end).GroupBy(v => v.VisitorId).LongCount();
+            return _db.Visitors.Where(v => v.Time >= start && v.Time < end).GroupBy(v => v.VisitID).LongCount();
         }
 
         public long TodayVisits()
