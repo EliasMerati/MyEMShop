@@ -236,7 +236,7 @@
                                     <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt=" @item.ProductTitle " title=" @item.ProductTitle " class="img-responsive" /></a></div>
                                     <div class="caption">
                                         <input type="hidden" value="@item.ProductId" />
-                                        <h4><a href="/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
+                                        <h4><a href="//ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")">@item.ProductTitle</a></h4>
                                         <p class="price">
 
                                             @if (item.Save != 0)
@@ -275,7 +275,7 @@
                                 <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MiniPic/@item.MainImageProduct" alt=" @item.ProductTitle " title=" @item.ProductTitle " class="img-responsive" /></a></div>
                                 <div class="caption">
                                     <input type="hidden" value="@item.ProductId" />
-                                    <h4><a href="/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
+                                    <h4><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")">@item.ProductTitle</a></h4>
                                     <p class="price">
 
                                         @if (item.Save != 0)
@@ -319,7 +319,7 @@
                                 <input type="hidden" value="@item.ProductId" />
                                 <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MiniPic/@item.MainImageProduct" alt=" @item.ProductTitle " title=" @item.ProductTitle " class="img-responsive" /></a></div>
                                 <div class="caption">
-                                    <h4><a href="/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
+                                    <h4><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")">@item.ProductTitle</a></h4>
                                     <p class="price">
 
                                         @if (item.Save != 0)

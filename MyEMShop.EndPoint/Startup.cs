@@ -82,26 +82,26 @@ namespace MyEMShop.EndPoint
             services.AddScoped<SaveVisitorsFilter>();
             #endregion
 
-            #region Minifier For Html & Gzip
-            services.AddWebMarkupMin(opt =>
-            {
-                opt.AllowMinificationInDevelopmentEnvironment = true;
-                opt.AllowCompressionInDevelopmentEnvironment = true;
-            }).AddHtmlMinification(option =>
-            {
-                option.MinificationSettings.RemoveHtmlComments = true;
-                option.MinificationSettings.RemoveHtmlCommentsFromScriptsAndStyles = true;
-                option.MinificationSettings.RemoveHttpProtocolFromAttributes = true;
-                option.MinificationSettings.RemoveHttpsProtocolFromAttributes = true;
-                option.MinificationSettings.RemoveJsProtocolFromAttributes = true;
-                option.MinificationSettings.RemoveJsTypeAttributes = true;
-                option.MinificationSettings.RemoveOptionalEndTags = true;
-                option.MinificationSettings.RemoveTagsWithoutContent = true;
-                option.MinificationSettings.MinifyInlineJsCode = true;
-                option.MinificationSettings.MinifyInlineCssCode = true;
+            //#region Minifier For Html & Gzip
+            //services.AddWebMarkupMin(opt =>
+            //{
+            //    opt.AllowMinificationInDevelopmentEnvironment = true;
+            //    opt.AllowCompressionInDevelopmentEnvironment = true;
+            //}).AddHtmlMinification(option =>
+            //{
+            //    option.MinificationSettings.RemoveHtmlComments = true;
+            //    option.MinificationSettings.RemoveHtmlCommentsFromScriptsAndStyles = true;
+            //    option.MinificationSettings.RemoveHttpProtocolFromAttributes = true;
+            //    option.MinificationSettings.RemoveHttpsProtocolFromAttributes = true;
+            //    option.MinificationSettings.RemoveJsProtocolFromAttributes = true;
+            //    option.MinificationSettings.RemoveJsTypeAttributes = true;
+            //    option.MinificationSettings.RemoveOptionalEndTags = true;
+            //    option.MinificationSettings.RemoveTagsWithoutContent = true;
+            //    option.MinificationSettings.MinifyInlineJsCode = true;
+            //    option.MinificationSettings.MinifyInlineCssCode = true;
 
-            }).AddHttpCompression();
-            #endregion
+            //}).AddHttpCompression();
+            //#endregion
 
             #region Solve Circle For JSON
             //services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
@@ -146,7 +146,7 @@ namespace MyEMShop.EndPoint
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseWebMarkupMin();
+            //app.UseWebMarkupMin();
             
             app.UseEndpoints(endpoints =>
             {
