@@ -6,8 +6,6 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyEMShop.Data.Context;
 
-#nullable disable
-
 namespace MyEMShop.Data.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
@@ -17,10 +15,9 @@ namespace MyEMShop.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.11")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
-
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+                .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("ProductVersion", "5.0.17")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("ColorProduct", b =>
                 {
@@ -41,9 +38,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("AboutUsId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AboutUsId"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AboutUsText")
                         .HasColumnType("nvarchar(max)");
@@ -64,9 +60,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("BannerId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BannerId"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("BannerImage")
                         .HasMaxLength(200)
@@ -92,9 +87,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("CUC_Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CUC_Id"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -120,9 +114,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("ContactUsInfoId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContactUsInfoId"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ContactUsAddress")
                         .HasMaxLength(50)
@@ -173,9 +166,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("FaqId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FaqId"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("FaqAnswer")
                         .HasMaxLength(500)
@@ -285,9 +277,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("FaqGroupId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FaqGroupId"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("FaqGroupTitle")
                         .HasMaxLength(100)
@@ -329,9 +320,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("DiscountId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DiscountId"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("DiscountCode")
                         .IsRequired()
@@ -359,9 +349,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("IsFinally")
                         .HasColumnType("bit");
@@ -404,9 +393,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("OrderDetailId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderDetailId"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Count")
                         .HasColumnType("int");
@@ -898,9 +886,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("RP_Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RP_Id"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("PermissionId")
                         .HasColumnType("int");
@@ -1367,9 +1354,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("PrivacyId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PrivacyId"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("PrivacyText")
                         .HasColumnType("nvarchar(max)");
@@ -1390,9 +1376,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("PC_Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PC_Id"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("PC_Name")
                         .IsRequired()
@@ -1411,9 +1396,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("FP_Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FP_Id"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -1432,9 +1416,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("PL_Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PL_Id"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("PL_Title")
                         .IsRequired()
@@ -1467,9 +1450,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("GroupId")
                         .HasColumnType("int");
@@ -1550,9 +1532,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("AdminRead")
                         .HasColumnType("int");
@@ -1586,9 +1567,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("GroupId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GroupId"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("GroupTitle")
                         .IsRequired()
@@ -1612,9 +1592,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("PI_Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PI_Id"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("PI_ImageName")
                         .IsRequired()
@@ -1635,9 +1614,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("LevelPL_Id")
                         .HasColumnType("int");
@@ -1661,9 +1639,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("PS_Id")
                         .HasColumnType("int");
@@ -1687,9 +1664,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("PS_Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PS_Id"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("SizeTitle")
                         .IsRequired()
@@ -1732,9 +1708,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("SliderId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SliderId"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("SliderImageName")
                         .IsRequired()
@@ -1750,9 +1725,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("TaxId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TaxId"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("TaxValue")
                         .HasColumnType("int");
@@ -1766,9 +1740,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("TermId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TermId"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("TermDescription")
                         .HasColumnType("nvarchar(max)");
@@ -1789,9 +1762,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("RoleId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleId"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
@@ -1824,9 +1796,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Activecode")
                         .HasMaxLength(100)
@@ -1900,7 +1871,7 @@ namespace MyEMShop.Data.Migrations
                             IsDelete = false,
                             Name = "بهناز",
                             Password = "20-2C-B9-62-AC-59-07-5B-96-4B-07-15-2D-23-4B-70",
-                            RegisterDate = new DateTime(2023, 10, 14, 1, 13, 59, 34, DateTimeKind.Local).AddTicks(8004),
+                            RegisterDate = new DateTime(2023, 10, 31, 15, 38, 32, 311, DateTimeKind.Local).AddTicks(4229),
                             UserName = "BehDokhtAdmin"
                         });
                 });
@@ -1909,9 +1880,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("UserDiscountCodeId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserDiscountCodeId"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("DiscountId")
                         .HasColumnType("int");
@@ -1932,9 +1902,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("U_RId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("U_RId"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
@@ -1963,9 +1932,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("VisitorId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VisitorId"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("BrowserVisitorBrowserId")
                         .HasColumnType("int");
@@ -2015,9 +1983,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("VisitorBrowserId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VisitorBrowserId"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Family")
                         .HasColumnType("nvarchar(max)");
@@ -2037,9 +2004,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("VisitorDeviceId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VisitorDeviceId"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Brand")
                         .HasColumnType("nvarchar(max)");
@@ -2065,9 +2031,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("VisitorOSId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VisitorOSId"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Family")
                         .HasColumnType("nvarchar(max)");
@@ -2087,9 +2052,8 @@ namespace MyEMShop.Data.Migrations
                 {
                     b.Property<int>("WalletId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WalletId"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Amount")
                         .HasColumnType("int");

@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
 using MyEMShop.Data.Entities.AboutUs;
 using MyEMShop.Data.Entities.Banners;
 using MyEMShop.Data.Entities.ContactUs;
@@ -21,6 +23,16 @@ namespace MyEMShop.Data.Context
     public class DatabaseContext : DbContext
     {
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
+        public class DatabaseContextFactory : IDesignTimeDbContextFactory<DatabaseContext>
+        {
+            public DatabaseContext CreateDbContext(string[] args)
+            {
+                var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+                optionsBuilder.UseSqlServer("BehDokhtConnectionString");
+
+                return new DatabaseContext(optionsBuilder.Options);
+            }
+        }
 
         #region User
         public DbSet<User> Users { get; set; }

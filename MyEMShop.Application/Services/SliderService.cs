@@ -55,7 +55,7 @@ namespace MyEMShop.Application.Services
                 {
                     ImgFile.CopyTo(stream);
                 }
-                _db.Sliders.Add(new Slider { SliderImageName = slider.SliderImageName });
+                _db.Sliders.Add(new Slider {SliderId = slider.SliderId, SliderImageName = slider.SliderImageName });
                 _db.SaveChanges();
             }
         }

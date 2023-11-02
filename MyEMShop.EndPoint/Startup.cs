@@ -33,9 +33,7 @@ namespace MyEMShop.EndPoint
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            //services.AddMvc(option => option.EnableEndpointRouting = true);
             services.AddRazorPages();
-
             #region Authentication
             services.AddAuthentication(option =>
             {
@@ -51,7 +49,7 @@ namespace MyEMShop.EndPoint
             #endregion
 
             #region Context
-            services.AddDbContext<DatabaseContext>(option => option.UseSqlServer(Configuration.GetConnectionString("BehDokhtConnectionString")));
+            services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("BehDokhtConnectionString")));
             #endregion
 
             #region Services
@@ -81,27 +79,6 @@ namespace MyEMShop.EndPoint
             services.AddScoped<IVisitorService, VisitorService>();
             services.AddScoped<SaveVisitorsFilter>();
             #endregion
-
-            //#region Minifier For Html & Gzip
-            //services.AddWebMarkupMin(opt =>
-            //{
-            //    opt.AllowMinificationInDevelopmentEnvironment = true;
-            //    opt.AllowCompressionInDevelopmentEnvironment = true;
-            //}).AddHtmlMinification(option =>
-            //{
-            //    option.MinificationSettings.RemoveHtmlComments = true;
-            //    option.MinificationSettings.RemoveHtmlCommentsFromScriptsAndStyles = true;
-            //    option.MinificationSettings.RemoveHttpProtocolFromAttributes = true;
-            //    option.MinificationSettings.RemoveHttpsProtocolFromAttributes = true;
-            //    option.MinificationSettings.RemoveJsProtocolFromAttributes = true;
-            //    option.MinificationSettings.RemoveJsTypeAttributes = true;
-            //    option.MinificationSettings.RemoveOptionalEndTags = true;
-            //    option.MinificationSettings.RemoveTagsWithoutContent = true;
-            //    option.MinificationSettings.MinifyInlineJsCode = true;
-            //    option.MinificationSettings.MinifyInlineCssCode = true;
-
-            //}).AddHttpCompression();
-            //#endregion
 
             #region Solve Circle For JSON
             //services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
@@ -146,7 +123,6 @@ namespace MyEMShop.EndPoint
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-            //app.UseWebMarkupMin();
             
             app.UseEndpoints(endpoints =>
             {
