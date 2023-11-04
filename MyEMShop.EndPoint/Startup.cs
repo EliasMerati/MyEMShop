@@ -48,6 +48,24 @@ namespace MyEMShop.EndPoint
             });
             #endregion
 
+            #region Minify Html
+            services.AddWebMarkupMin(
+        options =>
+        {
+            options.AllowMinificationInDevelopmentEnvironment = true;
+            options.AllowCompressionInDevelopmentEnvironment = true;
+        })
+        .AddHtmlMinification(
+            options =>
+            {
+                options.MinificationSettings.RemoveRedundantAttributes = true;
+                options.MinificationSettings.RemoveHttpProtocolFromAttributes = true;
+                options.MinificationSettings.RemoveHttpsProtocolFromAttributes = true;
+               
+            })
+        .AddHttpCompression();
+            #endregion
+
             #region Context
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("BehDokhtConnectionString")));
             #endregion
@@ -120,6 +138,7 @@ namespace MyEMShop.EndPoint
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseWebMarkupMin();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();

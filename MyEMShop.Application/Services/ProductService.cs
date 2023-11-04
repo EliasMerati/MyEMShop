@@ -317,7 +317,7 @@ namespace MyEMShop.Application.Services
 
                 using (Image image = Image.Load(Imagepath))
                 {
-                    image.Mutate(x => x.Resize(330, 220));
+                    image.Mutate(x => x.Resize(220, 330));
                     image.SaveAsync(OutputPath);
                 }
                 #endregion
@@ -329,7 +329,7 @@ namespace MyEMShop.Application.Services
 
                 using (Image image = Image.Load(Imagepath))
                 {
-                    image.Mutate(x => x.Resize(75, 50));
+                    image.Mutate(x => x.Resize(50, 75));
                     image.SaveAsync(MiniPicPath);
                 }
                 #endregion
@@ -343,7 +343,7 @@ namespace MyEMShop.Application.Services
 
                 using (Image image = Image.Load(Imagepath))
                 {
-                    image.Mutate(x => x.Resize(220, 330));
+                    image.Mutate(x => x.Resize(330, 220));
                     image.SaveAsync(OutputPath);
                 }
                 //====================================================================================================================
