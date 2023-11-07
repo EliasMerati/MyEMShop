@@ -186,5 +186,11 @@ namespace MyEMShop.EndPoint.Controllers
             var aboutus = _aboutus.GetAboutUs();
             return View("AboutUs",aboutus);
         }
+
+        //[Route("/SiteMap")]
+        //public IActionResult SiteMap()
+        //{
+        //    return View();
+        //}
     }
 }
