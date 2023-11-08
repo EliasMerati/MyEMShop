@@ -187,10 +187,10 @@ namespace MyEMShop.EndPoint.Controllers
             return View("AboutUs",aboutus);
         }
 
-        //[Route("/SiteMap")]
-        //public IActionResult SiteMap()
-        //{
-        //    return View();
-        //}
+        [Route("/SiteMap")]
+        public IActionResult SiteMap()
+        {
+            return View();
+        }
     }
 }
