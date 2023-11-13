@@ -75,11 +75,25 @@ namespace MyEMShop.Application.Services
 
             return _db.Visitors.Where(v => v.Time >= start && v.Time < end).GroupBy(v => v.VisitID).LongCount();
         }
+        public long MonthVisitors()
+        {
+            var start = DateTime.Now.AddMonths(-1);
+            var end = DateTime.Now;
+
+            return _db.Visitors.Where(v => v.Time >= start && v.Time < end).GroupBy(v => v.VisitID).LongCount();
+        }
 
         public long TodayVisits()
         {
             var start = DateTime.Now.Date;
             var end = DateTime.Now.AddDays(1);
+
+            return _db.Visitors.Where(v => v.Time >= start && v.Time < end).LongCount();
+        }
+        public long MonthVisits()
+        {
+            var start = DateTime.Now.AddMonths(-1);
+            var end = DateTime.Now;
 
             return _db.Visitors.Where(v => v.Time >= start && v.Time < end).LongCount();
         }

@@ -10,6 +10,8 @@ namespace MyEMShop.Application.Interfaces
         long TodayVisits();
         long TodayVisitors();
         long TotalVisits();
+        long MonthVisits();
+        long MonthVisitors();
         long TotalVisitors();
         int NewOrder();
         long TotalUsers();
