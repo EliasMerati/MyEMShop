@@ -158,9 +158,5 @@ namespace MyEMShop.Application.Services
             return _db.Users.Find(userId);
         }
 
-        public bool IsExistUser(string Email)
-        {
-            return _db.Users.Any(u=> u.Email == Email);
-        }
     }
 }

@@ -18,7 +18,6 @@ namespace MyEMShop.Application.Interfaces
         User GetUserByUserId(int userId);
         User GetUserByUserName(string userName);
         UserAddressDto GetUserAddressForOrder(string userName);
-        bool IsExistUser(string Email);
        
     }
 }
