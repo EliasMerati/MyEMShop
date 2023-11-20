@@ -153,6 +153,7 @@ namespace MyEMShop.EndPoint.Controllers
             string body = _viewRender.RenderToStringAsync("_ForgotPassword", user);
             SendEmail.Send(user.Email, "فعالسازی کلمه ی عبور", body);
             ViewBag.IsSuccess = true;
+            ViewBag.email = user.Email;
             return View();
         }
         #endregion
