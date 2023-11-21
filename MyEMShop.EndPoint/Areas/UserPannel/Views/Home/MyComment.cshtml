@@ -1,0 +1,61 @@
+﻿@using MyEMShop.Data.Entities.Product
+@model Tuple<List<ProductComment>, int>
+@{
+    ViewData["Title"] = "لیست نظرات";
+}
+
+<div id="container">
+    <div class="container">
+        <!-- Breadcrumb Start-->
+        <ul class="breadcrumb">
+            <li><a href="/"><i class="fa fa-home"></i></a></li>
+            <li><a href="/LogOut">خروج</a></li>
+        </ul>
+        <!-- Breadcrumb End-->
+        <div class="row">
+            <!--Middle Part Start-->
+            <div id="content" class="col-sm-9">
+                <h1 class="title">لیست نظرات من</h1>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <td class="text-center">متن نظر</td>
+                                <td class="text-left">تاریخ نظر</td>
+                                <td class="text-right">محصول</td>
+                                <td class="text-right">عملیات</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model.Item1)
+                            {
+                                <tr>
+                                    <td class="text-center">@item.Comment</td>
+                                    <td class="text-left">@item.CreateDate.ToShamsi()</td>
+                                    <td class="text-right">@item.Product.ProductTitle</td>
+                                    <td class="text-right">
+                                        <a asp-area="UserPannel" asp-controller="Home" asp-action="DeleteFromComments" asp-route-commentId="@item.Id" asp-route-productId="@item.ProductId" class="btn btn-danger" title="" data-toggle="tooltip" data-original-title="حذف"><i class="fa fa-times"></i></a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--Middle Part End -->
+            <!--Right Part Start -->
+            <partial name="_SideBar" />
+            <!--Right Part End -->
+        </div>
+        <nav aria-label="...">
+            <ul class="pagination">
+                @for (int i = 1; i <= (Model.Item2 + 1); i++)
+                {
+                    <li class="@((ViewBag.pageId == i)?"active":"")"><a href="/UserPannel/Home/MyComment?pageId=@i">@i<span class="sr-only">(current)</span></a></li>
+                }
+            </ul>
+        </nav>
+    </div>
+</div>

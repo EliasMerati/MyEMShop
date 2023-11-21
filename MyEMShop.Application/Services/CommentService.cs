@@ -97,5 +97,22 @@ namespace MyEMShop.Application.Services
             {
             }
         }
+
+        public Tuple<List<ProductComment>, int> ShowUserComments(int UserId , int pageId = 1)
+        {
+            int skip = (pageId - 1) * 10;
+
+            int rowsCount = _db.ProductComments.Where(c => c.UserId == UserId && c.AdminRead == IsAdminRead.IsTrue).Count() / 10;
+            var result = _db.ProductComments
+                .Include(p=>p.Product)
+                .OrderBy(c => c.Id)
+                .Where(c => c.AdminRead == IsAdminRead.IsTrue)
+                .Skip(skip)
+                .Take(10)
+                .AsNoTracking()
+                .ToList();
+
+            return Tuple.Create(result, rowsCount);
+        }
     }
 }

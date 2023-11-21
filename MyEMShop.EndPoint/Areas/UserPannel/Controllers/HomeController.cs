@@ -12,9 +12,11 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
     {
         #region Injection
         private readonly IUserPannelService _userPannel;
-        public HomeController(IUserPannelService userPannel)
+        private readonly ICommentService _comment;
+        public HomeController(IUserPannelService userPannel, ICommentService comment)
         {
             _userPannel = userPannel;
+            _comment = comment;
         }
         #endregion
 
@@ -59,13 +61,30 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
             if (!ModelState.IsValid)
                 return View(change);
 
-            if(!_userPannel.CompareOldPassword(change.OldPassword , username))
+            if (!_userPannel.CompareOldPassword(change.OldPassword, username))
             {
                 ModelState.AddModelError("OldPassword", "کلمه ی عبور فعلی صحیح نمیباشد");
             }
 
-            _userPannel.ChangeNewPassword(username,change.Password);
+            _userPannel.ChangeNewPassword(username, change.Password);
             return LocalRedirect("/LogOut");
+        }
+        #endregion
+
+        #region MyComment
+        [Route("UserPannel/MyComment")]
+        public IActionResult MyComment(int pageId = 1)
+        {
+            ViewBag.pageId = pageId;
+            int userId = _userPannel.GetUserIdByUserName(User.Identity.Name);
+            var result = _comment.ShowUserComments(userId, pageId);
+            return View(result);
+        }
+
+        public IActionResult DeleteFromComments(int productId, int commentId)
+        {
+            _comment.DeleteComment(productId, commentId);
+            return RedirectToAction(nameof(MyComment));
         }
         #endregion
 
