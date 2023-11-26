@@ -59,7 +59,15 @@
                             </p>
                         </div>
                         <div class="button-group">
-                            <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button" onClick=""><span>افزودن به سبد</span></a>
+
+                            @if (item.PL_Id == 1)
+                            {
+                                <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button" onClick=""><span>افزودن به سبد</span></a>
+                            }
+                            else
+                            {
+                                <a class="btn-info" type="button" style="padding:5px" disabled>ناموجود</a>
+                            }
                             <div class="add-to-links" style="padding-top:10px;">
                                 <a asp-area="UserPannel" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-productId="@item.ProductId" type="button" data-toggle="tooltip" title="افزودن به علاقه مندی ها" onClick=""><i class="fa fa-heart"></i></a>
                             </div>
@@ -101,7 +109,14 @@
                             </p>
                         </div>
                         <div class="button-group">
-                            <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button" onClick=""><span>افزودن به سبد</span></a>
+                            @if (item.PL_Id == 1)
+                            {
+                                <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button" onClick=""><span>افزودن به سبد</span></a>
+                            }
+                            else
+                            {
+                                <a class="btn-info" type="button" style="padding:5px" disabled>ناموجود</a>
+                            }
                             <div class="add-to-links" style="padding-top:10px;">
                                 <a asp-area="UserPannel" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-productId="@item.ProductId" type="button" data-toggle="tooltip" title="افزودن به علاقه مندی ها" onClick=""><i class="fa fa-heart"></i></a>
                             </div>
@@ -143,7 +158,15 @@
                             </p>
                         </div>
                         <div class="button-group">
-                            <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button" onClick=""><span>افزودن به سبد</span></a>
+                            @if (item.PL_Id == 1)
+                            {
+                                <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button" onClick=""><span>افزودن به سبد</span></a>
+                            }
+                            else
+                            {
+                                <a class="btn-info" type="button" style="padding:5px" disabled>ناموجود</a>
+                            }
+
                             <div class="add-to-links" style="padding-top:10px;">
                                 <a asp-area="UserPannel" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-productId="@item.ProductId" type="button" data-toggle="tooltip" title="افزودن به علاقه مندی ها" onClick=""><i class="fa fa-heart"></i></a>
                             </div>
@@ -184,7 +207,15 @@
                             </p>
                         </div>
                         <div class="button-group">
-                            <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button" onClick="cart.add('42');"><span>افزودن به سبد</span></a>
+                            @if (item.PL_Id == 1)
+                            {
+                                <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button" onClick="cart.add('42');"><span>افزودن به سبد</span></a>
+                            }
+                            else
+                            {
+                                <a class="btn-info" type="button" style="padding:5px" disabled>ناموجود</a>
+                            }
+
                             <div class="add-to-links" style="padding-top:10px;">
                                 <a asp-area="UserPannel" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-productId="@item.ProductId" type="button" data-toggle="tooltip" title="افزودن به علاقه مندی ها" onClick=""><i class="fa fa-heart"></i></a>
                             </div>
@@ -234,7 +265,15 @@
                     </p>
                 </div>
                 <div class="button-group">
-                    <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button" onClick="cart.add('42');"><span>افزودن به سبد</span></a>
+
+                    @if (item.PL_Id == 1)
+                    {
+                        <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button" onClick="cart.add('42');"><span>افزودن به سبد</span></a>
+                    }
+                    else
+                    {
+                        <a class="btn-info" type="button" style="padding:5px" disabled>ناموجود</a>
+                    }
                     <div class="add-to-links" style="padding-top:10px;">
                         <a asp-area="UserPannel" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-productId="@item.ProductId" type="button" data-toggle="tooltip" title="افزودن به علاقه مندی ها" onClick=""><i class="fa fa-heart"></i></a>
                     </div>
@@ -278,7 +317,14 @@
                                 </p>
                             </div>
                             <div class="button-group">
-                                <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button" onClick="cart.add('42');"><span>افزودن به سبد</span></a>
+                                @if (item.PL_Id == 1)
+                                {
+                                    <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button" onClick="cart.add('42');"><span>افزودن به سبد</span></a>
+                                }
+                                else
+                                {
+                                    <a class="btn-info" type="button" style="padding:5px" disabled>ناموجود</a>
+                                }
                                 <div class="add-to-links" style="padding-top:10px;">
                                     <a asp-area="UserPannel" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-productId="@item.ProductId" type="button" data-toggle="tooltip" title="افزودن به علاقه مندی ها" onClick=""><i class="fa fa-heart"></i></a>
                                 </div>

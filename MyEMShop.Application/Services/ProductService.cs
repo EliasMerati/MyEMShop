@@ -420,6 +420,7 @@ namespace MyEMShop.Application.Services
                     ProductId = r.ProductId,
                     ProductPrice = r.ProductPrice,
                     Save = r.Save,
+                    PL_Id = r.PL_Id,
                 }).Count() / take;
 
             //==================================================
@@ -431,7 +432,8 @@ namespace MyEMShop.Application.Services
                     ProductId = r.ProductId,
                     ProductPrice = r.ProductPrice,
                     Save = r.Save,
-                    InsertDate = r.InsertDate
+                    InsertDate = r.InsertDate,
+                    PL_Id = r.PL_Id,
                 }).OrderByDescending(p => p.InsertDate)
                 .Skip(skip)
               .Take(take)

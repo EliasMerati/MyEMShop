@@ -94,7 +94,14 @@
                             <div id="product">
                                 <div class="cart">
                                     <div>
-                                        <a href="/Search/BuyProduct/@Model.ProductId" id="button-cart" class="btn btn-primary btn-lg">افزودن به سبد</a>
+                                        @if (Model.PL_Id == 1)
+                                        {
+                                            <a href="/Search/BuyProduct/@Model.ProductId" id="button-cart" class="btn btn-primary btn-lg">افزودن به سبد</a>
+                                        }
+                                        else
+                                        {
+                                            <a class="btn-info" type="button" style="padding:5px" disabled>ناموجود</a>
+                                        }
                                     </div>
                                     <div>
                                         <a asp-area="UserPannel" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-productId="@Model.ProductId" type="button" class="wishlist" onClick=""><i class="fa fa-heart"></i> افزودن به علاقه مندی ها</a>
