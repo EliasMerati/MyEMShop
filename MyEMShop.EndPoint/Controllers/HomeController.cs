@@ -64,7 +64,7 @@ namespace MyEMShop.EndPoint.Controllers
 
         #region OnlinePayment
 
-        [Route("OnlinePayment/{id}")]
+        [Route("OnlineWalletPayment/{id}")]
         public IActionResult OnlineWalletPayment(int id)
         {
             if (HttpContext.Request.Query["Status"] != "" &&
@@ -86,6 +86,7 @@ namespace MyEMShop.EndPoint.Controllers
             return View();
         }
 
+        [Route("OnlinePayment/{id}")]
         public IActionResult OnlinePayment(int id)
         {
             if (HttpContext.Request.Query["Status"] != "" &&
@@ -94,9 +95,9 @@ namespace MyEMShop.EndPoint.Controllers
             {
                 string authority = HttpContext.Request.Query["Authority"];
                 var order = _orderService.GetOrderById(id);
-                var payment = new Zarinpal.Payment("", order.OrderSum);
+                var payment = new Zarinpal.Payment("e55a0dbd-7909-4dda-80ee-c8a6781e6aa1", order.OrderSum);
                 var res = payment.Verification(authority).Result;
-                if (res.Status is 100)
+                if (res.Status == 100)
                 {
                     ViewBag.Code = res.RefId;
                     ViewBag.IsSuccess = true;

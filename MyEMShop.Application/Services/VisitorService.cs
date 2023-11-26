@@ -77,10 +77,16 @@ namespace MyEMShop.Application.Services
         }
         public long MonthVisitors()
         {
-            var start = DateTime.Now.Date;
-            var end = DateTime.Now.AddMonths(1);
+            var start = DateTime.Now;
+            var end = DateTime.Now.AddDays(30);
+            long sum = 0;
+            if (start != end)
+            {
+                sum += _db.Visitors.Where(v => v.Time < end).GroupBy(v => v.VisitID).LongCount();
+                DateTime.Now.AddDays(1);
+            }
 
-            return _db.Visitors.Where(v => v.Time >= start && v.Time < end).GroupBy(v => v.VisitID).LongCount();
+            return sum;
         }
 
         public long TodayVisits()
@@ -92,10 +98,15 @@ namespace MyEMShop.Application.Services
         }
         public long MonthVisits()
         {
-            var start = DateTime.Now.Date;
-            var end = DateTime.Now.AddMonths(1);
-
-            return _db.Visitors.Where(v => v.Time >= start && v.Time < end).LongCount();
+            var start = DateTime.Now;
+            var end = DateTime.Now.AddDays(30);
+            long sum = 0;
+            if (start != end)
+            {
+                sum += _db.Visitors.Where(v => v.Time < end).LongCount();
+                DateTime.Now.AddDays(1);
+            }    
+            return sum;
         }
 
         public long TotalUsers()
