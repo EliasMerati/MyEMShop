@@ -78,7 +78,7 @@ namespace MyEMShop.Application.Services
         public long MonthVisitors()
         {
             var start = DateTime.Now.Date;
-            var end = DateTime.Now.AddDays(30);
+            var end = DateTime.Now.AddMonths(1);
 
             return _db.Visitors.Where(v => v.Time >= start && v.Time < end).GroupBy(v => v.VisitID).LongCount();
         }
@@ -93,7 +93,7 @@ namespace MyEMShop.Application.Services
         public long MonthVisits()
         {
             var start = DateTime.Now.Date;
-            var end = DateTime.Now.AddDays(30);
+            var end = DateTime.Now.AddMonths(1);
 
             return _db.Visitors.Where(v => v.Time >= start && v.Time < end).LongCount();
         }
