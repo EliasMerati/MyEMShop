@@ -7,8 +7,8 @@ namespace MyEMShop.Data.Dtos.ProductDto
         public int ProductId { get; set; }
         public string ProductTitle { get; set; }
         public int ProductPrice { get; set; }
-        public string Productmark { get; set; }
         public string MainImageProduct { get; set; }
+        public string Productmark { get; set; }
     }
 
     public record ShowProductForIndex
@@ -20,6 +20,7 @@ namespace MyEMShop.Data.Dtos.ProductDto
         public string MainImageProduct { get; set; }
         public int Save { get; set; }
         public DateTime InsertDate { get; set; }
+   
     }
 
     public record ShowMyFavoriteProductDto
@@ -29,5 +30,6 @@ namespace MyEMShop.Data.Dtos.ProductDto
         public int ProductPrice { get; set; }
         public string MainImageProduct { get; set; }
         public int Save { get; set; }
+        public int PL_Id { get; set; }
     }
 }

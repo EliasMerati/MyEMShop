@@ -56,6 +56,7 @@ namespace MyEMShop.Application.Services
                     ProductPrice = p.ProductPrice,
                     ProductTitle = p.ProductTitle,
                     Save = p.Save,
+                    PL_Id = p.PL_Id,
                 }).Count() / 4;
 
             var result = _db.Products.
@@ -69,6 +70,7 @@ namespace MyEMShop.Application.Services
                     ProductPrice= p.ProductPrice,
                     ProductTitle = p.ProductTitle,
                     Save= p.Save,
+                    PL_Id = p.PL_Id,
                 })
                 .Skip(skip)
                 .Take(4)

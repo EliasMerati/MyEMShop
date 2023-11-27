@@ -51,7 +51,19 @@
                                         </div>
                                     </td>
                                     <td class="text-right">
-                                        <a href="/Search/BuyProduct/@item.ProductId" class="btn btn-primary" title="" data-toggle="tooltip" onclick="cart.add('48');" type="button" data-original-title="افزودن به سبد"><i class="fa fa-shopping-cart"></i></a>
+                                        @if (item.PL_Id == 1)
+                                        {
+                                            <a href="/Search/BuyProduct/@item.ProductId" class="btn btn-primary" title="" data-toggle="tooltip" onclick="cart.add('48');" type="button" data-original-title="افزودن به سبد"><i class="fa fa-shopping-cart"></i></a>
+                                        }
+                                        else if (item.PL_Id == 2)
+                                        {
+                                            <a class="btn btn-info" style="padding:5px" disabled>ناموجود</a>
+                                        }
+                                        else
+                                        {
+                                            <a class="btn btn-warning" style="padding:5px" disabled>به زودی...</a>
+                                        }
+                                        
                                         <a asp-area="UserPannel" asp-controller="Favorite" asp-action="DeleteFromFavorite" asp-route-productid="@item.ProductId" class="btn btn-danger" title="" data-toggle="tooltip" data-original-title="حذف"><i class="fa fa-times"></i></a>
                                     </td>
                                 </tr>
