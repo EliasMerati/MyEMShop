@@ -98,9 +98,13 @@
                                         {
                                             <a href="/Search/BuyProduct/@Model.ProductId" id="button-cart" class="btn btn-primary btn-lg">افزودن به سبد</a>
                                         }
+                                        else if (Model.PL_Id == 2)
+                                        {
+                                            <a class="btn-info"  style="padding:5px" disabled>ناموجود</a>
+                                        }
                                         else
                                         {
-                                            <a class="btn-info" type="button" style="padding:5px" disabled>ناموجود</a>
+                                            <a class="btn btn-warning" style="padding:5px" disabled>به زودی...</a>
                                         }
                                     </div>
                                     <div>

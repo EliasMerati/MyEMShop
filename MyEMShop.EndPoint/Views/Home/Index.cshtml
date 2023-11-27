@@ -64,9 +64,13 @@
                             {
                                 <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button" onClick=""><span>افزودن به سبد</span></a>
                             }
+                            else if (item.PL_Id == 2)
+                            {
+                                <a class="btn-info" style="padding:5px" disabled>ناموجود</a>
+                            }
                             else
                             {
-                                <a class="btn-info" type="button" style="padding:5px" disabled>ناموجود</a>
+                                <a class="btn btn-warning" style="padding:5px" disabled>به زودی...</a>
                             }
                             <div class="add-to-links" style="padding-top:10px;">
                                 <a asp-area="UserPannel" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-productId="@item.ProductId" type="button" data-toggle="tooltip" title="افزودن به علاقه مندی ها" onClick=""><i class="fa fa-heart"></i></a>
@@ -113,9 +117,13 @@
                             {
                                 <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button" onClick=""><span>افزودن به سبد</span></a>
                             }
+                            else if (item.PL_Id == 2)
+                            {
+                                <a class="btn-info" style="padding:5px" disabled>ناموجود</a>
+                            }
                             else
                             {
-                                <a class="btn-info" type="button" style="padding:5px" disabled>ناموجود</a>
+                                <a class="btn btn-warning" style="padding:5px" disabled>به زودی...</a>
                             }
                             <div class="add-to-links" style="padding-top:10px;">
                                 <a asp-area="UserPannel" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-productId="@item.ProductId" type="button" data-toggle="tooltip" title="افزودن به علاقه مندی ها" onClick=""><i class="fa fa-heart"></i></a>
@@ -162,9 +170,13 @@
                             {
                                 <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button" onClick=""><span>افزودن به سبد</span></a>
                             }
+                            else if (item.PL_Id == 2)
+                            {
+                                <a class="btn-info" style="padding:5px" disabled>ناموجود</a>
+                            }
                             else
                             {
-                                <a class="btn-info" type="button" style="padding:5px" disabled>ناموجود</a>
+                                <a class="btn btn-warning" style="padding:5px" disabled>به زودی...</a>
                             }
 
                             <div class="add-to-links" style="padding-top:10px;">
@@ -211,9 +223,13 @@
                             {
                                 <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button" onClick="cart.add('42');"><span>افزودن به سبد</span></a>
                             }
+                            else if (item.PL_Id == 2)
+                            {
+                                <a class="btn-info" style="padding:5px" disabled>ناموجود</a>
+                            }
                             else
                             {
-                                <a class="btn-info" type="button" style="padding:5px" disabled>ناموجود</a>
+                                <a class="btn btn-warning" style="padding:5px" disabled>به زودی...</a>
                             }
 
                             <div class="add-to-links" style="padding-top:10px;">
@@ -270,9 +286,13 @@
                     {
                         <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button" onClick="cart.add('42');"><span>افزودن به سبد</span></a>
                     }
+                    else if (item.PL_Id == 2)
+                    {
+                        <a class="btn-info" style="padding:5px" disabled>ناموجود</a>
+                    }
                     else
                     {
-                        <a class="btn-info" type="button" style="padding:5px" disabled>ناموجود</a>
+                        <a class="btn btn-warning" style="padding:5px" disabled>به زودی...</a>
                     }
                     <div class="add-to-links" style="padding-top:10px;">
                         <a asp-area="UserPannel" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-productId="@item.ProductId" type="button" data-toggle="tooltip" title="افزودن به علاقه مندی ها" onClick=""><i class="fa fa-heart"></i></a>
@@ -321,9 +341,13 @@
                                 {
                                     <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button" onClick="cart.add('42');"><span>افزودن به سبد</span></a>
                                 }
+                                else if (item.PL_Id == 2)
+                                {
+                                    <a class="btn-info" style="padding:5px" disabled>ناموجود</a>
+                                }
                                 else
                                 {
-                                    <a class="btn-info" type="button" style="padding:5px" disabled>ناموجود</a>
+                                    <a class="btn btn-warning" style="padding:5px" disabled>به زودی...</a>
                                 }
                                 <div class="add-to-links" style="padding-top:10px;">
                                     <a asp-area="UserPannel" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-productId="@item.ProductId" type="button" data-toggle="tooltip" title="افزودن به علاقه مندی ها" onClick=""><i class="fa fa-heart"></i></a>
