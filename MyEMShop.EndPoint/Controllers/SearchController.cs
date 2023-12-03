@@ -60,14 +60,14 @@ namespace MyEMShop.EndPoint.Controllers
             var product = _productService.GetByShortKey(key);
             if (product is null) { return View("NotFound"); }
             Uri uri = new Uri("https://behdokhtcollection.ir/" + "ShowProduct/" + product.ProductId + "/" + product.ProductTitle.Trim().Replace(" ", "-"));
-            return LocalRedirect(uri.AbsolutePath);
+            return Redirect(uri.AbsolutePath);
         }
 
         [Authorize]
         public IActionResult BuyProduct(int id)
         {
             int orderId = _orderService.AddOrder(User.Identity.Name, id);
-            return LocalRedirect("/UserPannel/Order/ShowOrder/" + orderId);
+            return Redirect("/UserPannel/Order/ShowOrder/" + orderId);
         }
 
         [HttpPost]
@@ -96,13 +96,13 @@ namespace MyEMShop.EndPoint.Controllers
         public IActionResult AccessComment(int productId, int commentId)
         {
             _commentService.AccessComment(productId, commentId);
-            return LocalRedirect("/Admin/Comments");
+            return Redirect("/Admin/Comments");
         }
 
         public IActionResult DeleteComment(int productId, int commentId)
         {
             _commentService.DeleteComment(productId, commentId);
-            return LocalRedirect("/Admin/Comments");
+            return Redirect("/Admin/Comments");
         }
     }
 

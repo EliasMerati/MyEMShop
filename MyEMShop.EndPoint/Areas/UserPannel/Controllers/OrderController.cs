@@ -57,7 +57,7 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
             var order = _orderService.GetOrderForUserPannel(User.Identity.Name, id);
             if (order is null)
             {
-                return LocalRedirect("NotFound");
+                return Redirect("NotFound");
             }
             ViewBag.TypeDiscount = type;
             ViewBag.final = finall;
@@ -68,7 +68,7 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
         {
             if (_orderService.FinallyOrder(User.Identity.Name, id))
             {
-                return LocalRedirect("/UserPannel/Order/ShowOrder/" + id + "?finall = true");
+                return Redirect("/UserPannel/Order/ShowOrder/" + id + "?finall = true");
             }
             return BadRequest();
         }
@@ -78,7 +78,7 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
         {
             ViewBag.discount = _discountService.GetDiscount(code).DiscountPercent;
             DiscountUseType type = _discountService.UseDiscount(orderId, code);
-            return LocalRedirect("/UserPannel/Order/ShowOrder/" + orderId + "?Type =" + type.ToString());
+            return Redirect("/UserPannel/Order/ShowOrder/" + orderId + "?Type =" + type.ToString());
         }
 
         [HttpPost]
@@ -87,42 +87,42 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
             _orderService.DeleteFromOrder(orderId, productid);
             if (_orderService.IsOrderExist(orderId))
             {
-                return LocalRedirect("/UserPannel/Order/ShowOrder/" + orderId);
+                return Redirect("/UserPannel/Order/ShowOrder/" + orderId);
             }
             else
             {
-                return LocalRedirect("/UserPannel/Order/");
+                return Redirect("/UserPannel/Order/");
             }
         }
 
         public IActionResult DeleteOrder(int orderId)
         {
             _orderService.DeleteOrder(orderId);
-            return LocalRedirect("/UserPannel/Order/");
+            return Redirect("/UserPannel/Order/");
         }
 
         public IActionResult RefreshOrder(int orderId, int quantity, int productId)
         {
             _orderService.Refresh(quantity, orderId, productId);
-            return LocalRedirect("/UserPannel/Order/ShowOrder/" + orderId);
+            return Redirect("/UserPannel/Order/ShowOrder/" + orderId);
         }
 
         public IActionResult ChangeToIsSend(int orderId)
         {
             _orderService.ChangeStateToIsSend(orderId);
-            return LocalRedirect("/Admin/Orders/Index?orderState=IsReady");
+            return Redirect("/Admin/Orders/Index?orderState=IsReady");
         }
 
         public IActionResult ChangeToIsReady(int orderId)
         {
             _orderService.ChangeStateToIsReady(orderId);
-            return LocalRedirect("/Admin/Orders/Index?orderState=IsProgress");
+            return Redirect("/Admin/Orders/Index?orderState=IsProgress");
         }
 
         public IActionResult ChangeToIsCancelled(int orderId)
         {
             _orderService.ChangeStateToIsCancelled(orderId);
-            return LocalRedirect("/Admin/Orders/Index?orderState=IsProgress");
+            return Redirect("/Admin/Orders/Index?orderState=IsProgress");
         }
 
         public IActionResult ShowOrderForAdmin(int orderId, int userId)

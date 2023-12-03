@@ -177,7 +177,7 @@ namespace MyEMShop.EndPoint.Controllers
             string HashPassword = _AccountServices.HashPassword(reset.Password);
             user.Password = HashPassword;
             _AccountServices.UpdateUser(user);
-            return LocalRedirect("/Login");
+            return Redirect("/Login");
         }
         #endregion
 
