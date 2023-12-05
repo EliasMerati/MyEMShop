@@ -4,10 +4,10 @@
 @{
     ViewData["Title"] = Model.ProductTitle;
     int newprice = Model.ProductPrice - (Model.ProductPrice * Model.Save / 100);
-    int tax = (int)_taxservice.GetTax().TaxValue;
-    int taxvalue = Model.ProductPrice * tax / 100;
-    int total = Model.ProductPrice + taxvalue;
-    int totalwithSave = newprice + taxvalue;
+    //int tax = (int)_taxservice.GetTax().TaxValue;
+    //int taxvalue = Model.ProductPrice * tax / 100;
+    //int total = Model.ProductPrice + taxvalue;
+    //int totalwithSave = newprice + taxvalue;
 }
 
 @section MetaTag
@@ -83,12 +83,12 @@
                                 <li class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                                     @if (Model.Save != 0)
                                     {
-                                        <span class="price-old"> @total.ToString("N0")  تومان</span>
-                                        <br />
+                                        <span class="price-old"> @Model.ProductPrice.ToString("N0")  تومان</span>
+@*                                        <br />
                                         <label><strong>قیمت با مالیات %@tax</strong></label>
-                                        <br />
+                                        <br />*@
                                         <span itemprop="price">
-                                            @totalwithSave.ToString("N0") تومان
+                                            @newprice.ToString("N0") تومان
                                             <span itemprop="availability" content="موجود">
 
                                             </span>
@@ -96,10 +96,10 @@
                                     }
                                     else
                                     {
-                                        <label><strong>قیمت با مالیات %@tax</strong></label>
-                                        <br />
+                                        @*<label><strong>قیمت با مالیات %@tax</strong></label>
+                                        <br />*@
                                         <span itemprop="price">
-                                            @total.ToString("N0") تومان
+                                            @Model.ProductPrice.ToString("N0") تومان
                                             <span itemprop="availability" content="موجود">
 
                                             </span>
@@ -270,13 +270,13 @@
 
                                             @if (item.Save != 0)
                                             {
-                                                <span class="price-old">@total.ToString("N0") تومان</span>
-                                                <span class="price-new">@totalwithSave.ToString("N0") تومان</span>
+                                                <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
+                                                <span class="price-new">@newprice.ToString("N0") تومان</span>
                                                 <span class="saving">@item.Save %</span>
                                             }
                                             else
                                             {
-                                                <span class="price-new">@total.ToString("N0") تومان</span>
+                                                <span class="price-new">@item.ProductPrice.ToString("N0") تومان</span>
                                             }
                                         </p>
                                     </div>
@@ -309,13 +309,13 @@
 
                                         @if (item.Save != 0)
                                         {
-                                            <span class="price-old">@total.ToString("N0") تومان</span>
-                                            <span class="price-new">@totalwithSave.ToString("N0") تومان</span>
+                                            <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
+                                            <span class="price-new">@newprice.ToString("N0") تومان</span>
                                             <span class="saving">@item.Save %</span>
                                         }
                                         else
                                         {
-                                            <span class="price-new">@total.ToString("N0") تومان</span>
+                                            <span class="price-new">@item.ProductPrice.ToString("N0") تومان</span>
                                         }
                                     </p>
                                 </div>
@@ -354,13 +354,13 @@
 
                                         @if (item.Save != 0)
                                         {
-                                            <span class="price-old">@total.ToString("N0") تومان</span>
-                                            <span class="price-new">@totalwithSave.ToString("N0") تومان</span>
+                                            <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
+                                            <span class="price-new">@newprice.ToString("N0") تومان</span>
                                             <span class="saving">@item.Save %</span>
                                         }
                                         else
                                         {
-                                            <span class="price-new">@total.ToString("N0") تومان</span>
+                                            <span class="price-new">@item.ProductPrice.ToString("N0") تومان</span>
                                         }
                                     </p>
                                 </div>

@@ -100,9 +100,9 @@ namespace MyEMShop.Application.Services
 
 
                 }
-                int tax = (int)_taxService.GetTax().TaxValue;
-                int taxvalue = order.OrderSum * tax / 100;
-                order.OrderSum += taxvalue;
+                //int tax = (int)_taxService.GetTax().TaxValue;
+                //int taxvalue = order.OrderSum * tax / 100;
+                //order.OrderSum += taxvalue;
                 _db.Add(order);
                 _db.SaveChanges();
             }
@@ -408,9 +408,9 @@ namespace MyEMShop.Application.Services
                     }
                 }
 
-                int tax = (int)_taxService.GetTax().TaxValue;
-                int taxvalue = order.OrderSum * tax / 100;
-                order.OrderSum += taxvalue;
+                //int tax = (int)_taxService.GetTax().TaxValue;
+                //int taxvalue = order.OrderSum * tax / 100;
+                //order.OrderSum += taxvalue;
                 _db.Update(order);
                 _db.SaveChanges();
             }

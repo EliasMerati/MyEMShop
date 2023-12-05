@@ -1,6 +1,6 @@
 ﻿@model  MyEMShop.Data.Entities.Order.Order
 @inject MyEMShop.Application.Interfaces.IUserPannelService _UserPannelService
-@inject MyEMShop.Application.Interfaces.ITaxService _taxservice
+@*@inject MyEMShop.Application.Interfaces.ITaxService _taxservice*@
 @inject MyEMShop.Application.Interfaces.IOrderService _order
 @{
     ViewData["Title"] = "مشاهده ی فاکتور";
@@ -16,9 +16,9 @@
     {
         sum +=  item.Price * item.Count; 
     }
-    int tax = (int)_taxservice.GetTax().TaxValue;
-    int taxvalue = sum * tax / 100;
-    int total = sum + taxvalue;
+    //int tax = (int)_taxservice.GetTax().TaxValue;
+    //int taxvalue = sum * tax / 100;
+    //int total = sum + taxvalue;
 }
 
 
@@ -220,15 +220,15 @@
                                 </tr>
                                 <tr>
                                     <td class="text-right"><strong> تخفیف:</strong></td>
-                                    <td class="text-right">@percent.ToString("N0") تومان</td>
+                                    <td class="text-right">@*@percent.ToString("N0") تومان*@0</td>
                                 </tr>
                                 <tr>
                                     <td class="text-right"><strong>مالیات:</strong></td>
-                                    <td class="text-right">@taxvalue.ToString("N0") تومان</td>
+                                    <td class="text-right">@*@taxvalue.ToString("N0") تومان*@0</td>
                                 </tr>
                                 <tr>
                                     <td class="text-right"><strong>کل :</strong></td>
-                                    <td class="text-right"><strong class="text-success">@total.ToString("N0")</strong> تومان</td>
+                                    <td class="text-right"><strong class="text-success">@sum.ToString("N0")</strong> تومان</td>
                                 </tr>
                             </tbody>
                         </table>
