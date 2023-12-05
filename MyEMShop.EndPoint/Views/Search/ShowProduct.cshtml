@@ -1,14 +1,18 @@
 ﻿@using MyEMShop.Data.Entities.Product
 @model Product
+@inject MyEMShop.Application.Interfaces.ITaxService _taxservice
 @{
     ViewData["Title"] = Model.ProductTitle;
     int newprice = Model.ProductPrice - (Model.ProductPrice * Model.Save / 100);
-
+    int tax = (int)_taxservice.GetTax().TaxValue;
+    int taxvalue = Model.ProductPrice * tax / 100;
+    int total = Model.ProductPrice + taxvalue;
+    int totalwithSave = newprice + taxvalue;
 }
 
 @section MetaTag
     {
-    <link rel="canonical" href="https://behdokhtcollection.ir/ShowProduct/@Model.ProductId/@Model.ProductTitle.Trim().Replace(" ","-")" />
+    <link rel="canonical" href="https://behdokhtcollection.ir/ShowProduct/@Model.ProductId/@Model.ProductTitle" />
     <meta name=googlebot content=index,follow>
     <meta name=robots content=noodp,noydir>
     <meta property=og:site_name value="فروشگاه پوشاک زنانه به دخت -  @ViewData["Title"]مشاهده ی محصول">
@@ -43,7 +47,7 @@
                         string Link = "https://behdokhtcollection.ir/p/" + Model.ShortKey;
                     }
                     <div class="tag text-center" style="max-width:320px;background-color:aliceblue">
-                        <span  class="title"><strong>لینک کوتاه  :</strong> </span>
+                        <span class="title"><strong>لینک کوتاه  :</strong> </span>
                         <a style="font-family:sans-serif " href="@Link" class="link"><strong>@("behdokhtcollection.ir/p/" + Model.ShortKey)</strong></a>
                     </div>
                     <!--Short Link End -->
@@ -79,16 +83,30 @@
                                 <li class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                                     @if (Model.Save != 0)
                                     {
-                                        <span class="price-old"> @Model.ProductPrice.ToString("N0")  تومان</span>
+                                        <span class="price-old"> @total.ToString("N0")  تومان</span>
+                                        <br />
+                                        <label><strong>قیمت با مالیات %@tax</strong></label>
+                                        <br />
+                                        <span itemprop="price">
+                                            @totalwithSave.ToString("N0") تومان
+                                            <span itemprop="availability" content="موجود">
+
+                                            </span>
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <label><strong>قیمت با مالیات %@tax</strong></label>
+                                        <br />
+                                        <span itemprop="price">
+                                            @total.ToString("N0") تومان
+                                            <span itemprop="availability" content="موجود">
+
+                                            </span>
+                                        </span> 
                                     }
 
-
-                                    <span itemprop="price">
-                                        @newprice.ToString("N0") تومان
-                                        <span itemprop="availability" content="موجود">
-
-                                        </span>
-                                    </span>
+                                    
                                 </li>
                             </ul>
                             <div id="product">
@@ -100,7 +118,7 @@
                                         }
                                         else if (Model.PL_Id == 2)
                                         {
-                                            <a class="btn-info"  style="padding:5px" disabled>ناموجود</a>
+                                            <a class="btn-info" style="padding:5px" disabled>ناموجود</a>
                                         }
                                         else
                                         {
@@ -252,13 +270,13 @@
 
                                             @if (item.Save != 0)
                                             {
-                                                <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
-                                                <span class="price-new">@newprice.ToString("N0") تومان</span>
+                                                <span class="price-old">@total.ToString("N0") تومان</span>
+                                                <span class="price-new">@totalwithSave.ToString("N0") تومان</span>
                                                 <span class="saving">@item.Save %</span>
                                             }
                                             else
                                             {
-                                                <span class="price-new">@item.ProductPrice.ToString("N0") تومان</span>
+                                                <span class="price-new">@total.ToString("N0") تومان</span>
                                             }
                                         </p>
                                     </div>
@@ -291,13 +309,13 @@
 
                                         @if (item.Save != 0)
                                         {
-                                            <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
-                                            <span class="price-new">@newprice.ToString("N0") تومان</span>
+                                            <span class="price-old">@total.ToString("N0") تومان</span>
+                                            <span class="price-new">@totalwithSave.ToString("N0") تومان</span>
                                             <span class="saving">@item.Save %</span>
                                         }
                                         else
                                         {
-                                            <span class="price-new">@item.ProductPrice.ToString("N0") تومان</span>
+                                            <span class="price-new">@total.ToString("N0") تومان</span>
                                         }
                                     </p>
                                 </div>
@@ -310,10 +328,10 @@
                 <h3 class="subtitle">تگ ها</h3>
                 @if (Model.Tags != null)
                 {
-                    <div class="tag" >
+                    <div class="tag">
                         @foreach (string tag in Model.Tags.Split('-', StringSplitOptions.RemoveEmptyEntries))
                         {
-                            <a  href="/Search?filter=@tag">@tag</a>
+                            <a href="/Search?filter=@tag">@tag</a>
                         }
                     </div>
                 }
@@ -336,13 +354,13 @@
 
                                         @if (item.Save != 0)
                                         {
-                                            <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
-                                            <span class="price-new">@newprice.ToString("N0") تومان</span>
+                                            <span class="price-old">@total.ToString("N0") تومان</span>
+                                            <span class="price-new">@totalwithSave.ToString("N0") تومان</span>
                                             <span class="saving">@item.Save %</span>
                                         }
                                         else
                                         {
-                                            <span class="price-new">@item.ProductPrice.ToString("N0") تومان</span>
+                                            <span class="price-new">@total.ToString("N0") تومان</span>
                                         }
                                     </p>
                                 </div>

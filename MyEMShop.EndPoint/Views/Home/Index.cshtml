@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<MyEMShop.Data.Dtos.ProductDto.ShowProductForIndex>
 @using MyEMShop.Data.Entities.Product
+@inject MyEMShop.Application.Interfaces.ITaxService _taxservice
 @{
     ViewData["Title"] = "خانه";
+   
 }
 @section Banner
     {
@@ -45,16 +47,20 @@
                             <p class="price">
                                 @{
                                     int newprice = item.ProductPrice - (item.ProductPrice * item.Save / 100);
+                                    int tax = (int)_taxservice.GetTax().TaxValue;
+                                    int taxvalue = item.ProductPrice * tax / 100;
+                                    int total = item.ProductPrice + taxvalue;
+                                    int totalwithSave = newprice + taxvalue;
                                 }
                                 @if (item.Save != 0)
                                 {
-                                    <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
-                                    <span class="price-new">@newprice.ToString("N0") تومان</span>
+                                    <span class="price-old">@total.ToString("N0") تومان</span>
+                                    <span class="price-new">@totalwithSave.ToString("N0") تومان</span>
                                     <span class="saving">@item.Save %</span>
                                 }
                                 else
                                 {
-                                    <span class="price-new">@item.ProductPrice.ToString("N0") تومان</span>
+                                    <span class="price-new">@total.ToString("N0") تومان</span>
                                 }
                             </p>
                         </div>
@@ -99,16 +105,20 @@
                             <p class="price">
                                 @{
                                     int newprice = item.ProductPrice - (item.ProductPrice * item.Save / 100);
+                                    int tax = (int)_taxservice.GetTax().TaxValue;
+                                    int taxvalue = item.ProductPrice * tax / 100;
+                                    int total = item.ProductPrice + taxvalue;
+                                    int totalwithSave = newprice + taxvalue;
                                 }
                                 @if (item.Save != 0)
                                 {
-                                    <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
-                                    <span class="price-new">@newprice.ToString("N0") تومان</span>
+                                    <span class="price-old">@total.ToString("N0") تومان</span>
+                                    <span class="price-new">@totalwithSave.ToString("N0") تومان</span>
                                     <span class="saving">@item.Save %</span>
                                 }
                                 else
                                 {
-                                    <span class="price-new">@item.ProductPrice.ToString("N0") تومان</span>
+                                    <span class="price-new">@total.ToString("N0") تومان</span>
                                 }
                             </p>
                         </div>
@@ -152,16 +162,20 @@
                             <p class="price">
                                 @{
                                     int newprice = item.ProductPrice - (item.ProductPrice * item.Save / 100);
+                                    int tax = (int)_taxservice.GetTax().TaxValue;
+                                    int taxvalue = item.ProductPrice * tax / 100;
+                                    int total = item.ProductPrice + taxvalue;
+                                    int totalwithSave = newprice + taxvalue;
                                 }
                                 @if (item.Save != 0)
                                 {
-                                    <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
-                                    <span class="price-new">@newprice.ToString("N0") تومان</span>
+                                    <span class="price-old">@total.ToString("N0") تومان</span>
+                                    <span class="price-new">@totalwithSave.ToString("N0") تومان</span>
                                     <span class="saving">@item.Save %</span>
                                 }
                                 else
                                 {
-                                    <span class="price-new">@item.ProductPrice.ToString("N0") تومان</span>
+                                    <span class="price-new">@total.ToString("N0") تومان</span>
                                 }
                             </p>
                         </div>
@@ -205,16 +219,20 @@
                             <p class="price">
                                 @{
                                     int newprice = item.ProductPrice - (item.ProductPrice * item.Save / 100);
+                                    int tax = (int)_taxservice.GetTax().TaxValue;
+                                    int taxvalue = item.ProductPrice * tax / 100;
+                                    int total = item.ProductPrice + taxvalue;
+                                    int totalwithSave = newprice + taxvalue;
                                 }
                                 @if (item.Save != 0)
                                 {
-                                    <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
-                                    <span class="price-new">@newprice.ToString("N0") تومان</span>
+                                    <span class="price-old">@total.ToString("N0") تومان</span>
+                                    <span class="price-new">@totalwithSave.ToString("N0") تومان</span>
                                     <span class="saving">@item.Save %</span>
                                 }
                                 else
                                 {
-                                    <span class="price-new">@item.ProductPrice.ToString("N0") تومان</span>
+                                    <span class="price-new">@total.ToString("N0") تومان</span>
                                 }
                             </p>
                         </div>
@@ -267,16 +285,20 @@
                     <p class="price">
                         @{
                             int newprice = item.ProductPrice - (item.ProductPrice * item.Save / 100);
+                            int tax = (int)_taxservice.GetTax().TaxValue;
+                            int taxvalue = item.ProductPrice * tax / 100;
+                            int total = item.ProductPrice + taxvalue;
+                            int totalwithSave = newprice + taxvalue;
                         }
                         @if (item.Save != 0)
                         {
-                            <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
-                            <span class="price-new">@newprice.ToString("N0") تومان</span>
+                            <span class="price-old">@total.ToString("N0") تومان</span>
+                            <span class="price-new">@totalwithSave.ToString("N0") تومان</span>
                             <span class="saving">@item.Save %</span>
                         }
                         else
                         {
-                            <span class="price-new">@item.ProductPrice.ToString("N0") تومان</span>
+                            <span class="price-new">@total.ToString("N0") تومان</span>
                         }
                     </p>
                 </div>
@@ -323,16 +345,20 @@
                                 <p class="price">
                                     @{
                                         int newprice = item.ProductPrice - (item.ProductPrice * item.Save / 100);
+                                        int tax = (int)_taxservice.GetTax().TaxValue;
+                                        int taxvalue = item.ProductPrice * tax / 100;
+                                        int total = item.ProductPrice + taxvalue;
+                                        int totalwithSave = newprice + taxvalue;
                                     }
                                     @if (item.Save != 0)
                                     {
-                                        <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
-                                        <span class="price-new">@newprice.ToString("N0") تومان</span>
+                                        <span class="price-old">@total.ToString("N0") تومان</span>
+                                        <span class="price-new">@totalwithSave.ToString("N0") تومان</span>
                                         <span class="saving">@item.Save %</span>
                                     }
                                     else
                                     {
-                                        <span class="price-new">@item.ProductPrice.ToString("N0") تومان</span>
+                                        <span class="price-new">@total.ToString("N0") تومان</span>
                                     }
                                 </p>
                             </div>
