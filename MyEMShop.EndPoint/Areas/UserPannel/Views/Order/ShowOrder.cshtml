@@ -58,9 +58,9 @@
                             @foreach (var item in Model.OrderDetails)
                             { 
                                 <tr>
-                                    <td class="text-center"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/Product/MiniPic/@item.Product.MainImageProduct" alt="@item.Product.ProductTitle" title="@item.Product.ProductTitle" class="img-thumbnail"></a></td>
+                                    <td class="text-center"><a href="/ShowProduct/@item.ProductId/@item.Product.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/Product/MiniPic/@item.Product.MainImageProduct" alt="@item.Product.ProductTitle" title="@item.Product.ProductTitle" class="img-thumbnail"></a></td>
                                     <td class="text-left">
-                                        <a href="/ShowProduct/@item.ProductId">@item.Product.ProductTitle</a><br>
+                                        <a href="/ShowProduct/@item.ProductId/@item.Product.ProductTitle.Trim().Replace(" ","-")">@item.Product.ProductTitle</a><br>
                                     </td>
                                     <td class="text-left">
                                         <div class="input-group btn-block quantity">

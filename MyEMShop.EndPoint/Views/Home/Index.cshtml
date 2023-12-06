@@ -43,7 +43,7 @@
                     <div class="product-thumb">
                         <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
                         <div class="caption">
-                            <h4><a href="/Search/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
+                            <h4><a href="/Search/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")">@item.ProductTitle</a></h4>
                             <p class="price">
                                 @{
                                     int newprice = item.ProductPrice - (item.ProductPrice * item.Save / 100);
@@ -101,7 +101,7 @@
                     <div class="product-thumb">
                         <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
                         <div class="caption">
-                            <h4><a href="/Search/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
+                            <h4><a href="/Search/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")">@item.ProductTitle</a></h4>
                             <p class="price">
                                 @{
                                     int newprice = item.ProductPrice - (item.ProductPrice * item.Save / 100);
@@ -158,7 +158,7 @@
                     <div class="product-thumb">
                         <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
                         <div class="caption">
-                            <h4><a href="/Search/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
+                            <h4><a href="/Search/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")">@item.ProductTitle</a></h4>
                             <p class="price">
                                 @{
                                     int newprice = item.ProductPrice - (item.ProductPrice * item.Save / 100);
@@ -215,7 +215,7 @@
                     <div class="product-thumb clearfix">
                         <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
                         <div class="caption">
-                            <h4><a href="/Search/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
+                            <h4><a href="/Search/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")">@item.ProductTitle</a></h4>
                             <p class="price">
                                 @{
                                     int newprice = item.ProductPrice - (item.ProductPrice * item.Save / 100);
@@ -281,7 +281,7 @@
             <div class="product-thumb clearfix">
                 <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
                 <div class="caption">
-                    <h4><a href="/Search/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
+                    <h4><a href="/Search/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")">@item.ProductTitle</a></h4>
                     <p class="price">
                         @{
                             int newprice = item.ProductPrice - (item.ProductPrice * item.Save / 100);
@@ -341,7 +341,7 @@
                         <div class="product-thumb clearfix">
                             <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
                             <div class="caption">
-                                <h4><a href="/Search/ShowProduct/@item.ProductId">@item.ProductTitle</a></h4>
+                                <h4><a href="/Search/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")">@item.ProductTitle</a></h4>
                                 <p class="price">
                                     @{
                                         int newprice = item.ProductPrice - (item.ProductPrice * item.Save / 100);

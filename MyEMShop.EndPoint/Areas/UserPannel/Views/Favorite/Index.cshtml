@@ -31,8 +31,8 @@
                             @foreach (var item in Model.Item1)
                             {
                                 <tr>
-                                    <td class="text-center"><a href="/ShowProduct/@item.ProductId"><img src="/Template/image/product/MiniPic/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle"></a></td>
-                                    <td class="text-left"><a href="/ShowProduct/@item.ProductId">@item.ProductTitle</a></td>
+                                    <td class="text-center"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MiniPic/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle"></a></td>
+                                    <td class="text-left"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")">@item.ProductTitle</a></td>
                                     <td class="text-right">
                                         <div class="price">
                                             @{
