@@ -1,4 +1,4 @@
-﻿@model  MyEMShop.Data.Entities.Order.Order
+﻿@model MyEMShop.Data.Entities.Order.Order
 @inject MyEMShop.Application.Interfaces.IUserPannelService _UserPannelService
 @*@inject MyEMShop.Application.Interfaces.ITaxService _taxservice*@
 @inject MyEMShop.Application.Interfaces.IOrderService _order
@@ -14,7 +14,7 @@
     int sum = 0;
     foreach (var item in Model.OrderDetails)
     {
-        sum +=  item.Price * item.Count; 
+        sum += item.Price * item.Count;
     }
     //int tax = (int)_taxservice.GetTax().TaxValue;
     //int taxvalue = sum * tax / 100;
@@ -59,7 +59,7 @@
                         </thead>
                         <tbody>
                             @foreach (var item in Model.OrderDetails)
-                            { 
+                            {
                                 <tr>
                                     <td class="text-center"><a href="/ShowProduct/@item.ProductId/@item.Product.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/Product/MiniPic/@item.Product.MainImageProduct" alt="@item.Product.ProductTitle" title="@item.Product.ProductTitle" class="img-thumbnail"></a></td>
                                     <td class="text-left">
@@ -86,8 +86,8 @@
 
                                         </div>
                                     </td>
-                                    <td id="price"  class="text-right"><strong class="text-info">@item.Price.ToString("N0")</strong></td>
-                                    <td id="total"  class="text-right"><strong class="text-warning">@((item.Count * item.Price).ToString("N0"))</strong></td>
+                                    <td id="price" class="text-right"><strong class="text-info">@item.Price.ToString("N0")</strong></td>
+                                    <td id="total" class="text-right"><strong class="text-warning">@((item.Count * item.Price).ToString("N0"))</strong></td>
                                 </tr>
                             }
                         </tbody>
@@ -241,18 +241,25 @@
 
                     @if (!Model.IsFinally)
                     {
-                        
-                        @if (_UserPannelService.BalanceWallet(User.Identity.Name) >= SumOrder)
+                        if (Model.OrderAddress is null || Model.OrderCity is null || Model.OrderOstan is null || Model.OrderPhoneNumber is null || Model.OrderPostalCode is null)
                         {
-                            <div class="pull-right">
-                                <a href="/UserPannel/Order/FinalOrder/@Model.OrderId" class="btn btn-primary">تسویه حساب از طریق کیف پول</a>
-                            </div>
+                            <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> لطفا ابتدا از طریق <br /><a href="/UserPannel/Edit" class="alert-link"><strong>ویرایش حساب کاربری</strong></a> <br />مشخصات آدرس خود را تکمیل کنید و بعد از حذف فاکتور کنونی نسبت به ثبت فاکتور جدید مجددا اقدام کنید. </div>
                         }
                         else
                         {
-                            <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i>موجودی کیف پول شما کافی نیست. لطفا از طریق <a href="/UserPannel/Wallet" class="alert-link"><strong>لینک شارژ حساب</strong></a> اقدام به شارژ آن کنید</div>
+                            @if (_UserPannelService.BalanceWallet(User.Identity.Name) >= SumOrder)
+                            {
+                                <div class="pull-right">
+                                    <a href="/UserPannel/Order/FinalOrder/@Model.OrderId" class="btn btn-primary">تسویه حساب از طریق کیف پول</a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i>موجودی کیف پول شما کافی نیست. لطفا از طریق <a href="/UserPannel/Wallet" class="alert-link"><strong>لینک شارژ حساب</strong></a> اقدام به شارژ آن کنید</div>
+                            }
+                            <div class="pull-left"><a  asp-area="UserPannel" asp-controller="Wallet" asp-action="OnlinePay" class="btn btn-primary">پرداخت آنلاین</a></div>
                         }
-                        <div class="pull-left"><a href="/UserPannel/Wallet/OnlinePay" @*asp-area="UserPannel" asp-controller="Wallet" asp-action="OnlinePay"*@ class="btn btn-primary">پرداخت آنلاین</a></div>
+
                     }
                 </div>
             </div>
