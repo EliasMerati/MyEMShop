@@ -20,7 +20,10 @@
     //int taxvalue = sum * tax / 100;
     //int total = sum + taxvalue;
 }
-
+@section MetaTag
+    {
+    <meta property=og:description content=" @ViewData["Title"] _ فروشگاه پوشاک زنانه به دخت">
+}
 
 <div id="container">
     <div class="container">
@@ -249,7 +252,7 @@
                         {
                             <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i>موجودی کیف پول شما کافی نیست. لطفا از طریق <a href="/UserPannel/Wallet" class="alert-link"><strong>لینک شارژ حساب</strong></a> اقدام به شارژ آن کنید</div>
                         }
-                        <div class="pull-left"><a asp-area="UserPannel" asp-controller="Wallet" asp-action="OnlinePay" class="btn btn-primary">پرداخت آنلاین</a></div>
+                        <div class="pull-left"><a href="/UserPannel/Wallet/OnlinePay" @*asp-area="UserPannel" asp-controller="Wallet" asp-action="OnlinePay"*@ class="btn btn-primary">پرداخت آنلاین</a></div>
                     }
                 </div>
             </div>
