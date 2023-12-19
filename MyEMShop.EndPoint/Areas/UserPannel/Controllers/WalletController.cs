@@ -62,8 +62,9 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
         #region Online Pay
         public IActionResult OnlinePay()
         {
-            var order = _orderService.OrderNotPayment(User.Identity.Name);
-            var user = _userPannel.GetUserByUserName(User.Identity.Name);
+            string username = User.Identity.Name;
+            var order = _orderService.OrderNotPayment(username);
+            var user = _userPannel.GetUserByUserName(username);
 
             if (order == null)
             {
