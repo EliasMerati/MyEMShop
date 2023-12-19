@@ -347,9 +347,10 @@ namespace MyEMShop.Application.Services
             return _db.Orders.Any(o => o.OrderId == orderId);
         }
 
-        public Order OrderNotPayment()
+        public Order OrderNotPayment(string userName)
         {
-            return _db.Orders.SingleOrDefault(o => !o.IsFinally);
+            int userid= _userPannel.GetUserIdByUserName(userName);
+            return _db.Orders.SingleOrDefault(o => !o.IsFinally && o.UserId == userid);
         }
 
         public void Refresh(int quantity, int orderId, int productId)

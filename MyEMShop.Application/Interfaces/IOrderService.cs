@@ -16,7 +16,7 @@ namespace MyEMShop.Application.Interfaces
         void UpdateOrder(Order order);
         bool FinallyOrder(string userName, int orderId);
         Tuple<List<Order>,int> GetUserOrders(string userName, int pageid = 1);
-        Order OrderNotPayment();
+        Order OrderNotPayment(string userName);
         Tuple<List<OrdersDto>, int> GetOrdersForAdmin(OrderState orderState , int pageId=1);
         void DeleteFromOrder(int orderId ,int productid);
         bool IsOrderExist(int orderId);
