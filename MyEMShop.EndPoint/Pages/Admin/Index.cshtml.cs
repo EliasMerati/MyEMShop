@@ -28,8 +28,8 @@ namespace MyEMShop.EndPoint.Pages.Admin
             ViewData["TodayVisits"] = _visitorService.TodayVisits();
             ViewData["TotalVisits"]=_visitorService.TotalVisits();
             ViewData["NewOrder"] = _visitorService.NewOrder();
-            ViewData["MonthVisits"] = _visitorService.MonthVisits();
-            ViewData["MonthVisitors"] = _visitorService.MonthVisitors();
+            //ViewData["MonthVisits"] = _visitorService.MonthVisits();
+            //ViewData["MonthVisitors"] = _visitorService.MonthVisitors();
 
         }
     }
