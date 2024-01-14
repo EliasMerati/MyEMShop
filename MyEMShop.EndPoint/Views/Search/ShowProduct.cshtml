@@ -12,7 +12,7 @@
 
 @section MetaTag
     {
-    <link rel="canonical" href="https://behdokhtcollection.ir/ShowProduct/@Model.ProductId/@Model.ProductTitle" />
+    <link rel="canonical" href="https://behdokhtcollection.ir/ShowProduct/@Model.ProductId/@Model.ProductTitle.Trim().Replace(" ","-")" />
     <meta name=robots content=index,follow>
     <meta name=description content=" مشاهده ی جزییات محصول @ViewData["Title"]  - فروشگاه پوشاک زنانه به دخت">
     <meta name="keywords" content="@Model.Tags">
