@@ -27,7 +27,7 @@ namespace MyEMShop.Application.Services
 
         public Tuple<List<ProductComment>, int> GetAllComments(int productId, int pageId = 1)
         {
-            int take = 5;
+            int take = 10;
             int skip = (pageId - 1) * take;
 
             int pageCount = _db.ProductComments.Where(pc => pc.ProductId == productId  && pc.AdminRead == IsAdminRead.IsTrue).Count() / take;

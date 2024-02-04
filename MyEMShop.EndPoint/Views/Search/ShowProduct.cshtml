@@ -17,9 +17,9 @@
     <meta name=description content=" مشاهده ی جزییات محصول @ViewData["Title"]  - فروشگاه پوشاک زنانه به دخت">
     <meta name="keywords" content="@Model.Tags">
     <meta property=og:title content=@ViewData["Title"]>
-    <meta property=og:url content="https://behdokhtcollection.ir/Template/image/product/@Model.MainImageProduct" />
-    <meta property=og:image content="/Template/image/product/@Model.MainImageProduct">
-    <meta property=og:image:url content="/Template/image/product/@Model.MainImageProduct" />
+    <meta property=og:url content="https://behdokhtcollection.ir/Template/image/product/MainPic/@Model.MainImageProduct" />
+    <meta property=og:image content="/Template/image/product/Mainapic/@Model.MainImageProduct">
+    <meta property=og:image:url content="/Template/image/product/MainPic/@Model.MainImageProduct" />
     <meta property=og:image:width content="700">
     <meta property=og:image:height content="500">
     <meta property=og:image:type content="image/jpg">
@@ -31,8 +31,8 @@
     <div class="container">
         <!-- Breadcrumb Start-->
         <ul class="breadcrumb">
-            <li itemscope=""><a href="/" itemprop="url"><span itemprop="title"><i class="fa fa-home"></i></span></a></li>
-            <li itemscope=""><a href="/ShowProduct/@Model.ProductId/@Model.ProductTitle.Trim().Replace(" ","-")" itemprop="url"><span itemprop="title">@Model.ProductTitle</span></a></li>
+            <li><a href="/" itemprop="url"><span itemprop="title"><i class="fa fa-home"></i></span></a></li>
+            <li><a href="/ShowProduct/@Model.ProductId/@Model.ProductTitle.Trim().Replace(" ","-")" itemprop="url"><span itemprop="title">@Model.ProductTitle</span></a></li>
         </ul>
 
 
