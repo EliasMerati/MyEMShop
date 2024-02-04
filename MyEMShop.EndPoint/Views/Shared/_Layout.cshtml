@@ -27,14 +27,14 @@
                             <ul>
                                 @if (User.Identity.IsAuthenticated)
                                 {
-                                    <li><a href="/LogOut">خروج</a></li>
+                                    <li><a href="LogOut">خروج</a></li>
                                     <li><a href="/UserPannel/Index"> "@User.Identity.Name" عزیز ، خوش آمدید</a></li>
                                     
                                 }
                                 else
                                 {
-                                    <li><a href="/Login">ورود</a></li>
-                                    <li><a href="/Register">ثبت نام</a></li>
+                                    <li><a href="Login">ورود</a></li>
+                                    <li><a href="Register">ثبت نام</a></li>
                                 }
                             </ul>
                         </div>
@@ -58,7 +58,7 @@
                         <div class="col-table-cell col-lg-12 col-md-12 col-sm-12 col-xs-12 inner">
                             <form action="/Search" method="get">
                                 <div id="search" class="input-group">
-                                    <input id="filter_name" type="text" name="Filter" value="" placeholder="جستجو" class="form-control input-lg" />
+                                    <input id="filter_name" type="text" name="Filter" placeholder="جستجو" class="form-control input-lg" />
                                     <button type="button" class="button-search"><i class="fa fa-search"></i></button>
                                 </div>
                             </form>

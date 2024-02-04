@@ -5,13 +5,14 @@
 }
 
 @section MetaTag
-    {
-        <meta name=googlebot content=index,follow>
-        <meta name=robots content=noodp,noydir>
-        <meta property=og:title content=@ViewData["Title"]>
+{
+    <meta name=googlebot content=index,follow>
+    <meta name=robots content=noodp,noydir>
+    <meta property=og:title content=@ViewData["Title"]>
     <meta property=og:description content=" @ViewData["Title"] _  فروشگاه پوشاک زنانه به دخت">
-        <meta property=og:price:currency content="IRR">
-        <meta property=og:locale content="ir_FA">
+    <meta name ="description" content="@ViewData["Title"] _  فروشگاه پوشاک زنانه به دخت">
+    <meta property=og:price:currency content="IRR">
+    <meta property=og:locale content="ir_FA">
 }
 <div id="container">
     <div class="container">
@@ -27,7 +28,7 @@
                 <h1 class="title">درباره ما</h1>
                 <div class="row">
                     <div class="col-sm-12">
-                       @Html.Raw(Model.AboutUsText)
+                        @Html.Raw(Model.AboutUsText)
                     </div>
                 </div>
             </div>

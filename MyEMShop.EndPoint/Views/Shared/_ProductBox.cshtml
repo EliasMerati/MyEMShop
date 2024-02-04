@@ -22,16 +22,16 @@
 
         </div>
         <div class="button-group">
-            <a asp-controller="Search" asp-action="BuyProduct" asp-route-id="@Model.ProductId" class="btn-primary" type="button" onclick=""><span>افزودن به سبد</span></a>
+            <a asp-controller="Search" asp-action="BuyProduct" asp-route-id="@Model.ProductId" class="btn-primary" type="button"><span>افزودن به سبد</span></a>
             <div class="add-to-links" style="padding-top:10px;">
 
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <a asp-area="UserPannel" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-productId="@Model.ProductId" type="button" data-toggle="tooltip" title="" onclick="" data-original-title="افزودن به علاقه مندی"><i class="fa fa-heart"></i></a>
+                    <a asp-area="UserPannel" asp-controller="Favorite" asp-action="AddToFavorite" asp-route-productId="@Model.ProductId" type="button" data-toggle="tooltip" data-original-title="افزودن به علاقه مندی"><i class="fa fa-heart"></i></a>
                 }
                 else
                 {
-                    <a disabled  data-toggle="tooltip" title="افزودن به علاقه مندی ها" onClick=""><i class="fa fa-heart"></i></a>
+                    <a disabled  data-toggle="tooltip" title="افزودن به علاقه مندی ها"><i class="fa fa-heart"></i></a>
                 }
             </div>
         </div>
