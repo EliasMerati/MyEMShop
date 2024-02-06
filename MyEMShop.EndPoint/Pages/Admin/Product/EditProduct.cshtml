@@ -59,6 +59,11 @@
                             <span asp-validation-for="product.ProductDescription"></span>
                         </div>
                         <div class="form-group">
+                            <label>توضیح کوتاه محصول</label>
+                            <textarea type="text" asp-for="product.ProductShortDescription" rows="4" class="form-control"></textarea>
+                            <span asp-validation-for="product.ProductShortDescription"></span>
+                        </div>
+                        <div class="form-group">
                             <label>قیمت محصول</label>
                             <input type="number" asp-for="product.ProductPrice"  class="form-control">
                             <span asp-validation-for="product.ProductPrice"></span>
@@ -158,6 +163,10 @@
         });
 
         CKEDITOR.replace('product_ProductDescription', {
+            customConfig: '/js/Config.js'
+        });
+
+        CKEDITOR.replace('product_ProductShortDescription', {
             customConfig: '/js/Config.js'
         });
 

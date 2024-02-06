@@ -44,6 +44,11 @@ namespace MyEMShop.Data.Entities.Product
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string ProductDescription { get; set; }
 
+        [Display(Name = "توضیحات محصول")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength (300)]
+        public string ProductShortDescription { get; set; }
+
         [Display(Name = "بررسی محصول")]
         public string ProductCheck { get; set; }
 
