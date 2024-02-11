@@ -12,7 +12,7 @@
 
 @section MetaTag
     {
-    <link rel="canonical" href="https://behdokhtcollection.ir/ShowProduct/@Model.ProductId/@Model.ProductTitle.Trim().Replace(" ","-")" />
+    <link rel="canonical" href="https://behdokhtcollection.ir/ShowProduct/@Model.ProductId/@Model.ProductTitle" />
     <meta name=robots content=index,follow>
     <meta name=description content="@Model.ProductShortDescription">
     <meta name="keywords" content="@Model.Tags">
@@ -331,7 +331,7 @@
                     <div class="tag">
                         @foreach (string tag in Model.Tags.Split('-', StringSplitOptions.RemoveEmptyEntries))
                         {
-                            <a href="/Search?filter=@tag.Trim().Replace(" ","-")">@tag</a>
+                            <a href="/Search?filter=@tag">@tag</a>
                         }
                     </div>
                 }
