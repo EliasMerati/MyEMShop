@@ -4,9 +4,6 @@
         <div class="image"><a href="/ShowProduct/@Model.ProductId/@Model.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@Model.MainImageProduct" alt="@Model.ProductTitle.Trim().Replace(" ","-")" title="@Model.ProductTitle.Trim().Replace(" ","-")" class="img-responsive"></a></div>
         <div class="caption">
             <h4><a href="/ShowProduct/@Model.ProductId/@Model.ProductTitle.Trim().Replace(" ","-")">@Model.ProductTitle</a></h4>
-            <p class="description">
-               @Html.Raw(Model.ProductShortDescription)
-            </p>
             <p class="price">
                 @{
                     int newprice = Model.ProductPrice - (Model.ProductPrice * Model.Save / 100);
