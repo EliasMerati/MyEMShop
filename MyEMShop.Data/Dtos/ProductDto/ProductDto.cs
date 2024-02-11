@@ -18,6 +18,7 @@ namespace MyEMShop.Data.Dtos.ProductDto
         public string ProductTitle { get; set; }
         public int ProductPrice { get; set; }
         public string MainImageProduct { get; set; }
+        public string ProductShortDescription { get; set; }
         public int Save { get; set; }
         public DateTime InsertDate { get; set; }
    
