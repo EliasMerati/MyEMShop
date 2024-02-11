@@ -18,12 +18,11 @@
 
 @section MetaTag
     {
-    <link rel="canonical" href="https://behdokhtcollection.ir/@ViewData["Title"]" />
     <meta name=googlebot content=index,follow>
     <meta name="keywords" content="بهدخت،به دخت،Behdokht,BehDokht,BEHDOKHT,BEHDOKHTCOLLECTION,behdokht,behdokhtcollection,BehdokhtCollection,بهدخت کالکشن،به دخت کالکشن،پوشاک زنانه بهدخت،فروشگاه پوشاک زنانه بهدخت،فروشگاه پوشاک زنانه به دخت">
     <meta name=robots content=noodp,noydir>
     <meta property=og:title content=@ViewData["Title"]>
-    <meta property=og:description content=" فروشگاه پوشاک زنانه به دخت - تولید انواع لباس مجلسی زنانه با بالاترین کیفیت">
+    <meta property=og:description content="فروشگاه پوشاک زنانه به دخت عرضه کننده ی انواع پوشاک زنانه ی مجلسی با کیفیت و دوخت عالی">
     <meta name="description" content="فروشگاه پوشاک زنانه به دخت عرضه کننده ی انواع پوشاک زنانه ی مجلسی با کیفیت و دوخت عالی" />
 }
 
@@ -42,7 +41,7 @@
                 foreach (var item in Model)
                 {
                     <div class="product-thumb">
-                        <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
+                        <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle.Trim().Replace(" ","-")" title="@item.ProductTitle.Trim().Replace(" ","-")" class="img-responsive" /></a></div>
                         <div class="caption">
                             <h4><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")">@item.ProductTitle</a></h4>
                             <p class="price">
@@ -100,7 +99,7 @@
                 foreach (var item in latest)
                 {
                     <div class="product-thumb">
-                        <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
+                        <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle.Trim().Replace(" ","-")" title="@item.ProductTitle.Trim().Replace(" ","-")" class="img-responsive" /></a></div>
                         <div class="caption">
                             <h4><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")">@item.ProductTitle</a></h4>
                             <p class="price">
@@ -157,7 +156,7 @@
                 foreach (var item in popular)
                 {
                     <div class="product-thumb">
-                        <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
+                        <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle.Trim().Replace(" ","-")" title="@item.ProductTitle.Trim().Replace(" ","-")" class="img-responsive" /></a></div>
                         <div class="caption">
                             <h4><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")">@item.ProductTitle</a></h4>
                             <p class="price">
@@ -214,7 +213,7 @@
                 foreach (var item in special)
                 {
                     <div class="product-thumb clearfix">
-                        <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
+                        <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle.Trim().Replace(" ","-")" title="@item.ProductTitle.Trim().Replace(" ","-")" class="img-responsive" /></a></div>
                         <div class="caption">
                             <h4><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")">@item.ProductTitle</a></h4>
                             <p class="price">
@@ -280,7 +279,7 @@
         foreach (var item in PopularForIndex)
         {
             <div class="product-thumb clearfix">
-                <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
+                <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle.Trim().Replace(" ","-")" title="@item.ProductTitle.Trim().Replace(" ","-")" class="img-responsive" /></a></div>
                 <div class="caption">
                     <h4><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")">@item.ProductTitle</a></h4>
                     <p class="price">
@@ -340,7 +339,7 @@
                     foreach (var item in SpecialForIndex)
                     {
                         <div class="product-thumb clearfix">
-                            <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
+                            <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle.Trim().Replace(" ","-")" title="@item.ProductTitle.Trim().Replace(" ","-")" class="img-responsive" /></a></div>
                             <div class="caption">
                                 <h4><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")">@item.ProductTitle</a></h4>
                                 <p class="price">

@@ -18,7 +18,7 @@
     <meta name="keywords" content="@Model.Tags">
     <meta property=og:title content=@ViewData["Title"]>
     <meta property=og:url content="https://behdokhtcollection.ir/Template/image/product/MainPic/@Model.MainImageProduct" />
-    <meta property=og:image content="/Template/image/product/Mainapic/@Model.MainImageProduct">
+    <meta property=og:image content="/Template/image/product/MainPic/@Model.MainImageProduct">
     <meta property=og:image:url content="https://behdokhtcollection.ir/Template/image/product/MainPic/@Model.MainImageProduct" />
     <meta property=og:image:width content="700">
     <meta property=og:image:height content="500">
@@ -53,7 +53,7 @@
                     <!--Short Link End -->
                     <div class="row product-info">
                         <div class="col-sm-6">
-                            <div class="image"><img class="img-responsive" itemprop="image" id="zoom_01" src="/Template/image/product/MainPic/@Model.MainImageProduct" title="@Model.ProductTitle" alt="@Model.ProductTitle" data-zoom-image="/Template/image/product/MainPic/@Model.MainImageProduct" /> </div>
+                            <div class="image"><img class="img-responsive" itemprop="image" id="zoom_01" src="/Template/image/product/MainPic/@Model.MainImageProduct" title="@Model.ProductTitle.Trim().Replace(" ","-")" alt="@Model.ProductTitle.Trim().Replace(" ","-")" data-zoom-image="/Template/image/product/MainPic/@Model.MainImageProduct" /> </div>
                             <div class="center-block text-center"><span class="zoom-gallery"><i class="fa fa-search"></i> برای مشاهده گالری روی تصویر کلیک کنید</span></div>
                             <div class="image-additional" id="gallery_01">
                                 @foreach (var item in Model.ProductImages)
@@ -301,7 +301,7 @@
                         {
                             <div class="product-thumb clearfix">
                                 <input type="hidden" value="@item.ProductId" />
-                                <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MiniPic/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
+                                <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MiniPic/@item.MainImageProduct" alt="@item.ProductTitle.Trim().Replace(" ","-")" title="@item.ProductTitle.Trim().Replace(" ","-")" class="img-responsive" /></a></div>
                                 <div class="caption">
                                     <input type="hidden" value="@item.ProductId" />
                                     <h4><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")">@item.ProductTitle</a></h4>
@@ -347,7 +347,7 @@
                         {
                             <div class="product-thumb clearfix">
                                 <input type="hidden" value="@item.ProductId" />
-                                <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MiniPic/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
+                                <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MiniPic/@item.MainImageProduct" alt="@item.ProductTitle.Trim().Replace(" ","-")" title="@item.ProductTitle.Trim().Replace(" ","-")" class="img-responsive" /></a></div>
                                 <div class="caption">
                                     <h4><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")">@item.ProductTitle</a></h4>
                                     <p class="price">
