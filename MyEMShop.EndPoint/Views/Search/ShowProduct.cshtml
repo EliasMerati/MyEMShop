@@ -331,7 +331,7 @@
                     <div class="tag">
                         @foreach (string tag in Model.Tags.Split('-', StringSplitOptions.RemoveEmptyEntries))
                         {
-                            <a href="/Search?filter=@tag">@tag</a>
+                            <a href="/Search?filter=@tag.Trim().Replace("-"," ")">@tag</a>
                         }
                     </div>
                 }
