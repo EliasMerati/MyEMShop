@@ -29,13 +29,13 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
         {
             int userId = _userService.GetUserIdByUserName(User.Identity.Name);
             _favoriteProduct.AddToFavorites(userId, productId);
-            return RedirectToAction(nameof(Index));
+            return Redirect(nameof(Index));
         }
 
         public IActionResult DeleteFromFavorite(int productid)
         {
             _favoriteProduct.DeleteFromFavorites(productid);
-            return RedirectToAction(nameof(Index));
+            return Redirect(nameof(Index));
         }
     }
 }

@@ -84,7 +84,7 @@ namespace MyEMShop.EndPoint.Areas.UserPannel.Controllers
         public IActionResult DeleteFromComments(int productId, int commentId)
         {
             _comment.DeleteComment(productId, commentId);
-            return RedirectToAction(nameof(MyComment));
+            return Redirect(nameof(MyComment));
         }
         #endregion
 

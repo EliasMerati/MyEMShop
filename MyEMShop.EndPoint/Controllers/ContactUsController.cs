@@ -35,7 +35,7 @@ namespace MyEMShop.EndPoint.Controllers
             #endregion
             _contactUsConnectionService.AddContactUsConnection(contact);
             ViewData["IsSuccess"] = true;
-            return RedirectToAction("Index");
+            return Redirect("Index");
         }
     }
 }
