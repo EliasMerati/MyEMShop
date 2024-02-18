@@ -12,11 +12,14 @@
 
 @section MetaTag
     {
-    <link rel="canonical" href="https://behdokhtcollection.ir/ShowProduct/@Model.ProductId/@Model.ProductTitle" />
-    <meta name=robots content=index,follow>
+    <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+    <link rel="canonical" href="https://behdokhtcollection.ir/ShowProduct/@Model.ProductId/@Model.ProductTitle.Trim().Replace(" ","-")" />
     <meta name=description content="@Model.ProductShortDescription">
     <meta name="keywords" content="@Model.Tags">
+    <meta property="og:locale" content="fa_IR" />
+    <meta property="og:type" content="article" />
     <meta property=og:title content=@ViewData["Title"]>
+    <meta property="og:site_name" content="فروشگاه به دخت" />
     <meta property=og:url content="https://behdokhtcollection.ir/Template/image/product/MainPic/@Model.MainImageProduct" />
     <meta property=og:image content="/Template/image/product/MainPic/@Model.MainImageProduct">
     <meta property=og:image:url content="https://behdokhtcollection.ir/Template/image/product/MainPic/@Model.MainImageProduct" />
@@ -24,6 +27,9 @@
     <meta property=og:image:height content="500">
     <meta property=og:image:type content="image/jpg">
     <meta property=og:description content="@Model.ProductShortDescription">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:label1" content="زمان تخمینی مطالعه" />
+    <meta name="twitter:data1" content="1 دقیقه" />
     
 }
 
