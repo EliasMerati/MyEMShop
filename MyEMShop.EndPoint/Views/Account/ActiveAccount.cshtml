@@ -7,9 +7,9 @@
     <link rel="canonical" href="https://behdokhtcollection.ir/@ViewData["Title"]" />
 }
 <ul class="breadcrumb">
-    <li><a href="/" ><i class="fa fa-home"></i></a></li>
-    <li><a href="/Register" >حساب کاربری</a></li>
-    <li><a href="/Login" >ورود</a></li>
+    <li><a asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-home"></i></a></li>
+    <li><a asp-controller="Account" asp-action="Register">حساب کاربری</a></li>
+    <li><a asp-controller="Account" asp-action="Login">ورود</a></li>
 </ul>
 
 <div class="container">
@@ -19,7 +19,7 @@
             <i class="fa fa-check-circle"></i>حساب کاربری شما با موفقیت فعال شد
             <br/>
             <p>
-                <a href="/Login"> ورود به سایت</a>
+                <a asp-controller="Account" asp-action="Login"> ورود به سایت</a>
             </p>
         </div>
     }

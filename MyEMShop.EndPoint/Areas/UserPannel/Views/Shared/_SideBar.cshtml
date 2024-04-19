@@ -3,15 +3,15 @@
     <h3 class="subtitle">حساب کاربری</h3>
     <div class="list-group">
         <ul class="list-item">
-            <li><a href="/UserPannel/Index">حساب کاربری</a></li>
-            <li><a href="/UserPannel/Edit"> ویرایش حساب کاربری</a></li>
-            <li><a href="/UserPannel/ChangePassword">تغییر رمز عبور</a></li>
-            <li><a href="/UserPannel/Wallet">عملیات کیف پول</a></li>
-            <li><a href="/UserPannel/Order">فاکتورها</a></li>
-            <li><a href="/UserPannel/MyComment">نظرات من</a></li>
-            <li><a href="/UserPannel/Favorite">علاقه مندی های من</a></li>
-            <li><a href="/">بازگشت</a></li>
-            <li><a href="/LogOut">خروج</a></li>
+            <li><a asp-area="UserPannel" asp-controller="Home" asp-action="Index">حساب کاربری</a></li>
+            <li><a asp-area="UserPannel" asp-controller="Home" asp-action="Edit"> ویرایش حساب کاربری</a></li>
+            <li><a asp-area="UserPannel" asp-controller="Home" asp-action="ChangePassword">تغییر رمز عبور</a></li>
+            <li><a asp-area="UserPannel" asp-controller="Wallet" asp-action="Index">عملیات کیف پول</a></li>
+            <li><a asp-area="UserPannel" asp-controller="Order" asp-action="Index">فاکتورها</a></li>
+            <li><a asp-area="UserPannel" asp-controller="Home" asp-action="MyComment">نظرات من</a></li>
+            <li><a asp-area="UserPannel" asp-controller="Favorite" asp-action="Index">علاقه مندی های من</a></li>
+            <li><a asp-area="" asp-controller="Home" asp-action="Index">بازگشت</a></li>
+            <li><a asp-controller="Account" asp-action="LogOut">خروج</a></li>
         </ul>
     </div>
 </aside>
