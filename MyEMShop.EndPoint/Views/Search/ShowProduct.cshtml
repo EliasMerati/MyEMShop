@@ -35,7 +35,7 @@
     <div class="container">
         <!-- Breadcrumb Start-->
         <ul class="breadcrumb">
-            <li><a href="/" itemprop="url"><span itemprop="title"><i class="fa fa-home"></i></span></a></li>
+            <li><a asp-area="" asp-controller="Home" asp-action="Index" itemprop="url"><span itemprop="title"><i class="fa fa-home"></i></span></a></li>
             <li><a href="/ShowProduct/@Model.ProductId/@Model.ProductTitle.Trim().Replace(" ","-")" itemprop="url"><span itemprop="title">@Model.ProductTitle</span></a></li>
         </ul>
 

@@ -5,7 +5,7 @@
     <div class="container">
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                <li><a class="home_link" title="خانه" href="/">خانه</a></li>
+                <li><a class="home_link" title="خانه" asp-area="" asp-controller="Home" asp-action="Index">خانه</a></li>
                 @foreach (var group in Model.Where(g => g.ParentId is null))
                 {
                     <li class="dropdown">

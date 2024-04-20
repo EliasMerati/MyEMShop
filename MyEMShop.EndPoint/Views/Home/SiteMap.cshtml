@@ -2,8 +2,8 @@
     <div class="container">
         <!-- Breadcrumb Start-->
         <ul class="breadcrumb">
-            <li><a href="/"><i class="fa fa-home"></i></a></li>
-            <li><a href="/SiteMap">نقشه سایت</a></li>
+            <li><a asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-home"></i></a></li>
+            <li><a asp-controller="Home" asp-action="SiteMap">نقشه سایت</a></li>
         </ul>
         <!-- Breadcrumb End-->
         <div class="row">
@@ -15,34 +15,34 @@
                     <div class="col-md-5 col-sm-6">
                         <ul class="sitemap">
                             <li>
-                                <a href="/">خانه</a>
+                                <a asp-area="" asp-controller="Home" asp-action="Index">خانه</a>
                                 <ul>
-                                    <li><a href="/Login">ورود</a> </li>
-                                    <li><a href="/Register">ثبت نام</a> </li>
-                                    <li><a href="/Search">جستجو</a> </li>
+                                    <li><a asp-controller="Account" asp-action="Login">ورود</a> </li>
+                                    <li><a asp-controller="Account" asp-action="Register">ثبت نام</a> </li>
+                                    <li><a asp-controller="Search" asp-action="Index">جستجو</a> </li>
                                     <li>
                                         <a>کاربران</a>
                                         <ul>
-                                            <li><a href="/UserPannel/Index">حساب کاربری</a></li>
-                                            <li><a href="/UserPannel/Edit">ویرایش حساب کاربری</a></li>
-                                            <li><a href="/UserPannel/ChangePassword">تغییر رمز عبور</a></li>
-                                            <li><a href="/UserPannel/Wallet">عملیات کیف پول</a></li>
-                                            <li><a href="/UserPannel/Order">فاکتور ها</a></li>
-                                            <li><a href="/UserPannel/Favorite">علاقه مندی ها</a></li>
-                                            <li><a href="/UserPannel/MyComment">نظرات</a></li>
+                                            <li><a asp-area="UserPannel" asp-controller="Home" asp-action="Index">حساب کاربری</a></li>
+                                            <li><a asp-area="UserPannel" asp-controller="Home" asp-action="Edit">ویرایش حساب کاربری</a></li>
+                                            <li><a asp-area="UserPannel" asp-controller="Home" asp-action="ChangePassword">تغییر رمز عبور</a></li>
+                                            <li><a asp-area="UserPannel" asp-controller="Wallet" asp-action="Index">عملیات کیف پول</a></li>
+                                            <li><a asp-area="UserPannel" asp-controller="Order" asp-action="Index">فاکتور ها</a></li>
+                                            <li><a asp-area="UserPannel" asp-controller="Favorite" asp-action="Index">علاقه مندی ها</a></li>
+                                            <li><a asp-area="UserPannel" asp-controller="Home" asp-action="MyComment">نظرات</a></li>
                                             <li><a href="/LogOut">خروج</a></li>
                                         </ul>
                                     </li>
                                     <li>
                                         <a href="/AboutUs">درباره ی ما</a>
                                         <ul>
-                                            <li><a href="/Terms">قوانین و مقررات</a></li>
-                                            <li><a href="/Privacypolicy">حریم شخصی</a></li>
-                                            <li><a href="/FAQ">سوالات متداول</a></li>
-                                            <li><a href="/SiteMap">نقشه سایت</a></li>
+                                            <li><a  asp-controller="Home" asp-action="Terms">قوانین و مقررات</a></li>
+                                            <li><a asp-controller="Home" asp-action="PrivacyPolicy">حریم شخصی</a></li>
+                                            <li><a asp-controller="Home" asp-action="FAQ">سوالات متداول</a></li>
+                                            <li><a asp-controller="Home" asp-action="SiteMap">نقشه سایت</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="/ContactUs">تماس با ما</a></li>  
+                                    <li><a asp-controller="Home" asp-action="ContactUs">تماس با ما</a></li>
                                 </ul>
                             </li>
                         </ul>
