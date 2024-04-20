@@ -57,13 +57,13 @@
                     <!--Short Link End -->
                     <div class="row product-info">
                         <div class="col-sm-6">
-                            <div class="image"><img class="img-responsive" itemprop="image" id="zoom_01" src="/Template/image/product/MainPic/@Model.MainImageProduct" title="@Model.ProductTitle.Trim().Replace(" ","-")" alt="@Model.ProductTitle.Trim().Replace(" ","-")" data-zoom-image="/Template/image/product/MainPic/@Model.MainImageProduct" /> </div>
+                            <div class="image"><img class="img-responsive" itemprop="image" id="zoom_01" style="width:auto;height:auto" src="/Template/image/product/MainPic/@Model.MainImageProduct" title="@Model.ProductTitle.Trim().Replace(" ","-")" alt="@Model.ProductTitle.Trim().Replace(" ","-")" data-zoom-image="/Template/image/product/MainPic/@Model.MainImageProduct" /> </div>
                             <div class="center-block text-center"><span class="zoom-gallery"><i class="fa fa-search"></i> برای مشاهده گالری روی تصویر کلیک کنید</span></div>
                             <div class="image-additional" id="gallery_01">
                                 @foreach (var item in Model.ProductImages)
                                 {
                                     <a class="thumbnail" style="height:60px;width:90px;" href="#" data-zoom-image="/Template/image/product/Image/@item.PI_ImageName" data-image="/Template/image/product/Image/@item.PI_ImageName" title="@item.PI_ImageName">
-                                        <img src="/Template/image/product/Image/@item.PI_ImageName" title="@item.PI_ImageName" alt="@item.PI_ImageName" />
+                                        <img src="/Template/image/product/Image/@item.PI_ImageName" style="width:auto;height:auto" title="@item.PI_ImageName" alt="@item.PI_ImageName" />
                                     </a>
                                 }
                             </div>
@@ -215,7 +215,7 @@
                             {
                                 <div class="product-thumb clearfix">
                                     <input type="hidden" value="@item.ProductId" />
-                                    <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
+                                    <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MainPicThumbnail/@item.MainImageProduct" style="width:220px;height:auto" alt="@item.ProductTitle" title="@item.ProductTitle" class="img-responsive" /></a></div>
                                     <div class="caption">
                                         <input type="hidden" value="@item.ProductId" />
                                         <h4><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")">@item.ProductTitle</a></h4>
@@ -254,7 +254,7 @@
                         {
                             <div class="product-thumb clearfix">
                                 <input type="hidden" value="@item.ProductId" />
-                                <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MiniPic/@item.MainImageProduct" alt="@item.ProductTitle.Trim().Replace(" ","-")" title="@item.ProductTitle.Trim().Replace(" ","-")" class="img-responsive" /></a></div>
+                                <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MiniPic/@item.MainImageProduct" style="width:50px;height:75px" alt="@item.ProductTitle.Trim().Replace(" ","-")" title="@item.ProductTitle.Trim().Replace(" ","-")" class="img-responsive" /></a></div>
                                 <div class="caption">
                                     <input type="hidden" value="@item.ProductId" />
                                     <h4><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")">@item.ProductTitle</a></h4>
@@ -300,7 +300,7 @@
                         {
                             <div class="product-thumb clearfix">
                                 <input type="hidden" value="@item.ProductId" />
-                                <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MiniPic/@item.MainImageProduct" alt="@item.ProductTitle.Trim().Replace(" ","-")" title="@item.ProductTitle.Trim().Replace(" ","-")" class="img-responsive" /></a></div>
+                                <div class="image"><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")"><img src="/Template/image/product/MiniPic/@item.MainImageProduct" style="width:50px;height:75px" alt="@item.ProductTitle.Trim().Replace(" ","-")" title="@item.ProductTitle.Trim().Replace(" ","-")" class="img-responsive" /></a></div>
                                 <div class="caption">
                                     <h4><a href="/ShowProduct/@item.ProductId/@item.ProductTitle.Trim().Replace(" ","-")">@item.ProductTitle</a></h4>
                                     <p class="price">

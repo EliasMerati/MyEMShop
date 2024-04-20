@@ -343,7 +343,7 @@ namespace MyEMShop.Application.Services
 
                 using (Image image = Image.Load(Imagepath))
                 {
-                    image.Mutate(x => x.Resize(330, 220));
+                    image.Mutate(x => x.Resize(220, 330));
                     image.SaveAsync(OutputPath);
                 }
                 //====================================================================================================================
