@@ -5,6 +5,10 @@
 @{
     List<Banner> banner = _banner.GetAllBanners();
 }
+@section MetaTag
+{
+    <meta name=googlebot content=noindex,nofollow>
+}
 <div class="marketshop-banner">
     <div class="row">
         @foreach (var item in banner)
