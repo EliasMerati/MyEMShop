@@ -7,6 +7,7 @@ using MyEMShop.Data.Context;
 using MyEMShop.Data.Dtos.ProductDto;
 using MyEMShop.Data.Entities.Product;
 using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats.Webp;
 using SixLabors.ImageSharp.Processing;
 using System;
 using System.Collections.Generic;
@@ -318,7 +319,10 @@ namespace MyEMShop.Application.Services
                 using (Image image = Image.Load(Imagepath))
                 {
                     image.Mutate(x => x.Resize(220, 330));
-                    image.SaveAsync(OutputPath);
+                    image.SaveAsWebp(OutputPath, new WebpEncoder
+                    {
+                        Quality = 80
+                    });
                 }
                 #endregion
 
@@ -330,7 +334,10 @@ namespace MyEMShop.Application.Services
                 using (Image image = Image.Load(Imagepath))
                 {
                     image.Mutate(x => x.Resize(50, 75));
-                    image.SaveAsync(MiniPicPath);
+                    image.SaveAsWebp(MiniPicPath, new WebpEncoder
+                    {
+                        Quality = 80
+                    });
                 }
                 #endregion
             }
@@ -344,7 +351,10 @@ namespace MyEMShop.Application.Services
                 using (Image image = Image.Load(Imagepath))
                 {
                     image.Mutate(x => x.Resize(220, 330));
-                    image.SaveAsync(OutputPath);
+                    image.SaveAsWebp(OutputPath, new WebpEncoder
+                    {
+                        Quality = 80
+                    });
                 }
                 //====================================================================================================================
 
@@ -353,7 +363,10 @@ namespace MyEMShop.Application.Services
                 using (Image image = Image.Load(Imagepath))
                 {
                     image.Mutate(x => x.Resize(50, 75));
-                    image.SaveAsync(MiniPicPath);
+                    image.SaveAsWebp(MiniPicPath, new WebpEncoder
+                    {
+                        Quality = 80
+                    });
                 }
 
             }
