@@ -1876,7 +1876,7 @@ namespace MyEMShop.Data.Migrations
                             IsDelete = false,
                             Name = "بهناز",
                             Password = "20-2C-B9-62-AC-59-07-5B-96-4B-07-15-2D-23-4B-70",
-                            RegisterDate = new DateTime(2024, 2, 26, 20, 49, 53, 558, DateTimeKind.Local).AddTicks(9146),
+                            RegisterDate = new DateTime(2024, 5, 7, 0, 3, 0, 107, DateTimeKind.Local).AddTicks(6992),
                             UserName = "BehDokhtAdmin"
                         });
                 });
