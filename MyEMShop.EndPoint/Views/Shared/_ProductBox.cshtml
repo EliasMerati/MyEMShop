@@ -8,21 +8,37 @@
                 @{
                     int newprice = Model.ProductPrice - (Model.ProductPrice * Model.Save / 100);
                 }
-                @if (Model.Save != 0)
+                @if (Model.PL_Id == 1)
                 {
-                    <span class="price-old">@Model.ProductPrice.ToString("N0") تومان</span>
-                    <span class="price-new">@newprice.ToString("N0") تومان</span>
-                    <span class="saving">@Model.Save %</span>
+                    @if (Model.Save != 0)
+                    {
+                        <span class="price-old">@Model.ProductPrice.ToString("N0") تومان</span>
+                        <span class="price-new">@newprice.ToString("N0") تومان</span>
+                        <span class="saving">@Model.Save %</span>
+                    }
+                    else
+                    {
+                        <span class="price-new">@Model.ProductPrice.ToString("N0") تومان</span>
+                    }
                 }
                 else
                 {
-                    <span class="price-new">@Model.ProductPrice.ToString("N0") تومان</span>
+
                 }
+                
             </p>
 
         </div>
         <div class="button-group">
-            <a asp-controller="Search" asp-action="BuyProduct" asp-route-id="@Model.ProductId" class="btn-primary" type="button"><span>افزودن به سبد</span></a>
+            @if (Model.PL_Id == 1)
+            {
+                <a asp-controller="Search" asp-action="BuyProduct" asp-route-id="@Model.ProductId" class="btn-primary" type="button"><span>افزودن به سبد</span></a>
+            }
+            else
+            {
+
+            }
+            
             <div class="add-to-links" style="padding-top:10px;">
 
                 @if (User.Identity.IsAuthenticated)

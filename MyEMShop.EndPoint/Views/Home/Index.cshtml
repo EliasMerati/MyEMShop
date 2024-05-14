@@ -54,15 +54,22 @@
                                     //int total = item.ProductPrice + taxvalue;
                                     //int totalwithSave = newprice + taxvalue;
                                 }
-                                @if (item.Save != 0)
+                                @if (item.PL_Id == 1)
                                 {
-                                    <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
-                                    <span class="price-new">@newprice.ToString("N0") تومان</span>
-                                    <span class="saving">@item.Save %</span>
+                                    @if (item.Save != 0)
+                                    {
+                                        <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
+                                        <span class="price-new">@newprice.ToString("N0") تومان</span>
+                                        <span class="saving">@item.Save %</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="price-new">@newprice.ToString("N0") تومان</span>
+                                    }
                                 }
                                 else
                                 {
-                                    <span class="price-new">@newprice.ToString("N0") تومان</span>
+
                                 }
                             </p>
                         </div>
@@ -112,15 +119,22 @@
                                     //int total = item.ProductPrice + taxvalue;
                                     //int totalwithSave = newprice + taxvalue;
                                 }
-                                @if (item.Save != 0)
+                                @if (item.PL_Id == 1)
                                 {
-                                    <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
-                                    <span class="price-new">@newprice.ToString("N0") تومان</span>
-                                    <span class="saving">@item.Save %</span>
+                                    @if (item.Save != 0)
+                                    {
+                                        <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
+                                        <span class="price-new">@newprice.ToString("N0") تومان</span>
+                                        <span class="saving">@item.Save %</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="price-new">@newprice.ToString("N0") تومان</span>
+                                    }
                                 }
                                 else
                                 {
-                                    <span class="price-new">@newprice.ToString("N0") تومان</span>
+
                                 }
                             </p>
                         </div>
@@ -169,15 +183,22 @@
                                     //int total = item.ProductPrice + taxvalue;
                                     //int totalwithSave = newprice + taxvalue;
                                 }
-                                @if (item.Save != 0)
+                                @if (item.PL_Id == 1)
                                 {
-                                    <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
-                                    <span class="price-new">@newprice.ToString("N0") تومان</span>
-                                    <span class="saving">@item.Save %</span>
+                                    @if (item.Save != 0)
+                                    {
+                                        <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
+                                        <span class="price-new">@newprice.ToString("N0") تومان</span>
+                                        <span class="saving">@item.Save %</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="price-new">@newprice.ToString("N0") تومان</span>
+                                    }
                                 }
                                 else
                                 {
-                                    <span class="price-new">@newprice.ToString("N0") تومان</span>
+
                                 }
                             </p>
                         </div>
@@ -226,15 +247,22 @@
                                     //int total = item.ProductPrice + taxvalue;
                                     //int totalwithSave = newprice + taxvalue;
                                 }
-                                @if (item.Save != 0)
+                                @if (item.PL_Id == 1)
                                 {
-                                    <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
-                                    <span class="price-new">@newprice.ToString("N0") تومان</span>
-                                    <span class="saving">@item.Save %</span>
+                                    @if (item.Save != 0)
+                                    {
+                                        <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
+                                        <span class="price-new">@newprice.ToString("N0") تومان</span>
+                                        <span class="saving">@item.Save %</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="price-new">@newprice.ToString("N0") تومان</span>
+                                    }
                                 }
                                 else
                                 {
-                                    <span class="price-new">@newprice.ToString("N0") تومان</span>
+
                                 }
                             </p>
                         </div>
@@ -292,15 +320,22 @@
                             //int total = item.ProductPrice + taxvalue;
                             //int totalwithSave = newprice + taxvalue;
                         }
-                        @if (item.Save != 0)
+                        @if (item.PL_Id == 1)
                         {
-                            <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
-                            <span class="price-new">@newprice.ToString("N0") تومان</span>
-                            <span class="saving">@item.Save %</span>
+                            @if (item.Save != 0)
+                            {
+                                <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
+                                <span class="price-new">@newprice.ToString("N0") تومان</span>
+                                <span class="saving">@item.Save %</span>
+                            }
+                            else
+                            {
+                                <span class="price-new">@newprice.ToString("N0") تومان</span>
+                            }
                         }
                         else
                         {
-                            <span class="price-new">@newprice.ToString("N0") تومان</span>
+
                         }
                     </p>
                 </div>
@@ -352,15 +387,22 @@
                                         //int total = item.ProductPrice + taxvalue;
                                         //int totalwithSave = newprice + taxvalue;
                                     }
-                                    @if (item.Save != 0)
+                                    @if (item.PL_Id == 1)
                                     {
-                                        <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
-                                        <span class="price-new">@newprice.ToString("N0") تومان</span>
-                                        <span class="saving">@item.Save %</span>
+                                        @if (item.Save != 0)
+                                        {
+                                            <span class="price-old">@item.ProductPrice.ToString("N0") تومان</span>
+                                            <span class="price-new">@newprice.ToString("N0") تومان</span>
+                                            <span class="saving">@item.Save %</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="price-new">@newprice.ToString("N0") تومان</span>
+                                        }
                                     }
                                     else
                                     {
-                                        <span class="price-new">@newprice.ToString("N0") تومان</span>
+
                                     }
                                 </p>
                             </div>
