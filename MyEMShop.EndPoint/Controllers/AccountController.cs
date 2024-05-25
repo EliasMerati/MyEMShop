@@ -98,15 +98,15 @@ namespace MyEMShop.EndPoint.Controllers
                     HttpContext.SignInAsync(Principal, property);
                     if (returnUrl != "/")
                     {
-                        return LocalRedirect(returnUrl);
+                        return Redirect(returnUrl);
                     }
                     if (!_AccountServices.IsAdmin(login.Email))
                     {
-                        return LocalRedirect("/"); 
+                        return Redirect("/"); 
                     }
                     else
                     {
-                        return LocalRedirect("/Admin");
+                        return Redirect("/Admin");
                     }
                     
                 }
