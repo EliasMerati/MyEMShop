@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ImageProcessor.Processors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyEMShop.Application.Interfaces;
@@ -318,8 +319,8 @@ namespace MyEMShop.Application.Services
 
                 using (Image image = Image.Load(Imagepath))
                 {
-                    image.Mutate(x => x.Resize(330, 220));
-                    image.Save(OutputPath);
+                    image.Mutate(x => x.Resize(220, 330));
+                    image.SaveAsWebp(OutputPath, new WebpEncoder { Quality = 100});
                 }
                 #endregion
 
@@ -330,8 +331,8 @@ namespace MyEMShop.Application.Services
 
                 using (Image image = Image.Load(Imagepath))
                 {
-                    image.Mutate(x => x.Resize(75, 50));
-                    image.Save(MiniPicPath);
+                    image.Mutate(x => x.Resize(50, 75));
+                    image.SaveAsWebp(MiniPicPath,new WebpEncoder { Quality = 100});
                 }
                 #endregion
             }
@@ -344,8 +345,8 @@ namespace MyEMShop.Application.Services
 
                 using (Image image = Image.Load(Imagepath))
                 {
-                    image.Mutate(x => x.Resize(330, 220));
-                    image.Save(OutputPath);
+                    image.Mutate(x => x.Resize(220, 330));
+                    image.SaveAsWebp(OutputPath, new WebpEncoder { Quality = 100 });
                 }
                 //====================================================================================================================
 
@@ -353,8 +354,8 @@ namespace MyEMShop.Application.Services
 
                 using (Image image = Image.Load(Imagepath))
                 {
-                    image.Mutate(x => x.Resize(75, 50));
-                    image.Save(MiniPicPath);
+                    image.Mutate(x => x.Resize(50, 75));
+                    image.SaveAsWebp(MiniPicPath , new WebpEncoder { Quality = 100 });
                 }
 
             }
