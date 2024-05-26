@@ -6,7 +6,7 @@
 @section MetaTag
     {
     <meta name="description" content="@ViewData["Title"] _ فروشگاه پوشاک زنانه به دخت">
-    <link rel="canonical" href="https://behdokhtcollection.ir/@ViewData["Title"]" />
+    <link rel="canonical" href="https://behdokhtcollection.ir/Favorite" />
 }
 <div id="container">
     <div class="container">
@@ -57,7 +57,7 @@
                                     <td class="text-right">
                                         @if (item.PL_Id == 1)
                                         {
-                                            <a href="/Search/BuyProduct/@item.ProductId" class="btn btn-primary" title="" data-toggle="tooltip" type="button" data-original-title="افزودن به سبد"><i class="fa fa-shopping-cart"></i></a>
+                                            <a asp-controller="Search" asp-action="BuyProduct" asp-route-id="@item.ProductId" class="btn btn-primary" title="" data-toggle="tooltip" type="button" data-original-title="افزودن به سبد"><i class="fa fa-shopping-cart"></i></a>
                                         }
                                         else if (item.PL_Id == 2)
                                         {

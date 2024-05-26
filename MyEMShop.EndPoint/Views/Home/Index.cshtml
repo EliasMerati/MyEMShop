@@ -18,7 +18,7 @@
 
 @section MetaTag
     {
-    <link rel="canonical" href="https://behdokhtcollection.ir/" />
+    <link rel="canonical" href="https://behdokhtcollection.ir" />
     <meta name=googlebot content=index,follow>
     <meta name="keywords" content="بهدخت،به دخت،Behdokht,BehDokht,BEHDOKHT,BEHDOKHTCOLLECTION,behdokht,behdokhtcollection,BehdokhtCollection,بهدخت کالکشن،به دخت کالکشن،پوشاک زنانه بهدخت،فروشگاه پوشاک زنانه بهدخت،فروشگاه پوشاک زنانه به دخت">
     <meta name=robots content=noodp,noydir>
@@ -77,7 +77,7 @@
 
                             @if (item.PL_Id == 1)
                             {
-                                <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button" ><span>افزودن به سبد</span></a>
+                                <a asp-controller="Search" asp-action="BuyProduct" asp-route-id="@item.ProductId" class="btn-primary" type="button"><span>افزودن به سبد</span></a>
                             }
                             else if (item.PL_Id == 2)
                             {
@@ -141,7 +141,7 @@
                         <div class="button-group">
                             @if (item.PL_Id == 1)
                             {
-                                <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button"><span>افزودن به سبد</span></a>
+                                <a asp-controller="Search" asp-action="BuyProduct" asp-route-id="@item.ProductId" class="btn-primary" type="button"><span>افزودن به سبد</span></a>
                             }
                             else if (item.PL_Id == 2)
                             {
@@ -205,7 +205,7 @@
                         <div class="button-group">
                             @if (item.PL_Id == 1)
                             {
-                                <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button"><span>افزودن به سبد</span></a>
+                                <a asp-controller="Search" asp-action="BuyProduct" asp-route-id="@item.ProductId" class="btn-primary" type="button"><span>افزودن به سبد</span></a>
                             }
                             else if (item.PL_Id == 2)
                             {
@@ -269,7 +269,7 @@
                         <div class="button-group">
                             @if (item.PL_Id == 1)
                             {
-                                <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button"><span>افزودن به سبد</span></a>
+                                <a asp-controller="Search" asp-action="BuyProduct" asp-route-id="@item.ProductId" class="btn-primary" type="button"><span>افزودن به سبد</span></a>
                             }
                             else if (item.PL_Id == 2)
                             {
@@ -343,7 +343,7 @@
 
                     @if (item.PL_Id == 1)
                     {
-                        <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button"><span>افزودن به سبد</span></a>
+                        <a asp-controller="Search" asp-action="BuyProduct" asp-route-id="@item.ProductId" class="btn-primary" type="button"><span>افزودن به سبد</span></a>
                     }
                     else if (item.PL_Id == 2)
                     {
@@ -409,7 +409,7 @@
                             <div class="button-group">
                                 @if (item.PL_Id == 1)
                                 {
-                                    <a href="/Search/BuyProduct/@item.ProductId" class="btn-primary" type="button"><span>افزودن به سبد</span></a>
+                                    <a asp-controller="Search" asp-action="BuyProduct" asp-route-id="@item.ProductId" class="btn-primary" type="button"><span>افزودن به سبد</span></a>
                                 }
                                 else if (item.PL_Id == 2)
                                 {

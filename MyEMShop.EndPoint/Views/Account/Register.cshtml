@@ -15,7 +15,7 @@
 
 <div class="col-sm-9" id="content">
     <h1 class="title">ثبت نام حساب کاربری</h1>
-    <p>اگر قبلا حساب کاربریتان را ایجاد کرد اید جهت ورود به <a href="/Login">صفحه لاگین</a> مراجعه کنید.</p>
+    <p>اگر قبلا حساب کاربریتان را ایجاد کرد اید جهت ورود به <a asp-controller="Account" asp-action="Login">صفحه لاگین</a> مراجعه کنید.</p>
     <form class="form-horizontal" method="post">
         <fieldset id="account">
             <legend>اطلاعات شخصی شما</legend>
@@ -70,7 +70,7 @@
 
             <div class="pull-right">
                 <input type="checkbox" value="1" name="agree">
-                &nbsp;من <a class="agree" href="Privacypolicy"><b>سیاست حریم خصوصی</b> را خوانده ام و با آن موافق هستم</a> &nbsp;
+                &nbsp;من <a class="agree" asp-controller="Home" asp-action="PrivacyPolicy"><b>سیاست حریم خصوصی</b> را خوانده ام و با آن موافق هستم</a> &nbsp;
                 <input type="submit" class="btn btn-primary" value="ادامه">
             </div>
         </div>
