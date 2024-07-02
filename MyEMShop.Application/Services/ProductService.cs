@@ -311,37 +311,13 @@ namespace MyEMShop.Application.Services
                     ImageFile.CopyTo(stream);
                 }
                 #endregion
-
-                //=====================================================================================================
-
-                #region thumbnail
-                string OutputPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MainPicThumbnail/", product.MainImageProduct);
-
-                using (Image image = Image.Load(Imagepath))
-                {
-                    image.Mutate(x => x.Resize(220, 330));
-                    image.SaveAsWebp(OutputPath, new WebpEncoder { Quality = 100});
-                }
-                #endregion
-
-                //=====================================================================================================
-
-                #region Mini Pic
-                string MiniPicPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MiniPic/", product.MainImageProduct);
-
-                using (Image image = Image.Load(Imagepath))
-                {
-                    image.Mutate(x => x.Resize(50, 75));
-                    image.SaveAsWebp(MiniPicPath,new WebpEncoder { Quality = 100});
-                }
-                #endregion
             }
             else
             {
                 product.MainImageProduct = "Default.jpg";
 
                 string Imagepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MainPic/", "Default.jpg");
-                string OutputPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MainPicThumbnail/", "Default.jpg");
+                string OutputPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MainPic/", "Default.jpg");
 
                 using (Image image = Image.Load(Imagepath))
                 {
