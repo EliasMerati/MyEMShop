@@ -240,16 +240,6 @@ namespace MyEMShop.Application.Services
                     {
                         File.Delete(DeleteImagePath);
                     }
-                    string DeleteThumbPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MainPicThumbnail/", product.MainImageProduct);
-                    if (File.Exists(DeleteThumbPath))
-                    {
-                        File.Delete(DeleteThumbPath);
-                    }
-                    string DeleteMiniPicPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MiniPic/", product.MainImageProduct);
-                    if (File.Exists(DeleteMiniPicPath))
-                    {
-                        File.Delete(DeleteMiniPicPath);
-                    }
                 }
                 #endregion
 
@@ -262,30 +252,6 @@ namespace MyEMShop.Application.Services
                 using (var filesStream = new FileStream(Path.Combine(MainPath), FileMode.Create))
                 {
                     ImageSet.CopyTo(filesStream);
-                }
-                #endregion
-
-                //====================================================================================================== Thumbnail
-
-                #region Thumbnail
-                string ThumbPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MainPicThumbnail/", MainFileName);
-
-                using (Image image = Image.Load(MainPath))
-                {
-                    image.Mutate(x => x.Resize(220, 330));
-                    image.SaveAsync(ThumbPath);
-                }
-                #endregion
-
-                //====================================================================================================== Mini Pic
-
-                #region Mini Pic
-                string MiniPicPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Template/image/product/MiniPic/", product.MainImageProduct);
-
-                using (Image image = Image.Load(MainPath))
-                {
-                    image.Mutate(x => x.Resize(50, 75));
-                    image.SaveAsync(MiniPicPath);
                 }
                 #endregion
 
