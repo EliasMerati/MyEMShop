@@ -228,7 +228,7 @@ namespace MyEMShop.Application.Services
 
             #region UpdatePicture
 
-            if (ImageSet is not null && ImageSet.IsImage())
+            if (ImageSet is not null)
             {
                 //====================================================================================================== Delete Files
 
